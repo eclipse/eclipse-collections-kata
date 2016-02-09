@@ -1,0 +1,8 @@
+target
+build
+.maven
+.gradle
+eclipse-collections-kata-parent.userlibraries
+eclipse-collections-kata.userlibraries
+gradle.prefs
+.idea/workspace.xml

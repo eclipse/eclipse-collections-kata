@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016 Goldman Sachs.
+  ~ All rights reserved. This program and the accompanying materials
+  ~ are made available under the terms of the Eclipse Public License v1.0
+  ~ and Eclipse Distribution License v. 1.0 which accompany this distribution.
+  ~ The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
+  ~ and the Eclipse Distribution License is available at
+  ~ http://www.eclipse.org/org/documents/edl-v10.php.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.eclipse.collections.kata</groupId>
+    <artifactId>eclipse-collections-kata-parent</artifactId>
+    <version>7.1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>Eclipse Collections Kata</name>
+
+    <description>The Eclipse Collections Katas are a fun way to help you learn idiomatic Eclipse Collections usage.
+        This particular kata is set up as a series of unit tests which fail. Your task is to make them pass, using
+        Eclipse Collections.
+    </description>
+
+    <url>https://github.com/eclipse/eclipse-collections-kata</url>
+
+    <inceptionYear>2007</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Eclipse Public License - v 1.0</name>
+            <url>https://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Eclipse Distribution License - v 1.0</name>
+            <url>https://www.eclipse.org/licenses/edl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/eclipse/eclipse-collections-kata</url>
+        <connection>scm:git:https://github.com/eclipse/eclipse-collections-kata.git</connection>
+        <developerConnection>scm:git:https://github.com/eclipse/eclipse-collections-kata.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Craig P. Motlin</name>
+            <email>craig.motlin@gs.com</email>
+        </developer>
+
+        <developer>
+            <name>Donald Raab</name>
+            <email>donald.raab@gs.com</email>
+        </developer>
+
+        <developer>
+            <name>Mohammad A. Rezaei</name>
+            <email>mohammad.rezaei@gs.com</email>
+        </developer>
+
+        <developer>
+            <name>Hiroshi Ito</name>
+            <email>hiroshi.ito@gs.com</email>
+        </developer>
+
+        <developer>
+            <name>Kristen O'Leary</name>
+            <email>kristen.oleary@gs.com</email>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>company-kata</module>
+        <module>pet-kata</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.fork>true</maven.compiler.fork>
+        <maven.compiler.verbose>true</maven.compiler.verbose>
+        <maven.compiler.meminitial>2048m</maven.compiler.meminitial>
+        <maven.compiler.maxmem>2048m</maven.compiler.maxmem>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.eclipse.collections</groupId>
+                <artifactId>eclipse-collections-api</artifactId>
+                <version>7.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.collections</groupId>
+                <artifactId>eclipse-collections</artifactId>
+                <version>7.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.collections</groupId>
+                <artifactId>eclipse-collections-testutils</artifactId>
+                <version>7.0.0</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+</project>

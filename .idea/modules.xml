@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/company-kata/company-kata.iml" filepath="$PROJECT_DIR$/company-kata/company-kata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eclipse-collections-kata.iml" filepath="$PROJECT_DIR$/eclipse-collections-kata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pet-kata/pet-kata.iml" filepath="$PROJECT_DIR$/pet-kata/pet-kata.iml" />
+    </modules>
+  </component>
+</project>

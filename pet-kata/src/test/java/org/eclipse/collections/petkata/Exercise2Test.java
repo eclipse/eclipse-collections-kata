@@ -38,7 +38,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
-    public void howManyPeopleHavePets()
+    public void howManyPeopleHaveCats()
     {
         int count = 0;
         Assert.assertEquals(2, count);

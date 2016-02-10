@@ -10,6 +10,11 @@
 
 package org.eclipse.collections.petkata;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
 import org.eclipse.collections.api.set.primitive.MutableIntSet;
 import org.eclipse.collections.impl.factory.Sets;
@@ -18,12 +23,7 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-public class Exercise5Test
+public class Exercise5Test extends PetDomainForKata
 {
     @Test
     public void partitionPetAndNonPetPeople()

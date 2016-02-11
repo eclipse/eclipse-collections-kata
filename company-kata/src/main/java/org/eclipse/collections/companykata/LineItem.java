@@ -10,15 +10,11 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
-
 /**
  * An Item has a name and a value.
  */
 public class LineItem
 {
-    public static final Function<LineItem, String> TO_NAME = LineItem::getName;
-
     private String name;
     private final double value;
 

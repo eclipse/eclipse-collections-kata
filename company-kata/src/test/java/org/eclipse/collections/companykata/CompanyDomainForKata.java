@@ -39,19 +39,8 @@ public abstract class CompanyDomainForKata
     {
         Order fredOrder = new Order();
         fredOrder.addLineItem(new LineItem("shed", 50.0));
-
-        /**
-         * TODO 7: Refactor Order and its API so this repetition is not necessary.
-         */
-        // TODO 7: Add 3 cups at 1.5 each to the order
-        fredOrder.addLineItem(new LineItem("cup", 1.5));
-        fredOrder.addLineItem(new LineItem("cup", 1.5));
-        fredOrder.addLineItem(new LineItem("cup", 1.5));
-
-        // TODO 7: Add 3 saucers at 1.0 each to the order
-        fredOrder.addLineItem(new LineItem("saucer", 1.0));
-        fredOrder.addLineItem(new LineItem("saucer", 1.0));
-        fredOrder.addLineItem(new LineItem("saucer", 1.0));
+        fredOrder.addLineItems(new LineItem("cup", 1.5), 3);
+        fredOrder.addLineItems(new LineItem("saucer", 1.0), 3);
 
         fredOrder.addLineItem(new LineItem("chair", 12.50));
         fredOrder.addLineItem(new LineItem("table", 1.0));
@@ -64,17 +53,9 @@ public abstract class CompanyDomainForKata
         maryOrder.addLineItem(new LineItem("cat", 150.0));
         maryOrder.addLineItem(new LineItem("big shed", 500.0));
 
-        // TODO 7: Add 4 cups at 1.50 each to the order
-        maryOrder.addLineItem(new LineItem("cup", 1.5));
-        maryOrder.addLineItem(new LineItem("cup", 1.5));
-        maryOrder.addLineItem(new LineItem("cup", 1.5));
-        maryOrder.addLineItem(new LineItem("cup", 1.5));
+        maryOrder.addLineItems(new LineItem("cup", 1.5), 4);
 
-        // TODO 7: Add 4 saucers at 1.50 each to the order
-        maryOrder.addLineItem(new LineItem("saucer", 1.5));
-        maryOrder.addLineItem(new LineItem("saucer", 1.5));
-        maryOrder.addLineItem(new LineItem("saucer", 1.5));
-        maryOrder.addLineItem(new LineItem("saucer", 1.5));
+        maryOrder.addLineItems(new LineItem("saucer", 1.5), 4);
 
         maryOrder.addLineItem(new LineItem("sofa", 120.0));
         maryOrder.addLineItem(new LineItem("dog", 75.0));
@@ -85,12 +66,7 @@ public abstract class CompanyDomainForKata
 
         Order billOrder1 = new Order();
         billOrder1.addLineItem(new LineItem("shed", 50.0));
-
-        // TODO 7: Add 43 gnomes at 7.50 each to the order
-        for (int i = 0; i < 43; i++)
-        {
-            billOrder1.addLineItem(new LineItem("gnome", 7.50));
-        }
+        billOrder1.addLineItems(new LineItem("gnome", 7.50), 43);
 
         Order billOrder2 = new Order();
         billOrder2.addLineItem(new LineItem("bowl", 1.25));

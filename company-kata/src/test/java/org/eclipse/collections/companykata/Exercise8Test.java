@@ -19,6 +19,7 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.bag.sorted.mutable.TreeBag;
+import org.eclipse.collections.impl.block.factory.Comparators;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
@@ -36,10 +37,10 @@ public class Exercise8Test extends CompanyDomainForKata
     @Test
     public void totalOrderValuesByCity()
     {
-        Function0<Double> zeroValueFactory = () -> 0.0;
-        Function2<Double, Customer, Double> aggregator = (result, customer) -> result + customer.getTotalOrderValue();
-
-        MutableMap<String, Double> map = null;
+        MutableMap<String, Double> map = this.company.getCustomers().aggregateBy(
+                Customer::getCity,
+                () -> 0.0,
+                (result, customer) -> result + customer.getTotalOrderValue());
         Assert.assertEquals(2, map.size());
         Assert.assertEquals(446.25, map.get("London"), 0.0);
         Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
@@ -53,10 +54,12 @@ public class Exercise8Test extends CompanyDomainForKata
     @Test
     public void totalOrderValuesByItem()
     {
-        Function0<Double> zeroValueFactory = () -> 0.0;
-        Function2<Double, LineItem, Double> aggregator = (result, lineItem) -> result + lineItem.getValue();
-
-        MutableMap<String, Double> map = null;
+        MutableMap<String, Double> map = this.company.getOrders()
+                .flatCollect(Order::getLineItems)
+                .aggregateBy(
+                        LineItem::getName,
+                        () -> 0.0,
+                        (result, lineItem) -> result + lineItem.getValue());
         Verify.assertSize(12, map);
         Assert.assertEquals(100.0, map.get("shed"), 0.0);
         Assert.assertEquals(10.5, map.get("cup"), 0.0);
@@ -68,7 +71,13 @@ public class Exercise8Test extends CompanyDomainForKata
     @Test
     public void sortedOrders()
     {
-        MutableSortedBag<Double> orderedPrices = null;
+        MutableSortedBag<Double> orderedPrices = this.company.getOrders()
+                .asLazy()
+                .flatCollect(Order::getLineItems)
+                .collectDouble(LineItem::getValue)
+                .select(value -> value > 7.5)
+                .collect(Double::valueOf)
+                .into(TreeBag.<Double>newBag(Comparators.reverseNaturalOrder()));
 
         MutableSortedBag<Double> expectedPrices = TreeBag.newBagWith(
                 Collections.reverseOrder(), 500.0, 150.0, 120.0, 75.0, 50.0, 50.0, 12.5);
@@ -81,7 +90,10 @@ public class Exercise8Test extends CompanyDomainForKata
     @Test
     public void whoOrderedSaucers()
     {
-        MutableList<Customer> customersWithSaucers = null;
+        MutableList<Customer> customersWithSaucers = this.company.getCustomers().select(
+                customer -> customer.getOrders().anySatisfy(
+                        order -> order.getLineItems().anySatisfy(
+                                lineItem -> "saucer".equals(lineItem.getName()))));
         Verify.assertSize("customers with saucers", 2, customersWithSaucers);
     }
 
@@ -92,7 +104,7 @@ public class Exercise8Test extends CompanyDomainForKata
     public void ordersByCustomerUsingAsMap()
     {
         MutableMap<String, MutableList<Order>> customerNameToOrders =
-                this.company.getCustomers().toMap(null, null);
+                this.company.getCustomers().toMap(Customer::getName, Customer::getOrders);
 
         Assert.assertNotNull("customer name to orders", customerNameToOrders);
         Verify.assertSize("customer names", 3, customerNameToOrders);
@@ -107,7 +119,12 @@ public class Exercise8Test extends CompanyDomainForKata
     @Test
     public void mostExpensiveItem()
     {
-        MutableListMultimap<Double, Customer> multimap = null;
+        MutableListMultimap<Double, Customer> multimap = this.company.getCustomers()
+                .groupBy(customer -> customer.getOrders()
+                        .asLazy()
+                        .flatCollect(Order::getLineItems)
+                        .collectDouble(LineItem::getValue)
+                        .max());
         Assert.assertEquals(3, multimap.size());
         Assert.assertEquals(2, multimap.keysView().size());
         Assert.assertEquals(

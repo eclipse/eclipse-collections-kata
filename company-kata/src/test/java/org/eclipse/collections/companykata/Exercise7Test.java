@@ -10,15 +10,13 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.map.MutableMap;
+import org.eclipse.collections.api.multimap.list.ListMultimap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
+import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
 import org.eclipse.collections.impl.list.mutable.FastList;
-import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.List;
 
 public class Exercise7Test extends CompanyDomainForKata
 {
@@ -29,7 +27,7 @@ public class Exercise7Test extends CompanyDomainForKata
     public void customersByCity()
     {
         // Notice that the second generic type is Customer, not List<Customer>
-        MutableListMultimap<String, Customer> multimap = null;
+        MutableListMultimap<String, Customer> multimap = this.company.getCustomers().groupBy(Customer::getCity);
 
         Assert.assertEquals(FastList.newListWith(this.company.getCustomerNamed("Mary")), multimap.get("Liphook"));
         Assert.assertEquals(
@@ -42,37 +40,11 @@ public class Exercise7Test extends CompanyDomainForKata
     @Test
     public void mapOfItemsToSuppliers()
     {
-        Assert.fail("Refactor this as part of Exercise 7");
         /**
          * Change itemsToSuppliers to a MutableMultimap<String, Supplier>
          */
-        MutableMap<String, List<Supplier>> itemsToSuppliers = UnifiedMap.newMap();
-
-        for (Supplier supplier : this.company.getSuppliers())
-        {
-            for (String itemName : supplier.getItemNames())
-            {
-                List<Supplier> suppliersForItem;
-                if (itemsToSuppliers.containsKey(itemName))
-                {
-                    suppliersForItem = itemsToSuppliers.get(itemName);
-                }
-                else
-                {
-                    suppliersForItem = FastList.newList();
-                    itemsToSuppliers.put(itemName, suppliersForItem);
-                }
-
-                suppliersForItem.add(supplier);
-            }
-        }
+        ListMultimap<String, Supplier> itemsToSuppliers =
+                this.company.getSuppliers().groupByEach((Supplier supplier) -> ArrayAdapter.adapt(supplier.getItemNames()));
         Verify.assertIterableSize("should be 2 suppliers for sofa", 2, itemsToSuppliers.get("sofa"));
-    }
-
-    @Test
-    public void reminder()
-    {
-        Assert.fail("Refactor setUpCustomersAndOrders() in the super class to not have so much repetition.");
-        // Delete this whole method when you're done. It's just a reminder.
     }
 }

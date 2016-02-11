@@ -12,31 +12,19 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.impl.block.function.AddFunction;
-import org.eclipse.collections.impl.utility.ListIterate;
-import org.junit.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 /**
  * Customers have a name, city and a list of {@link Order}s
  */
 public class Customer
 {
-    public static final Function<Customer, String> TO_NAME = customer -> {
-        Assert.fail("Replace with the implementation of the Function.");
-        return null;
-    };
-
-    public static final Function<Customer, String> TO_CITY = null;
-
-    public static final Function<Customer, Double> TO_TOTAL_ORDER_VALUE = Customer::getTotalOrderValue;
+    public static final Function<Customer, String> TO_CITY = Customer::getCity;
 
     private final String name;
     private final String city;
 
-    private final List<Order> orders = new ArrayList<>();
+    private final MutableList<Order> orders = FastList.newList();
 
     public Customer(String name, String city)
     {
@@ -54,7 +42,7 @@ public class Customer
         return this.name;
     }
 
-    public List<Order> getOrders()
+    public MutableList<Order> getOrders()
     {
         return this.orders;
     }
@@ -66,7 +54,11 @@ public class Customer
 
     public double getTotalOrderValue()
     {
-        MutableList<Double> orderValues = ListIterate.collect(this.orders, Order::getValue);
-        return orderValues.injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
+        return this.orders.sumOfDouble(Order::getValue);
+    }
+
+    public boolean livesIn(String city)
+    {
+        return this.city.equals(city);
     }
 }

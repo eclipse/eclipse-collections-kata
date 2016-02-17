@@ -4,7 +4,7 @@ Eclipse Collections Kata (WIP)
 
 Initialize Kata
 ---------------
-Clone this repo or simply download and extract the master [zip file](https://github.com/itohro/eclipse-collections-kata/archive/master.zip), 
+Clone this repo or simply download and extract the master [zip file](https://github.com/eclipse/eclipse-collections-kata/archive/master.zip), 
 then follow the instructions below for your IDE/platform. 
 
 

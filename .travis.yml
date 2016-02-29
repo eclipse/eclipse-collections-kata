@@ -1,0 +1,29 @@
+language: java
+sudo: false
+
+before_install: echo "MAVEN_OPTS='-Dmaven.repo.local=$HOME/.m2/repository -Xmx1g -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss:SSS'" > ~/.mavenrc
+install:
+  -
+
+matrix:
+  fast_finish: true
+  include:
+    - jdk: oraclejdk8
+      env:
+        - DESC="maven"
+        - CMD="mvn install --batch-mode --show-version --errors"
+
+    - jdk: oraclejdk8
+      env:
+        - DESC="gradle"
+        - CMD="./gradlew build"
+script: eval $CMD
+
+cache:
+  directories:
+  - ~/.m2
+  - ~/.gradle/wrapper
+  - ~/.gradle/native
+  - ~/.gradle/daemon
+  - ~/.gradle/caches/jars-1
+  - ~/.gradle/caches/2.10

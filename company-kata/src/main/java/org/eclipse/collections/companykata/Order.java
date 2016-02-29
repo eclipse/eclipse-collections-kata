@@ -10,13 +10,11 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
-import org.eclipse.collections.impl.block.function.AddFunction;
-import org.eclipse.collections.impl.collection.mutable.CollectionAdapter;
-import org.eclipse.collections.impl.utility.Iterate;
+import org.eclipse.collections.api.bag.Bag;
+import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
+import org.eclipse.collections.impl.bag.sorted.mutable.TreeBag;
+import org.eclipse.collections.impl.block.factory.Comparators;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -25,14 +23,10 @@ import java.util.List;
  */
 public class Order
 {
-    public static final Function<Order, Double> TO_VALUE = Order::getValue;
-
-    public static final Function<Order, Iterable<LineItem>> TO_LINE_ITEMS = Order::getLineItems;
-
     private static int nextOrderNumber = 1;
 
     private final int orderNumber;
-    private final List<LineItem> lineItems = new ArrayList<>();
+    private final MutableSortedBag<LineItem> lineItems = TreeBag.newBag(Comparators.byFunction(LineItem::getName));
     private boolean isDelivered;
 
     public Order()
@@ -61,7 +55,7 @@ public class Order
         this.lineItems.add(aLineItem);
     }
 
-    public List<LineItem> getLineItems()
+    public Bag<LineItem> getLineItems()
     {
         return this.lineItems;
     }
@@ -74,8 +68,11 @@ public class Order
 
     public double getValue()
     {
-        Collection<Double> itemValues = Iterate.collect(this.lineItems, LineItem::getValue);
+        return this.lineItems.sumOfDouble(LineItem::getValue);
+    }
 
-        return CollectionAdapter.adapt(itemValues).injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
+    public void addLineItems(LineItem item, int count)
+    {
+        this.lineItems.addOccurrences(item, count);
     }
 }

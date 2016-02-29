@@ -10,17 +10,13 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.impl.utility.ArrayIterate;
 
 /**
  * Suppliers have a name and an array of itemNames. Suppliers don't like lists - they prefer arrays....
  */
 public class Supplier
 {
-    public static final Function<Supplier, String> TO_NAME = Supplier::getName;
-
-    public static final Function<Supplier, Integer> TO_NUMBER_OF_ITEMS = supplier -> supplier.getItemNames().length;
-
     private final String name;
     private final String[] itemNames;
 
@@ -38,5 +34,10 @@ public class Supplier
     public String[] getItemNames()
     {
         return this.itemNames;
+    }
+
+    public boolean supplies(String itemName)
+    {
+        return ArrayIterate.contains(this.itemNames, itemName);
     }
 }

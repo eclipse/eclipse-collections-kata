@@ -63,7 +63,7 @@ public class Exercise2Test extends PetDomainForKata
     public void getAllPetsOfAllPeople()
     {
         Function<Person, Iterable<PetType>> function = person -> person.getPetTypes();
-        MutableSet<PetType> petTypes = this.people.flatCollect(function, Sets.mutable.of());
+        MutableSet<PetType> petTypes = this.people.flatCollect(function, Sets.mutable.empty());
         Assert.assertEquals(
                 Sets.mutable.with(PetType.CAT, PetType.DOG, PetType.TURTLE, PetType.HAMSTER, PetType.BIRD, PetType.SNAKE),
                 petTypes);

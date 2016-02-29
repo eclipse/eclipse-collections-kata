@@ -72,7 +72,7 @@ public class Exercise5Test extends PetDomainForKata
 
         MutableIntSet petAges = people.flatCollect(Person::getPets).collectInt(Pet::getAge).toSet();
 
-        // extra bonus - convert to a primitive collection
+        //extra bonus - convert to a primitive collection
         Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4), petAges);
     }
 }

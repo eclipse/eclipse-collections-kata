@@ -19,6 +19,9 @@ matrix:
         - CMD="./gradlew build"
 script: eval $CMD
 
+before_cache:
+  - rm -rfv ~/.m2/repository/org/eclipse/collections/
+
 cache:
   directories:
   - ~/.m2

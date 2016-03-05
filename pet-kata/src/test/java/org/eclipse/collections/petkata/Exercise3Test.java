@@ -25,9 +25,10 @@ public class Exercise3Test extends PetDomainForKata
     @Test
     public void getCountsByPetType()
     {
-        MutableList<PetType> pets = this.people.flatCollect(Person::getPets).collect(Pet::getType);
+        MutableList<PetType> petTypes = this.people.flatCollect(Person::getPets).collect(Pet::getType);
+        // Try to replace MutableMap<PetType, Integer> with a Bag<PetType>
         MutableMap<PetType, Integer> petTypeCounts = Maps.mutable.empty();
-        for (PetType petType : pets)
+        for (PetType petType : petTypes)
         {
             Integer count = petTypeCounts.get(petType);
             if (count == null)
@@ -58,6 +59,8 @@ public class Exercise3Test extends PetDomainForKata
     @Test
     public void getPeopleByLastName()
     {
+        // Try to replace MutableMap<String, MutableList<Person> with a Multimap
+        // Hint: use the groupBy method
         MutableMap<String, MutableList<Person>> lastNamesToPeople = Maps.mutable.empty();
         for (Person person : this.people)
         {
@@ -80,6 +83,7 @@ public class Exercise3Test extends PetDomainForKata
     @Test
     public void getPeopleByTheirPets()
     {
+        // Hint: Use a target collection to go from a List to MutableSetMultimap<PetType, Person>
         MutableMap<PetType, MutableSet<Person>> peopleByPetType = Maps.mutable.empty();
 
         for (Person person : this.people)

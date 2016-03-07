@@ -1,6 +1,10 @@
-Eclipse Collections Kata (WIP)
+Eclipse Collections Kata 
 ===================
-*Note: This project is still in development and not available yet.
+A kata is an exercise in martial arts. 
+A code kata is an exercise in programming which helps hone your skills through practice and repetition. 
+The Eclipse Collections Kata is a fun way to help you learn idiomatic Eclipse Collections usage. 
+This particular kata is set up as a series of unit tests which fail. 
+Your task is to make them pass, using Eclipse Collections.
 
 Initialize Kata
 ---------------

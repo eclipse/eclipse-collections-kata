@@ -10,25 +10,19 @@
 
 package org.eclipse.collections.petkata;
 
+import java.util.IntSummaryStatistics;
+
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.IntList;
-import org.eclipse.collections.api.multimap.list.MutableListMultimap;
-import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.api.set.primitive.IntSet;
 import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
-import org.eclipse.collections.impl.factory.Sets;
-import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.set.mutable.primitive.IntHashSet;
 import org.eclipse.collections.impl.test.Verify;
-import org.eclipse.collections.impl.tuple.Tuples;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class Exercise4Test extends PetDomainForKata
 {
@@ -58,10 +52,10 @@ public class Exercise4Test extends PetDomainForKata
     @Test
     public void streamsToECRefactor1()
     {
-        //find Bob Smith
+        // Find Bob Smith
         Person person = this.people.detect(each -> each.named("Bob Smith"));
 
-        //get Bob Smith's pets' names
+        // Get Bob Smith's pets' names
         String names = person.getPets().collect(Pet::getName).makeString(" & ");
 
         Assert.assertEquals("Dolly & Spot", names);

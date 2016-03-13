@@ -10,8 +10,10 @@
 
 package org.eclipse.collections.petkata;
 
+import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.map.MutableMap;
+import org.eclipse.collections.api.multimap.Multimap;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Maps;
@@ -27,6 +29,7 @@ public class Exercise3Test extends PetDomainForKata
     {
         MutableList<PetType> petTypes = this.people.flatCollect(Person::getPets).collect(Pet::getType);
         // Try to replace MutableMap<PetType, Integer> with a Bag<PetType>
+        Bag<PetType> counts = null;
         MutableMap<PetType, Integer> petTypeCounts = Maps.mutable.empty();
         for (PetType petType : petTypes)
         {
@@ -44,16 +47,18 @@ public class Exercise3Test extends PetDomainForKata
         Assert.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.SNAKE));
         Assert.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.TURTLE));
         Assert.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.BIRD));
-
-        Assert.fail("Optimize this test by using a Bag with variable name 'counts'");
-        /*
+        
         Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
         Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
         Assert.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
         Assert.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
         Assert.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
         Assert.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
-        */
+
+        // Don't forget to comment this out or delete it when you are done
+        Assert.fail("Optimize this test by using a Bag with variable name 'counts'");
+        
+        
     }
 
     @Test
@@ -61,7 +66,9 @@ public class Exercise3Test extends PetDomainForKata
     {
         // Try to replace MutableMap<String, MutableList<Person> with a Multimap
         // Hint: use the groupBy method
-        MutableMap<String, MutableList<Person>> lastNamesToPeople = Maps.mutable.empty();
+    	Multimap<String, Person> byLastNameMultimap = null;
+        
+    	MutableMap<String, MutableList<Person>> lastNamesToPeople = Maps.mutable.empty();
         for (Person person : this.people)
         {
             String lastName = person.getLastName();
@@ -74,10 +81,11 @@ public class Exercise3Test extends PetDomainForKata
             peopleWithLastName.add(person);
         }
         Verify.assertIterableSize(3, lastNamesToPeople.get("Smith"));
-        Assert.fail("Optimize this test by using a Multimap");
-
-        //replace assertion with the below
-        //Verify.assertIterableSize(3, byLastNameMultimap.get("Smith"));
+        
+        Verify.assertIterableSize(3, byLastNameMultimap.get("Smith"));
+        
+        // Don't forget to comment this out or delete it when you are done
+        Assert.fail("Optimize this test by using a Multimap with variable name 'byLastNameMultimap'");
     }
 
     @Test

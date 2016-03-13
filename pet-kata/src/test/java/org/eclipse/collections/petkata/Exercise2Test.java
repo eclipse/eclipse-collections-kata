@@ -25,7 +25,8 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void doAnyPeopleHaveCats()
     {
-        Predicate<Person> predicate = null; //replace null with a predicate which checks for PetType.CAT
+    	// Replace null with a predicate which checks for PetType.CAT
+        Predicate<Person> predicate = null;
         Assert.assertTrue(this.people.anySatisfy(predicate));
     }
 
@@ -33,7 +34,8 @@ public class Exercise2Test extends PetDomainForKata
     public void doAllPeopleHavePets()
     {
         Predicate<Person> predicate = person -> person.isPetPerson();
-        boolean result = true; //replace with something that checks if all people have pets
+        // Replace with something that checks if all people have pets
+        boolean result = true;
         Assert.assertFalse(result);
     }
 
@@ -55,7 +57,8 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void getPeopleWithPets()
     {
-        MutableList<Person> petPeople = this.people; //replace with only the pet owners
+    	// Replace with only the pet owners
+        MutableList<Person> petPeople = this.people;
         Verify.assertSize(7, petPeople);
     }
 
@@ -84,7 +87,7 @@ public class Exercise2Test extends PetDomainForKata
         boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
         Assert.assertTrue(peopleHaveCatsLambda);
 
-        //use method reference, NOT lambdas, to solve the problem below
+        // Use method reference, NOT lambdas, to solve the problem below
         boolean peopleHaveCatsMethodRef = false;
         Assert.assertTrue(peopleHaveCatsMethodRef);
     }
@@ -95,7 +98,7 @@ public class Exercise2Test extends PetDomainForKata
         boolean peopleHaveCatsLambda = this.people.allSatisfy(person -> person.hasPet(PetType.CAT));
         Assert.assertFalse(peopleHaveCatsLambda);
 
-        //use method reference, NOT lambdas, to solve the problem below
+        // Use method reference, NOT lambdas, to solve the problem below
         boolean peopleHaveCatsMethodRef = true;
         Assert.assertFalse(peopleHaveCatsMethodRef);
     }
@@ -103,7 +106,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void getPeopleWithCatsRefator()
     {
-        //use method reference, NOT lambdas, to solve the problem below
+        // Use method reference, NOT lambdas, to solve the problem below
         MutableList<Person> peopleWithCatsMethodRef = null;
         Verify.assertSize(2, peopleWithCatsMethodRef);
     }
@@ -111,7 +114,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void getPeopleWithoutCatsRefactor()
     {
-        //use method reference, NOT lambdas, to solve the problem below
+        // Use method reference, NOT lambdas, to solve the problem below
         MutableList<Person> peopleWithoutCatsMethodRef = null;
         Verify.assertSize(6, peopleWithoutCatsMethodRef);
     }

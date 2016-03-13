@@ -67,13 +67,13 @@ public class Exercise4Test extends PetDomainForKata
     @Test
     public void streamsToECRefactor1()
     {
-        //find Bob Smith
+        // Find Bob Smith
         Person person =
                 this.people.stream()
                         .filter(each -> each.named("Bob Smith"))
                         .findFirst().get();
 
-        //get Bob Smith's pets' names
+        // Get Bob Smith's pets' names
         String names =
                 person.getPets().stream()
                         .map(Pet::getName)

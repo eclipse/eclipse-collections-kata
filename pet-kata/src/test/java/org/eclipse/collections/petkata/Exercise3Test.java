@@ -12,13 +12,8 @@ package org.eclipse.collections.petkata;
 
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.api.multimap.set.MutableSetMultimap;
-import org.eclipse.collections.api.set.MutableSet;
-import org.eclipse.collections.impl.factory.Lists;
-import org.eclipse.collections.impl.factory.Maps;
-import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.multimap.set.UnifiedSetMultimap;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
@@ -29,8 +24,9 @@ public class Exercise3Test extends PetDomainForKata
     @Test
     public void getCountsByPetType()
     {
-        MutableList<PetType> pets = this.people.flatCollect(Person::getPets).collect(Pet::getType);
-        MutableBag<PetType> counts = pets.toBag();
+        MutableList<PetType> petTypes = this.people.flatCollect(Person::getPets).collect(Pet::getType);
+        // Try to replace MutableMap<PetType, Integer> with a Bag<PetType>.
+        MutableBag<PetType> counts = petTypes.toBag();
 
         Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
         Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
@@ -43,6 +39,8 @@ public class Exercise3Test extends PetDomainForKata
     @Test
     public void getPeopleByLastName()
     {
+        // Try to replace MutableMap<String, MutableList<Person> with a Multimap.
+        // Hint: use the groupBy method.
         MutableListMultimap<String, Person> lastNamesToPeople = this.people.groupBy(Person::getLastName);
 
         Verify.assertIterableSize(3, lastNamesToPeople.get("Smith"));
@@ -51,6 +49,7 @@ public class Exercise3Test extends PetDomainForKata
     @Test
     public void getPeopleByTheirPets()
     {
+        // Hint: Use a target collection to go from a List to MutableSetMultimap<PetType, Person>.
         MutableSetMultimap<PetType, Person> peopleByPetType =
                 this.people.groupByEach(person -> person.getPetTypes(), UnifiedSetMultimap.newMultimap());
 

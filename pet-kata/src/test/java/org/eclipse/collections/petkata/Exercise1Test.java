@@ -22,6 +22,7 @@ public class Exercise1Test extends PetDomainForKata
     public void getFirstNamesOfAllPeople()
     {
         MutableList<Person> people = this.people;
+        // Replace null, with a transformation method on MutableList.
         MutableList<String> firstNames = people.collect(Person::getFirstName);
         MutableList<String> expectedFirstNames = Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
         Assert.assertEquals(expectedFirstNames, firstNames);
@@ -32,7 +33,8 @@ public class Exercise1Test extends PetDomainForKata
     {
         Person person = this.getPersonNamed("Mary Smith");
         MutableList<Pet> pets = person.getPets();
-        MutableList<String> names = pets.collect(eachPet -> eachPet.getName()); //Replace null, with a transformation method on MutableList.
+        // Replace null, with a transformation method on MutableList.
+        MutableList<String> names = pets.collect(eachPet -> eachPet.getName());
         Assert.assertEquals("Tabby", names.makeString());
     }
 

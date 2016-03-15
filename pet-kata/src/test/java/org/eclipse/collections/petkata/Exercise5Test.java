@@ -85,7 +85,7 @@ public class Exercise5Test extends PetDomainForKata
         }
 
         Assert.assertEquals(Sets.mutable.with(1, 2, 3, 4), petAges);
-        //extra bonus - convert to a primitive collection
+        // Extra bonus - convert to a primitive collection
         Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4), petAges);
 
         Assert.fail("Refactor to Eclipse Collections");

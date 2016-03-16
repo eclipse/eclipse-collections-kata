@@ -52,3 +52,18 @@ Kata can run in IDEA even if you don't import Gradle project.
 We haven't come up with an instruction for NetBeans yet. 
 We welcome contributions from NetBeans users to add guidance here!
 
+
+Work on Kata exercises
+----------------------
+There are two separate katas under different directories (Company Kata and Pet Kata).
+
+```
+company-kata/src/tests
+pet-kata/src/tests
+```
+
+You can refer to slides for the [Company Kata](http://www.goldmansachs.com/gs-collections/documents/GS%20Collections%20Training%20Session%20and%20Kata%205.0.0.pdf) and the [Pet Kata](https://www.eclipsecon.org/na2016/sites/default/files/slides/Eclipse_Collections_Mini_Kata.pdf) to learn the concepts of each exercise. 
+
+Check out the [solution branch](https://github.com/eclipse/eclipse-collections-kata/tree/solutions) for your reference.
+
+Enjoy happy learning with Eclipse Collections Kata!

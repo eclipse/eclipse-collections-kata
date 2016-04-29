@@ -14,7 +14,6 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
 import org.eclipse.collections.api.set.primitive.MutableIntSet;
 import org.eclipse.collections.impl.factory.Lists;
-import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
@@ -48,6 +47,7 @@ public class Exercise5Test extends PetDomainForKata
     @Test
     public void addPetAgesToExistingSet()
     {
+        // Hint: Use petAges as a target collection
         MutableIntSet petAges = IntSets.mutable.with(5);
         this.people.flatCollect(Person::getPets).collectInt(pet -> pet.getAge(), petAges);
         Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), petAges);
@@ -56,6 +56,7 @@ public class Exercise5Test extends PetDomainForKata
     @Test
     public void refactorToEclipseCollections()
     {
+        // Replace List and ArrayList with Eclipse Collections types.
         MutableList<Person> people = Lists.mutable.with(
                 new Person("Mary", "Smith").addPet(PetType.CAT, "Tabby", 2),
                 new Person("Bob", "Smith")
@@ -70,9 +71,10 @@ public class Exercise5Test extends PetDomainForKata
                         .addPet(PetType.HAMSTER, "Wuzzy", 1),
                 new Person("John", "Doe"));
 
+        // Replace Set and HashSet with Eclipse Collections types.
         MutableIntSet petAges = people.flatCollect(Person::getPets).collectInt(Pet::getAge).toSet();
 
-        //extra bonus - convert to a primitive collection
+        // Extra bonus - convert to a primitive collection.
         Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4), petAges);
     }
 }

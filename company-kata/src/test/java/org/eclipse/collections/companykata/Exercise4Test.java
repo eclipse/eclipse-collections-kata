@@ -15,6 +15,7 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.eclipse.collections.impl.utility.Iterate;
+import org.eclipse.collections.impl.utility.ListIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void findSupplierNames()
     {
-        MutableList<String> supplierNames = null;
+        MutableList<String> supplierNames = this.company.getSuppliers().collect(Supplier::getName);
 
         MutableList<String> expectedSupplierNames = FastList.newListWith(
                 "Shedtastic",
@@ -49,8 +50,8 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void countSuppliersWithMoreThanTwoItems()
     {
-        Predicate<Supplier> moreThanTwoItems = null;
-        int suppliersWithMoreThanTwoItems = 0;
+        Predicate<Supplier> moreThanTwoItems = supplier-> supplier.getItemNames().length > 2;
+        int suppliersWithMoreThanTwoItems = this.company.getSuppliers().count(moreThanTwoItems);
         Assert.assertEquals("suppliers with more than 2 items", 5, suppliersWithMoreThanTwoItems);
     }
 
@@ -64,7 +65,7 @@ public class Exercise4Test extends CompanyDomainForKata
         Predicate<Supplier> suppliesToaster = null;
 
         // Find one supplier that supplies toasters.
-        Supplier toasterSupplier = null;
+        Supplier toasterSupplier = this.company.getSuppliers().detectWith(Supplier::supplies, "sandwich toaster");
         Assert.assertNotNull("toaster supplier", toasterSupplier);
         Assert.assertEquals("Doxins", toasterSupplier.getName());
     }
@@ -88,7 +89,7 @@ public class Exercise4Test extends CompanyDomainForKata
         /**
          * Get the actual orders (not their double values) where those orders have a value greater than 2.0.
          */
-        MutableList<Order> filtered = null;
+        MutableList<Order> filtered = ListIterate.select(orders, order-> order.getValue() > 2.0);
         Assert.assertEquals(FastList.newListWith(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders())), filtered);
     }
 }

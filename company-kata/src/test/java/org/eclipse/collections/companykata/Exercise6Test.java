@@ -13,6 +13,7 @@ package org.eclipse.collections.companykata;
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.list.primitive.DoubleList;
 import org.eclipse.collections.impl.block.factory.Procedures;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
@@ -27,11 +28,11 @@ public class Exercise6Test extends CompanyDomainForKata
     @Test
     public void sortedTotalOrderValue()
     {
-        MutableList<Double> sortedTotalValues = null;
+    	DoubleList sortedTotalValues = this.company.getCustomers().collectDouble(Customer::getTotalOrderValue).sortThis();
 
         // Don't forget the handy utility methods getFirst() and getLast()...
-        Assert.assertEquals("Highest total order value", Double.valueOf(857.0), sortedTotalValues.getLast());
-        Assert.assertEquals("Lowest total order value", Double.valueOf(71.0), sortedTotalValues.getFirst());
+        Assert.assertEquals("Highest total order value", 857.0, sortedTotalValues.getLast(), 0.0);
+        Assert.assertEquals("Lowest total order value", 71.0, sortedTotalValues.getFirst(), 0.0);
     }
 
     /**
@@ -40,8 +41,8 @@ public class Exercise6Test extends CompanyDomainForKata
     @Test
     public void maximumTotalOrderValue()
     {
-        Double maximumTotalOrderValue = null;
-        Assert.assertEquals("max value", Double.valueOf(857.0), maximumTotalOrderValue);
+        Double maximumTotalOrderValue = this.company.getCustomers().asLazy().collectDouble(Customer::getTotalOrderValue).max();
+        Assert.assertEquals("max value", 857.0d, maximumTotalOrderValue, 0.0d);
     }
 
     /**
@@ -50,7 +51,7 @@ public class Exercise6Test extends CompanyDomainForKata
     @Test
     public void customerWithMaxTotalOrderValue()
     {
-        Customer customerWithMaxTotalOrderValue = null;
+        Customer customerWithMaxTotalOrderValue = this.company.getCustomers().maxBy(Customer::getTotalOrderValue);
         Assert.assertEquals(this.company.getCustomerNamed("Mary"), customerWithMaxTotalOrderValue);
     }
 
@@ -60,7 +61,7 @@ public class Exercise6Test extends CompanyDomainForKata
     @Test
     public void supplierNamesAsTildeDelimitedString()
     {
-        String tildeSeparatedNames = null;
+        String tildeSeparatedNames = this.company.getSuppliers().collect(Supplier::getName).makeString("~");
         Assert.assertEquals(
                 "tilde separated names",
                 "Shedtastic~Splendid Crocks~Annoying Pets~Gnomes 'R' Us~Furniture Hamlet~SFD~Doxins",
@@ -77,6 +78,7 @@ public class Exercise6Test extends CompanyDomainForKata
     @Test
     public void deliverOrdersToLondon()
     {
+    	this.company.getCustomers().asLazy().selectWith(Customer::livesIn, "London").flatCollect(Customer::getOrders).forEach(Procedures.cast(Order::deliver));
         Verify.assertAllSatisfy(this.company.getCustomerNamed("Fred").getOrders(), Order::isDelivered);
         Verify.assertNoneSatisfy(this.company.getCustomerNamed("Mary").getOrders(), Order::isDelivered);
         Verify.assertAllSatisfy(this.company.getCustomerNamed("Bill").getOrders(), Order::isDelivered);

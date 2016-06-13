@@ -12,6 +12,7 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.partition.list.PartitionMutableList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class Exercise2Test extends CompanyDomainForKata
     /**
      * Set up a {@link Predicate} that tests to see if a {@link Customer}'s city is "London"
      */
-    private static final Predicate<Customer> CUSTOMER_FROM_LONDON = null;
+    private static final Predicate<Customer> CUSTOMER_FROM_LONDON = customer -> customer.getCity().equals("London");
 
     @Test
     public void customerFromLondonPredicate()
@@ -49,7 +50,7 @@ public class Exercise2Test extends CompanyDomainForKata
     @Test
     public void doAnyCustomersLiveInLondon()
     {
-        boolean anyCustomersFromLondon = false;
+        boolean anyCustomersFromLondon = this.company.getCustomers().anySatisfyWith(Customer::livesIn, "London");
         Assert.assertTrue(anyCustomersFromLondon);
     }
 
@@ -59,7 +60,7 @@ public class Exercise2Test extends CompanyDomainForKata
     @Test
     public void doAllCustomersLiveInLondon()
     {
-        boolean allCustomersFromLondon = true;
+        boolean allCustomersFromLondon = this.company.getCustomers().allSatisfyWith(Customer::livesIn, "London");
         Assert.assertFalse(allCustomersFromLondon);
     }
 
@@ -69,7 +70,7 @@ public class Exercise2Test extends CompanyDomainForKata
     @Test
     public void howManyCustomersLiveInLondon()
     {
-        int numberOfCustomerFromLondon = 0;
+        int numberOfCustomerFromLondon = this.company.getCustomers().countWith(Customer::livesIn, "London");
         Assert.assertEquals("Should be 2 London customers", 2, numberOfCustomerFromLondon);
     }
 
@@ -91,7 +92,7 @@ public class Exercise2Test extends CompanyDomainForKata
     @Test
     public void getCustomersWhoDontLiveInLondon()
     {
-        MutableList<Customer> customersNotFromLondon = null;
+        MutableList<Customer> customersNotFromLondon = this.company.getCustomers().rejectWith(Customer::livesIn, "London");
         Verify.assertSize("customers not from London", 1, customersNotFromLondon);
     }
 
@@ -102,8 +103,9 @@ public class Exercise2Test extends CompanyDomainForKata
     @Test
     public void getCustomersWhoDoAndDoNotLiveInLondon()
     {
-        MutableList<Customer> customersFromLondon = null;
-        MutableList<Customer> customersNotFromLondon = null;
+    	PartitionMutableList<Customer> partitionedList = this.company.getCustomers().partitionWith(Customer::livesIn, "London");
+        MutableList<Customer> customersFromLondon = partitionedList.getSelected();
+        MutableList<Customer> customersNotFromLondon = partitionedList.getRejected();
         Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
         Verify.assertSize("customers not from London", 1, customersNotFromLondon);
     }

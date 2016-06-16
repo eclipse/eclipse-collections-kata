@@ -20,9 +20,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.collections:eclipse-collections-api:7.0.0" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.collections:eclipse-collections:7.0.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.collections:eclipse-collections-testutils:7.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.collections:eclipse-collections-api:7.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.collections:eclipse-collections:7.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.collections:eclipse-collections-testutils:7.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />

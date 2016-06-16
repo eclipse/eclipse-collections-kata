@@ -8,22 +8,22 @@
 		<excludeFolder url="file://$MODULE_DIR$/build"/>
 		<excludeFolder url="file://$MODULE_DIR$/target"/>
 	</contentEntry>
-	<lib name="Gradle: org.eclipse.collections:eclipse-collections-testutils:7.0.0" scope="TEST"/>
+	<lib name="Gradle: org.eclipse.collections:eclipse-collections-testutils:7.1.0" scope="TEST"/>
 	<lib name="Gradle: junit:junit:4.12" scope="TEST"/>
 	<lib name="Gradle: commons-codec:commons-codec:1.10" scope="TEST"/>
 	<lib name="Gradle: org.hamcrest:hamcrest-core:1.3" scope="TEST"/>
-	<lib name="Maven: org.eclipse.collections:eclipse-collections-testutils:7.0.0" scope="TEST"/>
+	<lib name="Maven: org.eclipse.collections:eclipse-collections-testutils:7.1.0" scope="TEST"/>
 	<lib name="Maven: commons-codec:commons-codec:1.10" scope="TEST"/>
 	<levels>
-		<level name="Gradle: org.eclipse.collections:eclipse-collections-api:7.0.0" value="project"/>
-		<level name="Gradle: org.eclipse.collections:eclipse-collections:7.0.0" value="project"/>
-		<level name="Gradle: org.eclipse.collections:eclipse-collections-testutils:7.0.0" value="project"/>
+		<level name="Gradle: org.eclipse.collections:eclipse-collections-api:7.1.0" value="project"/>
+		<level name="Gradle: org.eclipse.collections:eclipse-collections:7.1.0" value="project"/>
+		<level name="Gradle: org.eclipse.collections:eclipse-collections-testutils:7.1.0" value="project"/>
 		<level name="Gradle: junit:junit:4.12" value="project"/>
 		<level name="Gradle: commons-codec:commons-codec:1.10" value="project"/>
 		<level name="Gradle: org.hamcrest:hamcrest-core:1.3" value="project"/>
-		<level name="Maven: org.eclipse.collections:eclipse-collections-api:7.0.0" value="project"/>
-		<level name="Maven: org.eclipse.collections:eclipse-collections:7.0.0" value="project"/>
-		<level name="Maven: org.eclipse.collections:eclipse-collections-testutils:7.0.0" value="project"/>
+		<level name="Maven: org.eclipse.collections:eclipse-collections-api:7.1.0" value="project"/>
+		<level name="Maven: org.eclipse.collections:eclipse-collections:7.1.0" value="project"/>
+		<level name="Maven: org.eclipse.collections:eclipse-collections-testutils:7.1.0" value="project"/>
 		<level name="Maven: commons-codec:commons-codec:1.10" value="project"/>
 		<level name="Maven: junit:junit:4.12" value="project"/>
 		<level name="Maven: org.hamcrest:hamcrest-core:1.3" value="project"/>

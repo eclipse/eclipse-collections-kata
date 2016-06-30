@@ -70,7 +70,7 @@ public class Exercise6Test extends CompanyDomainForKata
     /**
      * Deliver all orders going to customers from London.
      * <p/>
-     * Hint: Use {@link RichIterable#forEach(Procedure)}. To solve the ambiguity error, use {@link Procedures#cast(Procedure)}}.
+     * Hint: Use {@link RichIterable#each(Procedure)}.
      *
      * @see Order#deliver()
      */

@@ -62,7 +62,9 @@ company-kata/src/tests
 pet-kata/src/tests
 ```
 
-You can refer to slides for the [Company Kata](http://www.goldmansachs.com/gs-collections/documents/GS%20Collections%20Training%20Session%20and%20Kata%205.0.0.pdf) and the [Pet Kata](https://www.eclipsecon.org/na2016/sites/default/files/slides/Eclipse_Collections_Mini_Kata.pdf) to learn the concepts of each exercise. 
+To get started, you can refer to slides for the [Instruction and Pet Kata](http://eclipse.github.io/eclipse-collections-kata/) to learn how to set-up Kata, basic features of Eclipse Collections corresponding to each Pet Kata exercise and then solutions. 
+
+To learn wider range of functionalities, slides for [Company Kata](http://www.goldmansachs.com/gs-collections/documents/GS%20Collections%20Training%20Session%20and%20Kata%205.0.0.pdf) is available in pdf format. 
 
 Check out the [solution branch](https://github.com/eclipse/eclipse-collections-kata/tree/solutions) for your reference.
 

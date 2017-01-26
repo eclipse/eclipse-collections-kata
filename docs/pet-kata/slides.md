@@ -270,7 +270,6 @@ MutableList<Person> voters =
 What if we want to find groups of people with different ages?
 
 
-
 With Methods
 ------------
 * `collect()`, `select()`, and `reject()` take a code block with a single parameter (`Function` and `Predicate`).
@@ -315,7 +314,6 @@ MutableList<Person> peopleWithCatMethodReference =
 MutableList<Person> peopleWithCatsLambda =
   this.people.select(Person::hasPet(PetType.CAT));
 ```
-
 
 
 Exercise 2

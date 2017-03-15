@@ -56,12 +56,13 @@ Collect Pattern
 ```java
 MutableList<Pet> pets = someCodeToGetPets();
 ```
+
 Lambda
 ```java
 MutableList<String> petNames = pets.collect(pet -> pet.getName());
 ```
 
-Method reference
+Method Reference
 ```java
 MutableList<String> petNames = pets.collect(Pet::getName);
 ```
@@ -82,10 +83,18 @@ Select Pattern
 
 ```java
 MutableList<Person> people = someCodeToGetPeople();
+```
+
+Lambda
+```java
 MutableList<Person> petPeople =
   people.select(person -> person.isPetPerson());
 ```
 
+Method Reference
+```java
+MutableList<Person> petPeople = people.select(Person::isPetPerson);
+```
 
 Exercise 1
 ----------
@@ -169,7 +178,7 @@ Exercise 2
 TestUtils
 ---------
  * Eclipse Collections distribution includes `eclipse-collections-testutils.jar`.
-   * Includes helpful utity for writing unit tests.
+   * Includes helpful utility for writing unit tests.
    * Collection specific.
    * Implemented as an extention of JUnit.
    * Better error messages.
@@ -307,7 +316,7 @@ MutableList<Person> peopleWithCatMethodReference =
   this.people.selectWith(Person::hasPet, PetType.CAT);
 ```
 
-* This is a made-up syntax that **does not compile**. Only `selectWith()` allows us to use a method reference here.
+* This is a made-up syntax with `select()` that **does not compile**. Only `selectWith()` allows us to use a method reference here.
 
 ```java
 // Does NOT compile
@@ -350,8 +359,7 @@ Do all people have pets
 public void doAllPeopleHavePets()
 {
   Predicate<Person> predicate = person -> person.isPetPerson();
-  boolean result = this.people.allSatisfy(predicate);
-  Assert.assertFalse(result);
+  Assert.assertFalse(this.people.allSatisfy(predicate));
 }
 ```
 
@@ -374,7 +382,7 @@ Find Mary Smith
 @Test
 public void findMarySmith()
 {
-  Person result = this.people.detect(person -> person.named("Mary Smith"));
+  Person result = this.people.detectWith(Person::named, "Mary Smith");
   Assert.assertEquals("Mary", result.getFirstName());
   Assert.assertEquals("Smith", result.getLastName());
 }
@@ -497,7 +505,7 @@ Bag
 ---
 
 * Useful when you would otherwise use `Map<K, Integer>`
-  * For example, to track the number of each pet type.
+  * For example, to track the count of each PetType.
   * a.k.a. Multiset, Histogram
 * Using a `Map`, how should we fill in the blank?
 
@@ -526,13 +534,13 @@ for (PetType petType : pets)
 }
 ```
 
-* Lots of boilerplate code to deal with uninitialized counts.
+* Lot of boilerplate code to handle uninitialized counts.
 
 
 Bag
 ---
 
-* Bag is implemented as a map of key to count.
+* `Bag` is implemented as a map of key to count.
 * Like a `List`, but unordered.
 * Like a `Set`, but allows duplicates.
 
@@ -578,7 +586,7 @@ Multimap
 --------
 * `Multimap` is similar to Map, but associates a key to *multiple values*.
 * Useful when you would otherwise use `Map<K, Collection<V>>`
-  * For example, ﬁnd which people have the same name.
+  * For example, group people with same last name.
 
 ```java
 MutableList<Person> people = ...;
@@ -592,7 +600,7 @@ MutableList<Person> smiths = lastNamesToPeople.get("Smith");
 Multimap
 --------
 * Code to populated the `Map<K, Collection<V>>`
-* Lots of boilerplate code to deal with uninitialized backing collections.
+* Lot of boilerplate code to handle uninitialized backing collections.
 
 ```java
 MutableMap<String, MutableList<Person>> lastNamesToPeople =
@@ -618,7 +626,7 @@ MutableList<Person> smiths = lastNamesToPeople.get("Smith");
 Multimap
 --------
 
-* Using Multimap for the same example
+* Using `Multimap` for the same example
 
 ```java
 MutableListMultimap<String, Person> lastNamesToPeople =
@@ -660,7 +668,7 @@ Verify.assertIterableSize(2, smiths);
 
 Multimap
 --------
-* When the multimap is a `SetMultimap`, the groups of values are sets, which don't.
+* When the multimap is a `SetMultimap`, the groups of values are sets, which don't allow duplicates.
 
 ```java
 MutableSetMultimap<String, Person> multimap =
@@ -677,9 +685,9 @@ Multimap
 --------
 
 * `groupByEach()` is a special case of `groupBy()`.
-* Analogous to the diﬀerence between `collect()` and `flatCollect()`.
+* Analogous to the difference between `collect()` and `flatCollect()`.
 * Appropriate when the `Function` returns an `Iterable`.
-* The return type is the same as `groupBy()`.
+* The return type is the same as `groupBy()`: `Multimap`.
 
 ```java
 MutableListMultimap<String, Person> lastNamesToPeople =
@@ -698,8 +706,8 @@ Target Collections
 ------------------
 
 * Let's say we have 3 people: mrSmith, mrsSmith, mrJones.
-* The ﬁrst two share the same address.
-* What will get printed by the following code?
+* The first two share the same address.
+* What will get printed by the below code?
 
 ```java
 MutableSet<Person> people =
@@ -715,7 +723,7 @@ System.out.println(numAddresses);
 Target Collections
 ------------------
 
-* `select()`, `collect()`, etc. are deﬁned with covariant return types:
+* `select()`, `collect()`, etc. are defined with covariant return types:
   * `MutableCollection.collect()` returns a `MutableCollection`.
   * `MutableList.collect()` returns a `MutableList`.
   * `MutableSet.collect()` returns a `MutableSet`.
@@ -845,7 +853,7 @@ Class Diagram
 
 Primitive Collections
 ---------------------
-* Primitive collections have the same rich and ﬂuent API as regular collections.
+* Primitive collections have the same rich and fluent API as regular collections.
 
 Code Example
 

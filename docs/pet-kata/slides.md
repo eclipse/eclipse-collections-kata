@@ -96,6 +96,7 @@ Method Reference
 MutableList<Person> petPeople = people.select(Person::isPetPerson);
 ```
 
+
 Exercise 1
 ----------
  * Fix `Exercise1Test`; there are failing tests.
@@ -707,7 +708,7 @@ Target Collections
 
 * Let's say we have 3 people: mrSmith, mrsSmith, mrJones.
 * The first two share the same address.
-* What will get printed by the below code?
+* What will get printed by the following code?
 
 ```java
 MutableSet<Person> people =

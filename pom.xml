@@ -83,6 +83,9 @@
     </modules>
 
     <properties>
+        <eclipse.collections.version>8.1.0</eclipse.collections.version>
+        <junit.version>4.12</junit.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -99,26 +102,26 @@
             <dependency>
                 <groupId>org.eclipse.collections</groupId>
                 <artifactId>eclipse-collections-api</artifactId>
-                <version>8.0.0</version>
+                <version>${eclipse.collections.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.eclipse.collections</groupId>
                 <artifactId>eclipse-collections</artifactId>
-                <version>8.0.0</version>
+                <version>${eclipse.collections.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.eclipse.collections</groupId>
                 <artifactId>eclipse-collections-testutils</artifactId>
-                <version>8.0.0</version>
+                <version>${eclipse.collections.version}</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>${junit.version}</version>
             </dependency>
 
         </dependencies>

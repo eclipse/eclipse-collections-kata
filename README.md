@@ -69,3 +69,8 @@ To learn wider range of functionalities, slides for [Company Kata](http://www.go
 Check out the [solution branch](https://github.com/eclipse/eclipse-collections-kata/tree/solutions) for your reference.
 
 Enjoy happy learning with Eclipse Collections Kata!
+
+
+Reference Guide
+----------------------
+The [Eclipse Collections Reference Guide](https://github.com/eclipse/eclipse-collections/blob/master/docs/guide.md) is a great way to get an overview of the extensive features available in the framework.

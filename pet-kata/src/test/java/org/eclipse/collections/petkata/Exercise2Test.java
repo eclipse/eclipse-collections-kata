@@ -101,7 +101,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
-    public void getPeopleWithCatsRefator()
+    public void getPeopleWithCatsRefactor()
     {
         //use method reference, NOT lambdas, to solve the problem below
         MutableList<Person> peopleWithCatsMethodRef = null;

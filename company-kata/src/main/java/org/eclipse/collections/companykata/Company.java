@@ -12,6 +12,7 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.junit.Assert;
 
@@ -48,7 +49,6 @@ public class Company
 
     public MutableList<Order> getOrders()
     {
-        Assert.fail("Refactor this code to use Eclipse Collections as part of Exercise 3");
         MutableList<Order> orders = FastList.newList();
         for (Customer customer : this.customers)
         {
@@ -73,9 +73,9 @@ public class Company
         this.suppliers[this.suppliers.length - 1] = supplier;
     }
 
-    public Supplier[] getSuppliers()
+    public MutableList<Supplier> getSuppliers()
     {
-        return this.suppliers;
+        return ArrayAdapter.adapt(this.suppliers).asUnmodifiable();
     }
 
     public Customer getCustomerNamed(String name)
@@ -83,7 +83,6 @@ public class Company
         /**
          * Use a {@link Predicate} to find a {@link Customer} with the name given.
          */
-        Assert.fail("Implement this method as part of Exercise 2");
-        return null;
+    	return this.getCustomers().detect(customer-> name.equals(customer.getName()));
     }
 }

@@ -13,6 +13,7 @@ package org.eclipse.collections.companykata;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.function.AddFunction;
+import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.utility.ListIterate;
 import org.junit.Assert;
 
@@ -29,14 +30,14 @@ public class Customer
         return null;
     };
 
-    public static final Function<Customer, String> TO_CITY = null;
+    public static final Function<Customer, String> TO_CITY = Customer::getCity;
 
     public static final Function<Customer, Double> TO_TOTAL_ORDER_VALUE = Customer::getTotalOrderValue;
 
     private final String name;
     private final String city;
 
-    private final List<Order> orders = new ArrayList<>();
+    private final MutableList<Order> orders = FastList.newList();
 
     public Customer(String name, String city)
     {
@@ -54,7 +55,7 @@ public class Customer
         return this.name;
     }
 
-    public List<Order> getOrders()
+    public MutableList<Order> getOrders()
     {
         return this.orders;
     }
@@ -68,5 +69,9 @@ public class Customer
     {
         MutableList<Double> orderValues = ListIterate.collect(this.orders, Order::getValue);
         return orderValues.injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
+    }
+    public boolean livesIn(String city)
+    {
+        return this.city.equals(city);
     }
 }

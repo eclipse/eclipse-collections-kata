@@ -49,8 +49,10 @@ You might see a dialog to suggest importing Gradle project, it's up to you to do
 Kata can run in IDEA even if you don't import Gradle project.
 
 ### NetBeans users
-We haven't come up with an instruction for NetBeans yet. 
-We welcome contributions from NetBeans users to add guidance here!
+
+##### Mac/Linux/Unix:
+You can open the project directly from "File" => "Open Project..." => choose "eclipse-collections-kata" folder.
+In the "Open Project" dialog you might select the option "Open Required Projects" to automatically open the two modules.
 
 
 Work on Kata exercises

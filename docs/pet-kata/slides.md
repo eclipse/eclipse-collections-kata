@@ -76,6 +76,22 @@ Select Pattern
  * __`Predicate`__ is the type that takes an object and returns a boolean.
 
 
+Select Pattern (legacy for loop)
+---------------------------------
+
+```java
+List<Person> people = someCodeToGetPeople();
+List<People> petPeople = new ArrayList<Person>();
+for (Person person : people)
+{
+  if (person.isPetPerson())
+  {
+    petPeople.add(person);
+  }
+}
+```
+
+
 Select Pattern
 --------------
 (Eclipse Collections)
@@ -87,8 +103,7 @@ MutableList<Person> people = someCodeToGetPeople();
 
 Lambda
 ```java
-MutableList<Person> petPeople =
-  people.select(person -> person.isPetPerson());
+MutableList<Person> petPeople = people.select(person -> person.isPetPerson());
 ```
 
 Method Reference

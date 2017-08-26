@@ -10,19 +10,28 @@
 
 package org.eclipse.collections.petkata;
 
+import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * In the slides leading up to this exercise you should have learned about
+ * {@link MutableList#collect(Function)} and {@link MutableList#select(Predicate)}.
+ *
+ * @see <a href="http://eclipse.github.io/eclipse-collections-kata/pet-kata/#/2">Exercise 1 Slides</a>
+ */
 public class Exercise1Test extends PetDomainForKata
 {
     @Test
     public void getFirstNamesOfAllPeople()
     {
-        MutableList<Person> people = this.people;
-        MutableList<String> firstNames = null;
+        // Replace null, with a transformation method on MutableList.
+        MutableList<String> firstNames = null; // this.people...
+
         MutableList<String> expectedFirstNames = Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
         Assert.assertEquals(expectedFirstNames, firstNames);
     }
@@ -32,23 +41,28 @@ public class Exercise1Test extends PetDomainForKata
     {
         Person person = this.getPersonNamed("Mary Smith");
         MutableList<Pet> pets = person.getPets();
-        MutableList<String> names = null; //Replace null, with a transformation method on MutableList.
+
+        // Replace null, with a transformation method on MutableList.
+        MutableList<String> names = null; // pets...
+
         Assert.assertEquals("Tabby", names.makeString());
     }
 
     @Test
     public void getPeopleWithCats()
     {
-        MutableList<Person> people = this.people;
-        MutableList<Person> peopleWithCats = null;
+        // Replace null, with a positive filtering method on MutableList.
+        MutableList<Person> peopleWithCats = null;  // this.people...
+
         Verify.assertSize(2, peopleWithCats);
     }
 
     @Test
     public void getPeopleWithoutCats()
     {
-        MutableList<Person> people = this.people;
-        MutableList<Person> peopleWithoutCats = null;
+        // Replace null, with a negative filtering method on MutableList.
+        MutableList<Person> peopleWithoutCats = null;  // this.people...
+
         Verify.assertSize(6, peopleWithoutCats);
     }
 }

@@ -41,7 +41,7 @@ Collect Pattern (legacy for loop)
 
 ```java
 List<Pet> pets = someCodeToGetPets();
-List<String> petNames = new ArrayList<String>();
+List<String> petNames = new ArrayList<>();
 for (Pet pet : pets)
 {
   petNames.add(pet.getName());
@@ -81,7 +81,7 @@ Select Pattern (legacy for loop)
 
 ```java
 List<Person> people = someCodeToGetPeople();
-List<People> petPeople = new ArrayList<Person>();
+List<Person> petPeople = new ArrayList<>();
 for (Person person : people)
 {
   if (person.isPetPerson())
@@ -103,7 +103,8 @@ MutableList<Person> people = someCodeToGetPeople();
 
 Lambda
 ```java
-MutableList<Person> petPeople = people.select(person -> person.isPetPerson());
+MutableList<Person> petPeople = 
+  people.select(person -> person.isPetPerson());
 ```
 
 Method Reference

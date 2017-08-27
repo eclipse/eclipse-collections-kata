@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2017 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -19,8 +19,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * In the slides leading up to this exercise you should have learned about
- * {@link MutableList#collect(Function)} and {@link MutableList#select(Predicate)}.
+ * In the slides leading up to this exercise you should have learned about<br>
+ * {@link MutableList#collect(Function)}<br>
+ * {@link MutableList#select(Predicate)}<br>
  *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/pet-kata/#/2">Exercise 1 Slides</a>
  */

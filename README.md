@@ -1,5 +1,7 @@
+![logo]
+
 Eclipse Collections Kata 
-===================
+========================
 A [kata](https://en.wikipedia.org/wiki/Kata) is an exercise in martial arts. 
 A [code kata](http://codekata.com/) is an exercise in programming which helps hone your skills through practice and repetition. 
 The Eclipse Collections Kata is a fun way to help you learn idiomatic Eclipse Collections usage. 
@@ -74,7 +76,7 @@ pet-kata/src/tests
 
 To get started, you can refer to slides for the [Instruction and Pet Kata](http://eclipse.github.io/eclipse-collections-kata/) to learn how to set-up Kata, basic features of Eclipse Collections corresponding to each Pet Kata exercise and then solutions. 
 
-To learn wider range of functionalities, slides for [Company Kata](http://www.goldmansachs.com/gs-collections/documents/GS%20Collections%20Training%20Session%20and%20Kata%205.0.0.pdf) is available in pdf format. 
+To learn wider range of functionalities, slides for [Company Kata](http://eclipse.github.io/eclipse-collections-kata/company-kata) are now available online as well. 
 
 Check out the [solution branch](https://github.com/eclipse/eclipse-collections-kata/tree/solutions) for your reference.
 
@@ -84,3 +86,5 @@ Enjoy happy learning with Eclipse Collections Kata!
 Reference Guide
 ----------------------
 The [Eclipse Collections Reference Guide](https://github.com/eclipse/eclipse-collections/blob/master/docs/guide.md) is a great way to get an overview of the extensive features available in the framework.
+
+[logo]:https://github.com/eclipse/eclipse-collections/blob/master/artwork/eclipse-collections-logo.png

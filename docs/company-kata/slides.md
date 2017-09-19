@@ -18,6 +18,7 @@ A programming exercise which helps hone your skills through practice.
 * **right arrow:** next section
 
 
+
 Iteration Patterns
 ==================
  * What is an iteration pattern?
@@ -110,7 +111,7 @@ just a few others.
 
 
 Iteration Patterns
-==================
+------------------
 * We want the methods *sort()*, *min()*, *max()*, *collect()*, *select()*, etc.
 on every collection.
 * How can we accomplish this in code?
@@ -119,7 +120,7 @@ on every collection.
 #### Iteration Patterns
 * We want the methods *sort()*, *min()*, *max()*, *collect()*, *select()*, etc.
 on every collection.
-• How can we accomplish this in code?
+* How can we accomplish this in code?
 
 ---
 #### Eclipse Collections Interfaces
@@ -312,50 +313,8 @@ Exercise 1
 
 
 
-Exercise 1 solutions
+[Exercise 1 solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise1Test.java)
 ====================
-
-
-Get Customer Names
-------------------
-```java
-public void getCustomerNames()
-{
-  MutableList<Customer> customers =
-    this.company.getCustomers();
-  MutableList<String> customerNames =
-    customers.collect(nameFunction);
-  ...
-  Assert.assertEquals(expectedNames, customerNames);
-}
-```
-
-
-Get Customer Cities
--------------------
-```java
-public void getCustomerCities()
-{
-  MutableList<String> customerCities =
-    customers.collect(customer -> customer.getCity());
-  ...
-  Assert.assertEquals(expectedCities, customerCities);
-}
-```
-
-
-Get London Customers
---------------------
-```java
-public void getLondonCustomers()
-{
-  ...
-  MutableList<Customer> customersFromLondon =
-   customers.select(customer -> customer.getCity().equals("London"));
-  
-  Verify.assertSize(2, customersFromLondon);
-}
-```
 
 
 
@@ -752,85 +711,8 @@ Exercise 2
 
 
 
-Exercise 2 Solutions
+[Exercise 2 Solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise2Test.java)
 ====================
-
-
-#### Any Customers from London
-```Java
-private static final Predicate<Customer> CUSTOMER_FROM_LONDON =
-  customer -> "London“.equals(customer.getCity());
-
-public void doAnyCustomersLiveInLondon()
-{
-  boolean anyCustomersFromLondon =
-    this.company.getCustomers().anySatisfy(CUSTOMER_FROM_LONDON);
-  
-  Assert.assertTrue(anyCustomersFromLondon);
-}
-```
-
-
-#### Do All Customers Live in London
-```Java
-public void doAllCustomersLiveInLondon()
-{
-  boolean allCustomersFromLondon =
-    this.company.getCustomers().allSatisfy(CUSTOMER_FROM_LONDON);
-
-  Assert.assertFalse(allCustomersFromLondon);
-}
-```
-
-
-#### How Many Customers Live in London
-```Java
-public void howManyCustomersLiveInLondon()
-{
-  int numberOfCustomerFromLondon =
-    this.company.getCustomers().count(CUSTOMER_FROM_LONDON);
-
-  Assert.assertEquals(2, numberOfCustomerFromLondon);
-}
-```
-
-
-#### Get the Customers who live in London
-```Java
-public void getLondonCustomers()
-{
-  MutableList<Customer> customersFromLondon =
-    this.company.getCustomers().select(CUSTOMER_FROM_LONDON);
-
-  Verify.assertSize(2, customersFromLondon);
-}
-```
-
-
-#### Get the Customers who do not live in London
-```Java
-public void getCustomersWhoDontLiveInLondon()
-{
-  MutableList<Customer> customersNotFromLondon =
-    this.company.getCustomers().reject(CUSTOMER_FROM_LONDON);
-
-  Verify.assertSize(1, customersNotFromLondon);
-}
-```
-
-
-#### Implement getCustomerNamed on Company
-```Java
-public class Company
-{
-  ...
-  public Customer getCustomerNamed(String name)
-  {
-    return this.customers.detect(
-      Predicates.attributeEqual(Customer::getName, name));
-  }
-}
-```
 
 
 
@@ -972,47 +854,8 @@ Exercise 3
 
 
 
-Exercise 3 Solutions
+[Exercise 3 Solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise3Test.java) 
 ====================
-
-
-#### Implement getOrders
-```Java
-public MutableList<Order> getOrders()
-{
-  return this.customers.flatCollect(customer -> customer.getOrders());
-}
-
-// or
-
-public MutableList<Order> getOrders()
-{
-  return this.customers.flatCollect(Customer::getOrders);
-}
-```
-
-
-#### Actual Item Names
-```Java
-MutableSet<String> actualItemNames =
-  this.company.getOrders()
-    .flatCollect(Order.TO_LINE_ITEMS)
-    .collect(LineItem.TO_NAME, Sets.mutable.empty());
-```
-
-
-#### Get Customer Names
-```Java
-public void findCustomerNames()
-{
-  MutableList<String> names =
-    this.company.getCustomers().collect(Customer::getName);
-
-  MutableList<String> expectedNames = ...;
-  
-  Assert.assertEquals(expectedNames, names);
-}
-```
 
 
 
@@ -1166,131 +1009,8 @@ Exercise 4
 
 
 
-Exercise 4 Solutions
+[Exercise 4 Solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise4Test.java)
 ====================
-
-
-#### Find Supplier Names
-```Java
-public void findSupplierNames()
-{
-  MutableList<String> supplierNames =
-    ArrayIterate.collect(this.company.getSuppliers(), Supplier.TO_NAME);
-
-  MutableList<String> expectedSupplierNames = ...;
-  Assert.assertEquals(expectedSupplierNames, supplierNames);
-}
-```
-
-
-#### Count Suppliers with more than two items
-```Java
-public void countSuppliersWithMoreThanTwoItems()
-{
-  Predicate<Supplier> moreThanTwoItems =
-    Predicates.attributeGreaterThan(Supplier.TO_NUMBER_OF_ITEMS, 2);
-
-  int suppliersWithMoreThanTwoItems =
-    ArrayIterate.count(this.company.getSuppliers(), moreThanTwoItems);
-
-  Assert.assertEquals(5, suppliersWithMoreThanTwoItems);
-}
-```
-
-
-#### Implement Supplier TO_NUMBER_OF_ITEMS
-```Java
-public class Supplier
-{
-...
-  public static final Function<Supplier, Integer> TO_NUMBER_OF_ITEMS =
-    supplier -> supplier.itemNames.length;
-...
-}
-```
-
-
-#### Who supplies Sandwich Toaster
-```Java
-public void whoSuppliesSandwichToaster()
-{
-  Predicate<Supplier> suppliesToaster =
-    supplier-> supplier.supplies("sandwich toaster");
-
-  Supplier toasterSupplier = 
-    ArrayIterate.detect(this.company.getSuppliers(), suppliesToaster);
-
-  Assert.assertNotNull("toaster supplier", toasterSupplier);
-  Assert.assertEquals("Doxins", toasterSupplier.getName());
-}
-```
-
-
-#### Implement supplies on Supplier
-```Java
-public class Supplier
-{
-...
-  public boolean supplies(String name)
-  {
-    return ArrayIterate.contains(this.itemNames, name);
-  }
-...
-}
-```
-
-
-#### Filter Order Values
-```Java
-public void filterOrderValues()
-{
-  List<Order> orders =
-    this.company.getMostRecentCustomer().getOrders();
-
-  MutableList<Double> orderValues =
-    ListIterate.collect(orders, Order.TO_VALUE);
-
-  MutableList<Double> filtered =
-    orderValues.select(Predicates.greaterThan(1.5));
-
-  Assert.assertEquals(Lists.mutable.with(372.5, 1.75), filtered);
-}
-```
-
-
-#### Implement Order TO_VALUE
-```Java
-public static final Function<Order, Double> TO_VALUE = order-> order.getValue();
-// or
-public static final Function<Order, Double> TO_VALUE = Order::getValue;
-
-// With Lambdas you can just inline
-```
-
-
-#### Refactor getValue() on Order
-```Java
-public double getValue()
-{
-  return this.lineItems.sumOfDouble(LineItem::getValue);
-}
-```
-
-
-#### Filter Orders
-```Java
-public void filterOrders()
-{
-  List<Order> orders =
-    this.company.getMostRecentCustomer().getOrders();
-  MutableList<Order> filtered = 
-    ListIterate.select(orders, Predicates.attributeGreaterThan(Order.TO_VALUE, 2.0));
-  
-  Assert.assertEquals(
-    FastList.newListWith(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders())),
-    filtered);
-}
-```
 
 
 
@@ -1409,7 +1129,7 @@ Exercise 5
 
 
 
-Exercise 5 Solutions
+[Exercise 5 Solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise5Test.java)
 ====================
 
 
@@ -1430,32 +1150,34 @@ More Iteration Patterns
 
 
 #### Patterns seen so far
-* ```select``` - returns the elements that satisfy a ```Predicate```.
-* ```reject``` - returns the elements that do not satisfy a ```Predicate```.
-* ```count``` - returns the number of elements that satisfy the ```Predicate```.
-* ```collect``` - transforms the elements using a ```Function```.
-* ```flatCollect``` - transforms and flattens the elements using a ```Function```.
----
-#### Short-circuit patterns
-* ```detect``` - finds the first element that satisfies a ```Predicate```.
-* ```anySatisfy``` - returns true if any element satisfies a ```Predicate```.
-* ```allSatisfy``` - returns true if all elements satisfy a ```Predicate```.
-* ```noneSatisfy``` - returns true if none of the elements satisfy a ```Predicate```.
+* ```select``` returns the items that satisfy a ```Predicate```.
+* ```reject``` returns the items that do not satisfy a ```Predicate```.
+* ```count``` returns the number of items that satisfy the ```Predicate```.
+* ```collect``` transforms the items using a ```Function```.
+* ```flatCollect``` transforms & flattens using a ```Function```.
+* ```detect``` finds the first item that satisfies a ```Predicate```.
+* ```anySatisfy``` returns true if any item satisfies a ```Predicate```.
+* ```allSatisfy``` returns true if all items satisfy a ```Predicate```.
+* ```noneSatisfy``` returns true if none satisfy a ```Predicate```.
 
 
 #### Additional Patterns
-* ```forEach``` - executes the Procedure on each element, doesn't return anything.
-* ```injectInto``` - starts with an accumulator and executes a ```Function2``` (a
-two-argument function) over each element passing the previous accumulated result.
-* ```chunk``` - splits the collection into chunks of the given size.
-* ```zip``` - joins two collections into one collection of Pairs.
-* ```makeString``` - like ```toString()```, with a customizable separator, start,
+* ```forEach``` executes the ```Procedure``` on each item.
+* ```injectInto``` injects an accumulator and executes a ```Function2``` 
+over each item passing the accumulated result.
+* ```chunk``` splits the collection into chunks of the given size.
+* ```zip``` joins two collections into a collection of Pairs.
+* ```makeString``` like ```toString()```, with a customizable separator, start,
 and end string.
-* ```toList``` / ```toSet``` - converts the collection to a new copy of the correct type.
-* ```toSortedList``` - returns a new list sorted according to some Comparator.
-* ```sortThis``` - sorts the list in place (mutating method) according to
+* ```appendString``` like ```makeString()```, but uses the specified ```Appendable```.
+
+
+#### Additional Patterns
+* ```toList```/```toSet``` converts the collection to a new copy of the correct type.
+* ```toSortedList``` returns a new list sorted according to some Comparator.
+* ```sortThis``` sorts the list in place (mutating method) according to
 some ```Comparator```.
-* ```min``` / ```max``` - returns the min / max element of a collection according
+* ```min```/```max``` returns the min / max element of a collection according
 to some ```Comparator```.
 
 
@@ -1597,86 +1319,920 @@ Exercise 6
 
 
 
-Exercise 6 Solutions
+[Exercise 6 Solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise6Test.java)
 ====================
 
 
-#### Sorted Total Order Value
-```Java
-public void sortedTotalOrderValue()
-{
-  MutableList<Double> sortedTotalValues =
-    this.company.getCustomers()
-      .collect(Customer.TO_TOTAL_ORDER_VALUE)
-      .toSortedList();
 
-  Assert.assertEquals(Double.valueOf(857.0), sortedTotalValues.getLast());
-  Assert.assertEquals(Double.valueOf(71.0), sortedTotalValues.getFirst());
+Stack
+=====
+
+
+#### Stack
+* ```java.util.Stack``` extends ```Vector```
+* How does ```java.util.Stack``` iterate?
+---
+#### JCF Problems
+```Java
+java.util.Stack stack = new java.util.Stack();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+System.out.println(stack);
+// Prints [1, 2, 3]
+```
+
+
+#### Eclipse Collections Stack
+* ```ArrayStack``` is not a drop-in replacement for ```java.util.Stack```.
+* ```MutableStack``` does not extend ```java.util.Collection```.
+
+
+#### push()
+* ```push()``` adds an item to the top of the ```MutableStack```
+
+---
+#### Code Example
+```Java
+MutableStack<Integer> stack =
+  ArrayStack.newStackWith(1, 2, 3);
+System.out.println(stack);
+// Prints [3, 2, 1]
+stack.push(4);
+System.out.println(stack);
+// Prints [4, 3, 2, 1]
+```
+
+
+#### Code Examples
+* The different ways to create a MutableStack
+
+```Java
+System.out.println(ArrayStack.newStackWith(1, 2, 3));
+// Prints [3, 2, 1]
+
+System.out.println(
+ArrayStack.newStackFromTopToBottom(1, 2, 3));
+// Prints [1, 2, 3]
+
+System.out.println(
+ArrayStack.newStack(FastList.newListWith(1, 2, 3)));
+// Prints [3, 2, 1]
+
+System.out.println(
+ ArrayStack.newStackFromTopToBottom(
+ FastList.newListWith(1, 2, 3)));
+// Prints [1, 2, 3]
+```
+
+
+#### pop()
+* Overloaded pop() methods:
+  * pop()
+  * pop(int count)
+  * pop(int count, R targetCollection)
+---
+#### Code Examples
+```Java
+ArrayStack<Integer> stack1 = ArrayStack.newStackWith(1, 2, 3);
+Assert.assertEquals(
+  FastList.newListWith(3, 2),
+  stack1.pop(2));
+ArrayStack<Integer> stack2 = ArrayStack.newStackWith(1, 3, 3);
+Assert.assertEquals(
+  UnifiedSet.newSetWith(3),
+  stack2.pop(2, UnifiedSet.<Integer>newSet()));
+ArrayStack<Integer> stack3 = ArrayStack.newStackWith(1, 2, 3);
+Assert.assertEquals(
+  ArrayStack.newStackWith(3, 2),
+  stack3.pop(2, ArrayStack.<Integer>newStack()));
+```
+
+
+#### peek and peek(int count)
+* MutableStack has an overloaded peek() method that returns a ListIterable
+
+---
+#### Code Example
+```Java
+MutableStack<Integer> stack =
+  ArrayStack.newStackWith(1, 2, 3);
+Assert.assertEquals(
+  Integer.valueOf(3),
+  stack.peek());
+Assert.assertEquals(
+  FastList.newListWith(3, 2),
+  stack.peek(2));
+```
+
+
+#### MutableStack
+* ```MutableStack``` does not extend ```java.util.List``` (or ```Collection```)
+
+---
+#### JCF Problems
+```Java
+java.util.Stack stack = new java.util.Stack();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+Assert.assertEquals(FastList.newListWith(1, 2, 3), stack);
+stack.add(2, 4);
+Assert.assertEquals(FastList.newListWith(1, 2, 4, 3), stack);
+stack.remove(1);
+Assert.assertEquals(FastList.newListWith(1, 4, 3), stack);
+```
+
+
+#### Stack API
+| Methods                   | Inherited From |
+| ------------------------- | -------------- |
+| select(), collect(), etc. | RichIterable   |
+| peek()                    | Stack Iterable |
+| push(), pop()             | MutableStack   |
+---
+#### Code Example
+```Java
+StackIterable<Integer> stack =
+  ArrayStack.newStackFromTopToBottom(1, 2, 3, 4, 5);
+StackIterable<Integer> evens = stack.select(integer ->
+{
+  System.out.print(integer + " ");
+  integer % 2 == 0
+});
+// Prints 1 2 3 4 5
+Assert.assertEquals(ArrayStack.newStackFromTopToBottom(2, 4), evens);
+```
+
+
+
+Bag
+===
+
+
+#### Bag
+* Useful when you would otherwise use ```Map<K, Integer>```
+  * For example, find the number of people who live in each state
+---
+#### Code Example
+```Java
+MutableList<Person> people = ...;
+MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
+MutableMap<String, Integer> stateCounts = UnifiedMap.newMap();
+
+...
+
+int newYorkers = stateCounts.get("NY");
+```
+
+
+#### Bag
+* Useful when you would otherwise use Map<K, Integer>
+  * For example, find the number of people who live in each state.
+  * Lots of boilerplate code to deal with uninitialized counts.
+---
+#### 🙁 Map Example 🙁 
+```Java
+MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
+MutableMap<String, Integer> stateCounts = UnifiedMap.newMap();
+for (String state : usStates) {
+  Integer count = stateCounts.get(state);
+  if (count == null) {
+    count = 0;
+  }
+  stateCounts.put(state, count + 1);
 }
 ```
 
 
-#### Maximum Total Order Value
+#### 🙁 Before 🙁
 ```Java
-public void maximumTotalOrderValue()
-{
-  Double maximumTotalOrderValue =
-    this.company.getCustomers()
-      .collect(Customer.TO_TOTAL_ORDER_VALUE)
-      .max();
+MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
+MutableMap<String, Integer> stateCounts = UnifiedMap.newMap();
+for (String state : usStates) {
+  Integer count = stateCounts.get(state);
+  if (count == null) {
+    count = 0;
+  }
+  stateCounts.put(state, count + 1);
+}
+```
+---
+#### 😐 After 😐
+```Java
+MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
+MutableBag<String> stateCounts = HashBag.newBag();
+for (String state : usStates) {
+  stateCounts.add(state);
+}
+int newYorkers = stateCounts.occurrencesOf("NY");
+```
 
-  Assert.assertEquals(Double.valueOf(857.0), maximumTotalOrderValue);
+
+#### 😐 Before 😐
+```Java
+MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
+MutableBag<String> stateCounts = HashBag.newBag();
+for (String state : usStates) {
+  stateCounts.add(state);
+}
+int newYorkers = stateCounts.occurrencesOf("NY");
+```
+---
+#### 😀 After 😀
+```Java
+MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
+MutableBag<String> stateCounts = usStates.toBag();
+
+int newYorkers = stateCounts.occurrencesOf("NY");
+```
+---
+#### 😃 Eclipse Collections 9.0 😃
+```Java
+MutableBag<String> stateCounts = people.countBy(US_STATE_FUNCTION);
+
+int newYorkers = stateCounts.occurrencesOf("NY");
+```
+
+
+#### Bag
+* Implemented as a map of key to count.
+* Like a ```List```, but unordered.
+* Like a ```Set```, but allows duplicates.
+---
+#### 😃 Bag Example using countBy 😃
+```Java
+MutableBag<String> stateCounts = people.countBy(US_STATE_FUNCTION);
+
+int newYorkers = stateCounts.occurrencesOf("NY");
+```
+
+
+#### Bag API
+Methods | Inherited From
+--- | ---
+select(), collect(), etc. | RichIterable
+add(), remove(), iterator(), etc. | MutableCollection (java.util.Collection)
+occurrencesOf(), forEachWithOccurrences(), toMapOfItemToCount() | Bag
+addOccurrences(), removeOccurrences() | MutableBag
+
+
+#### Code Example
+```Java
+MutableBag<String> bag = 
+  HashBag.newBagWith("one", "two", "two", "three", "three", "three");
+
+Assert.assertEquals(3, bag.occurrencesOf("three"));
+
+bag.add("one");
+Assert.assertEquals(2, bag.occurrencesOf("one"));
+
+bag.addOccurrences("one", 4);
+Assert.assertEquals(6, bag.occurrencesOf("one"));
+```
+
+
+
+Multimap
+========
+
+
+#### Multimap
+* ```Multimap``` is similar to ```Map```, but associates a key to multiple values.
+* Useful when you would otherwise use ```Map<K, Collection<V>>```
+  * For example, find which people live in each state.
+---
+#### Code Example
+```Java
+MutableList<Person> people = ...;
+MutableMap<String, MutableList<Person>> statesToPeople =
+  UnifiedMap.newMap();
+
+...
+
+MutableList<Person> newYorkers = statesToPeople.get("NY"); 
+```
+
+
+#### Multimap
+* ```Multimap``` is similar to ```Map```, but associates a key to multiple values.
+* Useful when you would otherwise use ```Map<K, Collection<V>>```
+  * For example, find *which* people live in each state.
+  * Lots of boilerplate code to deal with uninitialized backing collections.
+
+
+#### 🙁 Map Example 🙁
+```Java
+MutableMap<String, MutableList<Person>> statesToPeople =
+  Maps.mutable.empty();
+for (Person person : people) {
+  String state = US_STATE_FUNCTION.valueOf(person);
+  MutableList<Person> peopleInState = statesToPeople.get(state);
+  if (peopleInState == null) {
+    peopleInState = Lists.mutable.empty();
+    statesToPeople.put(state, peopleInState);
+  }
+  peopleInState.add(person);
+}
+MutableList<Person> newYorkers = statesToPeople.get("NY");
+```
+
+
+#### 🙁 Before 🙁
+```Java
+MutableMap<String, MutableList<Person>> statesToPeople =
+  Maps.mutable.empty();
+for (Person person : people) {
+  String state = US_STATE_FUNCTION.valueOf(person);
+  MutableList<Person> peopleInState = statesToPeople.get(state);
+  if (peopleInState == null) {
+    peopleInState = Lists.mutable.empty();
+    statesToPeople.put(state, peopleInState);
+  }
+  peopleInState.add(person);
+}
+MutableList<Person> newYorkers = statesToPeople.get("NY");
+```
+---
+#### 😐 After 😐
+```Java
+MutableListMultimap<String, Person> statesToPeople =
+  Multimaps.mutable.list.empty();
+for (Person person : people) {
+  String state = US_STATE_FUNCTION.valueOf(person);
+  statesToPeople.put(state, person);
+}
+MutableList<Person> newYorkers = statesToPeople.get("NY");
+```
+
+
+#### 😐 Before 😐
+```Java
+MutableListMultimap<String, Person> statesToPeople =
+  Multimaps.mutable.list.empty();
+for (Person person : people) {
+  String state = US_STATE_FUNCTION.valueOf(person);
+  statesToPeople.put(state, person);
+}
+MutableList<Person> newYorkers = statesToPeople.get("NY");
+```
+---
+#### 😃 After 😃
+```Java
+MutableListMultimap<String, Person> statesToPeople =
+  people.groupBy(US_STATE_FUNCTION);
+
+MutableList<Person> newYorkers = statesToPeople.get("NY");
+```
+
+
+#### Multimap
+* What happens if you add the same key and value twice?
+
+---
+#### Code Example
+```Java
+MutableMultimap<String, Person> multimap = ...;
+
+multimap.put("NY", person);
+multimap.put("NY", person);
+
+RichIterable<Person> ny = multimap.get("NY");
+Verify.assertIterableSize(?, ny);
+```
+
+
+#### Multimap
+* What happens if you add the same key and value twice?
+* Depends on the type of the backing collection.
+---
+#### Code Example
+```Java
+MutableListMultimap<String, Person> multimap =
+  Multimaps.mutable.list.empty();
+multimap.put("NY", person);
+multimap.put("NY", person);
+MutableList<Person> ny = multimap.get("NY");
+
+Verify.assertIterableSize(2, ny);
+```
+
+
+#### Multimap
+* What happens if you add the same key and value twice?
+* Depends on the type of the backing collection
+---
+#### Code Example
+```Java
+MutableSetMultimap<String, Person> multimap =
+  Multimaps.mutable.set.empty();
+multimap.put("NY", person);
+multimap.put("NY", person);
+MutableSet<Person> ny = multimap.get("NY");
+
+Verify.assertIterableSize(1, ny);
+```
+
+
+#### groupByEach
+* ```groupByEach()``` is a special case of ```groupBy()```.
+* Analogous to the difference between ```collect()``` and ```flatCollect()```.
+* Appropriate when the ```Function``` returns an ```Iterable```.
+* The return type is the same as ```groupBy()```.
+
+* Refactor ```7.mapOfItemsToSuppliers()``` to use
+```groupByEach()```.
+---
+#### Code Example
+```Java
+MutableListMultimap<String, Person> statesToPeople =
+  people.groupBy(US_STATE_FUNCTION);
+
+MutableListMultimap<String, Person> statesToPeople =
+  people.groupByEach(US_STATES_FUNCTION);
+```
+
+
+#### Collection Types
+Type | Mu- table | Immu- table | Prim- itive | Synch- ronized | Unmod- ifiable | Multi- Reader
+--- | --- | --- | --- | --- | --- | ---
+List | Yes | Yes | Yes | Yes | Yes | Yes
+Set | Yes | Yes | Yes | Yes | Yes | Yes
+Bag | Yes | Yes | Yes | Yes | Yes | Yes
+Stack | Yes | Yes | Yes | Yes | Yes | No
+Map | Yes | Yes | Yes | Yes | Yes | No 
+BiMap | Yes | Yes | No | Yes | Yes | No
+Multimap | Yes | Yes | No | Yes | Yes | Yes*
+
+
+Exercise 7
+----------
+* Fix ```Exercise7Test```.
+* Refactor the repetition at TODO 7 in CompanyDomainForKata without
+breaking anything.
+* Exercise 7 should take about 30 minutes.
+
+
+
+[Exercise 7 Solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise7Test.java)
+====================
+
+
+
+Lazy Evaluation
+===============
+
+
+#### Eager Evaluation
+* This example uses eager evaluation.
+* When do the calls to ```valueOf()``` and ```accept()``` take place?
+* We can create our own ```Function``` and ```Predicate``` to answer the question.
+---
+#### Code Example
+```Java
+Person person1 = new Person(address1);
+Person person2 = new Person(address2);
+Person person3 = new Person(address3);
+MutableList<Person> people =
+  Lists.mutable.with(person1, person2, person3);
+MutableList<Address> addresses =
+  people.collect(Person::getAddress);
+Assert.assertTrue(addresses.anySatisfy(address2::equals));
+```
+
+
+#### Eager Evaluation
+* ```Function``` from ```Person``` to ```Address```.
+* Maintains internal mutable state.
+  * Not functional style.
+  * Not thread-safe.
+---
+#### Code Example
+```Java
+public class AddressFunction implements Function<Person, Address> {
+  private int counter = 1;
+
+  public Address valueOf(Person person) {
+    System.out.println("Function: " + this.counter);
+    this.counter++;
+    return person.getAddress();
+  }
 }
 ```
 
 
-#### Cusomter with Max Total Order Value
+#### Eager Evaluation
+* ```Predicate``` returns true when address is the same reference as
+```this.address```
+* Same warnings as ```AddressFunction```
+---
+#### Code Example
 ```Java
-public void customerWithMaxTotalOrderValue()
-{
-  Customer customerWithMaxTotalOrderValue =
-    this.company.getCustomers()
-      .maxBy(Customer.TO_TOTAL_ORDER_VALUE);
+public class EqualsAddressPredicate implements Predicate<Address> {
+  private final Address address;
+  private int counter = 1;
   
-  Assert.assertEquals(
-    this.company.getCustomerNamed("Mary"),
-    customerWithMaxTotalOrderValue);
+  private EqualsAddressPredicate(Address address) {
+    this.address = address;
+  }
+ 
+  public boolean accept(Address address) {
+    System.out.println("Predicate: " + this.counter);
+    this.counter++;
+    return address == this.address;
+  }
 }
 ```
 
 
-#### Supplier Names as Tilde Delimited String
+#### Eager Evaluation
+* When do the calls to ```valueOf()``` and ```accept()``` take place?
+
+---
+#### Code Example
 ```Java
-public void supplierNamesAsTildeDelimitedString()
-{
-  MutableList<String> supplierNames =
-    ArrayIterate.collect(this.company.getSuppliers(), Supplier.TO_NAME);
-  String tildeSeparatedNames = supplierNames.makeString("~");
+MutableList<Address> addresses =
+  people.collect(new AddressFunction());
 
-  Assert.assertEquals(
-    "Shedtastic~Splendid Crocks~Annoying Pets~Gnomes 'R' Us~FurnitureHamlet~SFD~Doxins",
-    tildeSeparatedNames);
-}
+addresses.anySatisfy(
+  new EqualsAddressPredicate(address2));
 ```
 
 
-#### Deliver Orders to London
+#### Eager Evaluation
+* When do the calls to ```valueOf()``` and ```accept()``` take place?
+
+---
 ```Java
-public void deliverOrdersToLondon()
-{
-  this.company.getCustomers()
-    .select(Predicates.attributeEqual(Customer.TO_CITY, "London"))
-    .flatCollect(Customer.TO_ORDERS)
-    .forEach(Order.DELIVER);
+MutableList<Address> addresses =
+  people.collect(new AddressFunction());
+// Function: 1
+// Function: 2
+// Function: 3
 
-  Verify.assertAllSatisfy(
-    this.company.getCustomerNamed("Fred").getOrders(),
-    Order.IS_DELIVERED);
-  Verify.assertAllSatisfy(
-    this.company.getCustomerNamed("Mary").getOrders(),
-    Predicates.not(Order.IS_DELIVERED));
-  Verify.assertAllSatisfy(
-    this.company.getCustomerNamed("Bill").getOrders(),
-    Order.IS_DELIVERED);
+addresses.anySatisfy(new EqualsAddressPredicate(address2));
+// Predicate: 1
+// Predicate: 2
+```
+
+
+#### Lazy Evaluation
+* According to Wikipedia, lazy evaluation is
+> “the technique of delaying a computation until its value is actually required.”
+* When do the calls to ```valueOf()``` and ```accept()``` take place?
+---
+#### Code Example
+```Java
+LazyIterable<Person> peopleLazy = people.asLazy();
+LazyIterable<Address> addressesLazy =
+  peopleLazy.collect(new AddressFunction());
+addressesLazy.anySatisfy(new EqualsAddressPredicate(address2));
+```
+
+
+#### Lazy Evaluation
+* When do the calls to ```valueOf()``` and ```accept()``` take place?
+
+---
+#### Code Example
+```Java
+LazyIterable<Person> peopleLazy = people.asLazy();
+LazyIterable<Address> addressesLazy =
+ peopleLazy.collect(new AddressFunction());
+addressesLazy.anySatisfy(new EqualsAddressPredicate(address2));
+// Function: 1
+// Predicate: 1
+// Function: 2
+// Predicate: 2
+```
+
+
+#### Eager Evaluation
+```Java
+MutableList<Address> addresses =
+  people.collect(new AddressFunction());
+// Function: 1
+// Function: 2
+// Function: 3
+
+addresses.anySatisfy(new EqualsAddressPredicate(address2));
+// Predicate: 1
+// Predicate: 2
+```
+---
+#### Lazy Evaluation
+```Java
+LazyIterable<Person> peopleLazy = people.asLazy();
+LazyIterable<Address> addressesLazy =
+ peopleLazy.collect(new AddressFunction());
+addressesLazy.anySatisfy(new EqualsAddressPredicate(address2));
+// Function: 1
+// Predicate: 1
+// Function: 2
+// Predicate: 2
+```
+* Why would we prefer lazy evaluation?
+
+
+#### Lazy Evaluation
+* According to Wikipedia, lazy evaluation is 
+> “the technique of delaying a computation until its value is actually required.”
+* Benefits include:
+  * Performance increases due to avoiding unnecessary calculations.
+  * Avoiding error conditions in the evaluation of compound expressions.
+  * The ability to construct potentially infinite data structures.
+
+
+#### Lazy Evaluation
+* ```LazyIterate``` provides the utility methods for lazy evaluation.
+
+---
+#### Code Example
+```Java
+MutableList<Person> people =
+  Lists.mutable.with(person1, person2, null);
+
+LazyIterable<Address> addresses =
+  LazyIterate.collect(people, Person::getAddress);
+
+Assert.assertTrue(
+  addresses.anySatisfy(address2::equals));
+```
+
+
+
+Parallel Lazy Evaluation
+========================
+
+
+#### Parallel Lazy Evaluation
+* ```asLazy``` returns ```LazyIterable```
+* ```asParallel``` returns ```ParallelIterable```
+* API is similar to lazy-serial, and lazy methods return ```ParallelIterable```
+* ```asParallel``` takes an ```ExecutorService``` and a batchSize
+* When evaluation is forced, the backing collections is divided into batches
+which are processed in parallel in the ```ExecutorService```
+
+
+#### Code Example
+```Java
+int numCores = Runtime.getRuntime().availableProcessors();
+
+ExecutorService executorService =
+  Executors.newFixedThreadPool(numCores);
+
+ParallelListIterable<Person> peopleLazy =
+  people.asParallel(executorService, 2);
+
+ParallelListIterable<Address> addressesLazy =
+  peopleLazy.collect(Person::getAddress);
+
+Assert.assertTrue(addressesLazy.anySatisfy(address2::equals));
+executorService.shutdownNow();
+```
+
+
+#### Cancellation
+* It’s possible to cancel a parallel-lazy computation in progress
+* Just shut down the ```ExecutorService```
+* Batches in progress won’t halt but new batches won’t start
+* Means you can’t share the thread pools among multiple computations
+* In the code example, ```anySatisfy``` will throw a ```RuntimeException```
+---
+#### Code Example
+```Java
+// In one thread
+addressesLazy.anySatisfy(address2::equals);
+
+// In another thread
+executorService.shutdownNow(); 
+```
+
+
+
+Unmodifiable and Synchronized Wrappers
+======================================
+
+
+#### Unmodifiable Wrapper
+* asUnmodifiable() returns a wrapper which throws on mutating methods.
+
+---
+#### Test Code
+```Java
+Verify.assertThrows(
+  UnsupportedOperationException.class,
+  () -> richIterable.asUnmodifiable().add(0);
+);
+```
+
+
+#### Java Collections Framework - Synchronized Wrapper (Pre-Java 8)
+```Java
+Collection<Integer> synch =
+  Collections.synchronizedCollection(collection);
+  synchronized (synch) {
+    for (Integer integer : synch) {
+    System.out.println(integer);
+  }
 }
 ```
+---
+#### Java Collections Framework - Synchronized Wrapper (Java 8+)
+```Java
+Collection<Integer> synch =
+  Collections.synchronizedCollection(collection);
+synch.forEach(integer -> System.out.println(integer););
+
+```
+---
+#### Eclipse Collections Synchronized Wrapper
+```Java
+MutableCollection<Integer> synch = collection.asSynchronized();
+synch.forEach(integer -> System.out.println(integer););
+```
+
+
+
+More Benefits of the OO API
+===========================
+
+
+#### JCF For-Each Loop
+* Assume that synchronizedList is shared by several threads.
+* What’s wrong with this code?
+---
+#### Code Example
+```Java
+List<Integer> synchronizedList =
+  Collections.synchronizedList(list);
+printAll(synchronizedList);
+
+<T> void printAll(List<T> list) {
+  for (T element : list) {
+    System.out.println(element);
+  }
+}
+```
+
+
+#### JCF For-Each Loop
+* For-Each loop syntax gets compiled to bytecode that uses an iterator.
+* This code produces identical bytecode.
+```Java
+Iterator<T> iterator = list.iterator();
+while (iterator.hasNext()) {
+  T element = iterator.next();
+  System.out.println(element);
+}
+```
+---
+#### Code Example
+```Java
+List<Integer> synchronizedList =
+  Collections.synchronizedList(list);
+printAll(synchronizedList);
+
+<T> void printAll(List<T> list) {
+  for (T element : list) {
+    System.out.println(element);
+  }
+}
+```
+
+
+#### JCF For-Each Loop
+* ```iterator()``` is the one method that is not synchronized
+* From the JavaDoc of ```Collections.synchronizedList()```
+  * It is imperative that the user manually synchronize on the returned list
+when iterating over it
+
+```Java
+List list = Collections.synchronizedList(new ArrayList());
+
+synchronized (list) {
+  Iterator i = list.iterator();
+  while (i.hasNext())
+    foo(i.next());
+  }
+}
+```
+* Failure to follow this advice may result in non-deterministic behavior.
+
+
+#### JCF For-Each Loop
+* Using ```MutableList``` does not help.
+* It is not possible to use ```Iterator``` in a thread-safe way.
+* How can we fix this code?
+---
+#### Code Example
+```Java
+MutableList<Integer> synchronizedList = list.asSynchronized();
+this.printAll(synchronizedList);
+
+<T> void printAll(List<T> list) {
+  for (T element : list) {
+    System.out.println(element);
+  }
+}
+```
+
+
+#### JCF For-Each Loop
+* We could put a synchronized block inside the ```printAll()``` method.
+* Very strange, since the list might not be synchronized.
+* We would have to do this in every method that takes a collection.
+---
+#### Code Example
+```Java
+<T> void printAll(List<T> list) {
+  synchronized (list) {
+    for (T element : list) {
+      System.out.println(element);
+    }
+  }
+}
+```
+
+
+#### Object-Oriented
+* The ```forEach()``` method is the safe way.
+* The ```forEach()``` method is the object-oriented way.
+* Why does this work?
+---
+#### Code Example
+```Java
+<T> void printAll(MutableList<T> list) {
+  list.forEach(element -> System.out.println(element););
+}
+```
+
+
+#### Object-Oriented
+* ```SynchronizedMutableList``` holds the lock for the duration of the
+iteration.
+* This is the compelling reason to use the ```forEach()``` method.
+---
+#### Code Example
+```Java
+public void forEach(Procedure<? super E> block) {
+  synchronized (this.lock) {
+    this.collection.forEach(block);
+  }
+}
+```
+
+
+#### Object-Oriented
+* The code does the correct thing for a:
+  * ```FastList```
+  * ```FastList``` in a ```SynchronizedMutableList```
+  * ```FastList``` in a ```SynchronizedMutableList``` in a ```ListAdapter``` in a …
+* Even if ```FastList.forEach()``` is implemented by using an ```Iterator```.
+---
+#### Code Example
+```Java
+<T> void printAll(MutableList<T> list) {
+ list.forEach(element -> System.out.println(element););
+}
+```
+
+
+#### Thread-safe Collections
+* ```MultiReader``` collections completely encapsulate synchronization.
+* ```iterator()``` and ```listIterator()``` throw
+```UnsupportedOperationException```.
+* ```withReadLockAndDelegate()``` and ```withWriteLockAndDelegate()``` allow
+complete access to the backing collection in a synchronized context.
+---
+#### Code Example
+```Java
+MultiReaderFastList<String> list =
+MultiReaderFastList.newListWith("1", "2", "3");
+list.withWriteLockAndDelegate(backingList -> {
+  Iterator<String> iterator = backingList.iterator();
+  iterator.next();
+  iterator.remove();
+});
+Assert.assertEquals(FastList.newListWith("2", "3"), list);
+```
+
+
+Kata Exercise 8
+---------------
+* Fix Exercise8Test.
+* The final set of exercises is the most difficult and is optional
+
+
+
+[Exercise 8 Solutions](https://github.com/eclipse/eclipse-collections-kata/blob/solutions/company-kata/src/test/java/org/eclipse/collections/companykata/Exercise8Test.java)
+====================
+
+
+
+Congratulations!
+================
+
+You have completed the Company Kata!
+
+Enjoy happy Java development with Eclipse Collections!

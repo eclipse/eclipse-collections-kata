@@ -7,7 +7,7 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;"/>
+<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue"/>
 Pet Kata
 ========
 
@@ -539,7 +539,7 @@ Bag
 ```java
 MutableList<Person> people = ...;
 MutableList<PetType> pets = people.flatCollect(Person::getPetTypes);
-MutableMap<PetType, Integer> petTypeCounts = UnifiedMap.newMap();
+MutableMap<PetType, Integer> petTypeCounts = Maps.mutable.empty();
 // ???
 int cats = petTypeCounts.get(PetType.CAT);
 ```
@@ -549,7 +549,7 @@ Bag
 ---
 
 ```java
-MutableMap<PetType, Integer> petTypeCounts = UnifiedMap.newMap();
+MutableMap<PetType, Integer> petTypeCounts = Maps.mutable.empty();
 for (PetType petType : pets)
 {
   Integer count = petTypeCounts.get(petType);
@@ -593,7 +593,7 @@ Bag
 
 ```java
 MutableBag<String> bag =
-  HashBag.newBagWith("one", "two", "two", "three", "three", "three");
+  Bags.mutable.with("one", "two", "two", "three", "three", "three");
 
 Assert.assertEquals(3, bag.occurrencesOf("three"));
 
@@ -618,7 +618,7 @@ Multimap
 ```java
 MutableList<Person> people = ...;
 MutableMap<String, MutableList<Person>> lastNamesToPeople =
-  UnifiedMap.newMap();
+  Maps.mutable.empty();
 // ???
 MutableList<Person> smiths = lastNamesToPeople.get("Smith");
 ```
@@ -631,7 +631,7 @@ Multimap
 
 ```java
 MutableMap<String, MutableList<Person>> lastNamesToPeople =
-  UnifiedMap.newMap();
+  Maps.mutable.empty();
 
 for (Person person : people)
 {
@@ -641,7 +641,7 @@ for (Person person : people)
 
   if (peopleWithLastName == null)
   {
-    peopleWithLastName = FastList.newList();
+    peopleWithLastName = Lists.mutable.empty();
     lastNamesToPeople.put(lastName, peopleWithLastName);
   }
   peopleWithLastName.add(person);
@@ -684,7 +684,7 @@ Multimap
 
 ```java
 MutableListMultimap<String, Person> multimap =
-  FastListMultimap.newMultimap();
+  Multimaps.mutable.list.empty();
 multimap.put("Smith", person);
 multimap.put("Smith", person);
 MutableList<Person> smiths = multimap.get("Smith");
@@ -699,7 +699,7 @@ Multimap
 
 ```java
 MutableSetMultimap<String, Person> multimap =
-  UnifiedSetMultimap.newMultimap();
+  Multimaps.mutable.set.empty();
 multimap.put("Smith", person);
 multimap.put("Smith", person);
 MutableSet<Person> smiths = multimap.get("Smith");
@@ -738,7 +738,7 @@ Target Collections
 
 ```java
 MutableSet<Person> people =
-  UnifiedSet.newSetWith(mrSmith, mrsSmith, mrJones);
+  Sets.mutable.with(mrSmith, mrsSmith, mrJones);
 
 int numAddresses =
   people.collect(Person::getAddress).size();
@@ -764,9 +764,9 @@ Target Collections
 
 ```java
 MutableSet<Person> people =
-  UnifiedSet.newSetWith(mrSmith, mrsSmith, mrJones);
+  Sets.mutable.with(mrSmith, mrsSmith, mrJones);
 
-MutableList<Address> targetList = FastList.newList();
+MutableList<Address> targetList = Lists.mutable.empty();
 
 int numAddresses =
   people.collect(Person::getAddress, targetList).size();
@@ -795,10 +795,8 @@ Get counts by pet type
 @Test
 public void getCountsByPetType()
 {
-  MutableList<PetType> petTypes =
-    this.people.flatCollect(Person::getPets).collect(Pet::getType);
-
-  MutableBag<PetType> counts = petTypes.toBag();
+  MutableBag<PetType> counts =
+    this.people.flatCollect(Person::getPets).countBy(Pet::getType);
 
   Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
   Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
@@ -833,7 +831,7 @@ public void getPeopleByTheirPets()
   MutableSetMultimap<PetType, Person> peopleByPetType =
     this.people.groupByEach(
       person -> person.getPetTypes(),
-	  UnifiedSetMultimap.newMultimap());
+	  Multimaps.mutable.set.empty());
 
   Verify.assertIterableSize(2, peopleByPetType.get(PetType.CAT));
   Verify.assertIterableSize(2, peopleByPetType.get(PetType.DOG));
@@ -973,8 +971,8 @@ public void streamsToECRefactor2()
   MutableBag<PetType> counts = this.people
     .asUnmodifiable()
     .flatCollect(Person::getPets)
-    .collect(Pet::getType)
-    .toBag();
+    .countBy(Pet::getType);
+
   Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
   Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
   Assert.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
@@ -996,9 +994,9 @@ public void streamsToECRefactor3()
   MutableList<ObjectIntPair<PetType>> favorites = this.people
     .asLazy()
     .flatCollect(Person::getPets)
-    .collect(Pet::getType)
-    .toBag()
+    .countBy(Pet::getType)
     .topOccurrences(3);
+
   Verify.assertSize(3, favorites);
   Verify.assertContains(PrimitiveTuples.pair(PetType.CAT, 2), favorites);
   Verify.assertContains(PrimitiveTuples.pair(PetType.DOG, 2), favorites);

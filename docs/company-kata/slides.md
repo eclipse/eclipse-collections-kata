@@ -7,11 +7,11 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;"/>
+<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue;"/>
 Company Kata
 ============
 
-A programming exercise which helps hone your skills through practice.
+Learning through exercises
 
 * **space:** next page
 * **down arrow:** next page in the current section

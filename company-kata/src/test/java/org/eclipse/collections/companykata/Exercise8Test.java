@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2017 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,6 +10,8 @@
 
 package org.eclipse.collections.companykata;
 
+import java.util.Collections;
+
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
 import org.eclipse.collections.api.block.function.Function;
@@ -18,14 +20,15 @@ import org.eclipse.collections.api.block.function.Function2;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
-import org.eclipse.collections.impl.bag.sorted.mutable.TreeBag;
-import org.eclipse.collections.impl.list.mutable.FastList;
+import org.eclipse.collections.impl.factory.Lists;
+import org.eclipse.collections.impl.factory.SortedBags;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Collections;
-
+/**
+ * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/23">Exercise 8 Slides</a>
+ */
 public class Exercise8Test extends CompanyDomainForKata
 {
     /**
@@ -70,7 +73,7 @@ public class Exercise8Test extends CompanyDomainForKata
     {
         MutableSortedBag<Double> orderedPrices = null;
 
-        MutableSortedBag<Double> expectedPrices = TreeBag.newBagWith(
+        MutableSortedBag<Double> expectedPrices = SortedBags.mutable.with(
                 Collections.reverseOrder(), 500.0, 150.0, 120.0, 75.0, 50.0, 50.0, 12.5);
         Verify.assertSortedBagsEqual(expectedPrices, orderedPrices);
     }
@@ -111,7 +114,7 @@ public class Exercise8Test extends CompanyDomainForKata
         Assert.assertEquals(3, multimap.size());
         Assert.assertEquals(2, multimap.keysView().size());
         Assert.assertEquals(
-                FastList.newListWith(
+                Lists.mutable.with(
                         this.company.getCustomerNamed("Fred"),
                         this.company.getCustomerNamed("Bill")),
                 multimap.get(50.0));

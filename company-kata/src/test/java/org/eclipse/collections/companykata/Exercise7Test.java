@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2017 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,16 +10,20 @@
 
 package org.eclipse.collections.companykata;
 
+import java.util.List;
+
 import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
+import org.eclipse.collections.impl.factory.Lists;
+import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.list.mutable.FastList;
-import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-
+/**
+ * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/19">Exercise 7 Slides</a>
+ */
 public class Exercise7Test extends CompanyDomainForKata
 {
     /**
@@ -31,9 +35,9 @@ public class Exercise7Test extends CompanyDomainForKata
         // Notice that the second generic type is Customer, not List<Customer>
         MutableListMultimap<String, Customer> multimap = null;
 
-        Assert.assertEquals(FastList.newListWith(this.company.getCustomerNamed("Mary")), multimap.get("Liphook"));
+        Assert.assertEquals(Lists.mutable.with(this.company.getCustomerNamed("Mary")), multimap.get("Liphook"));
         Assert.assertEquals(
-                FastList.newListWith(
+                Lists.mutable.with(
                         this.company.getCustomerNamed("Fred"),
                         this.company.getCustomerNamed("Bill")),
                 multimap.get("London"));
@@ -46,7 +50,7 @@ public class Exercise7Test extends CompanyDomainForKata
         /**
          * Change itemsToSuppliers to a MutableMultimap<String, Supplier>
          */
-        MutableMap<String, List<Supplier>> itemsToSuppliers = UnifiedMap.newMap();
+        MutableMap<String, List<Supplier>> itemsToSuppliers = Maps.mutable.empty();
 
         for (Supplier supplier : this.company.getSuppliers())
         {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2017 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -12,12 +12,15 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.set.MutableSet;
-import org.eclipse.collections.impl.list.mutable.FastList;
-import org.eclipse.collections.impl.set.mutable.UnifiedSet;
+import org.eclipse.collections.impl.factory.Lists;
+import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/8">Exercise 3 Slides</a>
+ */
 public class Exercise3Test extends CompanyDomainForKata
 {
     /**
@@ -43,7 +46,7 @@ public class Exercise3Test extends CompanyDomainForKata
         Verify.assertInstanceOf(MutableSet.class, actualItemNames);
         Verify.assertInstanceOf(String.class, actualItemNames.getFirst());
 
-        MutableSet<String> expectedItemNames = UnifiedSet.newSetWith(
+        MutableSet<String> expectedItemNames = Sets.mutable.with(
                 "shed", "big shed", "bowl", "cat", "cup", "chair", "dog",
                 "goldfish", "gnome", "saucer", "sofa", "table");
         Assert.assertEquals(expectedItemNames, actualItemNames);
@@ -54,7 +57,7 @@ public class Exercise3Test extends CompanyDomainForKata
     {
         MutableList<String> names = null;
 
-        MutableList<String> expectedNames = FastList.newListWith("Fred", "Mary", "Bill");
+        MutableList<String> expectedNames = Lists.mutable.with("Fred", "Mary", "Bill");
         Assert.assertEquals(expectedNames, names);
     }
 }

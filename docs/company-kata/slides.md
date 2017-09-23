@@ -1005,7 +1005,7 @@ Exercise 4
 ----------
 * Fix the five methods in ```Exercise4Test```.
 * Solve them using the static utility classes.
-* Exercise 5 should take about 25 minutes.
+* Exercise 4 should take about 25 minutes.
 
 
 
@@ -1125,7 +1125,7 @@ Exercise 5
 * Fix ```Exercise5Test```.
 * Two of the ones you just solved.
 * This time, don’t use static utility, refactor the domain instead.
-* Exercise 6 should take about 10 minutes
+* Exercise 5 should take about 10 minutes
 
 
 
@@ -1315,7 +1315,7 @@ Exercise 6
 * Fix ```Exercise6Test```.
 * Exercises use some of the iteration patterns you have just learned.
 * Some use a combination of iteration patterns you have already seen.
-* Exercise 7 should take about 20 minutes.
+* Exercise 6 should take about 20 minutes.
 
 
 
@@ -2214,7 +2214,7 @@ list.withWriteLockAndDelegate(backingList -> {
   iterator.next();
   iterator.remove();
 });
-Assert.assertEquals(FastList.newListWith("2", "3"), list);
+Assert.assertEquals(Lists.mutable.with("2", "3"), list);
 ```
 
 

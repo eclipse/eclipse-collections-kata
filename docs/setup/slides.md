@@ -7,7 +7,7 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;"/>
+<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue;"/>
 Introduction to Kata
 ============================
 
@@ -17,7 +17,7 @@ Learning by exercises
 * **Go right:** Kata set-up
 
 
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;"/>
+<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue;"/>
 What is Eclipse	Collections?
 ----------------------------
  https://www.eclipse.org/collections/

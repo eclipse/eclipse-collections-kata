@@ -27,7 +27,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * In this set of tests, wherever you see .stream() replace it with an Eclipse Collections alternative
+ * In this set of tests, wherever you see .stream() replace it with an Eclipse Collections alternative.
  */
 public class Exercise4Test extends PetDomainForKata
 {
@@ -49,7 +49,7 @@ public class Exercise4Test extends PetDomainForKata
         // Is a Set<Integer> equal to an IntSet?
         // Hint: Try IntSets instead of Sets as the factory
         Assert.assertEquals(Sets.mutable.with(1, 2, 3, 4), uniqueAges);
-        // Try to leverage min, max, sum, average from the Eclipse Collections primitive api 
+        // Try to leverage min, max, sum, average from the Eclipse Collections primitive api
         Assert.assertEquals(stats.getMin(), petAges.stream().mapToInt(i -> i).min().getAsInt());
         Assert.assertEquals(stats.getMax(), petAges.stream().mapToInt(i -> i).max().getAsInt());
         Assert.assertEquals(stats.getSum(), petAges.stream().mapToInt(i -> i).sum());
@@ -107,7 +107,7 @@ public class Exercise4Test extends PetDomainForKata
     }
 
     /**
-     * The purpose of this test is to determine the top 3 pet types
+     * The purpose of this test is to determine the top 3 pet types.
      */
     @Test
     public void streamsToECRefactor3()

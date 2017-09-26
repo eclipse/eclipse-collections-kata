@@ -27,7 +27,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * In the slides leading up to this exercise you should have learned about<br>
+ * In the slides leading up to this exercise you should have learned about the following APIs.
+ * <p/>
  * {@link Bag}<br>
  * {@link MutableBag}<br>
  * {@link MutableList#toBag()}<br>

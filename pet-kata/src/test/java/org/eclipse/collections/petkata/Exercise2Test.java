@@ -22,7 +22,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * In the slides leading up to this exercise you should have learned about<br>
+ * In the slides leading up to this exercise you should have learned about the following APIs.
+ * <p/>
  * {@link MutableList#flatCollect(Function)}<br>
  * {@link MutableList#select(Predicate)}<br>
  * {@link MutableList#reject(Predicate)}<br>
@@ -32,7 +33,7 @@ import org.junit.Test;
  * {@link MutableList#allSatisfy(Predicate)}<br>
  * {@link MutableList#noneSatisfy(Predicate)}<br>
  * <br>
- * as well as the corresponding with methods<br>
+ * You should have also learned about the following methods as well.<br>
  * <br>
  * {@link MutableList#selectWith(Predicate2, Object)}<br>
  * {@link MutableList#rejectWith(Predicate2, Object)}<br>

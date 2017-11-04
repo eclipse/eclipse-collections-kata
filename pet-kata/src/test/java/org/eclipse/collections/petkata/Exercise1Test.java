@@ -31,8 +31,7 @@ public class Exercise1Test extends PetDomainForKata
     @Test
     public void getFirstNamesOfAllPeople()
     {
-        // Replace null, with a transformation method on MutableList.
-        MutableList<String> firstNames = null; // this.people...
+        MutableList<String> firstNames = this.people.collect(person -> person.getFirstName());
 
         MutableList<String> expectedFirstNames = Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
         Assert.assertEquals(expectedFirstNames, firstNames);
@@ -44,8 +43,7 @@ public class Exercise1Test extends PetDomainForKata
         Person person = this.getPersonNamed("Mary Smith");
         MutableList<Pet> pets = person.getPets();
 
-        // Replace null, with a transformation method on MutableList.
-        MutableList<String> names = null; // pets...
+        MutableList<String> names = pets.collect(pet -> pet.getName());
 
         Assert.assertEquals("Tabby", names.makeString());
     }
@@ -53,8 +51,8 @@ public class Exercise1Test extends PetDomainForKata
     @Test
     public void getPeopleWithCats()
     {
-        // Replace null, with a positive filtering method on MutableList.
-        MutableList<Person> peopleWithCats = null;  // this.people...
+        MutableList<Person> peopleWithCats = this.people
+                .select(person -> person.getPets().collect(pet -> pet.getType()).contains(PetType.CAT));
 
         Verify.assertSize(2, peopleWithCats);
     }
@@ -62,8 +60,8 @@ public class Exercise1Test extends PetDomainForKata
     @Test
     public void getPeopleWithoutCats()
     {
-        // Replace null, with a negative filtering method on MutableList.
-        MutableList<Person> peopleWithoutCats = null;  // this.people...
+        MutableList<Person> peopleWithoutCats = this.people
+                .reject(person -> person.getPets().collect(pet -> pet.getType()).contains(PetType.CAT));
 
         Verify.assertSize(6, peopleWithoutCats);
     }

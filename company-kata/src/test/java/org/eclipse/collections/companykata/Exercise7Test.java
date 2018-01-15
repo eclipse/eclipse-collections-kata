@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,29 +10,36 @@
 
 package org.eclipse.collections.companykata;
 
-import java.util.List;
-
-import org.eclipse.collections.api.map.MutableMap;
+import org.eclipse.collections.api.bag.MutableBag;
+import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.multimap.MutableMultimap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.factory.Lists;
-import org.eclipse.collections.impl.factory.Maps;
-import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
+import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Below are links to APIs that may be helpful during these exercises.
+ *
+ * {@link MutableList#groupBy(Function)}
+ * {@link MutableList#groupByEach(Function)}
+ * {@link ArrayIterate#groupByEach(Object[], Function)}
+ * {@link MutableBag#addOccurrences(Object, int)}
+ *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/19">Exercise 7 Slides</a>
  */
 public class Exercise7Test extends CompanyDomainForKata
 {
     /**
-     * Create a multimap where the keys are the names of cities and the values are the customers from those cities.
+     * Create a Multimap where the keys are the names of cities and the values are the Customers from those cities.
+     * A Customer is only associated to one city.
      */
     @Test
     public void customersByCity()
     {
-        // Notice that the second generic type is Customer, not List<Customer>
         MutableListMultimap<String, Customer> multimap = null;
 
         Assert.assertEquals(Lists.mutable.with(this.company.getCustomerNamed("Mary")), multimap.get("Liphook"));
@@ -43,40 +50,24 @@ public class Exercise7Test extends CompanyDomainForKata
                 multimap.get("London"));
     }
 
+    /**
+     * Create a Multimap where the keys are the names of items and the values are the Suppliers that supply them.
+     * A Supplier is associated to many item names.
+     */
     @Test
-    public void mapOfItemsToSuppliers()
+    public void itemsBySuppliers()
     {
-        Assert.fail("Refactor this as part of Exercise 7");
-        /**
-         * Change itemsToSuppliers to a MutableMultimap<String, Supplier>
-         */
-        MutableMap<String, List<Supplier>> itemsToSuppliers = Maps.mutable.empty();
+        MutableMultimap<String, Supplier> itemsToSuppliers = null;
 
-        for (Supplier supplier : this.company.getSuppliers())
-        {
-            for (String itemName : supplier.getItemNames())
-            {
-                List<Supplier> suppliersForItem;
-                if (itemsToSuppliers.containsKey(itemName))
-                {
-                    suppliersForItem = itemsToSuppliers.get(itemName);
-                }
-                else
-                {
-                    suppliersForItem = FastList.newList();
-                    itemsToSuppliers.put(itemName, suppliersForItem);
-                }
-
-                suppliersForItem.add(supplier);
-            }
-        }
         Verify.assertIterableSize("should be 2 suppliers for sofa", 2, itemsToSuppliers.get("sofa"));
     }
 
+    /**
+     * Delete this whole method when you're done. It's just a reminder.
+     */
     @Test
     public void reminder()
     {
         Assert.fail("Refactor setUpCustomersAndOrders() in the super class to not have so much repetition.");
-        // Delete this whole method when you're done. It's just a reminder.
     }
 }

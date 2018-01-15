@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,7 +10,7 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
 import org.eclipse.collections.impl.block.function.AddFunction;
 import org.eclipse.collections.impl.collection.mutable.CollectionAdapter;
 import org.eclipse.collections.impl.utility.Iterate;
@@ -18,6 +18,7 @@ import org.eclipse.collections.impl.utility.Iterate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Has a number, a {@link Customer}, a {@link List} of {@link LineItem}s, and a boolean that states whether or not the order
@@ -25,11 +26,7 @@ import java.util.List;
  */
 public class Order
 {
-    public static final Function<Order, Double> TO_VALUE = Order::getValue;
-
-    public static final Function<Order, Iterable<LineItem>> TO_LINE_ITEMS = Order::getLineItems;
-
-    private static int nextOrderNumber = 1;
+    private static final AtomicInteger NEXT_ORDER_NUMBER = new AtomicInteger(1);
 
     private final int orderNumber;
     private final List<LineItem> lineItems = new ArrayList<>();
@@ -37,13 +34,12 @@ public class Order
 
     public Order()
     {
-        this.orderNumber = nextOrderNumber;
-        nextOrderNumber += 1;
+        this.orderNumber = NEXT_ORDER_NUMBER.getAndIncrement();
     }
 
     public static void resetNextOrderNumber()
     {
-        nextOrderNumber = 1;
+        NEXT_ORDER_NUMBER.set(1);
     }
 
     public void deliver()
@@ -72,6 +68,9 @@ public class Order
         return "order " + this.orderNumber + " items: " + this.lineItems.size();
     }
 
+    /**
+     * Refactor to use {@link org.eclipse.collections.api.RichIterable#sumOfDouble(DoubleFunction)}.
+     */
     public double getValue()
     {
         Collection<Double> itemValues = Iterate.collect(this.lineItems, LineItem::getValue);

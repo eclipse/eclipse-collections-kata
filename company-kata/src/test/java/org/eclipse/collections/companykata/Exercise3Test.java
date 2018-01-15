@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,6 +10,7 @@
 
 package org.eclipse.collections.companykata;
 
+import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.factory.Lists;
@@ -19,6 +20,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Below are links to APIs that may be helpful during these exercises.
+ *
+ * {@link MutableList#flatCollect(Function)}<br>
+ * {@link MutableList#collect(Function)}<br>
+ *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/8">Exercise 3 Slides</a>
  */
 public class Exercise3Test extends CompanyDomainForKata

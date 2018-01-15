@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -17,8 +17,14 @@ import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.Function0;
 import org.eclipse.collections.api.block.function.Function2;
+import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
+import org.eclipse.collections.api.block.predicate.Predicate;
+import org.eclipse.collections.api.collection.primitive.MutableDoubleCollection;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.list.primitive.MutableDoubleList;
 import org.eclipse.collections.api.map.MutableMap;
+import org.eclipse.collections.api.map.primitive.MutableObjectDoubleMap;
+import org.eclipse.collections.api.map.primitive.ObjectDoubleMap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.SortedBags;
@@ -27,6 +33,19 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Below are links to APIs that may be helpful during these exercises.
+ *
+ * {@link RichIterable#aggregateBy(Function, Function0, Function2)}
+ * {@link RichIterable#sumByDouble(Function, DoubleFunction)}
+ * {@link RichIterable#flatCollect(Function)}
+ * {@link MutableList#select(Predicate)}
+ * {@link MutableList#anySatisfy(Predicate)}
+ * {@link MutableList#toMap(Function, Function)}
+ * {@link RichIterable#asLazy()}
+ * {@link MutableList#groupBy(Function)}
+ * {@link MutableList#collectDouble(DoubleFunction, MutableDoubleCollection)}
+ * {@link MutableDoubleList#max()}
+ *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/23">Exercise 8 Slides</a>
  */
 public class Exercise8Test extends CompanyDomainForKata
@@ -43,7 +62,23 @@ public class Exercise8Test extends CompanyDomainForKata
         Function2<Double, Customer, Double> aggregator = (result, customer) -> result + customer.getTotalOrderValue();
 
         MutableMap<String, Double> map = null;
-        Assert.assertEquals(2, map.size());
+        Verify.assertSize(2, map);
+        Assert.assertEquals(446.25, map.get("London"), 0.0);
+        Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
+    }
+
+    /**
+     * Solve the same problem as above using a more specialized API.
+     *
+     * @see RichIterable#sumByDouble(Function, DoubleFunction)
+     */
+    @Test
+    public void totalOrderValuesByCityUsingPrimitiveValues()
+    {
+        Function<Customer, String> cityFunction = Customer::getCity;
+        DoubleFunction<Customer> totalOrderValueFunction = Customer::getTotalOrderValue;
+        ObjectDoubleMap<String> map = null;
+        Verify.assertSize(2, map);
         Assert.assertEquals(446.25, map.get("London"), 0.0);
         Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
     }
@@ -60,6 +95,22 @@ public class Exercise8Test extends CompanyDomainForKata
         Function2<Double, LineItem, Double> aggregator = (result, lineItem) -> result + lineItem.getValue();
 
         MutableMap<String, Double> map = null;
+        Verify.assertSize(12, map);
+        Assert.assertEquals(100.0, map.get("shed"), 0.0);
+        Assert.assertEquals(10.5, map.get("cup"), 0.0);
+    }
+
+    /**
+     * Solve the same problem as above using a more specialized API.
+     *
+     * @see RichIterable#sumByDouble(Function, DoubleFunction)
+     */
+    @Test
+    public void totalOrderValuesByItemUsingPrimitiveValues()
+    {
+        Function<LineItem, String> nameFunction = LineItem::getName;
+        DoubleFunction<LineItem> valueFunction = LineItem::getValue;
+        ObjectDoubleMap<String> map = null;
         Verify.assertSize(12, map);
         Assert.assertEquals(100.0, map.get("shed"), 0.0);
         Assert.assertEquals(10.5, map.get("cup"), 0.0);
@@ -111,8 +162,8 @@ public class Exercise8Test extends CompanyDomainForKata
     public void mostExpensiveItem()
     {
         MutableListMultimap<Double, Customer> multimap = null;
-        Assert.assertEquals(3, multimap.size());
-        Assert.assertEquals(2, multimap.keysView().size());
+        Verify.assertSize(3, multimap);
+        Verify.assertSize(2, multimap.keysView());
         Assert.assertEquals(
                 Lists.mutable.with(
                         this.company.getCustomerNamed("Fred"),

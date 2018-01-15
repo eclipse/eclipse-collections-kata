@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -11,14 +11,33 @@
 package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.RichIterable;
+import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
+import org.eclipse.collections.api.block.predicate.Predicate;
+import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.list.primitive.MutableDoubleList;
 import org.eclipse.collections.impl.block.factory.Procedures;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Below are links to APIs that may be helpful during these exercises.
+ *
+ * {@link MutableList#collect(Function)}
+ * {@link MutableList#collectDouble(DoubleFunction)}
+ * {@link MutableList#toSortedList()}
+ * {@link MutableDoubleList#toSortedList()}
+ * {@link MutableList#max()}
+ * {@link MutableDoubleList#max()}
+ * {@link MutableList#maxBy(Function)}
+ * {@link RichIterable#makeString(String)}
+ * {@link MutableList#select(Predicate)}
+ * {@link MutableList#selectWith(Predicate2, Object)}
+ * {@link RichIterable#each(Procedure)}
+ *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/17">Exercise 6 Slides</a>
  */
 public class Exercise6Test extends CompanyDomainForKata
@@ -38,6 +57,19 @@ public class Exercise6Test extends CompanyDomainForKata
     }
 
     /**
+     * Get a list of the customers' total order values, sorted. Use primitive doubles instead of boxed Doubles.
+     */
+    @Test
+    public void sortedTotalOrderValueUsingPrimitives()
+    {
+        MutableDoubleList sortedTotalValues = null;
+
+        // Don't forget the handy utility methods getFirst() and getLast()...
+        Assert.assertEquals("Highest total order value", 857.0, sortedTotalValues.getLast(), 0.0);
+        Assert.assertEquals("Lowest total order value", 71.0, sortedTotalValues.getFirst(), 0.0);
+    }
+
+    /**
      * Find the max total order value across all customers.
      */
     @Test
@@ -45,6 +77,16 @@ public class Exercise6Test extends CompanyDomainForKata
     {
         Double maximumTotalOrderValue = null;
         Assert.assertEquals("max value", Double.valueOf(857.0), maximumTotalOrderValue);
+    }
+
+    /**
+     * Find the max total order value across all customers, but use primitive double instead of boxed Double.
+     */
+    @Test
+    public void maximumTotalOrderValueUsingPrimitives()
+    {
+        double maximumTotalOrderValue = 0.0;
+        Assert.assertEquals("max value", 857.0, maximumTotalOrderValue, 0.0);
     }
 
     /**

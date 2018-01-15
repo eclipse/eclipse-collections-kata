@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -24,15 +24,6 @@ import java.util.List;
  */
 public class Customer
 {
-    public static final Function<Customer, String> TO_NAME = customer -> {
-        Assert.fail("Replace with the implementation of the Function.");
-        return null;
-    };
-
-    public static final Function<Customer, String> TO_CITY = null;
-
-    public static final Function<Customer, Double> TO_TOTAL_ORDER_VALUE = Customer::getTotalOrderValue;
-
     private final String name;
     private final String city;
 

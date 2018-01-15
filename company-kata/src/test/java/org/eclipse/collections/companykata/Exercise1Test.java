@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -19,7 +19,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * In the slides leading up to this exercise you should have learned about the following APIs.
+ * Below are links to APIs that may be helpful during these exercises.
+ *
  * <p/>
  * {@link MutableList#collect(Function)}<br>
  * {@link MutableList#select(Predicate)}<br>
@@ -28,12 +29,12 @@ import org.junit.Test;
  */
 public class Exercise1Test extends CompanyDomainForKata
 {
+    /**
+     * Get the name of each of the company's customers.
+     */
     @Test
     public void getCustomerNames()
     {
-        /**
-         * Get the name of each of the company's customers.
-         */
         Function<Customer, String> nameFunction = Customer::getName;
         MutableList<String> customerNames = null;  // this.company.getCustomers()...
 
@@ -41,24 +42,24 @@ public class Exercise1Test extends CompanyDomainForKata
         Assert.assertEquals(expectedNames, customerNames);
     }
 
+    /**
+     * Get the city for each of the company's customers.
+     */
     @Test
     public void getCustomerCities()
     {
-        /**
-         * Get the city for each of the company's customers.
-         */
         MutableList<String> customerCities = null;  // this.company.getCustomers()...
 
         MutableList<String> expectedCities = Lists.mutable.with("London", "Liphook", "London");
         Assert.assertEquals(expectedCities, customerCities);
     }
 
+    /**
+     * Which customers come from London? Get a collection of those which do.
+     */
     @Test
     public void getLondonCustomers()
     {
-        /**
-         * Which customers come from London? Get a collection of those which do.
-         */
         MutableList<Customer> customersFromLondon = null; // this.company.getCustomers()...
 
         Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);

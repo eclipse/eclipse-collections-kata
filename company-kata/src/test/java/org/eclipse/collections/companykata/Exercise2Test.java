@@ -10,45 +10,57 @@
 
 package org.eclipse.collections.companykata;
 
+import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
+import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.partition.list.PartitionMutableList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
+ * Below are links to APIs that may be helpful during these exercises.
+ *
+ * <p/>
+ * {@link MutableList#anySatisfy(Predicate)}<br>
+ * {@link MutableList#anySatisfyWith(Predicate2, Object)}<br>
+ * {@link MutableList#allSatisfy(Predicate)}<br>
+ * {@link MutableList#allSatisfyWith(Predicate2, Object)}<br>
+ * {@link MutableList#count(Predicate)}<br>
+ * {@link MutableList#countWith(Predicate2, Object)}<br>
+ * {@link MutableList#detect(Predicate)}<br>
+ * {@link MutableList#detectWith(Predicate2, Object)}<br>
+ * {@link MutableList#partition(Predicate)}<br>
+ * {@link MutableList#partitionWith(Predicate2, Object)}<br>
+ * {@link MutableList#select(Predicate)}<br>
+ * {@link MutableList#selectWith(Predicate2, Object)}<br>
+ * {@link MutableList#reject(Predicate)}<br>
+ * {@link MutableList#rejectWith(Predicate2, Object)}<br>
+ *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/3">Exercise 2 Slides</a>
  */
 public class Exercise2Test extends CompanyDomainForKata
 {
     /**
-     * Set up a {@link Predicate} that tests to see if a {@link Customer}'s city is "London"
+     * Set up a {@link Predicate} that tests to see if a {@link Customer}'s city is "London".
      */
-    private static final Predicate<Customer> CUSTOMER_FROM_LONDON = null;
-
     @Test
     public void customerFromLondonPredicate()
     {
-        String predicateClass = CUSTOMER_FROM_LONDON.getClass().getSimpleName();
+        Predicate<Customer> predicate = null;
+        String predicateClass = predicate.getClass().getSimpleName();
         Assert.assertTrue(
                 "Solution should use Predicates.attributeEquals() or a lambda but used " + predicateClass,
                 "AttributePredicate".equals(predicateClass) || predicateClass.startsWith("Exercise2Test$$Lambda"));
 
         Customer customerFromLondon = new Customer("test customer", "London");
 
-        Assert.assertEquals(
-                "Implement Customer.TO_CITY",
-                "London",
-                Customer.TO_CITY.valueOf(customerFromLondon));
-
         Assert.assertTrue(
-                "CUSTOMER_FROM_LONDON should accept Customers where city is London",
-                CUSTOMER_FROM_LONDON.accept(customerFromLondon));
+                "predicate should accept Customers where city is London",
+                predicate.accept(customerFromLondon));
     }
 
-    /**
-     * Do any customers come from London? Use the Predicate {@link #CUSTOMER_FROM_LONDON}.
-     */
     @Test
     public void doAnyCustomersLiveInLondon()
     {
@@ -56,9 +68,6 @@ public class Exercise2Test extends CompanyDomainForKata
         Assert.assertTrue(anyCustomersFromLondon);
     }
 
-    /**
-     * Do all customers come from London? Use the Predicate {@link #CUSTOMER_FROM_LONDON}.
-     */
     @Test
     public void doAllCustomersLiveInLondon()
     {
@@ -66,9 +75,6 @@ public class Exercise2Test extends CompanyDomainForKata
         Assert.assertFalse(allCustomersFromLondon);
     }
 
-    /**
-     * How many customers come from London? Use the Predicate {@link #CUSTOMER_FROM_LONDON}.
-     */
     @Test
     public void howManyCustomersLiveInLondon()
     {
@@ -76,10 +82,6 @@ public class Exercise2Test extends CompanyDomainForKata
         Assert.assertEquals("Should be 2 London customers", 2, numberOfCustomerFromLondon);
     }
 
-    /**
-     * Which customers come from London? Get a collection of those which do. Use the Predicate {@link
-     * #CUSTOMER_FROM_LONDON}.
-     */
     @Test
     public void getLondonCustomers()
     {
@@ -87,10 +89,6 @@ public class Exercise2Test extends CompanyDomainForKata
         Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
     }
 
-    /**
-     * Which customers do not come from London? Get a collection of those which don't. Use the Predicate {@link
-     * #CUSTOMER_FROM_LONDON}.
-     */
     @Test
     public void getCustomersWhoDontLiveInLondon()
     {
@@ -99,16 +97,14 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     /**
-     * Which customers come from London? Which customers do not come from London? Get a collection of each in a single pass.
-     * Use the Predicate {@link #CUSTOMER_FROM_LONDON}.
+     * Which customers come from London? Which customers do not come from London? Get a collection of both in a single pass.
      */
     @Test
     public void getCustomersWhoDoAndDoNotLiveInLondon()
     {
-        MutableList<Customer> customersFromLondon = null;
-        MutableList<Customer> customersNotFromLondon = null;
-        Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
-        Verify.assertSize("customers not from London", 1, customersNotFromLondon);
+        PartitionMutableList<Customer> customers = null;
+        Verify.assertSize("Should be 2 London customers", 2, customers.getSelected());
+        Verify.assertSize("customers not from London", 1, customers.getRejected());
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2018 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -17,8 +17,6 @@ import org.eclipse.collections.api.block.function.Function;
  */
 public class LineItem
 {
-    public static final Function<LineItem, String> TO_NAME = LineItem::getName;
-
     private String name;
     private final double value;
 

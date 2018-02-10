@@ -55,7 +55,7 @@ Project Leads and Committers
 Eclipse Collections Evangelism
 ------------------------------
 * *Donald Raab* - JavaOne, Devoxx US, JCrete, EclipseCon, JVMLS, GIDS, LJC, NY Java SIG, NY JUG, Pittsburgh JUG  
-* *Nikhil Nanivadekar* - JavaOne, JavaOne4Kids, Devoxx US, Devoxx4Kids, JCrete, JCrete4Kids, GIDS, Utah JUG, Dublin JUG, Belfast JUG, Edinburgh JUG, Manchester JC, West Midlands JUG 
+* *Nikhil Nanivadekar* - JavaOne, JavaOne4Kids, Devoxx US, Devoxx4Kids, JCrete, JCrete4Kids, GIDS, NY Java SIG, Utah JUG, Dublin JUG, Belfast JUG, Edinburgh JUG, Manchester JC, West Midlands JUG 
 * *Craig Motlin* - JavaOne, QCon NY, GOTO Chicago, ScalaDays, NY Java SIG
 * *Hiroshi Ito* - JavaOne, JavaDay Tokyo, JJUG CCC
 * *Kristen O’Leary* - EclipseCon, QCon NY, NY Java SIG
@@ -93,66 +93,70 @@ Eclipse Collections Today
 Symmetry: Protocols and Interfaces
 ----------------------------------
 
-<img src="selectreject.png" alt="Select/Reject" style="width: 100%;background-color:aliceblue"/>
+<img src="selectreject.png" alt="Protocols/Interfaces" style="width: 100%;background-color:aliceblue"/>
 
 
 Memory Efficiency -  Sets
 -------------------------
 
-<img src="costsets.png" alt="Select/Reject" style="width: 100%;background-color:aliceblue"/>
+<img src="costsets.png" alt="Sets" style="width: 100%;background-color:aliceblue"/>
 
 
 Memory Efficiency -  Immutable
 ------------------------------
 
-<img src="costimmutable.png" alt="Select/Reject" style="width: 100%;background-color:aliceblue"/>
+<img src="costimmutable.png" alt="Immutable" style="width: 100%;background-color:aliceblue"/>
 
 
 Memory Efficiency -  Primitives
 -------------------------------
 
-<img src="costprimitives.png" alt="Select/Reject" style="width: 100%;background-color:aliceblue"/>
+<img src="costprimitives.png" alt="Primitives" style="width: 100%;background-color:aliceblue"/>
 
 
 Object vs. Primitive Performance
 --------------------------------
-| *Benchmark*               | *Operations per Second* |
-| ------------------------- | ------------------- |
-| filterECPrimitive         | 88.674              |
-| filterJDKBoxed            | 58.126              |
-| filterJDKBoxedParallel    | 297.705             |
----
+* Use Cases: Filter, Map, Sum, Filter/Map/Sum
+* Data: 1 Million Ints
+* Processor Name: 12-Core Intel Xeon E5
+* Processor Speed: 2.7 GHz
+* Number of Processors: 1
+* Total Number of Cores: 12
+* L2 Cache (per Core): 256 KB
+* L3 Cache: 30 MB
+* Memory: 64 GB
+* Unit of Measure: Operations per second
+
+
+#### Object vs. Primitive - Filter Evens
+
+<img src="jmhfilterevens.png" alt="Filter Evens" style="width: 75%;background-color:aliceblue"/>
+
 * Use case: Filter evens into new List
-* Machine: 12-Core Intel Xeon E5, 2.7GHz, 64 GB RAM
-* Data: 1 Million Ints
 * Larger numbers are better
 
 
-Object vs. Primitive Performance
---------------------------------
-| *Benchmark*               | *Operations per Second* |
-| ------------------------- | ------------------- |
-| sumECPrimitive            | 1465.254            |
-| sumJDKBoxed               | 156.609             |
-| sumJDKBoxedParallel       | 2607.731            |
----
-* Use case: Sum all of the numbers
-* Machine: 12-Core Intel Xeon E5, 2.7GHz, 64 GB RAM
-* Data: 1 Million Ints
-* Larger numbers are better
+#### Object vs. Primitive - Map x 2
 
+<img src="jmhmap.png" alt="Map x 2" style="width: 75%;background-color:aliceblue"/>
 
-Object vs. Primitive Performance
---------------------------------
-| *Benchmark*               | *Operations per Second* |
-| ------------------------- | ------------------- |
-| transformECPrimitive      | 652.465             |
-| transformJDKBoxed         | 55.098              |
-| transformJDKBoxedParallel | 180.775             |
----
 * Use case: Multiply each x 2 and return result in new List
-* Machine: 12-Core Intel Xeon E5, 2.7GHz, 64 GB RAM
-* Data: 1 Million Ints
+* Larger numbers are better
+
+
+#### Object vs. Primitive - Sum
+
+<img src="jmhsum.png" alt="Sum" style="width: 75%;background-color:aliceblue"/>
+
+* Use case: Sum all of the numbers
+* Larger numbers are better
+
+
+#### Object vs. Primitive - Filter, Map, Sum
+
+<img src="jmhfiltermapsum.png" alt="Filter/Map/Sum" style="width: 75%;background-color:aliceblue"/>
+
+* Use case: Filter evens, Map x 2, Sum
 * Larger numbers are better
 
 

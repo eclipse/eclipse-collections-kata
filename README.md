@@ -84,7 +84,15 @@ Enjoy happy learning with Eclipse Collections Kata!
 
 
 Reference Guide
-----------------------
+---------------
 The [Eclipse Collections Reference Guide](https://github.com/eclipse/eclipse-collections/blob/master/docs/guide.md) is a great way to get an overview of the extensive features available in the framework.
+
+
+Presentations
+-------------
+The [API Design of Eclipse Collections](http://eclipse.github.io/eclipse-collections-kata/api-design) covers the design 
+decisions that went into making Eclipse Collections and guiding its evolution from Java 4 through Java 9. 
+The content of the presentation is also available in a convenient to read [markdown format](https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/api-design/slides.md). 
+
 
 [logo]:https://github.com/eclipse/eclipse-collections/blob/master/artwork/eclipse-collections-logo.png

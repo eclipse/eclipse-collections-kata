@@ -459,16 +459,16 @@ Symmetric Sympathy
 #### Symmetric Sympathy - Part 1
 | *API* | *Eager* | *Lazy* | *Parallel* | *Eager(p)* | *Lazy(p)* |
 | -------- | ------ | ------ | -------- | --------- | --------- |
-| select | Co* | Lazy | Co* | Co* | Lazy |
-| reject | Co* | Lazy | Co* | Co* | Lazy |
-| collect | Co* | Lazy | Co* | Co* | Lazy |
+| select | co* | Lazy | co* | co* | Lazy |
+| reject | co* | Lazy | co* | co* | Lazy |
+| collect | co* | Lazy | co* | co* | Lazy |
 | detect | T | T | T | Primitive | Primitive |
 | injectInto | R | R | ~~N/A~~ | R | R |
 | any/all/none | boolean | boolean | boolean | boolean | boolean |
 | toSet | mSet | mSet | mSet | m(p)Set | m(p)Set |
-| toBag | mBag | mBag | mSet | m(p)Set | m(p)Set |
+| toBag | mBag | mBag | mSet | m(p)Bag | m(p)Bag |
 | toList | mList | mList | mList | m(p)List | m(p)List |
-
+co*=covariant, m=mutable, p=primitive  
 
 #### Symmetric Sympathy - Part 2
 | *API* | *Eager* | *Lazy* | *Parallel* | *Eager(p)* | *Lazy(p)* |

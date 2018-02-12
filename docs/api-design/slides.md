@@ -468,7 +468,9 @@ Symmetric Sympathy
 | toSet | mSet | mSet | mSet | m(p)Set | m(p)Set |
 | toBag | mBag | mBag | mSet | m(p)Bag | m(p)Bag |
 | toList | mList | mList | mList | m(p)List | m(p)List |
+
 co*=covariant, m=mutable, p=primitive  
+
 
 #### Symmetric Sympathy - Part 2
 | *API* | *Eager* | *Lazy* | *Parallel* | *Eager(p)* | *Lazy(p)* |
@@ -483,6 +485,7 @@ co*=covariant, m=mutable, p=primitive
 | count | int | int | int | int | int |
 | min/max | T | T | T | (p) | (p) |
 
+co*=covariant, m=mutable, p=primitive  
 
 
 The Past

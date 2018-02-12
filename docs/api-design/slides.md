@@ -475,11 +475,11 @@ co*=covariant, m=mutable, p=primitive
 #### Symmetric Sympathy - Part 2
 | *API* | *Eager* | *Lazy* | *Parallel* | *Eager(p)* | *Lazy(p)* |
 | -------- | ------ | ------ | -------- | --------- | --------- |
-| flatCollect | Co* | Lazy | Co* | R | Lazy |
-| groupBy | Co* | Multimap | Co* | ~~N/A~~ | ~~N/A~~ |
-| partition | Co* | RI | ~~N/A~~ | ~~N/A~~ | ~~N/A~~ |
+| flatCollect | co* | Lazy | co* | R | Lazy |
+| groupBy | co* | Multimap | co* | ~~N/A~~ | ~~N/A~~ |
+| partition | co* | RI | ~~N/A~~ | ~~N/A~~ | ~~N/A~~ |
 | chunk | RI | RI | ~~N/A~~ | ~~N/A~~ | ~~N/A~~ |
-| zip | Co* | Co* | ~~N/A~~ | Co* | ~~N/A~~ |
+| zip | co* | co* | ~~N/A~~ | co* | ~~N/A~~ |
 | makeString | String | String | String | String | String |
 | appendString | void | void | void | void | void |
 | count | int | int | int | int | int |

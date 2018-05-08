@@ -618,7 +618,7 @@ set.asLazy().toList();                        // IntList(1 2 3 4)
 ```
 
 
-Eclipse Collections (Streams-4-Free)
+Eclipse Collections (Streams)
 ------------------------------------
 ```java
 set.stream().filter(each -> each % 2 == 1);     // Stream

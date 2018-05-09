@@ -7,7 +7,8 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue"/>
+![Diagram](../shared/eclipse-collections-logo.png) <!-- .element style="background-color:white" -->
+
 API Design: Eclipse Collections
 -------------------------------
 
@@ -20,10 +21,12 @@ Agenda
 ------
  * What is Eclipse Collections?
  * Design Goals
- * Eclipse Collections 9.0
- * Strategies  for evolving a Collections API
- * How did we get here?
  * Symmetric Sympathy
+ * Strategies  for evolving a Collections API
+ * Memory Efficiency
+ * Performance Optimization Strategies
+ * New Features in Eclipse Collections 9.x
+ * How did we get here?
  * The Past and the Future
 
 
@@ -54,12 +57,12 @@ Project Information
 
 Eclipse Collections Evangelism
 ------------------------------
-* **Conferences** 
+* <span style="color:aqua">**Conferences**</span> 
   * QCon New York, Devnexus, JavaOne, JavaDay Tokyo, Devoxx US, JCrete, EclipseCon, EclipseCon Europe, ECOOP, ScalaDays, GOTO Chicago, JVM Language Summit, GIDS
-* **Java User Group Meetups**
-  * <span style="color:aqua">**Americas**</span> - NY Java SIG, NY JUG, NJ Java SIG, Pittsburgh JUG, Utah JUG, Delaware JUG
-  * <span style="color:aqua">**Europe**</span> - London Java Community, Dublin JUG, Belfast JUG, Edinburgh JUG, Manchester JC, West Midlands JUG
-  * <span style="color:aqua">**Asia**</span> - JJUG CCC, Benaluru JUG, Chennai JUG, Delhi-NCR JUG, Hyderabad JUG, Kerala JUG   
+* <span style="color:aqua">**Java User Group Meetups**</span>
+  * <span style="color:aqua">*Americas*</span> - NY Java SIG, NY JUG, NJ Java SIG, Pittsburgh JUG, Utah JUG, Delaware JUG
+  * <span style="color:aqua">*Europe*</span> - London Java Community, Dublin JUG, Belfast JUG, Edinburgh JUG, Manchester JC, West Midlands JUG
+  * <span style="color:aqua">*Asia*</span> - JJUG CCC, Benaluru JUG, Chennai JUG, Delhi-NCR JUG, Hyderabad JUG, Kerala JUG   
 
 
 Design Goals
@@ -83,7 +86,7 @@ Eclipse Collections Today
 * Symmetry drives the design
 * Interoperability w/ Java 8 and Java 9
 
-<img src="symmetry.png" alt="Symmetry" style="width: 100%;"/>
+![Diagram](symmetry.png)
 
 
 Symmetric Sympathy
@@ -103,44 +106,44 @@ Symmetric Sympathy
 Symmetry: Protocols and Interfaces
 ----------------------------------
 
-<img src="selectreject.png" alt="Protocols/Interfaces" style="width: 100%;background-color:aliceblue"/>
+![Diagram](selectreject.png) <!-- .element style="background-color:white" -->
 
 
 #### Symmetric Sympathy - Part 1
-| **API** | **Eager** | **Lazy** | **Parallel** | **Eager(p)** | **Lazy(p)** |
+| <span style="color:aqua">**API**</span> | <span style="color:aqua">**Eager**</span> | <span style="color:aqua">**Lazy**</span> | <span style="color:aqua">**Parallel**</span> | <span style="color:aqua">**Eager(p)**</span> | <span style="color:aqua">**Lazy(p)**</span> |
 | -------- | ------ | ------ | -------- | --------- | --------- |
-| [select](https://medium.com/@donraab/ec-by-example-filtering-4f14b906f718) | co* | Lazy | co* | co* | Lazy |
-| [reject](https://medium.com/@donraab/ec-by-example-filtering-4f14b906f718) | co* | Lazy | co* | co* | Lazy |
-| [collect](https://medium.com/@donraab/ec-by-example-collect-262a46030c49) | co* | Lazy | co* | co* | Lazy |
-| [detect](https://medium.com/@donraab/ec-by-example-short-circuiting-methods-e60121bc5a) | T | T | T | Primitive | Primitive |
-| injectInto | R | R | ~~N/A~~ | R | R |
-| [any/all/none](https://medium.com/@donraab/ec-by-example-short-circuiting-methods-e60121bc5a) | boolean | boolean | boolean | boolean | boolean |
-| toSet | mSet | mSet | mSet | m(p)Set | m(p)Set |
-| toBag | mBag | mBag | mSet | m(p)Bag | m(p)Bag |
-| toList | mList | mList | mList | m(p)List | m(p)List |
+| [```select```](https://medium.com/@donraab/ec-by-example-filtering-4f14b906f718) | co* | Lazy | co* | co* | Lazy |
+| [```reject```](https://medium.com/@donraab/ec-by-example-filtering-4f14b906f718) | co* | Lazy | co* | co* | Lazy |
+| [```collect```](https://medium.com/@donraab/ec-by-example-collect-262a46030c49) | co* | Lazy | co* | co* | Lazy |
+| [```detect```](https://medium.com/@donraab/ec-by-example-short-circuiting-methods-e60121bc5a) | T | T | T | Primitive | Primitive |
+| ```injectInto``` | R | R | ~~N/A~~ | R | R |
+| [```any/all/none```](https://medium.com/@donraab/ec-by-example-short-circuiting-methods-e60121bc5a) | boolean | boolean | boolean | boolean | boolean |
+| ```toSet``` | mSet | mSet | mSet | m(p)Set | m(p)Set |
+| ```toBag``` | mBag | mBag | mSet | m(p)Bag | m(p)Bag |
+| ```toList``` | mList | mList | mList | m(p)List | m(p)List |
 
 co*=covariant, m=mutable, p=primitive  
 
 
 #### Symmetric Sympathy - Part 2
-| **API** | **Eager** | **Lazy** | **Parallel** | **Eager(p)** | **Lazy(p)** |
+| <span style="color:aqua">**API**</span> | <span style="color:aqua">**Eager**</span> | <span style="color:aqua">**Lazy**</span> | <span style="color:aqua">**Parallel**</span> | <span style="color:aqua">**Eager(p)**</span> | <span style="color:aqua">**Lazy(p)**</span> |
 | -------- | ------ | ------ | -------- | --------- | --------- |
-| [flatCollect](https://medium.com/@donraab/ec-by-example-flatcollect-3efe24e43da2) | co* | Lazy | co* | R | Lazy |
-| groupBy | co* | Multimap | co* | ~~N/A~~ | ~~N/A~~ |
-| [partition](https://medium.com/@donraab/ec-by-example-partitioning-d2704f826e66) | co* | RI | ~~N/A~~ | ~~N/A~~ | ~~N/A~~ |
-| chunk | RI | RI | ~~N/A~~ | co* | Lazy |
-| zip | co* | Lazy | ~~N/A~~ | co* | ~~N/A~~ |
-| makeString | String | String | String | String | String |
-| appendString | void | void | void | void | void |
-| [count](https://medium.com/@donraab/ec-by-example-counting-688dfaaf513c) | int | int | int | int | int |
-| min/max | T | T | T | (p) | (p) |
+| [```flatCollect```](https://medium.com/@donraab/ec-by-example-flatcollect-3efe24e43da2) | co* | Lazy | co* | R | Lazy |
+| ```groupBy``` | co* | Multimap | co* | ~~N/A~~ | ~~N/A~~ |
+| [```partition```](https://medium.com/@donraab/ec-by-example-partitioning-d2704f826e66) | co* | RI | ~~N/A~~ | ~~N/A~~ | ~~N/A~~ |
+| ```chunk``` | RI | RI | ~~N/A~~ | co* | Lazy |
+| ```zip``` | co* | Lazy | ~~N/A~~ | co* | ~~N/A~~ |
+| ```makeString``` | String | String | String | String | String |
+| ```appendString``` | void | void | void | void | void |
+| [```count```](https://medium.com/@donraab/ec-by-example-counting-688dfaaf513c) | int | int | int | int | int |
+| ```min/max``` | T | T | T | (p) | (p) |
 
 co*=covariant, m=mutable, p=primitive  
 
 
 API Evolution Strategies
 ------------------------
-| <span style="color:aqua">*Strategy*</span>   | <span style="color:aqua">*Cost*</span> | <span style="color:aqua">*Complexity*</span> |
+| <span style="color:aqua">**Strategy**</span>   | <span style="color:aqua">**Cost**</span> | <span style="color:aqua">**Complexity**</span> |
 | ---------- | ---- | ---------- |
 | Static Utility | Low   | Low |
 | Default methods | Low - Med  | Medium |
@@ -160,19 +163,19 @@ Memory Efficiency
 Memory Efficiency -  Sets
 -------------------------
 
-<img src="costsets.png" alt="Sets" style="width: 100%;background-color:aliceblue"/>
+![Diagram](costsets.png) <!-- .element style="background-color:white" -->
 
 
 Memory Efficiency -  Immutable
 ------------------------------
 
-<img src="costimmutable.png" alt="Immutable" style="width: 100%;background-color:aliceblue"/>
+![Diagram](costimmutable.png) <!-- .element style="background-color:white" -->
 
 
 Memory Efficiency -  Primitives
 -------------------------------
 
-<img src="costprimitives.png" alt="Primitives" style="width: 100%;background-color:aliceblue"/>
+![Diagram](costprimitives.png) <!-- .element style="background-color:white" -->
 
 
 
@@ -196,7 +199,7 @@ Object vs. Primitive Performance
 
 #### Object vs. Primitive - Filter Evens
 
-<img src="jmhfilterevens.png" alt="Filter Evens" style="width: 75%;background-color:aliceblue"/>
+![Diagram](jmhfilterevens.png)
 
 * Use case: Filter evens into new List
 * Larger numbers are better
@@ -204,7 +207,7 @@ Object vs. Primitive Performance
 
 #### Object vs. Primitive - Map x 2
 
-<img src="jmhmap.png" alt="Map x 2" style="width: 75%;background-color:aliceblue"/>
+![Diagram](jmhmap.png)
 
 * Use case: Multiply each x 2 and return result in new List
 * Larger numbers are better
@@ -212,7 +215,7 @@ Object vs. Primitive Performance
 
 #### Object vs. Primitive - Sum
 
-<img src="jmhsum.png" alt="Sum" style="width: 75%;background-color:aliceblue"/>
+![Diagram](jmhsum.png)
 
 * Use case: Sum all of the numbers
 * Larger numbers are better
@@ -220,7 +223,7 @@ Object vs. Primitive Performance
 
 #### Object vs. Primitive - Filter, Map, Sum
 
-<img src="jmhfiltermapsum.png" alt="Filter/Map/Sum" style="width: 75%;background-color:aliceblue"/>
+![Diagram](jmhfiltermapsum.png)
 
 * Use case: Filter evens, Map x 2, Sum
 * Larger numbers are better
@@ -230,14 +233,14 @@ Object vs. Primitive Performance
 New in Eclipse Collections 9.1
 ------------------------------
 * New Features
-  * collectWithIndex
-  * zip (primitive lists)
-  * removeIf (primitive collections)
-  * putPair (primitive maps)
-  * New Collectors on Collectors2
-    * countBy, groupByEach, groupByUnique
-  * MultiReaderList factory on Lists
-  * Factory class for Strings
+  * ```collectWithIndex```
+  * ```zip``` (primitive lists)
+  * ```removeIf``` (primitive collections)
+  * ```putPair``` (primitive maps)
+  * New Collectors on ```Collectors2```
+    * ```countBy```, ```groupByEach```, ```groupByUnique```
+  * ```MultiReaderList``` factory on ```Lists```
+  * New Factory class for ```Strings```
 
 
 New in Eclipse Collections 9.0
@@ -246,10 +249,10 @@ New in Eclipse Collections 9.0
   * Automatic Module Naming
   * Searchable Javadocs (finally!!!!)
 * New Features
-  * CountBy
-  * DistinctBy
+  * ```countBy```
+  * ```distinctBy```
   * Factories for Primitive Streams
-  * Stream on Immutable Collections
+  * ```stream``` on Immutable Collections
 
 
 CountBy
@@ -344,7 +347,7 @@ boolean result =
 
 ImmutableList API Design
 ------------------------
-<img src="immutablelist.png" alt="Filter/Map/Sum" style="width: 75%;background-color:aliceblue"/>
+![Diagram](immutablelist.png) <!-- .element style="width: 75%;background-color:white" -->
 
 Structural and Contractual Immutability
 
@@ -360,17 +363,17 @@ An old dude who knows Smalltalk
 * Clipper / CA-Visual Objects (‘90 –‘95)
   * Arrays
   * Code Blocks
-    * { |each| expression }
+    * ```{ |each| expression }```
 * IBM VisualAge Smalltalk (‘94 – ‘00)
   * Collections
   * Code Blocks
-    * [ :each | expression ]
+    * ```[ :each | expression ]```
 
 
 Smalltalk-80 Collection Hierarchy
 ---------------------------------
 
-<img src="smalltalkhierarchy.png" alt="Smalltalk Collections" style="width: 100%;background-color:aliceblue"/>
+![Diagram](smalltalkhierarchy.png) <!-- .element style="background-color:white" -->
 
 "It's turtles all the way down"
 
@@ -416,8 +419,8 @@ list asArray.                             // #(1 2 3 4)
 
 Smalltalk + Java = Eclipse Collections
 --------------------------------------
-| <span style="color:aqua">*Smalltalk Influenced*</span>   | <span style="color:aqua">*Java Influenced*</span> |
-| ---------- | ---- | ---------- |
+| <span style="color:aqua">**Smalltalk Influenced**</span>   | <span style="color:aqua">**Java Influenced**</span> |
+| ---------- | ---------- |
 | Symmetry | Basic Collection Types |
 | Blocks (Lambdas) | Primitive Collections |
 | Internal Iterators | Lazy Iterables |
@@ -442,15 +445,16 @@ Designing API Names
 
 A rose by any other name...
 ---------------------------
-| <span style="color:aqua">*Smalltalk*</span>   | <span style="color:aqua">*Eclipse Collections*</span> | <span style="color:aqua">*Java 8 Streams*</span> |
-| ---------- | ---- | ---------- |
-| select: | [select](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#select-org.eclipse.collections.api.block.predicate.Predicate-)   | filter |
-| reject: | [reject](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#reject-org.eclipse.collections.api.block.predicate.Predicate-)  | filter (!) |
-| collect: | [collect](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#collect-org.eclipse.collections.api.block.function.Function-)  | map |
-| flatCollect: | [flatCollect](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#flatCollect-org.eclipse.collections.api.block.function.Function-) | flatMap |
-| detect: | [detect](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#detect-org.eclipse.collections.api.block.predicate.Predicate-)  | filter().findFirst().get() |
-| inject:into: | [injectInto](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#injectInto-IV-org.eclipse.collections.api.block.function.Function2-) | reduce |
-| any/all/noneSatisfy: | [any](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#anySatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[all](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#allSatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[noneSatisfy](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#noneSatisfy-org.eclipse.collections.api.block.predicate.Predicate-) | any/all/noneMatch |
+| <span style="color:aqua">**Eclipse Collections**</span> | <span style="color:aqua">**Java 8 Streams**</span> |
+|  ---- | ---------- |
+| [```select```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#select-org.eclipse.collections.api.block.predicate.Predicate-)   | ```filter``` |
+| [```reject```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#reject-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter``` (!) |
+| [```collect```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#collect-org.eclipse.collections.api.block.function.Function-)  | ```map``` |
+| [```flatCollect```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#flatCollect-org.eclipse.collections.api.block.function.Function-) | ```flatMap``` |
+| [```detect```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#detect-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter().findFirst().get()``` |
+| [```count```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#detect-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter().count()``` |
+| [```injectInto```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#injectInto-IV-org.eclipse.collections.api.block.function.Function2-) | ```reduce``` |
+| [```any```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#anySatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```all```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#allSatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```noneSatisfy```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#noneSatisfy-org.eclipse.collections.api.block.predicate.Predicate-) | ```any/all/noneMatch``` |
 
 
 Eclipse Collections Factories

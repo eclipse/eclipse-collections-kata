@@ -1,4 +1,4 @@
-![logo]
+![logo](./docs/shared/eclipse-collections-logo.png)
 
 Eclipse Collections Kata 
 ========================
@@ -94,5 +94,3 @@ The [API Design of Eclipse Collections](http://eclipse.github.io/eclipse-collect
 decisions that went into making Eclipse Collections and guiding its evolution from Java 4 through Java 9. 
 The content of the presentation is also available in a convenient to read [markdown format](https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/api-design/slides.md). 
 
-
-[logo]:https://github.com/eclipse/eclipse-collections/blob/master/artwork/eclipse-collections-logo.png

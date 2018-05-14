@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2017 Goldman Sachs and others.
+  ~ Copyright (c) 2018 Goldman Sachs and others.
   ~ All rights reserved. This program and the accompanying materials
   ~ are made available under the terms of the Eclipse Public License v1.0
   ~ and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -7,7 +7,8 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue;"/>
+![Diagram](../shared/eclipse-collections-logo.png) <!-- .element style="background-color:aliceblue" -->
+
 Company Kata
 ============
 
@@ -67,7 +68,7 @@ public static void java.util.Collections.sort(
 ```
 * Sorts the specified list according to the order induced by the specified
 comparator. All elements in the list must be mutually comparable.
-* **Does anything bother you about Collections.sort()?**
+* **Does anything bother you about ```Collections.sort()```?**
 
 
 #### Javadoc
@@ -77,11 +78,11 @@ public static void java.util.Collections.sort(
 ```
 * Sorts the specified list according to the order induced by the specified
 comparator. All elements in the list must be mutually comparable.
-* **Does anything bother you about Collections.sort()?**
+* **Does anything bother you about ```Collections.sort()```?**
 
 ---
 #### JCF Problems
-* Why isn’t sort() a method on every List?
+* Why isn’t ```sort()``` a method on every List?
 ```java
 Collections.sort(list, comparator);
 ```
@@ -98,12 +99,12 @@ public static void java.util.Collections.sort(
 ```
 * Sorts the specified list according to the order induced by the specified
 comparator. All elements in the list must be mutually comparable.
-* **Does anything bother you about Collections.sort()?**
+* **Does anything bother you about ```Collections.sort()```?**
 
 ---
 #### JCF Problems
 * Where are all the iteration patterns?
-* java.util.Collections provides methods for *sort()*, *min()*, *max()* and
+* java.util.Collections provides methods for ```sort()```, ```min()```, ```max()``` and
 just a few others.
 * The most common iteration patterns are missing:
   * Collect a list of each person’s address.
@@ -112,13 +113,13 @@ just a few others.
 
 Iteration Patterns
 ------------------
-* We want the methods *sort()*, *min()*, *max()*, *collect()*, *select()*, etc.
+* We want the methods ```sort()```, ```min()```, ```max()```, ```collect()```, ```select()```, etc.
 on every collection.
 * How can we accomplish this in code?
 
 
 #### Iteration Patterns
-* We want the methods *sort()*, *min()*, *max()*, *collect()*, *select()*, etc.
+* We want the methods ```sort()```, ```min()```, ```max()```, ```collect()```, ```select()```, etc.
 on every collection.
 * How can we accomplish this in code?
 
@@ -194,8 +195,8 @@ MutableList<Address> addresses =
 
 
 #### Collect Pattern
-* The loop moves in to the implementation of collect().
-* Let’s look at a realistic implementation of collect() for FastList.
+* The loop moves in to the implementation of ```collect()```.
+* Let’s look at a realistic implementation of ```collect()``` for ```FastList```.
 
 ---
 #### Realistic Implementation Example
@@ -284,7 +285,7 @@ condition.
 
 #### Company Kata Domain
 
-<img src="company-domain.png" alt="Kata Domain" style="width: 75%;"/>
+![Diagram](company-domain.png) <!-- .element style="width:75%;background-color:aliceblue" -->
 
 
 #### Company Kata Domain
@@ -575,9 +576,9 @@ Assert.assertEquals( Lists.mutable.with(1, 2, 3), noDupes);
 ```
 
 
-#### Diagram
+#### Immutable List Design
 
-<img src="../shared/immutablelist-hierarchy.png" alt="ImmutableList Hierarchy" style="width: 75%;"/>
+![Diagram](../shared/immutablelist-hierarchy.png) <!-- .element style="width: 75%;background-color:aliceblue" -->
 
 
 #### Immutable Collection
@@ -1387,10 +1388,10 @@ System.out.println(
 
 
 #### pop()
-* Overloaded pop() methods:
-  * pop()
-  * pop(int count)
-  * pop(int count, R targetCollection)
+* Overloaded ```pop()``` methods:
+  * ```pop()```
+  * ```pop(int count)```
+  * ```pop(int count, R targetCollection)```
 ---
 #### Code Examples
 ```Java
@@ -1410,7 +1411,7 @@ Assert.assertEquals(
 
 
 #### peek and peek(int count)
-* MutableStack has an overloaded peek() method that returns a ListIterable
+* ```MutableStack``` has an overloaded ```peek()``` method that returns a ```ListIterable```
 
 ---
 #### Code Example
@@ -1447,9 +1448,9 @@ Assert.assertEquals(FastList.newListWith(1, 4, 3), stack);
 #### Stack API
 | Methods                   | Inherited From |
 | ------------------------- | -------------- |
-| select(), collect(), etc. | RichIterable   |
-| peek()                    | Stack Iterable |
-| push(), pop()             | MutableStack   |
+| ```select()```, ```collect()```, etc. | ```RichIterable```   |
+| ```peek()```                          | ```Stack Iterable``` |
+| ```push()```, ```pop()```             | ```MutableStack```   |
 ---
 #### Code Example
 ```Java
@@ -1487,7 +1488,7 @@ int newYorkers = stateCounts.get("NY");
 
 
 #### Bag
-* Useful when you would otherwise use Map<K, Integer>
+* Useful when you would otherwise use ```Map<K, Integer>```
   * For example, find the number of people who live in each state.
   * Lots of boilerplate code to deal with uninitialized counts.
 ---
@@ -1571,10 +1572,10 @@ int newYorkers = stateCounts.occurrencesOf("NY");
 #### Bag API
 Methods | Inherited From
 --- | ---
-select(), collect(), etc. | RichIterable
-add(), remove(), iterator(), etc. | MutableCollection (java.util.Collection)
-occurrencesOf(), forEachWithOccurrences(), toMapOfItemToCount() | Bag
-addOccurrences(), removeOccurrences() | MutableBag
+```select()```, ```collect()```, etc. | ```RichIterable```
+```add()```, ```remove()```, ```iterator()```, etc. | ```MutableCollection``` (```java.util.Collection```)
+```occurrencesOf()```, ```forEachWithOccurrences()```, ```toMapOfItemToCount()``` | ```Bag```
+```addOccurrences()```, ```removeOccurrences()``` | ```MutableBag```
 
 
 #### Code Example
@@ -1756,13 +1757,13 @@ MutableListMultimap<String, Person> statesToPeople =
 #### Collection Types
 Type | Mu- table | Immu- table | Prim- itive | Synch- ronized | Unmod- ifiable | Multi- Reader
 --- | --- | --- | --- | --- | --- | ---
-List | Yes | Yes | Yes | Yes | Yes | Yes
-Set | Yes | Yes | Yes | Yes | Yes | Yes
-Bag | Yes | Yes | Yes | Yes | Yes | Yes
-Stack | Yes | Yes | Yes | Yes | Yes | No
-Map | Yes | Yes | Yes | Yes | Yes | No 
-BiMap | Yes | Yes | No | Yes | Yes | No
-Multimap | Yes | Yes | No | Yes | Yes | Yes*
+```List``` | Yes | Yes | Yes | Yes | Yes | Yes
+```Set``` | Yes | Yes | Yes | Yes | Yes | Yes
+```Bag``` | Yes | Yes | Yes | Yes | Yes | Yes
+```Stack``` | Yes | Yes | Yes | Yes | Yes | *No*
+```Map``` | Yes | Yes | Yes | Yes | Yes | *No* 
+```BiMap``` | Yes | Yes | *No* | Yes | Yes | *No*
+```Multimap``` | Yes | Yes | *No* | Yes | Yes | Yes
 
 
 Exercise 7

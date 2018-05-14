@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2017 Goldman Sachs and others.
+  ~ Copyright (c) 2018 Goldman Sachs and others.
   ~ All rights reserved. This program and the accompanying materials
   ~ are made available under the terms of the Eclipse Public License v1.0
   ~ and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -7,7 +7,8 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue"/>
+![Diagram](../shared/eclipse-collections-logo.png) <!-- .element style="background-color:aliceblue" -->
+
 Pet Kata
 ========
 
@@ -19,14 +20,11 @@ Learning through exercises
 
 
 
-Pet Kata domain
-===============
- * Eclipse Collections Pet Kata uses `Person`, `Pet`, `PetType`
- * Domain objects are initialized in `PetDomainForKata` class
- * Data is available to you through `this.people` which has some person and pet objects set for you
-
-
-<img src="pet-domain.png" alt="Kata Domain" style="width: 55%;"/>
+### Pet Kata domain
+ * Domain objects are initialized in ```PetDomainForKata```
+ * Data is available to you through ```this.people``` 
+ 
+![Diagram](pet-domain.png) <!-- .element style="width:40%;background-color:aliceblue" -->
 
 
 
@@ -275,22 +273,18 @@ More Iteration Patterns
   * **`noneSatisfy`** returns true if no elements satisfy the `Predicate`.
 
 
-Inheritance Hierarchy (List)
-----------------------------
+### Inheritance Hierarchy (List)
 * `MutableList` extends `List`
 * `FastList` is a drop-in replacement for `ArrayList`
 
+![Diagram](../shared/inheritance-hierarchy-list.png) <!-- .element style="width:35%;background-color:aliceblue" -->
 
-<img src="../shared/inheritance-hierarchy-list.png" alt="Inheritance Hierarchy (List)" style="width: 45%;"/>
 
-
-Inheritance Hierarchy (Set)
-----------------------------
+### Inheritance Hierarchy (Set)
 * `MutableSet` extends `Set`
 * `UnifiedSet` is a drop-in replacement for `HashSet`
 
-
-<img src="../shared/inheritance-hierarchy-set.png" alt="Inheritance Hierarchy (Set)" style="width: 45%;"/>
+![Diagram](../shared/inheritance-hierarchy-set.png) <!-- .element style="width:35%;background-color:aliceblue" -->
 
 
 With Methods
@@ -866,14 +860,13 @@ Primitive Collections
 ---------------------
 All 8 primitive collection interfaces
 
-<img src="../shared/primitive-collections1.png" alt="Primitive Collections" style="width: 100%;"/>
+![Diagram](../shared/primitive-collections1.png) <!-- .element style="background-color:aliceblue" -->
 
 
 Primitive Collections
 ---------------------
-Class Diagram
 
-<img src="../shared/primitive-collections2.png" alt="Primitive Collections" style="width: 75%;"/>
+![Diagram](../shared/primitive-collections2.png) <!-- .element style="width:75%;background-color:aliceblue" -->
 
 
 Primitive Collections

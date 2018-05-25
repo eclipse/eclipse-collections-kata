@@ -230,29 +230,49 @@ Object vs. Primitive Performance
 
 
 
+New in Eclipse Collections 9.2
+------------------------------
+* RichIterable
+    * [```flatCollectWith```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#flatCollectWith-org.eclipse.collections.api.block.function.Function2-P-)
+    * [```toSortedMapBy```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#toSortedMapBy-org.eclipse.collections.api.block.function.Function-org.eclipse.collections.api.block.function.Function-org.eclipse.collections.api.block.function.Function-) 
+* Bag
+    * [```selectDuplicates```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/bag/Bag.html#selectDuplicates--)
+    * [```selectUnique```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/bag/Bag.html#selectUnique--)
+* [```chunk```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/IntIterable.html#chunk-int-) (all primitive iterables)
+* [```newEmpty```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/collection/primitive/MutableIntCollection.html#newEmpty--) (all mutable primitive collections)
+* Implemented [```OrderedMapAdapter```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/map/ordered/mutable/OrderedMapAdapter.html)
+* Collectors2
+    * [```aggregateBy```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/collector/Collectors2.html#aggregateBy-org.eclipse.collections.api.block.function.Function-org.eclipse.collections.api.block.function.Function0-org.eclipse.collections.api.block.function.Function2-java.util.function.Supplier-)
+    * [```countByEach```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/collector/Collectors2.html#countByEach-org.eclipse.collections.api.block.function.Function-)
+* ```MultiReader``` factories on ```Sets``` and ```Bags```
+
+
 New in Eclipse Collections 9.1
 ------------------------------
-* New Features
-  * ```collectWithIndex```
-  * ```zip``` (primitive lists)
-  * ```removeIf``` (primitive collections)
-  * ```putPair``` (primitive maps)
-  * New Collectors on ```Collectors2```
-    * ```countBy```, ```groupByEach```, ```groupByUnique```
-  * ```MultiReaderList``` factory on ```Lists```
-  * New Factory class for ```Strings```
+* [```collectWithIndex```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/ordered/OrderedIterable.html#collectWithIndex-org.eclipse.collections.api.block.function.primitive.ObjectIntToObjectFunction-R-)
+* [```zip```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/list/primitive/IntList.html#zip-java.lang.Iterable-) (primitive lists)
+* [```removeIf```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/collection/primitive/MutableIntCollection.html#removeIf-org.eclipse.collections.api.block.predicate.primitive.IntPredicate-) (primitive collections)
+* ```putPair``` (primitive maps)
+* Collectors2
+    * [```countBy```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/collector/Collectors2.html#countBy-org.eclipse.collections.api.block.function.Function-)
+    * [```groupByEach```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/collector/Collectors2.html#groupByEach-org.eclipse.collections.api.block.function.Function-java.util.function.Supplier-)
+    * [```groupByUniqueKey```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/collector/Collectors2.html#groupByUniqueKey-org.eclipse.collections.api.block.function.Function-java.util.function.Supplier-)
+* ```MultiReaderList``` factory on ```Lists```
+* New Factory class for [```Strings```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/factory/Strings.html)
 
 
 New in Eclipse Collections 9.0
 ------------------------------
 * Java 9
   * Automatic Module Naming
-  * Searchable Javadocs (finally!!!!)
+  * Searchable [Javadocs](http://www.eclipse.org/collections/javadoc/9.2.0/overview-summary.html) (finally!!!!)
 * New Features
-  * ```countBy```
-  * ```distinctBy```
+  * [```countBy```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#countBy-org.eclipse.collections.api.block.function.Function-)
+  * [```distinctBy```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/list/ListIterable.html#distinctBy-org.eclipse.collections.api.block.function.Function-)
   * Factories for Primitive Streams
-  * ```stream``` on Immutable Collections
+  * ImmutableCollection
+    * [```stream```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/collection/ImmutableCollection.html#stream--)
+    * [```parallelStream```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/collection/ImmutableCollection.html#parallelStream--)
 
 
 CountBy

@@ -87,7 +87,7 @@
     </modules>
 
     <properties>
-        <eclipse.collections.version>9.1.0</eclipse.collections.version>
+        <eclipse.collections.version>9.2.0</eclipse.collections.version>
         <junit.version>4.12</junit.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

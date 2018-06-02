@@ -467,14 +467,16 @@ A rose by any other name...
 ---------------------------
 | <span style="color:aqua">**Eclipse Collections**</span> | <span style="color:aqua">**Java 8 Streams**</span> |
 |  ---- | ---------- |
-| [```select```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#select-org.eclipse.collections.api.block.predicate.Predicate-)   | ```filter``` |
-| [```reject```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#reject-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter``` (!) |
-| [```collect```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#collect-org.eclipse.collections.api.block.function.Function-)  | ```map``` |
-| [```flatCollect```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#flatCollect-org.eclipse.collections.api.block.function.Function-) | ```flatMap``` |
-| [```detect```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#detect-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter().findFirst().get()``` |
-| [```count```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#detect-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter().count()``` |
-| [```injectInto```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#injectInto-IV-org.eclipse.collections.api.block.function.Function2-) | ```reduce``` |
-| [```any```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#anySatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```all```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#allSatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```noneSatisfy```](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/api/RichIterable.html#noneSatisfy-org.eclipse.collections.api.block.predicate.Predicate-) | ```any/all/noneMatch``` |
+| [```select```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#select-org.eclipse.collections.api.block.predicate.Predicate-)   | ```filter``` |
+| [```reject```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#reject-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter``` (!) |
+| [```collect```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#collect-org.eclipse.collections.api.block.function.Function-)  | ```map``` |
+| [```flatCollect```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#flatCollect-org.eclipse.collections.api.block.function.Function-) | ```flatMap``` |
+| [```detect```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#detect-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter().findFirst().orElse(null)``` |
+| [```detectIfNone```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#detectIfNone-org.eclipse.collections.api.block.predicate.Predicate-org.eclipse.collections.api.block.function.Function0-)  | ```filter().findFirst().orElseGet()``` |
+| [```detectOptional```](http://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#detectOptional-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter().findFirst()``` |
+| [```count```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#detect-org.eclipse.collections.api.block.predicate.Predicate-)  | ```filter().count()``` |
+| [```injectInto```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#injectInto-IV-org.eclipse.collections.api.block.function.Function2-) | ```reduce``` |
+| [```any```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#anySatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```all```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#allSatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```noneSatisfy```](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/api/RichIterable.html#noneSatisfy-org.eclipse.collections.api.block.predicate.Predicate-) | ```any/all/noneMatch``` |
 
 
 Eclipse Collections Factories
@@ -564,7 +566,7 @@ Appendix
 --------
 
 
-Static Utility - [Iterate](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/impl/utility/Iterate.html) (Eager)
+Static Utility - [Iterate](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/utility/Iterate.html) (Eager)
 --------------------------------
 ```java
 Iterate.select(Iterable, Predicate);              // Collection
@@ -583,7 +585,7 @@ Iterate.toMap(Iterable, Function, Function);      // Map
 ```
 
 
-Static Utility - [ListIterate](https://www.eclipse.org/collections/javadoc/9.1.0/org/eclipse/collections/impl/utility/ListIterate.html) (Eager)
+Static Utility - [ListIterate](https://www.eclipse.org/collections/javadoc/9.2.0/org/eclipse/collections/impl/utility/ListIterate.html) (Eager)
 ------------------------------------
 ```java
 ListIterate.select(List, Predicate);              // MutableList

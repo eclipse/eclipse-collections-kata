@@ -715,7 +715,7 @@ MutableListMultimap<String, Person> lastNamesToPeople =
   people.groupBy(Person::getLastName);
 
 MutableListMultimap<PetType, Person> petsToPeople =
-  people.groupByEach(person -> person.getPets().collect(Pet::getType);
+  people.groupByEach(person -> person.getPets().collect(Pet::getType));
 ```
 
 

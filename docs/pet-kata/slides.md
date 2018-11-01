@@ -205,7 +205,7 @@ TestUtils
  * Eclipse Collections distribution includes `eclipse-collections-testutils.jar`.
    * Includes helpful utility for writing unit tests.
    * Collection specific.
-   * Implemented as an extention of JUnit.
+   * Implemented as an extension of JUnit.
    * Better error messages.
    * Most important class is called `Verify`.
 

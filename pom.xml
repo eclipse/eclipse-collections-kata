@@ -63,7 +63,6 @@
 
         <developer>
             <name>Mohammad A. Rezaei</name>
-            <email>mohammad.rezaei@gs.com</email>
         </developer>
 
         <developer>
@@ -84,6 +83,7 @@
     <modules>
         <module>company-kata</module>
         <module>pet-kata</module>
+        <module>candy-kata</module>
     </modules>
 
     <properties>
@@ -98,7 +98,6 @@
         <maven.compiler.verbose>true</maven.compiler.verbose>
         <maven.compiler.meminitial>2048m</maven.compiler.meminitial>
         <maven.compiler.maxmem>2048m</maven.compiler.maxmem>
-
     </properties>
 
     <dependencyManagement>

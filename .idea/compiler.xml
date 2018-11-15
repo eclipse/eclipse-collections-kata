@@ -22,11 +22,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="candy-kata" />
         <module name="company-kata" />
         <module name="pet-kata" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="candy-kata" target="1.8" />
       <module name="company-kata" target="1.8" />
       <module name="eclipse-collections-kata" target="1.8" />
       <module name="pet-kata" target="1.8" />

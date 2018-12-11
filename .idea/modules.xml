@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/company-kata/company-kata.iml" filepath="$PROJECT_DIR$/company-kata/company-kata.iml" />
       <module fileurl="file://$PROJECT_DIR$/eclipse-collections-kata.iml" filepath="$PROJECT_DIR$/eclipse-collections-kata.iml" />
       <module fileurl="file://$PROJECT_DIR$/pet-kata/pet-kata.iml" filepath="$PROJECT_DIR$/pet-kata/pet-kata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pet-kata-solutions/pet-kata-solutions.iml" filepath="$PROJECT_DIR$/pet-kata-solutions/pet-kata-solutions.iml" />
     </modules>
   </component>
 </project>

@@ -5,8 +5,13 @@ build
 eclipse-collections-kata-parent.userlibraries
 eclipse-collections-kata.userlibraries
 gradle.prefs
-.idea/workspace.xml
 bin
 .settings
 .classpath
 .project
+
+# IntelliJ IDEA ignores
+.idea
+*.iml
+*.ipr
+*.iws

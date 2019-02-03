@@ -7,6 +7,10 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
+[![][travis img]][travis]
+[![][license-epl img]][license-epl]
+[![][license-edl img]][license-edl]
+
 <a href="https://www.eclipse.org/collections/"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/shared/eclipse-collections-logo.png" height="50%" width="50%"></a>
   
 Eclipse Collections Kata 
@@ -103,3 +107,11 @@ The [API Design of Eclipse Collections](http://eclipse.github.io/eclipse-collect
 decisions that went into making Eclipse Collections and guiding its evolution from Java 4 through Java 9. 
 The content of the presentation is also available in a convenient to read [markdown format](https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/api-design/slides.md). 
 
+[travis]:https://travis-ci.org/eclipse/eclipse-collections-kata
+[travis img]:https://travis-ci.org/eclipse/eclipse-collections-kata.svg?branch=master
+
+[license-epl]:LICENSE-EPL-1.0.txt
+[license-epl img]:https://img.shields.io/badge/License-EPL-blue.svg
+
+[license-edl]:LICENSE-EDL-1.0.txt
+[license-edl img]:https://img.shields.io/badge/License-EDL-blue.svg

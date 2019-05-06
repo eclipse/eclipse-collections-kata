@@ -85,7 +85,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
-    public void getAllPetsOfAllPeople()
+    public void getAllPetTypesOfAllPeople()
     {
         Function<Person, Iterable<PetType>> function = person -> person.getPetTypes();
         MutableSet<PetType> petTypes = null;

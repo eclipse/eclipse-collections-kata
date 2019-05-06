@@ -423,11 +423,11 @@ public void getPeopleWithPets()
 ```
 
 
-Get all pets of all people
---------------------------
+Get all PetTypes of all people
+------------------------------
 ```java
 @Test
-public void getAllPetsOfAllPeople()
+public void getAllPetTypesOfAllPeople()
 {
   Function<Person, Iterable<PetType>> function = person -> person.getPetTypes();
   MutableSet<PetType> petTypes = this.people.flatCollect(function, Sets.mutable.empty());

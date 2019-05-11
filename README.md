@@ -91,7 +91,7 @@ To get started, you can refer to slides for the [Instruction and Pet Kata](http:
 
 To learn wider range of functionalities, slides for [Company Kata](http://eclipse.github.io/eclipse-collections-kata/company-kata) are now available online as well. 
 
-Check out the [solution branch](https://github.com/eclipse/eclipse-collections-kata/tree/solutions) for your reference.
+Check out the [pet kata solutions module tests](https://github.com/eclipse/eclipse-collections-kata/tree/master/pet-kata-solutions/src/test/java/org/eclipse/collections/petkata) for your reference.
 
 Enjoy happy learning with Eclipse Collections Kata!
 

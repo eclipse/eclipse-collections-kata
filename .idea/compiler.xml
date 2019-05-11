@@ -9,6 +9,7 @@
         <module name="candy-kata" />
         <module name="company-kata" />
         <module name="pet-kata" />
+        <module name="pet-kata-solutions" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,7 +18,7 @@
       <module name="eclipse-collections-kata" target="1.8" />
       <module name="eclipse-collections-kata-parent" target="1.8" />
       <module name="pet-kata" target="1.8" />
+      <module name="pet-kata-solutions" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
-

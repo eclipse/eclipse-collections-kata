@@ -8,4 +8,9 @@
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
 
-include 'company-kata', 'pet-kata', 'candy-kata', 'pet-kata-solutions'
+package org.eclipse.collections.petkata;
+
+public enum PetType
+{
+    CAT, DOG, HAMSTER, TURTLE, BIRD, SNAKE
+}

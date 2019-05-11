@@ -83,6 +83,7 @@
         <module>company-kata</module>
         <module>pet-kata</module>
         <module>candy-kata</module>
+        <module>pet-kata-solutions</module>
     </modules>
 
     <properties>

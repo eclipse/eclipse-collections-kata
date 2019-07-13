@@ -348,9 +348,9 @@ Assert.assertEquals(2, customersFromLondon.size());
 ---
 #### Code Example
 ```java
-Verify.assertEmpty(FastList.newList());
-Verify.assertNotEmpty(FastList.newListWith(1));
-Verify.assertContains(1, FastList.newListWith(1));
+Verify.assertEmpty(Lists.mutable.empty());
+Verify.assertNotEmpty(Lists.mutable.with(1));
+Verify.assertContains(1, Lists.mutable.with(1));
 ```
 
 
@@ -623,10 +623,10 @@ mutable.equals(immutable);
 #### Code Example
 ```java
 MutableList<Integer> list =
-  FastList.newListWith(1, 2, 3);
+  Lists.mutable.with(1, 2, 3);
 
 MutableSet<Integer> set =
-  UnifiedSet.newSetWith(1, 2, 3);
+  Sets.mutable.with(1, 2, 3);
 
 list.equals(set);
 ```
@@ -1051,7 +1051,7 @@ integers.add(3);
 ---
 #### After
 ```Java
-List<Integer> integers = FastList.newList();
+List<Integer> integers = Lists.mutable.empty();
 integers.add(1);
 integers.add(2);
 integers.add(3);
@@ -1063,7 +1063,7 @@ integers.add(3);
 
 #### Before
 ```Java
-List<Integer> integers = FastList.newList();
+List<Integer> integers = Lists.mutable.empty();
 integers.add(1);
 integers.add(2);
 integers.add(3);
@@ -1071,29 +1071,29 @@ integers.add(3);
 ---
 #### After
 ```Java
-List<Integer> integers = FastList.newListWith(1, 2, 3);
+List<Integer> integers = Lists.mutable.with(1, 2, 3);
 ```
 ---
 #### Why?
 * Varargs support; any number of arguments.
 * Never mutated; so you could make it unmodifiable:
 ```Java
-FastList.newListWith(1, 2, 3).asUnmodifiable();
+Lists.mutable.with(1, 2, 3).asUnmodifiable();
 ```
 * There is also a form that takes another iterable:
 ```Java
-FastList.newList(list);
+Lists.mutable.withAll(list);
 ```
 
 
 #### Before
 ```Java
-List<Integer> integers = FastList.newListWith(1, 2, 3);
+List<Integer> integers = Lists.mutable.with(1, 2, 3);
 ```
 ---
 #### After
 ```Java
-MutableList<Integer> integers = FastList.newListWith(1, 2, 3);
+MutableList<Integer> integers = Lists.mutable.with(1, 2, 3);
 ```
 ---
 #### Why?
@@ -1111,10 +1111,10 @@ MutableList<Integer> integers = FastList.newListWith(1, 2, 3);
 #### Code Examples
 ```Java
 MutableSet<Integer> set = 
-  UnifiedSet.newSetWith(1, 2, 3);
+  Sets.mutable.with(1, 2, 3);
 
  MutableMap<Integer, String> map = 
-  UnifiedMap.newWithKeysValues(
+  Maps.mutable.with(
     1, "1",
     2, "2",
     3, "3");
@@ -1356,7 +1356,7 @@ System.out.println(stack);
 #### Code Example
 ```Java
 MutableStack<Integer> stack =
-  ArrayStack.newStackWith(1, 2, 3);
+  Stacks.mutable.with(1, 2, 3);
 System.out.println(stack);
 // Prints [3, 2, 1]
 stack.push(4);
@@ -1369,20 +1369,20 @@ System.out.println(stack);
 * The different ways to create a MutableStack
 
 ```Java
-System.out.println(ArrayStack.newStackWith(1, 2, 3));
+System.out.println(Stacks.mutable.with(1, 2, 3));
 // Prints [3, 2, 1]
 
 System.out.println(
-ArrayStack.newStackFromTopToBottom(1, 2, 3));
+Stacks.mutable.withReversed(1, 2, 3));
 // Prints [1, 2, 3]
 
 System.out.println(
-ArrayStack.newStack(FastList.newListWith(1, 2, 3)));
+Stacks.mutable.withAll(Lists.mutable.with(1, 2, 3)));
 // Prints [3, 2, 1]
 
 System.out.println(
- ArrayStack.newStackFromTopToBottom(
- FastList.newListWith(1, 2, 3)));
+ Stacks.mutable.withAllReversed(
+ Lists.mutable.with(1, 2, 3)));
 // Prints [1, 2, 3]
 ```
 
@@ -1395,18 +1395,18 @@ System.out.println(
 ---
 #### Code Examples
 ```Java
-ArrayStack<Integer> stack1 = ArrayStack.newStackWith(1, 2, 3);
+MutableStack<Integer> stack1 = Stacks.mutable.with(1, 2, 3);
 Assert.assertEquals(
-  FastList.newListWith(3, 2),
+  Lists.mutable.with(3, 2),
   stack1.pop(2));
-ArrayStack<Integer> stack2 = ArrayStack.newStackWith(1, 3, 3);
+MutableStack<Integer> stack2 = Stacks.mutable.with(1, 3, 3);
 Assert.assertEquals(
-  UnifiedSet.newSetWith(3),
-  stack2.pop(2, UnifiedSet.<Integer>newSet()));
-ArrayStack<Integer> stack3 = ArrayStack.newStackWith(1, 2, 3);
+  Sets.mutable.with(3),
+  stack2.pop(2, Sets.mutable.empty()));
+MutableStack<Integer> stack3 = Stacks.mutable.with(1, 2, 3);
 Assert.assertEquals(
-  ArrayStack.newStackWith(3, 2),
-  stack3.pop(2, ArrayStack.<Integer>newStack()));
+  Stacks.mutable.with(3, 2),
+  stack3.pop(2, Stacks.mutable.empty()));    
 ```
 
 
@@ -1417,12 +1417,12 @@ Assert.assertEquals(
 #### Code Example
 ```Java
 MutableStack<Integer> stack =
-  ArrayStack.newStackWith(1, 2, 3);
+  Stacks.mutable.with(1, 2, 3);
 Assert.assertEquals(
   Integer.valueOf(3),
   stack.peek());
 Assert.assertEquals(
-  FastList.newListWith(3, 2),
+  Lists.mutable.with(3, 2),
   stack.peek(2));
 ```
 
@@ -1437,11 +1437,11 @@ java.util.Stack stack = new java.util.Stack();
 stack.push(1);
 stack.push(2);
 stack.push(3);
-Assert.assertEquals(FastList.newListWith(1, 2, 3), stack);
+Assert.assertEquals(Lists.mutable.with(1, 2, 3), stack);
 stack.add(2, 4);
-Assert.assertEquals(FastList.newListWith(1, 2, 4, 3), stack);
+Assert.assertEquals(Lists.mutable.with(1, 2, 4, 3), stack);
 stack.remove(1);
-Assert.assertEquals(FastList.newListWith(1, 4, 3), stack);
+Assert.assertEquals(Lists.mutable.with(1, 4, 3), stack);
 ```
 
 
@@ -1455,14 +1455,14 @@ Assert.assertEquals(FastList.newListWith(1, 4, 3), stack);
 #### Code Example
 ```Java
 StackIterable<Integer> stack =
-  ArrayStack.newStackFromTopToBottom(1, 2, 3, 4, 5);
+  Stacks.mutable.withReversed(1, 2, 3, 4, 5);
 StackIterable<Integer> evens = stack.select(integer ->
 {
   System.out.print(integer + " ");
-  integer % 2 == 0
+  return integer % 2 == 0;
 });
 // Prints 1 2 3 4 5
-Assert.assertEquals(ArrayStack.newStackFromTopToBottom(2, 4), evens);
+Assert.assertEquals(Stacks.mutable.withReversed(2, 4), evens);
 ```
 
 
@@ -1479,7 +1479,7 @@ Bag
 ```Java
 MutableList<Person> people = ...;
 MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
-MutableMap<String, Integer> stateCounts = UnifiedMap.newMap();
+MutableMap<String, Integer> stateCounts = Maps.mutable.empty();
 
 ...
 
@@ -1495,7 +1495,7 @@ int newYorkers = stateCounts.get("NY");
 #### 🙁 Map Example 🙁 
 ```Java
 MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
-MutableMap<String, Integer> stateCounts = UnifiedMap.newMap();
+MutableMap<String, Integer> stateCounts = Maps.mutable.empty();
 for (String state : usStates) {
   Integer count = stateCounts.get(state);
   if (count == null) {
@@ -1509,7 +1509,7 @@ for (String state : usStates) {
 #### 🙁 Before 🙁
 ```Java
 MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
-MutableMap<String, Integer> stateCounts = UnifiedMap.newMap();
+MutableMap<String, Integer> stateCounts = Maps.mutable.empty();
 for (String state : usStates) {
   Integer count = stateCounts.get(state);
   if (count == null) {
@@ -1522,7 +1522,7 @@ for (String state : usStates) {
 #### 😐 After 😐
 ```Java
 MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
-MutableBag<String> stateCounts = HashBag.newBag();
+MutableBag<String> stateCounts = Bags.mutable.empty();
 for (String state : usStates) {
   stateCounts.add(state);
 }
@@ -1533,7 +1533,7 @@ int newYorkers = stateCounts.occurrencesOf("NY");
 #### 😐 Before 😐
 ```Java
 MutableList<String> usStates = people.collect(US_STATE_FUNCTION);
-MutableBag<String> stateCounts = HashBag.newBag();
+MutableBag<String> stateCounts = Bags.mutable.empty();
 for (String state : usStates) {
   stateCounts.add(state);
 }
@@ -1581,7 +1581,7 @@ Methods | Inherited From
 #### Code Example
 ```Java
 MutableBag<String> bag = 
-  HashBag.newBagWith("one", "two", "two", "three", "three", "three");
+  Bags.mutable.with("one", "two", "two", "three", "three", "three");
 
 Assert.assertEquals(3, bag.occurrencesOf("three"));
 
@@ -1607,7 +1607,7 @@ Multimap
 ```Java
 MutableList<Person> people = ...;
 MutableMap<String, MutableList<Person>> statesToPeople =
-  UnifiedMap.newMap();
+  Maps.mutable.empty();
 
 ...
 
@@ -2208,8 +2208,8 @@ complete access to the backing collection in a synchronized context.
 ---
 #### Code Example
 ```Java
-MultiReaderFastList<String> list =
-MultiReaderFastList.newListWith("1", "2", "3");
+MultiReaderList<String> list =
+  Lists.multiReader.with("1", "2", "3");
 list.withWriteLockAndDelegate(backingList -> {
   Iterator<String> iterator = backingList.iterator();
   iterator.next();

@@ -62,7 +62,7 @@ Eclipse Collections Evangelism
 * <span style="color:aqua">**Java User Group Meetups**</span>
   * <span style="color:aqua">*Americas*</span> - NY Java SIG, NY JUG, NJ Java SIG, Pittsburgh JUG, Utah JUG, Delaware JUG
   * <span style="color:aqua">*Europe*</span> - London Java Community, Dublin JUG, Belfast JUG, Edinburgh JUG, Manchester JC, West Midlands JUG
-  * <span style="color:aqua">*Asia*</span> - JJUG CCC, Benaluru JUG, Chennai JUG, Delhi-NCR JUG, Hyderabad JUG, Kerala JUG   
+  * <span style="color:aqua">*Asia*</span> - JJUG CCC, Bengaluru JUG, Chennai JUG, Delhi-NCR JUG, Hyderabad JUG, Kerala JUG   
 
 
 Design Goals

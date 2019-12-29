@@ -463,7 +463,8 @@ Designing API Names
 * Stick to your patterns and names - be consistent!
 
 
-###Primary API Comparison
+Primary API Comparison
+----------------------
 | <span style="color:aqua">**Eclipse Collections**</span> | <span style="color:aqua">**Java 8 Streams**</span> |
 |  ---- | ---------- |
 | [```select```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#select-org.eclipse.collections.api.block.predicate.Predicate-)   | ```filter``` |
@@ -478,19 +479,20 @@ Designing API Names
 | [```any```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#anySatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```all```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#allSatisfy-org.eclipse.collections.api.block.predicate.Predicate-)/[```noneSatisfy```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#noneSatisfy-org.eclipse.collections.api.block.predicate.Predicate-) | ```any/all/noneMatch``` |
 
 
-###Advanced API Comparison
+Advanced API Comparison
+-----------------------
 | <span style="color:aqua">**Eclipse Collections**</span> | <span style="color:aqua">**Java 8 Streams**</span> |
 |  ---- | ---------- |
-|[```groupBy```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#groupBy-org.eclipse.collections.api.block.function.Function-R-)|```collect(Collectors.groupingBy)```|
-|[```countBy```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#countBy-org.eclipse.collections.api.block.function.Function-)|```collect(Collectors.groupingBy(Collectors.counting))```|
-|[```aggregateBy```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#aggregateBy-org.eclipse.collections.api.block.function.Function-org.eclipse.collections.api.block.function.Function0-org.eclipse.collections.api.block.function.Function2-)|```collect(Collectors.groupingBy(Collectors.reducing))```|
-|[```minByOptional```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#minByOptional-org.eclipse.collections.api.block.function.Function-)|```min(Comparator.comparing)```|
-|[```maxByOptional```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#maxByOptional-org.eclipse.collections.api.block.function.Function-)|```max(Comparator.comparing)```|
-|[```distinct```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/ordered/OrderedIterable.html#distinct--)|```distinct.collect(Collectors.toList)```|
-|[```partition```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#partition-org.eclipse.collections.api.block.predicate.Predicate-)|```collect(Collectors.partitioningBy)```|
-|[```chunk```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#chunk-int-)|~~N/A~~|
-|[```zip```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/ordered/OrderedIterable.html#zip-java.lang.Iterable-)|~~N/A~~|
-|[```makeString```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#makeString-java.lang.String-java.lang.String-java.lang.String-)|```collect(Collectors.joining)```|
+| [```groupBy```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#groupBy-org.eclipse.collections.api.block.function.Function-R-) | ```collect(Collectors.groupingBy)``` |
+| [```countBy```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#countBy-org.eclipse.collections.api.block.function.Function-) | ```collect(Collectors.groupingBy(Collectors.counting))``` |
+| [```aggregateBy```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#aggregateBy-org.eclipse.collections.api.block.function.Function-org.eclipse.collections.api.block.function.Function0-org.eclipse.collections.api.block.function.Function2-) | ```collect(Collectors.groupingBy(Collectors.reducing))``` |
+| [```minByOptional```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#minByOptional-org.eclipse.collections.api.block.function.Function-) | ```min(Comparator.comparing)``` |
+| [```maxByOptional```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#maxByOptional-org.eclipse.collections.api.block.function.Function-) | ```max(Comparator.comparing)``` |
+| [```distinct```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/ordered/OrderedIterable.html#distinct--)| ```distinct.collect(Collectors.toList)``` |
+| [```partition```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#partition-org.eclipse.collections.api.block.predicate.Predicate-) | ```collect(Collectors.partitioningBy)``` |
+| [```chunk```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#chunk-int-) | ~~N/A~~ |
+| [```zip```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/ordered/OrderedIterable.html#zip-java.lang.Iterable-) | ~~N/A~~ |
+| [```makeString```](https://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#makeString-java.lang.String-java.lang.String-java.lang.String-) | ```collect(Collectors.joining)``` |
 
 
 Eclipse Collections Factories

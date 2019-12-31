@@ -29,39 +29,14 @@ then follow the instructions below for your IDE/platform.
 
 ### Eclipse users
 
-Initialize Eclipse project with the command below. 
-
-##### Mac/Linux/Unix:
-```
-./gradlew eclipse
-```
-
-##### Windows:
-```
-gradlew.bat eclipse
-```
-Once the project is initialized, 
-you can import the project from "Import" => "General" => "Existing Projects into Workspace". 
+You can import the project from "Import" => "General" => "Existing Projects into Workspace".
 Select "eclipse-collections-kata" directory as root directory, 
 make sure to choose "Search for nested projects" option and finish.
 ### IntelliJ IDEA users
 
 Initialize IntelliJ IDEA project with the command below. 
 
-##### Mac/Linux/Unix:
-```
-./gradlew idea
-```
-
-##### Windows:
-```
-gradlew.bat idea
-```
-
-Once the project is initialized, 
-you can open the project from "File" => "Open..." => choose "eclipse-collections-kata" folder. 
-You might see a dialog to suggest importing Gradle project, it's up to you to do so if you'd like to invoke gradle builds from IDEA.
-Kata can run in IDEA even if you don't import Gradle project.
+You can open the project from "File" => "Open..." => choose "eclipse-collections-kata" folder.
 
 ### NetBeans users
 
@@ -71,12 +46,6 @@ _open as a Maven project_
 
 You can open the project directly from "File" => "Open Project..." => choose "eclipse-collections-kata" folder.
 In the "Open Project" dialog you might select the option "Open Required Projects" to automatically open the two modules.
-
-_open as a Gradle project_
-
-The "Gradle Support" plugin needs already to be installed.<br>
-Temporarily remove/rename the `pom.xml` file. Then open the project from "File" => "Open Project..." => choose "eclipse-collections-kata" folder.<br>
-Restore the `pom.xml` file.
 
 Work on Kata exercises
 ----------------------

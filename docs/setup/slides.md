@@ -50,17 +50,8 @@ Eclipse Collections Code Kata
 Set-up Eclipse Collections Kata
 -------------------------------
  * Clone [Eclipse Collections repo](https://github.com/eclipse/eclipse-collections-kata) or simply download [master zip file](https://github.com/eclipse/eclipse-collections-kata/archive/master.zip) and extract
- * Run gradle init script for your IDE
-
- ```
- gradlew eclipse
- ```
-
- ```
- gradlew idea
- ```
-
- * Open your IDE and run tests under
+ * Open your IDE and import the cloned or downloaded project as a maven project.
+ * Run tests under
 
  ```
  pet-kata/src/tests

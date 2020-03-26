@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2019 Goldman Sachs and others.
+  ~ Copyright (c) 2020 Goldman Sachs and others.
   ~ All rights reserved. This program and the accompanying materials
   ~ are made available under the terms of the Eclipse Public License v1.0
   ~ and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,6 +10,7 @@
 [![][travis img]][travis]
 [![][license-epl img]][license-epl]
 [![][license-edl img]][license-edl]
+[![][actions img]][actions]  
 
 <a href="https://www.eclipse.org/collections/"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/shared/eclipse-collections-logo.png" height="50%" width="50%"></a>
   
@@ -75,6 +76,9 @@ Presentations
 The [API Design of Eclipse Collections](http://eclipse.github.io/eclipse-collections-kata/api-design) covers the design 
 decisions that went into making Eclipse Collections and guiding its evolution from Java 4 through Java 9. 
 The content of the presentation is also available in a convenient to read [markdown format](https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/api-design/slides.md). 
+
+[actions]:https://github.com/eclipse/eclipse-collections-kata/actions?query=workflow%3A%22Eclipse+Collections+Kata+CI+Build%22
+[actions img]:https://github.com/eclipse/eclipse-collections-kata/workflows/Eclipse%20Collections%20Kata%20CI%20Build/badge.svg?branch=master
 
 [travis]:https://travis-ci.org/eclipse/eclipse-collections-kata
 [travis img]:https://travis-ci.org/eclipse/eclipse-collections-kata.svg?branch=master

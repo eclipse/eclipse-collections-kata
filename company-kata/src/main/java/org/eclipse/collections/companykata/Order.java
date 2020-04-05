@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -12,11 +12,9 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
 import org.eclipse.collections.impl.block.function.AddFunction;
-import org.eclipse.collections.impl.collection.mutable.CollectionAdapter;
-import org.eclipse.collections.impl.utility.Iterate;
+import org.eclipse.collections.impl.factory.Lists;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -30,7 +28,7 @@ public class Order
 
     private final int orderNumber;
     private final List<LineItem> lineItems = new ArrayList<>();
-    private boolean isDelivered;
+    private boolean delivered;
 
     public Order()
     {
@@ -44,12 +42,12 @@ public class Order
 
     public void deliver()
     {
-        this.isDelivered = true;
+        this.delivered = true;
     }
 
     public boolean isDelivered()
     {
-        return this.isDelivered;
+        return this.delivered;
     }
 
     public void addLineItem(LineItem aLineItem)
@@ -73,8 +71,8 @@ public class Order
      */
     public double getValue()
     {
-        Collection<Double> itemValues = Iterate.collect(this.lineItems, LineItem::getValue);
-
-        return CollectionAdapter.adapt(itemValues).injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
+        return Lists.adapt(this.lineItems)
+                .collect(LineItem::getValue)
+                .injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
     }
 }

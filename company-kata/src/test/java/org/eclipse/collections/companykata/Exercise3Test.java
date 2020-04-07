@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -49,10 +49,7 @@ public class Exercise3Test extends CompanyDomainForKata
         MutableList<LineItem> allOrderedLineItems = null;
         MutableSet<String> actualItemNames = null;
 
-        Verify.assertInstanceOf(MutableSet.class, actualItemNames);
-        Verify.assertInstanceOf(String.class, actualItemNames.getFirst());
-
-        MutableSet<String> expectedItemNames = Sets.mutable.with(
+        var expectedItemNames = Sets.mutable.with(
                 "shed", "big shed", "bowl", "cat", "cup", "chair", "dog",
                 "goldfish", "gnome", "saucer", "sofa", "table");
         Assert.assertEquals(expectedItemNames, actualItemNames);
@@ -63,7 +60,7 @@ public class Exercise3Test extends CompanyDomainForKata
     {
         MutableList<String> names = null;
 
-        MutableList<String> expectedNames = Lists.mutable.with("Fred", "Mary", "Bill");
+        var expectedNames = Lists.mutable.with("Fred", "Mary", "Bill");
         Assert.assertEquals(expectedNames, names);
     }
 }

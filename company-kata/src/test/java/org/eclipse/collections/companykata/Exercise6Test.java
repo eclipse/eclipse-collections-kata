@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -76,6 +76,7 @@ public class Exercise6Test extends CompanyDomainForKata
     public void maximumTotalOrderValue()
     {
         Double maximumTotalOrderValue = null;
+
         Assert.assertEquals("max value", Double.valueOf(857.0), maximumTotalOrderValue);
     }
 
@@ -86,6 +87,7 @@ public class Exercise6Test extends CompanyDomainForKata
     public void maximumTotalOrderValueUsingPrimitives()
     {
         double maximumTotalOrderValue = 0.0;
+
         Assert.assertEquals("max value", 857.0, maximumTotalOrderValue, 0.0);
     }
 
@@ -96,6 +98,7 @@ public class Exercise6Test extends CompanyDomainForKata
     public void customerWithMaxTotalOrderValue()
     {
         Customer customerWithMaxTotalOrderValue = null;
+
         Assert.assertEquals(this.company.getCustomerNamed("Mary"), customerWithMaxTotalOrderValue);
     }
 
@@ -106,6 +109,7 @@ public class Exercise6Test extends CompanyDomainForKata
     public void supplierNamesAsTildeDelimitedString()
     {
         String tildeSeparatedNames = null;
+
         Assert.assertEquals(
                 "tilde separated names",
                 "Shedtastic~Splendid Crocks~Annoying Pets~Gnomes 'R' Us~Furniture Hamlet~SFD~Doxins",

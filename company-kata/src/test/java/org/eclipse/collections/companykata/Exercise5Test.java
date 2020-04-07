@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -49,7 +49,8 @@ public class Exercise5Test extends CompanyDomainForKata
         MutableList<Double> orderValues = null;
         MutableList<Double> filtered = orderValues.select(Predicates.greaterThan(1.5));
 
-        Assert.assertEquals(Lists.mutable.with(372.5, 1.75), filtered);
+        var expectedValues = Lists.mutable.with(372.5, 1.75);
+        Assert.assertEquals(expectedValues, filtered);
         Verify.assertInstanceOf(MutableList.class, this.company.getMostRecentCustomer().getOrders());
         this.company.getMostRecentCustomer().getOrders().add(null);
         Verify.assertContains("Don't return a copy from Customer.getOrders(). The field should be a MutableList.", null, this.company.getMostRecentCustomer().getOrders());
@@ -65,7 +66,8 @@ public class Exercise5Test extends CompanyDomainForKata
         MutableDoubleList orderValues = null;
         MutableDoubleList filtered = orderValues.select(DoublePredicates.greaterThan(1.5));
 
-        Assert.assertEquals(DoubleLists.mutable.with(372.5, 1.75), filtered);
+        var expectedValues = DoubleLists.mutable.with(372.5, 1.75);
+        Assert.assertEquals(expectedValues, filtered);
     }
 
     /**
@@ -79,7 +81,8 @@ public class Exercise5Test extends CompanyDomainForKata
         List<Order> orders = this.company.getMostRecentCustomer().getOrders();
         MutableList<Order> filtered = null;
 
-        Assert.assertEquals(Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders())), filtered);
+        var expectedValues = Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders()));
+        Assert.assertEquals(expectedValues, filtered);
         Verify.assertInstanceOf(MutableList.class, this.company.getMostRecentCustomer().getOrders());
         this.company.getMostRecentCustomer().getOrders().add(null);
         Verify.assertContains("Don't return a copy from Customer.getOrders(). The field should be a MutableList.", null, this.company.getMostRecentCustomer().getOrders());

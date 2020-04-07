@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 BNY Mellon.
+ * Copyright (c) 2020 BNY Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -37,7 +37,8 @@ public class CandyKataSolutionsTest
                         .collect(ObjectIntPair::getOne)
                         .toSet();
 
-        Assert.assertEquals(Sets.mutable.with(Candy.REESES_PIECES), mostCommon);
+        var expectedSet = Sets.mutable.with(Candy.REESES_PIECES);
+        Assert.assertEquals(expectedSet, mostCommon);
     }
 
     @Test
@@ -54,7 +55,8 @@ public class CandyKataSolutionsTest
                         .reduce(MutableSet::intersect)
                         .get();
 
-        Assert.assertEquals(Sets.mutable.with(Candy.REESES_PIECES, Candy.CRUNCH), commonInTop10);
+        var expectedSet = Sets.mutable.with(Candy.REESES_PIECES, Candy.CRUNCH);
+        Assert.assertEquals(expectedSet, commonInTop10);
     }
 
     private MutableList<Bag<Candy>> collectBagsOfCandy()

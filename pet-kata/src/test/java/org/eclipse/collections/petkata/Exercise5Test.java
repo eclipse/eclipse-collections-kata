@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Goldman Sachs.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
+import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.api.set.primitive.MutableIntSet;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
@@ -53,14 +54,18 @@ public class Exercise5Test extends PetDomainForKata
     {
         // Hint: Use petAges as a target collection
         MutableIntSet petAges = IntSets.mutable.with(5);
-        Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), petAges);
+
+        var expectedSet = IntSets.mutable.with(1, 2, 3, 4, 5);
+        Assert.assertEquals(expectedSet, petAges);
     }
 
     @Test
     public void refactorToEclipseCollections()
     {
+        Assert.fail("Refactor to Eclipse Collections");
+
         // Replace List and ArrayList with Eclipse Collections types
-        List<Person> people = new ArrayList<>();
+        var people = new ArrayList<Person>();
         people.add(new Person("Mary", "Smith").addPet(PetType.CAT, "Tabby", 2));
         people.add(new Person("Bob", "Smith")
                 .addPet(PetType.CAT, "Dolly", 3)
@@ -75,7 +80,7 @@ public class Exercise5Test extends PetDomainForKata
         people.add(new Person("John", "Doe"));
 
         // Replace Set and HashSet with Eclipse Collections types
-        Set<Integer> petAges = new HashSet<>();
+        var petAges = new HashSet<Integer>();
         for (Person person : people)
         {
             for (Pet pet : person.getPets())
@@ -85,8 +90,7 @@ public class Exercise5Test extends PetDomainForKata
         }
 
         //extra bonus - convert to a primitive collection
-        Assert.assertEquals("Extra Credit - convert to a primitive collection", Sets.mutable.with(1, 2, 3, 4), petAges);
-
-        Assert.fail("Refactor to Eclipse Collections");
+        var expectedSet = Sets.mutable.with(1, 2, 3, 4);
+        Assert.assertEquals("Extra Credit - convert to a primitive collection", expectedSet, petAges);
     }
 }

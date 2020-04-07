@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -57,7 +57,7 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void doAllPeopleHavePets()
     {
-        Predicate<Person> predicate = person -> person.isPetPerson();
+        Predicate<Person> predicate = Person::isPetPerson;
         boolean result = true; //replace with a method call send to this.people that checks if all people have pets
         Assert.assertFalse(result);
     }
@@ -87,20 +87,20 @@ public class Exercise2Test extends PetDomainForKata
     @Test
     public void getAllPetTypesOfAllPeople()
     {
-        Function<Person, Iterable<PetType>> function = person -> person.getPetTypes();
+        Function<Person, Iterable<PetType>> function = Person::getPetTypes;
         MutableSet<PetType> petTypes = null;
-        Assert.assertEquals(
-                Sets.mutable.with(PetType.CAT, PetType.DOG, PetType.TURTLE, PetType.HAMSTER, PetType.BIRD, PetType.SNAKE),
-                petTypes);
+
+        var expectedSet = Sets.mutable.with(PetType.CAT, PetType.DOG, PetType.TURTLE, PetType.HAMSTER, PetType.BIRD, PetType.SNAKE);
+        Assert.assertEquals(expectedSet, petTypes);
     }
 
     @Test
     public void getFirstNamesOfAllPeople()
     {
         MutableList<String> firstNames = null;  // Transform this.people into a list of first names
-        Assert.assertEquals(
-                Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John"),
-                firstNames);
+
+        var expectedList = Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
+        Assert.assertEquals(expectedList, firstNames);
     }
 
     @Test

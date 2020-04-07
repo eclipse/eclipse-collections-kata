@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -49,6 +49,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void customerFromLondonPredicate()
     {
         Predicate<Customer> predicate = null;
+
         String predicateClass = predicate.getClass().getSimpleName();
         Assert.assertTrue(
                 "Solution should use Predicates.attributeEquals() or a lambda but used " + predicateClass,
@@ -65,6 +66,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void doAnyCustomersLiveInLondon()
     {
         boolean anyCustomersFromLondon = false;
+
         Assert.assertTrue(anyCustomersFromLondon);
     }
 
@@ -72,6 +74,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void doAllCustomersLiveInLondon()
     {
         boolean allCustomersFromLondon = true;
+
         Assert.assertFalse(allCustomersFromLondon);
     }
 
@@ -79,6 +82,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void howManyCustomersLiveInLondon()
     {
         int numberOfCustomerFromLondon = 0;
+
         Assert.assertEquals("Should be 2 London customers", 2, numberOfCustomerFromLondon);
     }
 
@@ -86,6 +90,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void getLondonCustomers()
     {
         MutableList<Customer> customersFromLondon = null;
+
         Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
     }
 
@@ -93,6 +98,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void getCustomersWhoDontLiveInLondon()
     {
         MutableList<Customer> customersNotFromLondon = null;
+
         Verify.assertSize("customers not from London", 1, customersNotFromLondon);
     }
 
@@ -103,6 +109,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void getCustomersWhoDoAndDoNotLiveInLondon()
     {
         PartitionMutableList<Customer> customers = null;
+
         Verify.assertSize("Should be 2 London customers", 2, customers.getSelected());
         Verify.assertSize("customers not from London", 1, customers.getRejected());
     }
@@ -114,6 +121,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void findMary()
     {
         Customer mary = this.company.getCustomerNamed("Mary");
+
         Assert.assertEquals("customer's name should be Mary", "Mary", mary.getName());
     }
 
@@ -124,8 +132,7 @@ public class Exercise2Test extends CompanyDomainForKata
     public void findPete()
     {
         Customer pete = this.company.getCustomerNamed("Pete");
-        Assert.assertNull(
-                "Should be null as there is no customer called Pete",
-                pete);
+
+        Assert.assertNull("Should be null as there is no customer called Pete", pete);
     }
 }

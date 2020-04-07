@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -60,8 +60,8 @@ public class Exercise8Test extends CompanyDomainForKata
     {
         Function0<Double> zeroValueFactory = () -> 0.0;
         Function2<Double, Customer, Double> aggregator = (result, customer) -> result + customer.getTotalOrderValue();
-
         MutableMap<String, Double> map = null;
+
         Verify.assertSize(2, map);
         Assert.assertEquals(446.25, map.get("London"), 0.0);
         Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
@@ -78,6 +78,7 @@ public class Exercise8Test extends CompanyDomainForKata
         Function<Customer, String> cityFunction = Customer::getCity;
         DoubleFunction<Customer> totalOrderValueFunction = Customer::getTotalOrderValue;
         ObjectDoubleMap<String> map = null;
+
         Verify.assertSize(2, map);
         Assert.assertEquals(446.25, map.get("London"), 0.0);
         Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
@@ -93,8 +94,8 @@ public class Exercise8Test extends CompanyDomainForKata
     {
         Function0<Double> zeroValueFactory = () -> 0.0;
         Function2<Double, LineItem, Double> aggregator = (result, lineItem) -> result + lineItem.getValue();
-
         MutableMap<String, Double> map = null;
+
         Verify.assertSize(12, map);
         Assert.assertEquals(100.0, map.get("shed"), 0.0);
         Assert.assertEquals(10.5, map.get("cup"), 0.0);
@@ -111,6 +112,7 @@ public class Exercise8Test extends CompanyDomainForKata
         Function<LineItem, String> nameFunction = LineItem::getName;
         DoubleFunction<LineItem> valueFunction = LineItem::getValue;
         ObjectDoubleMap<String> map = null;
+
         Verify.assertSize(12, map);
         Assert.assertEquals(100.0, map.get("shed"), 0.0);
         Assert.assertEquals(10.5, map.get("cup"), 0.0);
@@ -124,7 +126,7 @@ public class Exercise8Test extends CompanyDomainForKata
     {
         MutableSortedBag<Double> orderedPrices = null;
 
-        MutableSortedBag<Double> expectedPrices = SortedBags.mutable.with(
+        var expectedPrices = SortedBags.mutable.with(
                 Collections.reverseOrder(), 500.0, 150.0, 120.0, 75.0, 50.0, 50.0, 12.5);
         Verify.assertSortedBagsEqual(expectedPrices, orderedPrices);
     }
@@ -136,6 +138,7 @@ public class Exercise8Test extends CompanyDomainForKata
     public void whoOrderedSaucers()
     {
         MutableList<Customer> customersWithSaucers = null;
+
         Verify.assertSize("customers with saucers", 2, customersWithSaucers);
     }
 
@@ -150,6 +153,7 @@ public class Exercise8Test extends CompanyDomainForKata
 
         Assert.assertNotNull("customer name to orders", customerNameToOrders);
         Verify.assertSize("customer names", 3, customerNameToOrders);
+
         MutableList<Order> ordersForBill = customerNameToOrders.get("Bill");
         Verify.assertSize("Bill orders", 3, ordersForBill);
     }
@@ -162,12 +166,11 @@ public class Exercise8Test extends CompanyDomainForKata
     public void mostExpensiveItem()
     {
         MutableListMultimap<Double, Customer> multimap = null;
+
         Verify.assertSize(3, multimap);
         Verify.assertSize(2, multimap.keysView());
-        Assert.assertEquals(
-                Lists.mutable.with(
-                        this.company.getCustomerNamed("Fred"),
-                        this.company.getCustomerNamed("Bill")),
-                multimap.get(50.0));
+
+        var expectedCustomers = Lists.mutable.with("Fred", "Bill").collect(this.company::getCustomerNamed);
+        Assert.assertEquals(expectedCustomers, multimap.get(50.0));
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -42,12 +42,10 @@ public class Exercise7Test extends CompanyDomainForKata
     {
         MutableListMultimap<String, Customer> multimap = null;
 
-        Assert.assertEquals(Lists.mutable.with(this.company.getCustomerNamed("Mary")), multimap.get("Liphook"));
-        Assert.assertEquals(
-                Lists.mutable.with(
-                        this.company.getCustomerNamed("Fred"),
-                        this.company.getCustomerNamed("Bill")),
-                multimap.get("London"));
+        var expectedLiphookList = Lists.mutable.with("Mary").collect(this.company::getCustomerNamed);
+        var expectedLondonList = Lists.mutable.with("Fred", "Bill").collect(this.company::getCustomerNamed);
+        Assert.assertEquals(expectedLiphookList, multimap.get("Liphook"));
+        Assert.assertEquals(expectedLondonList, multimap.get("London"));
     }
 
     /**

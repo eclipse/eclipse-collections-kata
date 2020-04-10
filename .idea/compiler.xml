@@ -13,12 +13,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="candy-kata" target="1.8" />
-      <module name="company-kata" target="1.8" />
-      <module name="eclipse-collections-kata" target="1.8" />
-      <module name="eclipse-collections-kata-parent" target="1.8" />
-      <module name="pet-kata" target="1.8" />
-      <module name="pet-kata-solutions" target="1.8" />
+      <module name="candy-kata" target="11" />
+      <module name="company-kata" target="11" />
+      <module name="eclipse-collections-kata" target="11" />
+      <module name="eclipse-collections-kata-parent" target="11" />
+      <module name="pet-kata" target="11" />
+      <module name="pet-kata-solutions" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

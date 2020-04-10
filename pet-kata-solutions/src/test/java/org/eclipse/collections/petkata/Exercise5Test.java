@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Goldman Sachs and others.
+ * Copyright (c) 2020 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -51,18 +51,17 @@ public class Exercise5Test extends PetDomainForKata {
 
     @Test
     public void addPetAgesToExistingSet() {
-        // Hint: Use petAges as a target collection
         MutableIntSet petAges = IntSets.mutable.with(5);
 
         this.people.flatCollect(Person::getPets)
                 .collectInt(pet -> pet.getAge(), petAges);
 
-        Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), petAges);
+        var expected = IntSets.mutable.with(1, 2, 3, 4, 5);
+        Assert.assertEquals(expected, petAges);
     }
 
     @Test
     public void refactorToEclipseCollections() {
-        // Replace List and ArrayList with Eclipse Collections types
         MutableList<Person> people = Lists.mutable.with(
                 new Person("Mary", "Smith").addPet(PetType.CAT, "Tabby", 2),
                 new Person("Bob", "Smith")
@@ -78,13 +77,13 @@ public class Exercise5Test extends PetDomainForKata {
                 new Person("John", "Doe")
         );
 
-        // Replace Set and HashSet with Eclipse Collections types
         MutableIntSet petAges = people
                 .flatCollect(Person::getPets)
-                .collectInt(pet -> pet.getAge())
+                .collectInt(Pet::getAge)
                 .toSet();
 
         //extra bonus - convert to a primitive collection
-        Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4), petAges);
+        var expected = IntSets.mutable.with(1, 2, 3, 4);
+        Assert.assertEquals(expected, petAges);
     }
 }

@@ -7,7 +7,6 @@
   ~ and the Eclipse Distribution License is available at
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
-[![][travis img]][travis]
 [![][license-epl img]][license-epl]
 [![][license-edl img]][license-edl]
 [![][actions img]][actions]  
@@ -85,9 +84,6 @@ The content of the presentation is also available in a convenient to read [markd
 
 [actions]:https://github.com/eclipse/eclipse-collections-kata/actions?query=workflow%3A%22Eclipse+Collections+Kata+CI+Build%22
 [actions img]:https://github.com/eclipse/eclipse-collections-kata/workflows/Eclipse%20Collections%20Kata%20CI%20Build/badge.svg?branch=master
-
-[travis]:https://travis-ci.org/eclipse/eclipse-collections-kata
-[travis img]:https://travis-ci.org/eclipse/eclipse-collections-kata.svg?branch=master
 
 [license-epl]:LICENSE-EPL-1.0.txt
 [license-epl img]:https://img.shields.io/badge/License-EPL-blue.svg

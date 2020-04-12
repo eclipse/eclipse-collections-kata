@@ -99,6 +99,10 @@
         <maven.compiler.maxmem>2048m</maven.compiler.maxmem>
     </properties>
 
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+    </build>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

@@ -90,7 +90,6 @@ public class Company
      */
     public Customer getCustomerNamed(String name)
     {
-        Assert.fail("Implement this method as part of Exercise 2");
-        return null;
+        return this.customers.detect(customer -> customer.getName().equals(name));
     }
 }

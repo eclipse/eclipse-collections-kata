@@ -15,19 +15,20 @@ import java.util.List;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
 import org.eclipse.collections.api.block.predicate.Predicate;
+import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.MutableDoubleList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.primitive.DoubleLists;
 import org.eclipse.collections.impl.utility.ArrayIterate;
-import org.eclipse.collections.impl.utility.ListIterate;
 import org.eclipse.collections.impl.utility.Iterate;
+import org.eclipse.collections.impl.utility.ListIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
- *
+ * <p>
  * {@link ArrayIterate#collect(Object[], Function)}
  * {@link ArrayIterate#count(Object[], Predicate)}
  * {@link ArrayIterate#detect(Object[], Predicate)}
@@ -38,7 +39,10 @@ import org.junit.Test;
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/12">Exercise 4 Slides</a>
  */
 public class Exercise4Test extends CompanyDomainForKata
+
 {
+    private static final String SANDWICH_TOASTER = "sandwich toaster";
+
     /**
      * Solve this without changing the return type of {@link Company#getSuppliers()}. Find the appropriate method on
      * {@link ArrayIterate}.
@@ -46,7 +50,7 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void findSupplierNames()
     {
-        MutableList<String> supplierNames = null;
+        MutableList<String> supplierNames = ArrayIterate.collect(this.company.getSuppliers(), Supplier::getName);
 
         var expectedSupplierNames = Lists.mutable.with(
                 "Shedtastic",
@@ -66,9 +70,7 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void countSuppliersWithMoreThanTwoItems()
     {
-        Predicate<Supplier> moreThanTwoItems = null;
-        int suppliersWithMoreThanTwoItems = 0;
-
+        int suppliersWithMoreThanTwoItems = ArrayIterate.count(this.company.getSuppliers(), s -> s.getItemNames().length > 2);
         Assert.assertEquals("suppliers with more than 2 items", 5, suppliersWithMoreThanTwoItems);
     }
 
@@ -78,11 +80,12 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void whoSuppliesSandwichToaster()
     {
+
         // Create a Predicate that will check to see if a Supplier supplies a "sandwich toaster".
-        Predicate<Supplier> suppliesToaster = null;
+        Predicate<Supplier> suppliesToaster = s -> ArrayIterate.contains(s.getItemNames(), SANDWICH_TOASTER);
 
         // Find one supplier that supplies toasters.
-        Supplier toasterSupplier = null;
+        Supplier toasterSupplier = ArrayIterate.detect(this.company.getSuppliers(), suppliesToaster);
 
         Assert.assertNotNull("toaster supplier", toasterSupplier);
         Assert.assertEquals("Doxins", toasterSupplier.getName());
@@ -94,9 +97,9 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void filterOrderValues()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableList<Double> orderValues = null;
-        MutableList<Double> filtered = null;
+
+        MutableList<Double> orderValues = ListIterate.collect(this.company.getMostRecentCustomer().getOrders(), Order::getValue);
+        MutableList<Double> filtered = orderValues.select(v -> v > 1.5);
 
         var expectedValues = Lists.mutable.with(372.5, 1.75);
         Assert.assertEquals(expectedValues, filtered);
@@ -108,9 +111,9 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void filterOrderValuesUsingPrimitives()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableDoubleList orderValues = null;
-        MutableDoubleList filtered = null;
+
+        MutableDoubleList orderValues = ListIterate.collectDouble(this.company.getMostRecentCustomer().getOrders(), Order::getValue);
+        MutableDoubleList filtered = orderValues.select(v -> v > 1.5);
 
         var expectedValues = DoubleLists.mutable.with(372.5, 1.75);
         Assert.assertEquals(expectedValues, filtered);
@@ -122,8 +125,7 @@ public class Exercise4Test extends CompanyDomainForKata
     @Test
     public void filterOrders()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableList<Order> filtered = null;
+        MutableList<Order> filtered = ListIterate.select(this.company.getMostRecentCustomer().getOrders(), o -> o.getValue() > 2.0);
 
         var expectedOrders = Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders()));
         Assert.assertEquals(expectedOrders, filtered);

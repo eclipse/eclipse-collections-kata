@@ -45,8 +45,8 @@ public class Exercise5Test extends CompanyDomainForKata
     @Test
     public void filterOrderValues()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableList<Double> orderValues = null;
+        MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
+        MutableList<Double> orderValues = orders.collect(Order::getValue);
         MutableList<Double> filtered = orderValues.select(Predicates.greaterThan(1.5));
 
         var expectedValues = Lists.mutable.with(372.5, 1.75);
@@ -62,8 +62,8 @@ public class Exercise5Test extends CompanyDomainForKata
     @Test
     public void filterOrderValuesUsingPrimitives()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableDoubleList orderValues = null;
+        MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
+        MutableDoubleList orderValues = orders.collectDouble(Order::getValue);
         MutableDoubleList filtered = orderValues.select(DoublePredicates.greaterThan(1.5));
 
         var expectedValues = DoubleLists.mutable.with(372.5, 1.75);
@@ -78,8 +78,8 @@ public class Exercise5Test extends CompanyDomainForKata
     @Test
     public void filterOrders()
     {
-        List<Order> orders = this.company.getMostRecentCustomer().getOrders();
-        MutableList<Order> filtered = null;
+        MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
+        MutableList<Order> filtered = orders.select(order -> order.getValue() > 2.0);
 
         var expectedValues = Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders()));
         Assert.assertEquals(expectedValues, filtered);

@@ -11,6 +11,7 @@
 package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
+import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.function.AddFunction;
 import org.eclipse.collections.impl.factory.Lists;
 
@@ -27,7 +28,7 @@ public class Order
     private static final AtomicInteger NEXT_ORDER_NUMBER = new AtomicInteger(1);
 
     private final int orderNumber;
-    private final List<LineItem> lineItems = new ArrayList<>();
+    private final MutableList<LineItem> lineItems = Lists.mutable.empty();
     private boolean delivered;
 
     public Order()
@@ -55,7 +56,7 @@ public class Order
         this.lineItems.add(aLineItem);
     }
 
-    public List<LineItem> getLineItems()
+    public MutableList<LineItem> getLineItems()
     {
         return this.lineItems;
     }

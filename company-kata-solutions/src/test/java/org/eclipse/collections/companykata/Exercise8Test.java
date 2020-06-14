@@ -62,7 +62,7 @@ public class Exercise8Test extends CompanyDomainForKata
     {
         Function0<Double> zeroValueFactory = () -> 0.0;
         Function2<Double, Customer, Double> aggregator = (result, customer) -> result + customer.getTotalOrderValue();
-        MapIterable<String, Double> map = this.company.getCustomers()
+        MutableMap<String, Double> map = this.company.getCustomers()
                 .aggregateBy(Customer::getCity, zeroValueFactory, aggregator);
 
         Verify.assertSize(2, map);
@@ -97,7 +97,7 @@ public class Exercise8Test extends CompanyDomainForKata
     {
         Function0<Double> zeroValueFactory = () -> 0.0;
         Function2<Double, LineItem, Double> aggregator = (result, lineItem) -> result + lineItem.getValue();
-        MapIterable<String, Double> map = this.company.getOrders().flatCollect(Order::getLineItems).aggregateBy(LineItem::getName, zeroValueFactory, aggregator);
+        MutableMap<String, Double> map = this.company.getOrders().flatCollect(Order::getLineItems).aggregateBy(LineItem::getName, zeroValueFactory, aggregator);
 
         Verify.assertSize(12, map);
         Assert.assertEquals(100.0, map.get("shed"), 0.0);

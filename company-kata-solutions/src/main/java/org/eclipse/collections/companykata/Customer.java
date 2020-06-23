@@ -61,4 +61,9 @@ public class Customer
         MutableList<Double> orderValues = ListIterate.collect(this.orders, Order::getValue);
         return orderValues.injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
     }
+
+    public boolean livesIn(String aCity)
+    {
+        return this.city.equals(aCity);
+    }
 }

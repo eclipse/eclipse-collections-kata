@@ -18,10 +18,8 @@ import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.MutableDoubleList;
-import org.eclipse.collections.impl.block.factory.Procedures;
+import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
 import org.eclipse.collections.impl.test.Verify;
-import org.eclipse.collections.impl.utility.ArrayIterate;
-import org.eclipse.collections.impl.utility.ListIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,9 +52,8 @@ public class Exercise6Test extends CompanyDomainForKata
         MutableList<Double> sortedTotalValues = this.company
                 .getCustomers()
                 .collect(Customer::getTotalOrderValue)
-                .toSortedList();
+                .sortThis();
 
-        // Don't forget the handy utility methods getFirst() and getLast()...
         Assert.assertEquals("Highest total order value", Double.valueOf(857.0), sortedTotalValues.getLast());
         Assert.assertEquals("Lowest total order value", Double.valueOf(71.0), sortedTotalValues.getFirst());
     }
@@ -72,7 +69,6 @@ public class Exercise6Test extends CompanyDomainForKata
                 .collectDouble(Customer::getTotalOrderValue)
                 .sortThis();
 
-        // Don't forget the handy utility methods getFirst() and getLast()...
         Assert.assertEquals("Highest total order value", 857.0, sortedTotalValues.getLast(), 0.0);
         Assert.assertEquals("Lowest total order value", 71.0, sortedTotalValues.getFirst(), 0.0);
     }
@@ -126,8 +122,8 @@ public class Exercise6Test extends CompanyDomainForKata
     @Test
     public void supplierNamesAsTildeDelimitedString()
     {
-        String tildeSeparatedNames = ArrayIterate
-                .collect(this.company.getSuppliers(), Supplier::getName)
+        String tildeSeparatedNames = ArrayAdapter.adapt(this.company.getSuppliers())
+                .collect(Supplier::getName)
                 .makeString("~");
 
         Assert.assertEquals(
@@ -148,9 +144,10 @@ public class Exercise6Test extends CompanyDomainForKata
     {
         this.company.getCustomers()
                 .asLazy()
-                .selectWith(Customer::livesIn,"London")
+                .selectWith(Customer::livesIn, "London")
                 .flatCollect(Customer::getOrders)
                 .each(Order::deliver);
+
         Verify.assertAllSatisfy(this.company.getCustomerNamed("Fred").getOrders(), Order::isDelivered);
         Verify.assertNoneSatisfy(this.company.getCustomerNamed("Mary").getOrders(), Order::isDelivered);
         Verify.assertAllSatisfy(this.company.getCustomerNamed("Bill").getOrders(), Order::isDelivered);

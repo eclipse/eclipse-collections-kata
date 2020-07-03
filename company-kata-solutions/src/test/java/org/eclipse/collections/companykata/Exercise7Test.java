@@ -19,6 +19,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -37,9 +38,11 @@ public class Exercise7Test extends CompanyDomainForKata
      * Create a Multimap where the keys are the names of cities and the values are the Customers from those cities.
      * A Customer is only associated to one city.
      */
+    @Ignore
     @Test
     public void customersByCity()
     {
+        // TODO: remove @Ignore annotation
         MutableListMultimap<String, Customer> multimap = null;
 
         var expectedLiphookList = Lists.mutable.with("Mary").collect(this.company::getCustomerNamed);
@@ -52,9 +55,11 @@ public class Exercise7Test extends CompanyDomainForKata
      * Create a Multimap where the keys are the names of items and the values are the Suppliers that supply them.
      * A Supplier is associated to many item names.
      */
+    @Ignore
     @Test
     public void itemsBySuppliers()
     {
+        // TODO: remove @Ignore annotation
         MutableMultimap<String, Supplier> itemsToSuppliers = null;
 
         Verify.assertIterableSize("should be 2 suppliers for sofa", 2, itemsToSuppliers.get("sofa"));
@@ -63,9 +68,11 @@ public class Exercise7Test extends CompanyDomainForKata
     /**
      * Delete this whole method when you're done. It's just a reminder.
      */
+    @Ignore
     @Test
     public void reminder()
     {
+        // TODO: remove @Ignore annotation
         Assert.fail("Refactor setUpCustomersAndOrders() in the super class to not have so much repetition.");
     }
 }

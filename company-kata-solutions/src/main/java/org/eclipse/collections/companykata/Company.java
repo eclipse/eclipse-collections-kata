@@ -10,10 +10,16 @@
 
 package org.eclipse.collections.companykata;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.IntFunction;
+
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.impl.list.mutable.ArrayListAdapter;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.junit.Assert;
 
@@ -25,8 +31,7 @@ public class Company
     private final String name;
     private final MutableList<Customer> customers = Lists.mutable.empty();
 
-    // Suppliers are array based. Refactor to a MutableList<Supplier>
-    private Supplier[] suppliers = new Supplier[0];
+    private MutableList<Supplier>suppliers = Lists.mutable.empty();
 
     public Company(String name)
     {
@@ -68,21 +73,16 @@ public class Company
      */
     public void addSupplier(Supplier supplier)
     {
-        // need to replace the current array of suppliers with another, larger array
-        // Of course, normally one would not use an array.
 
-        Supplier[] currentSuppliers = this.suppliers;
-        this.suppliers = new Supplier[currentSuppliers.length + 1];
-        System.arraycopy(currentSuppliers, 0, this.suppliers, 0, currentSuppliers.length);
-        this.suppliers[this.suppliers.length - 1] = supplier;
+        this.suppliers.add(supplier);
+
     }
 
-    public Supplier[] getSuppliers()
+    public MutableList<Supplier> getSuppliers()
     {
         return this.suppliers;
     }
-
-    /**
+        /**
      * Remove the Assert.fail() and replace the null with an appropriate implementation.
      * Use a {@link Predicate} to find a {@link Customer} with the name given.
      *

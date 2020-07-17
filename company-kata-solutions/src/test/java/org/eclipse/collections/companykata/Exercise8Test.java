@@ -153,13 +153,7 @@ public class Exercise8Test extends CompanyDomainForKata
     {
         MutableList<Customer> customersWithSaucers = this.company
                 .getCustomers()
-                .select(customer -> customer
-                        .getOrders()
-                        .anySatisfy(order -> order
-                                .getLineItems()
-                                .asLazy()
-                                .collect(LineItem::getName)
-                                .contains("saucer")));
+                .selectWith(Customer::orderedItemNamed, "saucer");
 
         Verify.assertSize("customers with saucers", 2, customersWithSaucers);
     }

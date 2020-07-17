@@ -76,4 +76,9 @@ public class Order
                 .collect(LineItem::getValue)
                 .injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
     }
+
+    public boolean containsItemNamed(String itemName)
+    {
+        return this.lineItems.containsBy(LineItem::getName, itemName);
+    }
 }

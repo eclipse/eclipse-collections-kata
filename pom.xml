@@ -89,7 +89,7 @@
     </modules>
 
     <properties>
-        <eclipse.collections.version>10.3.0.M1</eclipse.collections.version>
+        <eclipse.collections.version>10.3.0.M3</eclipse.collections.version>
         <junit.version>4.12</junit.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

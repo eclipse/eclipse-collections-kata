@@ -8,9 +8,9 @@
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
 # **What is the Pet Kata?**
-The Pet Kata is a basic a Code Kata with a set exercises that a developer can complete to familiarize themselves with a subset of the APIs available in Eclipse Collections.
+The Pet Kata is a basic Code Kata with a set exercises that a developer can complete to familiarize themselves with a subset of the APIs available in [Eclipse Collections](https://github.com/eclipse/eclipse-collections).
 
-The domain of the Pet Kata incudes the Person, Pet and PetType classes.
+The domain of the Pet Kata includes the `Person`, `Pet` and `PetType` classes.
 
 <a href="https://eclipse.github.io/eclipse-collections-kata/pet-kata/#/1"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/pet-kata/pet-domain.png" height="50%" width="50%"></a>
 

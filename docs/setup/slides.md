@@ -18,7 +18,6 @@ Learning by exercises
 
 
 ## What is Eclipse	Collections?
-<a href="https://www.eclipse.org/collections/"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/shared/eclipse-collections-logo.png" height="25%" width="25%"></a>
  
  https://www.eclipse.org/collections/
  

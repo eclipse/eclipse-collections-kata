@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2017 Goldman Sachs and others.
+  ~ Copyright (c) 2020 Goldman Sachs and others.
   ~ All rights reserved. This program and the accompanying materials
   ~ are made available under the terms of the Eclipse Public License v1.0
   ~ and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -8,8 +8,8 @@
   ~ http://www.eclipse.org/org/documents/edl-v10.php.
   -->
 <img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue;"/>
-Introduction to Kata
-============================
+
+## Introduction to Kata
 
 Learning by exercises
 
@@ -17,9 +17,9 @@ Learning by exercises
 * **Go right:** Kata set-up
 
 
-<img src="../shared/eclipse-collections-logo.png" alt="Eclipse Collections" style="width: 50%;background-color:aliceblue;"/>
-What is Eclipse	Collections?
-----------------------------
+## What is Eclipse	Collections?
+<a href="https://www.eclipse.org/collections/"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/shared/eclipse-collections-logo.png" height="25%" width="25%"></a>
+ 
  https://www.eclipse.org/collections/
  
  * The best Java collections framework ever that brings happiness to your Java development :)
@@ -28,8 +28,7 @@ What is Eclipse	Collections?
  * Memory efficient containers
 
 
-What is a Code Kata?
---------------------
+## What is a Code Kata?
  * A programming exercise which helps hone your skills through practice.
  * This one is set up as a series of unit tests which fail.
  * Your task is to make them pass, using Eclipse Collections
@@ -40,15 +39,13 @@ What is a Code Kata?
   > -- _Confucius_
 
 
-Eclipse Collections Code Kata
------------------------------
+## Eclipse Collections Code Kata
  * New concepts are introduced in the slides
  * Coding exercises are at the end of each section
 
 
 
-Set-up Eclipse Collections Kata
--------------------------------
+## Set-up Eclipse Collections Kata
  * Clone [Eclipse Collections repo](https://github.com/eclipse/eclipse-collections-kata) or simply download [master zip file](https://github.com/eclipse/eclipse-collections-kata/archive/master.zip) and extract
  * Open your IDE and import the cloned or downloaded project as a maven project.
  * Run tests under
@@ -60,8 +57,7 @@ Set-up Eclipse Collections Kata
  * The tests are expected to fail. Your task is to make them pass, using Eclipse Collections
 
 
-Start Kata
------------
+## Start Kata
  * [Pet Kata](../pet-kata)
  * [Company Kata](../company-kata)
 

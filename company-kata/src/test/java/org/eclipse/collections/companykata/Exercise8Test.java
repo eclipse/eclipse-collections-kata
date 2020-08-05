@@ -10,7 +10,7 @@
 
 package org.eclipse.collections.companykata;
 
-import java.util.Collections;
+import java.util.Comparator;
 
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
@@ -23,7 +23,6 @@ import org.eclipse.collections.api.collection.primitive.MutableDoubleCollection;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.MutableDoubleList;
 import org.eclipse.collections.api.map.MutableMap;
-import org.eclipse.collections.api.map.primitive.MutableObjectDoubleMap;
 import org.eclipse.collections.api.map.primitive.ObjectDoubleMap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.factory.Lists;
@@ -127,7 +126,7 @@ public class Exercise8Test extends CompanyDomainForKata
         MutableSortedBag<Double> orderedPrices = null;
 
         var expectedPrices = SortedBags.mutable.with(
-                Collections.reverseOrder(), 500.0, 150.0, 120.0, 75.0, 50.0, 50.0, 12.5);
+                Comparator.reverseOrder(), 500.0, 150.0, 120.0, 75.0, 50.0, 50.0, 12.5);
         Verify.assertSortedBagsEqual(expectedPrices, orderedPrices);
     }
 

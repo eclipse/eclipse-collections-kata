@@ -10,7 +10,6 @@
 
 package org.eclipse.collections.companykata;
 
-import java.util.Collections;
 import java.util.Comparator;
 
 import org.eclipse.collections.api.RichIterable;
@@ -141,7 +140,7 @@ public class Exercise8Test extends CompanyDomainForKata
                 .toSortedBag(Comparator.reverseOrder());
 
         var expectedPrices = SortedBags.mutable.with(
-                Collections.reverseOrder(), 500.0, 150.0, 120.0, 75.0, 50.0, 50.0, 12.5);
+                Comparator.reverseOrder(), 500.0, 150.0, 120.0, 75.0, 50.0, 50.0, 12.5);
         Verify.assertSortedBagsEqual(expectedPrices, orderedPrices);
     }
 

@@ -122,7 +122,7 @@ public class Exercise6Test extends CompanyDomainForKata
     @Test
     public void supplierNamesAsTildeDelimitedString()
     {
-        String tildeSeparatedNames = ArrayAdapter.adapt(this.company.getSuppliers())
+        String tildeSeparatedNames = this.company.getSuppliers()
                 .collect(Supplier::getName)
                 .makeString("~");
 

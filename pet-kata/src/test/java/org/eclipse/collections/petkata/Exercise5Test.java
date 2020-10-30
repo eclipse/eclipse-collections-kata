@@ -21,8 +21,8 @@ import org.eclipse.collections.api.set.primitive.MutableIntSet;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class Exercise5Test extends PetDomainForKata
 {
@@ -38,15 +38,15 @@ public class Exercise5Test extends PetDomainForKata
     public void getOldestPet()
     {
         Pet oldestPet = null;
-        Assert.assertEquals(PetType.DOG, oldestPet.getType());
-        Assert.assertEquals(4, oldestPet.getAge());
+        Assertions.assertEquals(PetType.DOG, oldestPet.getType());
+        Assertions.assertEquals(4, oldestPet.getAge());
     }
 
     @Test
     public void getAveragePetAge()
     {
         double averagePetAge = 0;
-        Assert.assertEquals(1.8888888888888888, averagePetAge, 0.00001);
+        Assertions.assertEquals(1.8888888888888888, averagePetAge, 0.00001);
     }
 
     @Test
@@ -56,13 +56,13 @@ public class Exercise5Test extends PetDomainForKata
         MutableIntSet petAges = IntSets.mutable.with(5);
 
         var expectedSet = IntSets.mutable.with(1, 2, 3, 4, 5);
-        Assert.assertEquals(expectedSet, petAges);
+        Assertions.assertEquals(expectedSet, petAges);
     }
 
     @Test
     public void refactorToEclipseCollections()
     {
-        Assert.fail("Refactor to Eclipse Collections");
+        Assertions.fail("Refactor to Eclipse Collections");
 
         // Replace List and ArrayList with Eclipse Collections types
         var people = new ArrayList<Person>();
@@ -91,6 +91,6 @@ public class Exercise5Test extends PetDomainForKata
 
         //extra bonus - convert to a primitive collection
         var expectedSet = Sets.mutable.with(1, 2, 3, 4);
-        Assert.assertEquals("Extra Credit - convert to a primitive collection", expectedSet, petAges);
+        Assertions.assertEquals(expectedSet, petAges, "Extra Credit - convert to a primitive collection");
     }
 }

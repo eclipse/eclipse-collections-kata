@@ -15,8 +15,8 @@ import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * In the slides leading up to this exercise you should have learned about the following APIs.
@@ -35,7 +35,7 @@ public class Exercise1Test extends PetDomainForKata
         MutableList<String> firstNames = null; // this.people...
 
         var expectedFirstNames = Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
-        Assert.assertEquals(expectedFirstNames, firstNames);
+        Assertions.assertEquals(expectedFirstNames, firstNames);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class Exercise1Test extends PetDomainForKata
         // Replace null, with a transformation method on MutableList.
         MutableList<String> names = null; // pets...
 
-        Assert.assertEquals("Tabby", names.makeString());
+        Assertions.assertEquals("Tabby", names.makeString());
     }
 
     @Test

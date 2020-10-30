@@ -16,8 +16,8 @@ import org.eclipse.collections.api.set.primitive.MutableIntSet;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class Exercise5Test extends PetDomainForKata {
     @Test
@@ -35,8 +35,8 @@ public class Exercise5Test extends PetDomainForKata {
                 .flatCollect(Person::getPets)
                 .maxBy(pet -> pet.getAge());
 
-        Assert.assertEquals(PetType.DOG, oldestPet.getType());
-        Assert.assertEquals(4, oldestPet.getAge());
+        Assertions.assertEquals(PetType.DOG, oldestPet.getType());
+        Assertions.assertEquals(4, oldestPet.getAge());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class Exercise5Test extends PetDomainForKata {
                 .collectDouble(pet -> pet.getAge())
                 .average();
 
-        Assert.assertEquals(1.8888888888888888, averagePetAge, 0.00001);
+        Assertions.assertEquals(1.8888888888888888, averagePetAge, 0.00001);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class Exercise5Test extends PetDomainForKata {
                 .collectInt(pet -> pet.getAge(), petAges);
 
         var expected = IntSets.mutable.with(1, 2, 3, 4, 5);
-        Assert.assertEquals(expected, petAges);
+        Assertions.assertEquals(expected, petAges);
     }
 
     @Test
@@ -84,6 +84,6 @@ public class Exercise5Test extends PetDomainForKata {
 
         //extra bonus - convert to a primitive collection
         var expected = IntSets.mutable.with(1, 2, 3, 4);
-        Assert.assertEquals(expected, petAges);
+        Assertions.assertEquals(expected, petAges);
     }
 }

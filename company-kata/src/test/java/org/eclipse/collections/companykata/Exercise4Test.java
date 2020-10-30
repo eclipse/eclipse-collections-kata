@@ -22,8 +22,8 @@ import org.eclipse.collections.impl.factory.primitive.DoubleLists;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.eclipse.collections.impl.utility.ListIterate;
 import org.eclipse.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -56,7 +56,7 @@ public class Exercise4Test extends CompanyDomainForKata
                 "Furniture Hamlet",
                 "SFD",
                 "Doxins");
-        Assert.assertEquals(expectedSupplierNames, supplierNames);
+        Assertions.assertEquals(expectedSupplierNames, supplierNames);
     }
 
     /**
@@ -69,7 +69,7 @@ public class Exercise4Test extends CompanyDomainForKata
         Predicate<Supplier> moreThanTwoItems = null;
         int suppliersWithMoreThanTwoItems = 0;
 
-        Assert.assertEquals("suppliers with more than 2 items", 5, suppliersWithMoreThanTwoItems);
+        Assertions.assertEquals(5, suppliersWithMoreThanTwoItems, "suppliers with more than 2 items");
     }
 
     /**
@@ -84,8 +84,8 @@ public class Exercise4Test extends CompanyDomainForKata
         // Find one supplier that supplies toasters.
         Supplier toasterSupplier = null;
 
-        Assert.assertNotNull("toaster supplier", toasterSupplier);
-        Assert.assertEquals("Doxins", toasterSupplier.getName());
+        Assertions.assertNotNull(toasterSupplier, "toaster supplier");
+        Assertions.assertEquals("Doxins", toasterSupplier.getName());
     }
 
     /**
@@ -99,7 +99,7 @@ public class Exercise4Test extends CompanyDomainForKata
         MutableList<Double> filtered = null;
 
         var expectedValues = Lists.mutable.with(372.5, 1.75);
-        Assert.assertEquals(expectedValues, filtered);
+        Assertions.assertEquals(expectedValues, filtered);
     }
 
     /**
@@ -113,7 +113,7 @@ public class Exercise4Test extends CompanyDomainForKata
         MutableDoubleList filtered = null;
 
         var expectedValues = DoubleLists.mutable.with(372.5, 1.75);
-        Assert.assertEquals(expectedValues, filtered);
+        Assertions.assertEquals(expectedValues, filtered);
     }
 
     /**
@@ -126,6 +126,6 @@ public class Exercise4Test extends CompanyDomainForKata
         MutableList<Order> filtered = null;
 
         var expectedOrders = Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders()));
-        Assert.assertEquals(expectedOrders, filtered);
+        Assertions.assertEquals(expectedOrders, filtered);
     }
 }

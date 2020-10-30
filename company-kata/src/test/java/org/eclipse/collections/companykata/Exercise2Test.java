@@ -16,8 +16,8 @@ import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -51,15 +51,15 @@ public class Exercise2Test extends CompanyDomainForKata
         Predicate<Customer> predicate = null;
 
         String predicateClass = predicate.getClass().getSimpleName();
-        Assert.assertTrue(
-                "Solution should use Predicates.attributeEquals() or a lambda but used " + predicateClass,
-                "AttributePredicate".equals(predicateClass) || predicateClass.startsWith("Exercise2Test$$Lambda"));
+        Assertions.assertTrue(
+                "AttributePredicate".equals(predicateClass) || predicateClass.startsWith("Exercise2Test$$Lambda"),
+                "Solution should use Predicates.attributeEquals() or a lambda but used " + predicateClass);
 
         Customer customerFromLondon = new Customer("test customer", "London");
 
-        Assert.assertTrue(
-                "predicate should accept Customers where city is London",
-                predicate.accept(customerFromLondon));
+        Assertions.assertTrue(
+                predicate.accept(customerFromLondon),
+                "predicate should accept Customers where city is London");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         boolean anyCustomersFromLondon = false;
 
-        Assert.assertTrue(anyCustomersFromLondon);
+        Assertions.assertTrue(anyCustomersFromLondon);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         boolean allCustomersFromLondon = true;
 
-        Assert.assertFalse(allCustomersFromLondon);
+        Assertions.assertFalse(allCustomersFromLondon);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         int numberOfCustomerFromLondon = 0;
 
-        Assert.assertEquals("Should be 2 London customers", 2, numberOfCustomerFromLondon);
+        Assertions.assertEquals(2, numberOfCustomerFromLondon, "Should be 2 London customers");
     }
 
     @Test
@@ -122,7 +122,7 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         Customer mary = this.company.getCustomerNamed("Mary");
 
-        Assert.assertEquals("customer's name should be Mary", "Mary", mary.getName());
+        Assertions.assertEquals("customer's name should be Mary", "Mary", mary.getName());
     }
 
     /**
@@ -133,6 +133,6 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         Customer pete = this.company.getCustomerNamed("Pete");
 
-        Assert.assertNull("Should be null as there is no customer called Pete", pete);
+        Assertions.assertNull(pete, "Should be null as there is no customer called Pete");
     }
 }

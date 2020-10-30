@@ -24,8 +24,8 @@ import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.factory.Multimaps;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * In the slides leading up to this exercise you should have learned about the following APIs.
@@ -49,12 +49,12 @@ public class Exercise3Test extends PetDomainForKata
         MutableBag<PetType> counts =
                 this.people.flatCollect(Person::getPets).countBy(Pet::getType);
 
-        Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
-        Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
-        Assert.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
-        Assert.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
-        Assert.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
-        Assert.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
+        Assertions.assertEquals(2, counts.occurrencesOf(PetType.CAT));
+        Assertions.assertEquals(2, counts.occurrencesOf(PetType.DOG));
+        Assertions.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
+        Assertions.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
+        Assertions.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
+        Assertions.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
     }
 
     @Test

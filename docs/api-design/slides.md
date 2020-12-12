@@ -230,7 +230,95 @@ Object vs. Primitive Performance
 
 
 
-New in Eclipse Collections 9.2
+Eclipse Collections 10.4.0
+------------------------------
+* Mandatory fixes to make the library compatible with [JDK-15](https://stuartmarks.wordpress.com/2020/09/22/incompatibilities-with-jdk-15-charsequence-isempty/).
+
+
+Eclipse Collections 10.3.0 - (1) 
+------------------------------
+* RichIterable
+    * [```containsBy```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/RichIterable.html#containsBy%28org.eclipse.collections.api.block.function.Function,V%29)
+* ListIterable
+    * [```forEachInBoth```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/list/ListIterable.html#forEachInBoth%28org.eclipse.collections.api.list.ListIterable,org.eclipse.collections.api.block.procedure.Procedure2%29)
+* Bags
+    * [```ofOccurrences```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/factory/bag/MutableBagFactory.html#ofOccurrences%28org.eclipse.collections.api.tuple.primitive.ObjectIntPair...%29)
+    * [```withOccurrences```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/factory/bag/MutableBagFactory.html#withOccurrences%28org.eclipse.collections.api.tuple.primitive.ObjectIntPair...%29)
+* MapIterable
+    * [```getOrDefault```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/map/MapIterable.html#getOrDefault%28java.lang.Object,V%29)
+    * [```aggregateBy```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/map/MapIterable.html#aggregateBy%28org.eclipse.collections.api.block.function.Function,org.eclipse.collections.api.block.function.Function,org.eclipse.collections.api.block.function.Function0,org.eclipse.collections.api.block.function.Function2%29)
+* MutableMap
+    * [```withMap```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/map/MutableMap.html#withMap%28java.util.Map%29)
+
+
+Eclipse Collections 10.3.0 - (2)
+-------------------------------
+* MutablePrimitiveList
+    * [```shuffleThis```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/list/primitive/MutableIntList.html#shuffleThis%28%29)
+    * [```swap```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/list/primitive/MutableIntList.html#swap%28int,int%29)
+    * [```sortThis```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/list/primitive/MutableIntList.html#sortThis%28%29)
+    * [```sortThisBy```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/list/primitive/MutableIntList.html#sortThisBy%28org.eclipse.collections.api.block.function.primitive.IntToObjectFunction%29)
+* PrimitiveIterable
+    * [```toArray```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/IntIterable.html#toArray%28%29)
+* IntInterval
+    * [```subList```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/impl/list/primitive/IntInterval.html#subList%28int,int%29)
+    * [```fromToExclusive```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/impl/list/Interval.html#fromToExclusive%28int,int%29)
+* Implemented singly-linked ImmutableStack.
+* Implemented [```LongInterval```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/impl/list/primitive/LongInterval.html).
+* Implemented [```Triple```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/tuple/Triple.html).
+* Implemented Tuples.identicalTwin(), Tuples.identicalTriplet().
+* Implemented ```withInitialCapacity``` in PrimitiveLists and PrimitiveSets
+
+
+Eclipse Collections 10.2.0
+------------------------------
+* Exposed the ```allocateTable``` method as ```protected``` in Primitive Maps and Primitive Sets.
+
+
+Eclipse Collections 10.1.0
+------------------------------
+* RichIterable
+    * [```groupByAndCollect```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/RichIterable.html#groupByAndCollect%28org.eclipse.collections.api.block.function.Function,org.eclipse.collections.api.block.function.Function,R%29)
+* Implemented NoopProcedure.   
+
+
+Eclipse Collections 10.0.0 - (1)
+------------------------------
+* RichIterable
+    * [```getAny```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/RichIterable.html#getAny%28%29)
+    * [```toMap```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/RichIterable.html#toMap%28org.eclipse.collections.api.block.function.Function,org.eclipse.collections.api.block.function.Function,R%29) 
+    * [```toBiMap```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/RichIterable.html#toBiMap%28org.eclipse.collections.api.block.function.Function,org.eclipse.collections.api.block.function.Function%29) 
+    * [```countByEach```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/RichIterable.html#countByEach%28org.eclipse.collections.api.block.function.Function%29) 
+* MutableMapIterable
+    * [```removeIf```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/map/MutableMapIterable.html#removeIf%28org.eclipse.collections.api.block.predicate.Predicate2%29)
+    * [```removeAllKeys```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/map/MutableMapIterable.html#removeAllKeys%28java.util.Set%29)
+* Bag
+    * [```collectWithOccurrences```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/bag/Bag.html#collectWithOccurrences%28org.eclipse.collections.api.block.function.primitive.ObjectIntToObjectFunction%29)
+* Multimap   
+    * [```collectKeyMultiValues```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/multimap/Multimap.html#collectKeyMultiValues%28org.eclipse.collections.api.block.function.Function,org.eclipse.collections.api.block.function.Function%29)   
+    * [```getIfAbsentPutAll```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/multimap/MutableMultimap.html#getIfAbsentPutAll%28K,java.lang.Iterable%29)
+
+
+Eclipse Collections 10.0.0 - (2)
+------------------------------
+* UnifiedSetWithHashingStrategy
+    * [```addOrReplace```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/impl/set/strategy/mutable/UnifiedSetWithHashingStrategy.html#addOrReplace%28T%29)
+* PrimitiveIterable
+    * [```reduce```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/IntIterable.html#reduce%28org.eclipse.collections.api.block.function.primitive.LongIntToLongFunction%29)
+    * [```reduceIfEmpty```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/IntIterable.html#reduceIfEmpty%28org.eclipse.collections.api.block.function.primitive.LongIntToLongFunction,long%29)
+* PrimitiveList
+    * [```primitiveStream```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/list/primitive/IntList.html#primitiveStream%28%29)
+* PrimitiveMap
+    * [```updateValues```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/api/bag/Bag.html#collectWithOccurrences%28org.eclipse.collections.api.block.function.primitive.ObjectIntToObjectFunction%29)
+* LazyIterate
+    * [```cartesianProduct```](https://www.eclipse.org/collections/javadoc/10.4.0/org/eclipse/collections/impl/utility/LazyIterate.html#cartesianProduct%28java.lang.Iterable,java.lang.Iterable%29)
+* Added ability to create ObjectPrimitiveMap, PrimitiveObjectMap, PrimitivePrimitiveMap from Iterable.
+* Implemented factory methods to convert Iterable<BoxedPrimitive> to PrimitiveList, PrimitiveSet, PrimitiveBag, PrimitiveStack.
+* Implemented fromStream(Stream) on Mutable Collection Factories and Immutable Collection Factories.
+* Implemented ofInitialCapacity() and withInitialCapacity() to Primitive Map Factories and in HashingStrategySets.
+
+
+Eclipse Collections 9.2
 ------------------------------
 * RichIterable
     * [```flatCollectWith```](http://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/RichIterable.html#flatCollectWith-org.eclipse.collections.api.block.function.Function2-P-)
@@ -247,7 +335,7 @@ New in Eclipse Collections 9.2
 * ```MultiReader``` factories on ```Sets``` and ```Bags```
 
 
-New in Eclipse Collections 9.1
+Eclipse Collections 9.1
 ------------------------------
 * [```collectWithIndex```](http://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/ordered/OrderedIterable.html#collectWithIndex-org.eclipse.collections.api.block.function.primitive.ObjectIntToObjectFunction-R-)
 * [```zip```](http://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/api/list/primitive/IntList.html#zip-java.lang.Iterable-) (primitive lists)
@@ -261,7 +349,7 @@ New in Eclipse Collections 9.1
 * New Factory class for [```Strings```](http://www.eclipse.org/collections/javadoc/10.0.0/org/eclipse/collections/impl/factory/Strings.html)
 
 
-New in Eclipse Collections 9.0
+Eclipse Collections 9.0
 ------------------------------
 * Java 9
   * Automatic Module Naming

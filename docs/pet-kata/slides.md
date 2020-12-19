@@ -909,26 +909,26 @@ public void getAgeStatisticsOfPets()
 {
   // Try to use a MutableIntList here instead
   // Hints: flatMap = flatCollect, map = collect, mapToInt = collectInt
-  MutableIntList petAges = this.people
-      .flatCollect(Person::getPets)
-      .collectInt(Pet::getAge);
+  var petAges = this.people
+          .flatCollect(Person::getPets)
+          .collectInt(Pet::getAge);
 
   // Try to use an IntSet here instead
   IntSet uniqueAges = petAges.toSet();
 
   // IntSummaryStatistics is a class in JDK 8 - Try and use it with MutableIntList.forEach().
-  IntSummaryStatistics stats = new IntSummaryStatistics();
-  petAges.forEach(stats::accept);
-
+  var stats = new IntSummaryStatistics();
+  var expected = IntSets.immutable.of(1, 2, 3, 4);
+  
   // Is a Set<Integer> equal to an IntSet?
   // Hint: Try IntSets instead of Sets as the factory
-  Assert.assertEquals(IntSets.immutable.of(1, 2, 3, 4), uniqueAges);
+  Assert.assertEquals(expected, uniqueAges);
 
   // Try to leverage min, max, sum, average from the Eclipse Collections Primitive API
-  Assert.assertEquals(stats.getMin(), petAges.min());
-  Assert.assertEquals(stats.getMax(), petAges.max());
+  Assert.assertEquals(stats.getMin(), petAges.minIfEmpty(0));
+  Assert.assertEquals(stats.getMax(), petAges.maxIfEmpty(0));
   Assert.assertEquals(stats.getSum(), petAges.sum());
-  Assert.assertEquals(stats.getAverage(), petAges.average(), 0.0);
+  Assert.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0), 0.0);
   Assert.assertEquals(stats.getCount(), petAges.size());
 
   // Hint: Match = Satisfy
@@ -967,17 +967,17 @@ Stream to EC refactor #2
 public void streamsToECRefactor2()
 {
   // Hint: Try to replace the Map<PetType, Long> with a Bag<PetType>
-  MutableBag<PetType> counts = this.people
+  MutableBag<PetType> petTypes = this.people
     .asUnmodifiable()
     .flatCollect(Person::getPets)
     .countBy(Pet::getType);
 
-  Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
-  Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
-  Assert.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
-  Assert.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
-  Assert.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
-  Assert.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
+  Assert.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
+  Assert.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
+  Assert.assertEquals(2, petTypes.occurrencesOf(PetType.HAMSTER));
+  Assert.assertEquals(1, petTypes.occurrencesOf(PetType.SNAKE));
+  Assert.assertEquals(1, petTypes.occurrencesOf(PetType.TURTLE));
+  Assert.assertEquals(1, petTypes.occurrencesOf(PetType.BIRD));
 }
 ```
 
@@ -990,7 +990,7 @@ public void streamsToECRefactor3()
 {
   // Hint: The result of groupingBy/counting can almost always be replaced by a Bag
   // Hint: Look for the API on Bag that might return the top 3 pet types
-  MutableList<ObjectIntPair<PetType>> favorites = this.people
+  var favorites = this.people
     .flatCollect(Person::getPets)
     .countBy(Pet::getType)
     .topOccurrences(3);

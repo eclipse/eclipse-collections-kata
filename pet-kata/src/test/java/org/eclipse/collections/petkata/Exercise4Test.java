@@ -69,6 +69,8 @@ public class Exercise4Test extends PetDomainForKata
         Assert.assertEquals(stats.getCount(), petAges.size());
 
         // Hint: JDK xyzMatch = Eclipse Collections xyzSatisfy
+        // Use IntPredicates, lambda or both?
+        // Is it possible to add a test in order to determine the average without using stats?
         Assert.assertTrue(petAges.stream().allMatch(i -> i > 0));
         Assert.assertFalse(petAges.stream().anyMatch(i -> i == 0));
         Assert.assertTrue(petAges.stream().noneMatch(i -> i < 0));

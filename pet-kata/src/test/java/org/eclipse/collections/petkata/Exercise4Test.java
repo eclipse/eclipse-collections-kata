@@ -53,7 +53,7 @@ public class Exercise4Test extends PetDomainForKata
         // Try to use an IntSet here instead
         var uniqueAges = Set.copyOf(petAges);
 
-        // IntSummaryStatistics is a class in JDK 8 - Try IntList.summaryStatistics
+        // IntSummaryStatistics is a class in JDK 8 - Look at MutableIntList.summaryStatistics().
         var stats = petAges.stream().mapToInt(Integer::intValue).summaryStatistics();
 
         // Is a Set<Integer> equal to an IntSet?

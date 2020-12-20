@@ -909,16 +909,16 @@ public void getAgeStatisticsOfPets()
 {
   // Try to use a MutableIntList here instead
   // Hints: flatMap = flatCollect, map = collect, mapToInt = collectInt
-  var petAges = this.people
-          .flatCollect(Person::getPets)
-          .collectInt(Pet::getAge);
+  MutableIntList petAges = this.people
+      .flatCollect(Person::getPets)
+      .collectInt(Pet::getAge);
 
   // Try to use an IntSet here instead
   IntSet uniqueAges = petAges.toSet();
 
-  // IntSummaryStatistics is a class in JDK 8 - Try and use it with MutableIntList.forEach().
-  var stats = new IntSummaryStatistics();
-  var expected = IntSets.immutable.of(1, 2, 3, 4);
+  // IntSummaryStatistics is a class in JDK 8 - Look at MutableIntList.summaryStatistics().
+  IntSummaryStatistics stats = petAges.summaryStatistics();
+  ImmutableIntSet expected = IntSets.immutable.of(1, 2, 3, 4);
   
   // Is a Set<Integer> equal to an IntSet?
   // Hint: Try IntSets instead of Sets as the factory
@@ -990,7 +990,7 @@ public void streamsToECRefactor3()
 {
   // Hint: The result of groupingBy/counting can almost always be replaced by a Bag
   // Hint: Look for the API on Bag that might return the top 3 pet types
-  var favorites = this.people
+  MutableList<ObjectIntPair<PetType>> favorites = this.people
     .flatCollect(Person::getPets)
     .countBy(Pet::getType)
     .topOccurrences(3);

@@ -53,7 +53,7 @@ public class Exercise4Test extends PetDomainForKata
         // Try to use an IntSet here instead
         var uniqueAges = Set.copyOf(petAges);
 
-        // IntSummaryStatistics is a class in JDK 8 - Try IntList.summaryStatistics
+        // IntSummaryStatistics is a class in JDK 8 - Look at MutableIntList.summaryStatistics().
         var stats = petAges.stream().mapToInt(Integer::intValue).summaryStatistics();
 
         // Is a Set<Integer> equal to an IntSet?
@@ -69,6 +69,8 @@ public class Exercise4Test extends PetDomainForKata
         Assert.assertEquals(stats.getCount(), petAges.size());
 
         // Hint: JDK xyzMatch = Eclipse Collections xyzSatisfy
+        // Use IntPredicates, lambda or both?
+        // Is it possible to add a test in order to determine the average without using stats?
         Assert.assertTrue(petAges.stream().allMatch(i -> i > 0));
         Assert.assertFalse(petAges.stream().anyMatch(i -> i == 0));
         Assert.assertTrue(petAges.stream().noneMatch(i -> i < 0));

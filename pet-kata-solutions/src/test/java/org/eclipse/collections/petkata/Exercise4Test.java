@@ -43,10 +43,10 @@ public class Exercise4Test extends PetDomainForKata
         var expected = IntSets.immutable.of(1, 2, 3, 4);
         Assert.assertEquals(expected, uniqueAges);
 
-        Assert.assertEquals(stats.getMin(), petAges.min());
-        Assert.assertEquals(stats.getMax(), petAges.max());
+        Assert.assertEquals(stats.getMin(), petAges.minIfEmpty(0));
+        Assert.assertEquals(stats.getMax(), petAges.maxIfEmpty(0));
         Assert.assertEquals(stats.getSum(), petAges.sum());
-        Assert.assertEquals(stats.getAverage(), petAges.average(), 0.0);
+        Assert.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0), 0.0);
         Assert.assertEquals(stats.getCount(), petAges.size());
 
         Assert.assertTrue(petAges.allSatisfy(IntPredicates.greaterThan(0)));

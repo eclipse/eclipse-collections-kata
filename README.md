@@ -60,6 +60,7 @@ There are three separate katas under different directories:
 1. [Pet Kata](pet-kata)
 1. [Company Kata](company-kata)
 1. [Candy Kata](candy-kata)
+1. [Converter Method Kata](converter-method-kata)
 
 To get started, you can refer to slides for the [Instruction and Pet Kata](http://eclipse.github.io/eclipse-collections-kata/) to learn how to set-up Kata, basic features of Eclipse Collections corresponding to each Pet Kata exercise and then solutions. 
 Check out the [pet kata solutions module tests](https://github.com/eclipse/eclipse-collections-kata/tree/master/pet-kata-solutions/src/test/java/org/eclipse/collections/petkata) for your reference.

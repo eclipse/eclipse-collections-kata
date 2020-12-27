@@ -21,6 +21,8 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static java.lang.Math.abs;
+
 /**
  * In this set of tests, wherever you see .stream() replace it with an Eclipse Collections alternative.
  * <p/>
@@ -70,7 +72,6 @@ public class Exercise4Test extends PetDomainForKata
 
         // Hint: JDK xyzMatch = Eclipse Collections xyzSatisfy
         // Use IntPredicates, lambda or both?
-        // Is it possible to add a test in order to determine the average without using stats?
         Assert.assertTrue(petAges.stream().allMatch(i -> i > 0));
         Assert.assertFalse(petAges.stream().anyMatch(i -> i == 0));
         Assert.assertTrue(petAges.stream().noneMatch(i -> i < 0));
@@ -143,5 +144,39 @@ public class Exercise4Test extends PetDomainForKata
         Verify.assertContains(new AbstractMap.SimpleEntry<>(PetType.CAT, Long.valueOf(2)), favorites);
         Verify.assertContains(new AbstractMap.SimpleEntry<>(PetType.DOG, Long.valueOf(2)), favorites);
         Verify.assertContains(new AbstractMap.SimpleEntry<>(PetType.HAMSTER, Long.valueOf(2)), favorites);
+    }
+
+    @Test
+    public void getMedianOfPetAges()
+    {
+        Assert.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+
+        // Try to use a MutableIntList here instead
+        // Hints: flatMap = flatCollect, map = collect, mapToInt = collectInt
+        var petAges = this.people
+                .stream()
+                .map(Person::getPets)
+                .flatMap(List::stream)
+                .mapToInt(Pet::getAge)
+                .boxed()
+                .collect(Collectors.toList());
+
+        // Try to refactor the code block finding the median the JDK way
+        // Use the EC median method
+        var sortedPetAges = petAges.stream().sorted().collect(Collectors.toList());
+
+        double median;
+        if (0 == sortedPetAges.size() % 2)
+        {
+            // The median of a list of even numbers is the average of the two middle items
+            median = sortedPetAges.stream().skip((sortedPetAges.size() / 2) - 1).limit(2L).mapToInt(i -> i).average().getAsDouble();
+        }
+        else
+        {
+            // The median of a list of odd numbers is the middle item
+            median = sortedPetAges.get(abs(sortedPetAges.size() / 2)).doubleValue();
+        }
+
+        Assert.assertEquals(2.0, median, 0.0);
     }
 }

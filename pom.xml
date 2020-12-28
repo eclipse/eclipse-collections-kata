@@ -83,9 +83,11 @@
         <module>company-kata</module>
         <module>pet-kata</module>
         <module>candy-kata</module>
+        <module>converter-method-kata</module>
         <module>pet-kata-solutions</module>
         <module>candy-kata-solutions</module>
         <module>company-kata-solutions</module>
+        <module>converter-method-kata-solutions</module>
     </modules>
 
     <properties>

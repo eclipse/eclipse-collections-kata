@@ -1003,6 +1003,21 @@ public void streamsToECRefactor3()
 ```
 
 
+Get median of pet ages
+----------------------
+```java
+@Test
+public void getMedianOfPetAges()
+{
+  var petAges = this.people
+    .flatCollect(Person::getPets)
+    .collectInt(Pet::getAge);
+
+   Assert.assertEquals(2.0d, petAges.median(), 0.0);
+}
+```
+
+
 
 Exercise 5
 ==========

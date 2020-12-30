@@ -11,19 +11,13 @@
 package org.eclipse.collections.petkata;
 
 import org.eclipse.collections.api.bag.MutableBag;
-import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.api.list.primitive.MutableIntList;
-import org.eclipse.collections.api.set.primitive.ImmutableIntSet;
 import org.eclipse.collections.api.set.primitive.IntSet;
-import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.IntSummaryStatistics;
 
 /**
  * In this set of tests, wherever you see .stream() replace it with an Eclipse Collections alternative.
@@ -53,7 +47,6 @@ public class Exercise4Test extends PetDomainForKata
         Assert.assertTrue(petAges.allSatisfy(i -> i > 0));
         Assert.assertFalse(petAges.anySatisfy(i -> i == 0));
         Assert.assertTrue(petAges.noneSatisfy(i -> i < 0));
-        Assert.assertEquals(2.0d, petAges.median(), 0.0);
     }
 
     @Test
@@ -101,5 +94,15 @@ public class Exercise4Test extends PetDomainForKata
         Verify.assertContains(PrimitiveTuples.pair(PetType.CAT, 2), favorites);
         Verify.assertContains(PrimitiveTuples.pair(PetType.DOG, 2), favorites);
         Verify.assertContains(PrimitiveTuples.pair(PetType.HAMSTER, 2), favorites);
+    }
+
+    @Test
+    public void getMedianOfPetAges()
+    {
+        var petAges = this.people
+                .flatCollect(Person::getPets)
+                .collectInt(Pet::getAge);
+
+        Assert.assertEquals(2.0d, petAges.median(), 0.0);
     }
 }

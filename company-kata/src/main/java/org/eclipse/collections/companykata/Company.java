@@ -92,7 +92,7 @@ public class Company
      * Remove the Assert.fail() and replace the null with an appropriate implementation.
      * Use a {@link Predicate} to find a {@link Customer} with the name given.
      *
-     * @see org.eclipse.collections.api.RichIterable#flatCollect(Function)
+     * @see org.eclipse.collections.api.RichIterable#detect(Predicate)
      */
     public Customer getCustomerNamed(String name)
     {

@@ -55,7 +55,7 @@ In the "Open Project" dialog you might select the option "Open Required Projects
 
 Work on Kata exercises
 ----------------------
-There are three separate katas under different directories:
+There are four separate katas under different directories:
 
 1. [Pet Kata](pet-kata)
 1. [Company Kata](company-kata)

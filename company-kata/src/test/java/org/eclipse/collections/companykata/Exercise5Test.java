@@ -23,8 +23,8 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.primitive.DoubleLists;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.Iterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -50,7 +50,7 @@ public class Exercise5Test extends CompanyDomainForKata
         MutableList<Double> filtered = orderValues.select(Predicates.greaterThan(1.5));
 
         var expectedValues = Lists.mutable.with(372.5, 1.75);
-        Assert.assertEquals(expectedValues, filtered);
+        Assertions.assertEquals(expectedValues, filtered);
         Verify.assertInstanceOf(MutableList.class, this.company.getMostRecentCustomer().getOrders());
         this.company.getMostRecentCustomer().getOrders().add(null);
         Verify.assertContains("Don't return a copy from Customer.getOrders(). The field should be a MutableList.", null, this.company.getMostRecentCustomer().getOrders());
@@ -67,7 +67,7 @@ public class Exercise5Test extends CompanyDomainForKata
         MutableDoubleList filtered = orderValues.select(DoublePredicates.greaterThan(1.5));
 
         var expectedValues = DoubleLists.mutable.with(372.5, 1.75);
-        Assert.assertEquals(expectedValues, filtered);
+        Assertions.assertEquals(expectedValues, filtered);
     }
 
     /**
@@ -82,7 +82,7 @@ public class Exercise5Test extends CompanyDomainForKata
         MutableList<Order> filtered = null;
 
         var expectedValues = Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders()));
-        Assert.assertEquals(expectedValues, filtered);
+        Assertions.assertEquals(expectedValues, filtered);
         Verify.assertInstanceOf(MutableList.class, this.company.getMostRecentCustomer().getOrders());
         this.company.getMostRecentCustomer().getOrders().add(null);
         Verify.assertContains("Don't return a copy from Customer.getOrders(). The field should be a MutableList.", null, this.company.getMostRecentCustomer().getOrders());

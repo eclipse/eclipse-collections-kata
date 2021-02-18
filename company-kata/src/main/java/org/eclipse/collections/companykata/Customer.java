@@ -14,7 +14,7 @@ import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.function.AddFunction;
 import org.eclipse.collections.impl.utility.ListIterate;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
 import java.util.List;

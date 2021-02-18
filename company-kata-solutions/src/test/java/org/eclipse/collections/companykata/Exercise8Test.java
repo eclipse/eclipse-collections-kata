@@ -28,8 +28,8 @@ import org.eclipse.collections.api.multimap.Multimap;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.SortedBags;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -65,8 +65,8 @@ public class Exercise8Test extends CompanyDomainForKata
                 .aggregateBy(Customer::getCity, zeroValueFactory, aggregator);
 
         Verify.assertSize(2, map);
-        Assert.assertEquals(Double.valueOf(446.25), map.get("London"));
-        Assert.assertEquals(Double.valueOf(857.0), map.get("Liphook"));
+        Assertions.assertEquals(Double.valueOf(446.25), map.get("London"));
+        Assertions.assertEquals(Double.valueOf(857.0), map.get("Liphook"));
     }
 
     /**
@@ -82,8 +82,8 @@ public class Exercise8Test extends CompanyDomainForKata
                 .sumByDouble(Customer::getCity, Customer::getTotalOrderValue);
 
         Verify.assertSize(2, map);
-        Assert.assertEquals(446.25, map.get("London"), 0.0);
-        Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
+        Assertions.assertEquals(446.25, map.get("London"), 0.0);
+        Assertions.assertEquals(857.0, map.get("Liphook"), 0.0);
     }
 
     /**
@@ -103,8 +103,8 @@ public class Exercise8Test extends CompanyDomainForKata
                 .aggregateBy(LineItem::getName, zeroValueFactory, aggregator);
 
         Verify.assertSize(12, map);
-        Assert.assertEquals(Double.valueOf(100.0), map.get("shed"));
-        Assert.assertEquals(Double.valueOf(10.5), map.get("cup"));
+        Assertions.assertEquals(Double.valueOf(100.0), map.get("shed"));
+        Assertions.assertEquals(Double.valueOf(10.5), map.get("cup"));
     }
 
     /**
@@ -121,8 +121,8 @@ public class Exercise8Test extends CompanyDomainForKata
                 .sumByDouble(LineItem::getName, LineItem::getValue);
 
         Verify.assertSize(12, map);
-        Assert.assertEquals(100.0, map.get("shed"), 0.0);
-        Assert.assertEquals(10.5, map.get("cup"), 0.0);
+        Assertions.assertEquals(100.0, map.get("shed"), 0.0);
+        Assertions.assertEquals(10.5, map.get("cup"), 0.0);
     }
 
     /**
@@ -167,7 +167,7 @@ public class Exercise8Test extends CompanyDomainForKata
                 .getCustomers()
                 .toMap(Customer::getName, Customer::getOrders);
 
-        Assert.assertNotNull("customer name to orders", customerNameToOrders);
+        Assertions.assertNotNull(customerNameToOrders, "customer name to orders");
         Verify.assertSize("customer names", 3, customerNameToOrders);
 
         MutableList<Order> ordersForBill = customerNameToOrders.get("Bill");
@@ -195,6 +195,6 @@ public class Exercise8Test extends CompanyDomainForKata
 
         var expectedCustomers = Lists.mutable.with("Fred", "Bill")
                 .collect(this.company::getCustomerNamed);
-        Assert.assertEquals(expectedCustomers, multimap.get(50.0));
+        Assertions.assertEquals(expectedCustomers, multimap.get(50.0));
     }
 }

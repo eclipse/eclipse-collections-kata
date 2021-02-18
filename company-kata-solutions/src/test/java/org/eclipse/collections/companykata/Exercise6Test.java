@@ -20,8 +20,8 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.MutableDoubleList;
 import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -54,8 +54,8 @@ public class Exercise6Test extends CompanyDomainForKata
                 .collect(Customer::getTotalOrderValue)
                 .sortThis();
 
-        Assert.assertEquals("Highest total order value", Double.valueOf(857.0), sortedTotalValues.getLast());
-        Assert.assertEquals("Lowest total order value", Double.valueOf(71.0), sortedTotalValues.getFirst());
+        Assertions.assertEquals(Double.valueOf(857.0), sortedTotalValues.getLast(), "Highest total order value");
+        Assertions.assertEquals(Double.valueOf(71.0), sortedTotalValues.getFirst(), "Lowest total order value");
     }
 
     /**
@@ -69,8 +69,8 @@ public class Exercise6Test extends CompanyDomainForKata
                 .collectDouble(Customer::getTotalOrderValue)
                 .sortThis();
 
-        Assert.assertEquals("Highest total order value", 857.0, sortedTotalValues.getLast(), 0.0);
-        Assert.assertEquals("Lowest total order value", 71.0, sortedTotalValues.getFirst(), 0.0);
+        Assertions.assertEquals(857.0, sortedTotalValues.getLast(), 0.0, "Highest total order value");
+        Assertions.assertEquals(71.0, sortedTotalValues.getFirst(), 0.0, "Lowest total order value");
     }
 
     /**
@@ -85,7 +85,7 @@ public class Exercise6Test extends CompanyDomainForKata
                 .collect(Customer::getTotalOrderValue)
                 .max();
 
-        Assert.assertEquals("max value", Double.valueOf(857.0), maximumTotalOrderValue);
+        Assertions.assertEquals(Double.valueOf(857.0), maximumTotalOrderValue, "max value");
     }
 
     /**
@@ -100,7 +100,7 @@ public class Exercise6Test extends CompanyDomainForKata
                 .collectDouble(Customer::getTotalOrderValue)
                 .max();
 
-        Assert.assertEquals("max value", 857.0, maximumTotalOrderValue, 0.0);
+        Assertions.assertEquals(857.0, maximumTotalOrderValue, 0.0, "max value");
     }
 
     /**
@@ -113,7 +113,7 @@ public class Exercise6Test extends CompanyDomainForKata
                 .getCustomers()
                 .maxBy(Customer::getTotalOrderValue);
 
-        Assert.assertEquals(this.company.getCustomerNamed("Mary"), customerWithMaxTotalOrderValue);
+        Assertions.assertEquals(this.company.getCustomerNamed("Mary"), customerWithMaxTotalOrderValue);
     }
 
     /**
@@ -126,7 +126,7 @@ public class Exercise6Test extends CompanyDomainForKata
                 .collect(Supplier::getName)
                 .makeString("~");
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "tilde separated names",
                 "Shedtastic~Splendid Crocks~Annoying Pets~Gnomes 'R' Us~Furniture Hamlet~SFD~Doxins",
                 tildeSeparatedNames);

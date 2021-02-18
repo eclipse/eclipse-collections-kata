@@ -28,8 +28,8 @@ import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.SortedBags;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -62,8 +62,8 @@ public class Exercise8Test extends CompanyDomainForKata
         MutableMap<String, Double> map = null;
 
         Verify.assertSize(2, map);
-        Assert.assertEquals(446.25, map.get("London"), 0.0);
-        Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
+        Assertions.assertEquals(446.25, map.get("London"), 0.0);
+        Assertions.assertEquals(857.0, map.get("Liphook"), 0.0);
     }
 
     /**
@@ -79,8 +79,8 @@ public class Exercise8Test extends CompanyDomainForKata
         ObjectDoubleMap<String> map = null;
 
         Verify.assertSize(2, map);
-        Assert.assertEquals(446.25, map.get("London"), 0.0);
-        Assert.assertEquals(857.0, map.get("Liphook"), 0.0);
+        Assertions.assertEquals(446.25, map.get("London"), 0.0);
+        Assertions.assertEquals(857.0, map.get("Liphook"), 0.0);
     }
 
     /**
@@ -96,8 +96,8 @@ public class Exercise8Test extends CompanyDomainForKata
         MutableMap<String, Double> map = null;
 
         Verify.assertSize(12, map);
-        Assert.assertEquals(100.0, map.get("shed"), 0.0);
-        Assert.assertEquals(10.5, map.get("cup"), 0.0);
+        Assertions.assertEquals(100.0, map.get("shed"), 0.0);
+        Assertions.assertEquals(10.5, map.get("cup"), 0.0);
     }
 
     /**
@@ -113,8 +113,8 @@ public class Exercise8Test extends CompanyDomainForKata
         ObjectDoubleMap<String> map = null;
 
         Verify.assertSize(12, map);
-        Assert.assertEquals(100.0, map.get("shed"), 0.0);
-        Assert.assertEquals(10.5, map.get("cup"), 0.0);
+        Assertions.assertEquals(100.0, map.get("shed"), 0.0);
+        Assertions.assertEquals(10.5, map.get("cup"), 0.0);
     }
 
     /**
@@ -150,7 +150,7 @@ public class Exercise8Test extends CompanyDomainForKata
         MutableMap<String, MutableList<Order>> customerNameToOrders =
                 this.company.getCustomers().toMap(null, null);
 
-        Assert.assertNotNull("customer name to orders", customerNameToOrders);
+        Assertions.assertNotNull(customerNameToOrders, "customer name to orders");
         Verify.assertSize("customer names", 3, customerNameToOrders);
 
         MutableList<Order> ordersForBill = customerNameToOrders.get("Bill");
@@ -170,6 +170,6 @@ public class Exercise8Test extends CompanyDomainForKata
         Verify.assertSize(2, multimap.keysView());
 
         var expectedCustomers = Lists.mutable.with("Fred", "Bill").collect(this.company::getCustomerNamed);
-        Assert.assertEquals(expectedCustomers, multimap.get(50.0));
+        Assertions.assertEquals(expectedCustomers, multimap.get(50.0));
     }
 }

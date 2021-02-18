@@ -18,8 +18,8 @@ import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.ArrayIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -44,8 +44,8 @@ public class Exercise7Test extends CompanyDomainForKata
 
         var expectedLiphookList = Lists.mutable.with("Mary").collect(this.company::getCustomerNamed);
         var expectedLondonList = Lists.mutable.with("Fred", "Bill").collect(this.company::getCustomerNamed);
-        Assert.assertEquals(expectedLiphookList, multimap.get("Liphook"));
-        Assert.assertEquals(expectedLondonList, multimap.get("London"));
+        Assertions.assertEquals(expectedLiphookList, multimap.get("Liphook"));
+        Assertions.assertEquals(expectedLondonList, multimap.get("London"));
     }
 
     /**
@@ -66,6 +66,6 @@ public class Exercise7Test extends CompanyDomainForKata
     @Test
     public void reminder()
     {
-        Assert.fail("Refactor setUpCustomersAndOrders() in the super class to not have so much repetition.");
+        Assertions.fail("Refactor setUpCustomersAndOrders() in the super class to not have so much repetition.");
     }
 }

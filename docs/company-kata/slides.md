@@ -338,7 +338,7 @@ Verify.assertSize(2, customersFromLondon);
 ```
 Instead of
 ```java
-Assert.assertEquals(2, customersFromLondon.size());
+Assertions.assertEquals(2, customersFromLondon.size());
 ```
 
 
@@ -366,7 +366,7 @@ Verify.assertContainsAll(list, 1, 2, 3);
 ```
 #### Good
 ```java
-Assert.assertEquals(Lists.mutable.with(1, 2, 3), list);
+Assertions.assertEquals(Lists.mutable.with(1, 2, 3), list);
 ```
 
 
@@ -572,7 +572,7 @@ MutableList<Integer> list = Lists.mutable.with(3, 1, 2, 2, 1);
 
 MutableList<Integer> noDupes = list.toSet().toSortedList();
 
-Assert.assertEquals( Lists.mutable.with(1, 2, 3), noDupes);
+Assertions.assertEquals( Lists.mutable.with(1, 2, 3), noDupes);
 ```
 
 
@@ -911,7 +911,7 @@ MutableList<Integer> selected =
 
 String string = StringIterate.select( "1a2a3", CharPredicate.IS_DIGIT);
 
-Assert.assertEquals("123", string);
+Assertions.assertEquals("123", string);
 ```
 
 
@@ -1396,15 +1396,15 @@ System.out.println(
 #### Code Examples
 ```Java
 MutableStack<Integer> stack1 = Stacks.mutable.with(1, 2, 3);
-Assert.assertEquals(
+Assertions.assertEquals(
   Lists.mutable.with(3, 2),
   stack1.pop(2));
 MutableStack<Integer> stack2 = Stacks.mutable.with(1, 3, 3);
-Assert.assertEquals(
+Assertions.assertEquals(
   Sets.mutable.with(3),
   stack2.pop(2, Sets.mutable.empty()));
 MutableStack<Integer> stack3 = Stacks.mutable.with(1, 2, 3);
-Assert.assertEquals(
+Assertions.assertEquals(
   Stacks.mutable.with(3, 2),
   stack3.pop(2, Stacks.mutable.empty()));    
 ```
@@ -1418,10 +1418,10 @@ Assert.assertEquals(
 ```Java
 MutableStack<Integer> stack =
   Stacks.mutable.with(1, 2, 3);
-Assert.assertEquals(
+Assertions.assertEquals(
   Integer.valueOf(3),
   stack.peek());
-Assert.assertEquals(
+Assertions.assertEquals(
   Lists.mutable.with(3, 2),
   stack.peek(2));
 ```
@@ -1437,11 +1437,11 @@ java.util.Stack stack = new java.util.Stack();
 stack.push(1);
 stack.push(2);
 stack.push(3);
-Assert.assertEquals(Lists.mutable.with(1, 2, 3), stack);
+Assertions.assertEquals(Lists.mutable.with(1, 2, 3), stack);
 stack.add(2, 4);
-Assert.assertEquals(Lists.mutable.with(1, 2, 4, 3), stack);
+Assertions.assertEquals(Lists.mutable.with(1, 2, 4, 3), stack);
 stack.remove(1);
-Assert.assertEquals(Lists.mutable.with(1, 4, 3), stack);
+Assertions.assertEquals(Lists.mutable.with(1, 4, 3), stack);
 ```
 
 
@@ -1462,7 +1462,7 @@ StackIterable<Integer> evens = stack.select(integer ->
   return integer % 2 == 0;
 });
 // Prints 1 2 3 4 5
-Assert.assertEquals(Stacks.mutable.withReversed(2, 4), evens);
+Assertions.assertEquals(Stacks.mutable.withReversed(2, 4), evens);
 ```
 
 
@@ -1583,13 +1583,13 @@ Methods | Inherited From
 MutableBag<String> bag = 
   Bags.mutable.with("one", "two", "two", "three", "three", "three");
 
-Assert.assertEquals(3, bag.occurrencesOf("three"));
+Assertions.assertEquals(3, bag.occurrencesOf("three"));
 
 bag.add("one");
-Assert.assertEquals(2, bag.occurrencesOf("one"));
+Assertions.assertEquals(2, bag.occurrencesOf("one"));
 
 bag.addOccurrences("one", 4);
-Assert.assertEquals(6, bag.occurrencesOf("one"));
+Assertions.assertEquals(6, bag.occurrencesOf("one"));
 ```
 
 
@@ -1798,7 +1798,7 @@ MutableList<Person> people =
   Lists.mutable.with(person1, person2, person3);
 MutableList<Address> addresses =
   people.collect(Person::getAddress);
-Assert.assertTrue(addresses.anySatisfy(address2::equals));
+Assertions.assertTrue(addresses.anySatisfy(address2::equals));
 ```
 
 
@@ -1956,7 +1956,7 @@ MutableList<Person> people =
 LazyIterable<Address> addresses =
   LazyIterate.collect(people, Person::getAddress);
 
-Assert.assertTrue(
+Assertions.assertTrue(
   addresses.anySatisfy(address2::equals));
 ```
 
@@ -1988,7 +1988,7 @@ ParallelListIterable<Person> peopleLazy =
 ParallelListIterable<Address> addressesLazy =
   peopleLazy.collect(Person::getAddress);
 
-Assert.assertTrue(addressesLazy.anySatisfy(address2::equals));
+Assertions.assertTrue(addressesLazy.anySatisfy(address2::equals));
 executorService.shutdownNow();
 ```
 
@@ -2215,7 +2215,7 @@ list.withWriteLockAndDelegate(backingList -> {
   iterator.next();
   iterator.remove();
 });
-Assert.assertEquals(Lists.mutable.with("2", "3"), list);
+Assertions.assertEquals(Lists.mutable.with("2", "3"), list);
 ```
 
 

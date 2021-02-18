@@ -10,14 +10,11 @@
 
 package org.eclipse.collections.companykata;
 
-import org.junit.Before;
-
 public abstract class CompanyDomainForKata
 {
     protected final Company company = new Company("Bloggs Shed Supplies");
 
-    @Before
-    public void setUp()
+    protected CompanyDomainForKata()
     {
         Order.resetNextOrderNumber();
         this.setUpCustomersAndOrders();
@@ -40,7 +37,7 @@ public abstract class CompanyDomainForKata
         Order fredOrder = new Order();
         fredOrder.addLineItem(new LineItem("shed", 50.0));
 
-        /**
+        /*
          * TODO 7: Refactor Order and its API so this repetition is not necessary.
          */
         // TODO 7: Add 3 cups at 1.5 each to the order

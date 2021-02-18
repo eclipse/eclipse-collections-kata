@@ -15,8 +15,8 @@ import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -39,7 +39,7 @@ public class Exercise1Test extends CompanyDomainForKata
         MutableList<String> customerNames = null;  // this.company.getCustomers()...
 
         var expectedNames = Lists.mutable.with("Fred", "Mary", "Bill");
-        Assert.assertEquals(expectedNames, customerNames);
+        Assertions.assertEquals(expectedNames, customerNames);
     }
 
     /**
@@ -51,7 +51,7 @@ public class Exercise1Test extends CompanyDomainForKata
         MutableList<String> customerCities = null;  // this.company.getCustomers()...
 
         var expectedCities = Lists.mutable.with("London", "Liphook", "London");
-        Assert.assertEquals(expectedCities, customerCities);
+        Assertions.assertEquals(expectedCities, customerCities);
     }
 
     /**

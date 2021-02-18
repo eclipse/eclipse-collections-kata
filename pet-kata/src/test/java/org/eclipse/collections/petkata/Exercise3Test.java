@@ -23,8 +23,8 @@ import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.factory.Multimaps;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * In the slides leading up to this exercise you should have learned about the following APIs.
@@ -59,21 +59,21 @@ public class Exercise3Test extends PetDomainForKata
             petTypeCounts.put(petType, count + 1);
         }
 
-        Assert.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.CAT));
-        Assert.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.DOG));
-        Assert.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.HAMSTER));
-        Assert.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.SNAKE));
-        Assert.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.TURTLE));
-        Assert.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.BIRD));
+        Assertions.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.CAT));
+        Assertions.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.DOG));
+        Assertions.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.HAMSTER));
+        Assertions.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.SNAKE));
+        Assertions.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.TURTLE));
+        Assertions.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.BIRD));
 
         // Hint: use the appropriate method on this.people to create a Bag<PetType>
         Bag<PetType> counts = null;
-        Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
-        Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
-        Assert.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
-        Assert.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
-        Assert.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
-        Assert.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
+        Assertions.assertEquals(2, counts.occurrencesOf(PetType.CAT));
+        Assertions.assertEquals(2, counts.occurrencesOf(PetType.DOG));
+        Assertions.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
+        Assertions.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
+        Assertions.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
+        Assertions.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
     }
 
     @Test

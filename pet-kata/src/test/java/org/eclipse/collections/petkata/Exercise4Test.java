@@ -18,8 +18,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static java.lang.Math.abs;
 
@@ -40,7 +40,7 @@ public class Exercise4Test extends PetDomainForKata
     @Test
     public void getAgeStatisticsOfPets()
     {
-        Assert.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+        Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 
         // Try to use a MutableIntList here instead
         // Hints: flatMap = flatCollect, map = collect, mapToInt = collectInt
@@ -61,26 +61,25 @@ public class Exercise4Test extends PetDomainForKata
         // Is a Set<Integer> equal to an IntSet?
         // Hint: Try IntSets instead of Set as the factory
         var expectedSet = Set.of(1, 2, 3, 4);
-        Assert.assertEquals(expectedSet, uniqueAges);
+        Assertions.assertEquals(expectedSet, uniqueAges);
 
         // Try to leverage minIfEmpty, maxIfEmpty, sum, averageIfEmpty on IntList
-        Assert.assertEquals(stats.getMin(), petAges.stream().mapToInt(i -> i).min().orElse(0));
-        Assert.assertEquals(stats.getMax(), petAges.stream().mapToInt(i -> i).max().orElse(0));
-        Assert.assertEquals(stats.getSum(), petAges.stream().mapToInt(i -> i).sum());
-        Assert.assertEquals(stats.getAverage(), petAges.stream().mapToInt(i -> i).average().orElse(0.0), 0.0);
-        Assert.assertEquals(stats.getCount(), petAges.size());
+        Assertions.assertEquals(stats.getMin(), petAges.stream().mapToInt(i -> i).min().orElse(0));
+        Assertions.assertEquals(stats.getMax(), petAges.stream().mapToInt(i -> i).max().orElse(0));
+        Assertions.assertEquals(stats.getSum(), petAges.stream().mapToInt(i -> i).sum());
+        Assertions.assertEquals(stats.getAverage(), petAges.stream().mapToInt(i -> i).average().orElse(0.0), 0.0);
+        Assertions.assertEquals(stats.getCount(), petAges.size());
 
         // Hint: JDK xyzMatch = Eclipse Collections xyzSatisfy
-        // Use IntPredicates, lambda or both?
-        Assert.assertTrue(petAges.stream().allMatch(i -> i > 0));
-        Assert.assertFalse(petAges.stream().anyMatch(i -> i == 0));
-        Assert.assertTrue(petAges.stream().noneMatch(i -> i < 0));
+        Assertions.assertTrue(petAges.stream().allMatch(i -> i > 0));
+        Assertions.assertFalse(petAges.stream().anyMatch(i -> i == 0));
+        Assertions.assertTrue(petAges.stream().noneMatch(i -> i < 0));
     }
 
     @Test
     public void streamsToECRefactor1()
     {
-        Assert.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+        Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 
         //find Bob Smith
         Person person = this.people
@@ -95,13 +94,13 @@ public class Exercise4Test extends PetDomainForKata
                 .map(Pet::getName)
                 .collect(Collectors.joining(" & "));
 
-        Assert.assertEquals("Dolly & Spot", names);
+        Assertions.assertEquals("Dolly & Spot", names);
     }
 
     @Test
     public void streamsToECRefactor2()
     {
-        Assert.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+        Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 
         // Hint: Try to replace the immutable Map<PetType, Long> with an ImmutableBag<PetType>
         Map<PetType, Long> counts =
@@ -110,12 +109,12 @@ public class Exercise4Test extends PetDomainForKata
                         .flatMap(person -> person.getPets().stream())
                         .collect(Collectors.groupingBy(Pet::getType, Collectors.counting())));
 
-        Assert.assertEquals(Long.valueOf(2L), counts.get(PetType.CAT));
-        Assert.assertEquals(Long.valueOf(2L), counts.get(PetType.DOG));
-        Assert.assertEquals(Long.valueOf(2L), counts.get(PetType.HAMSTER));
-        Assert.assertEquals(Long.valueOf(1L), counts.get(PetType.SNAKE));
-        Assert.assertEquals(Long.valueOf(1L), counts.get(PetType.TURTLE));
-        Assert.assertEquals(Long.valueOf(1L), counts.get(PetType.BIRD));
+        Assertions.assertEquals(Long.valueOf(2L), counts.get(PetType.CAT));
+        Assertions.assertEquals(Long.valueOf(2L), counts.get(PetType.DOG));
+        Assertions.assertEquals(Long.valueOf(2L), counts.get(PetType.HAMSTER));
+        Assertions.assertEquals(Long.valueOf(1L), counts.get(PetType.SNAKE));
+        Assertions.assertEquals(Long.valueOf(1L), counts.get(PetType.TURTLE));
+        Assertions.assertEquals(Long.valueOf(1L), counts.get(PetType.BIRD));
     }
 
     /**
@@ -124,7 +123,7 @@ public class Exercise4Test extends PetDomainForKata
     @Test
     public void streamsToECRefactor3()
     {
-        Assert.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+        Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 
         // Hint: The result of groupingBy/counting can almost always be replaced by a Bag
         // Hint: Look for the API on Bag that might return the top 3 pet types
@@ -149,7 +148,7 @@ public class Exercise4Test extends PetDomainForKata
     @Test
     public void getMedianOfPetAges()
     {
-        Assert.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+        Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 
         // Try to use a MutableIntList here instead
         // Hints: flatMap = flatCollect, map = collect, mapToInt = collectInt
@@ -177,6 +176,6 @@ public class Exercise4Test extends PetDomainForKata
             median = sortedPetAges.get(abs(sortedPetAges.size() / 2)).doubleValue();
         }
 
-        Assert.assertEquals(2.0, median, 0.0);
+        Assertions.assertEquals(2.0, median, 0.0);
     }
 }

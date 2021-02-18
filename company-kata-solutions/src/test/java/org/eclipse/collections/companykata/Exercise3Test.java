@@ -16,8 +16,8 @@ import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -54,7 +54,7 @@ public class Exercise3Test extends CompanyDomainForKata
         var expectedItemNames = Sets.mutable.with(
                 "shed", "big shed", "bowl", "cat", "cup", "chair", "dog",
                 "goldfish", "gnome", "saucer", "sofa", "table");
-        Assert.assertEquals(expectedItemNames, actualItemNames);
+        Assertions.assertEquals(expectedItemNames, actualItemNames);
     }
 
     @Test
@@ -63,6 +63,6 @@ public class Exercise3Test extends CompanyDomainForKata
         MutableList<String> names = this.company.getCustomers().collect(Customer::getName);
 
         var expectedNames = Lists.mutable.with("Fred", "Mary", "Bill");
-        Assert.assertEquals(expectedNames, names);
+        Assertions.assertEquals(expectedNames, names);
     }
 }

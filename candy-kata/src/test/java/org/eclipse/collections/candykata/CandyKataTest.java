@@ -26,8 +26,8 @@ import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.collector.Collectors2;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CandyKataTest
 {
@@ -43,7 +43,7 @@ public class CandyKataTest
         MutableSet<Candy> mostCommon = null;
 
         var expectedSet = Sets.mutable.with(Candy.REESES_PIECES);
-        Assert.assertEquals(expectedSet, mostCommon);
+        Assertions.assertEquals(expectedSet, mostCommon);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class CandyKataTest
         MutableSet<Candy> commonInTop10 = null;
 
         var expectedSet = Sets.mutable.with(Candy.REESES_PIECES, Candy.CRUNCH);
-        Assert.assertEquals(expectedSet, commonInTop10);
+        Assertions.assertEquals(expectedSet, commonInTop10);
     }
 
     private MutableList<Bag<Candy>> collectBagsOfCandy()

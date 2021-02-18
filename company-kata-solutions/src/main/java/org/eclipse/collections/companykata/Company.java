@@ -21,7 +21,7 @@ import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.list.mutable.ArrayListAdapter;
 import org.eclipse.collections.impl.list.mutable.FastList;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 /**
  * A company has a {@link MutableList} of {@link Customer}s.  It has an array of {@link Supplier}s, and a name.
@@ -54,7 +54,7 @@ public class Company
     }
 
     /**
-     * Remove the Assert.fail() and simplify getOrders().
+     * Remove the Assertions.fail() and simplify getOrders().
      *
      * @see org.eclipse.collections.api.RichIterable#flatCollect(Function)
      */
@@ -83,7 +83,7 @@ public class Company
         return this.suppliers;
     }
         /**
-     * Remove the Assert.fail() and replace the null with an appropriate implementation.
+     * Remove the Assertions.fail() and replace the null with an appropriate implementation.
      * Use a {@link Predicate} to find a {@link Customer} with the name given.
      *
      * @see org.eclipse.collections.api.RichIterable#detect(Predicate)

@@ -26,8 +26,8 @@ import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.CharObjectPairImpl;
 import org.eclipse.collections.impl.utility.ArrayIterate;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Below are links to APIs that may be helpful during these exercises.
@@ -51,8 +51,8 @@ public class Exercise7Test extends CompanyDomainForKata
         MutableListMultimap<String, Customer> multimap = this.company.getCustomers().groupBy(Customer::getCity);
         var expectedLiphookList = Lists.mutable.with("Mary").collect(this.company::getCustomerNamed);
         var expectedLondonList = Lists.mutable.with("Fred", "Bill").collect(this.company::getCustomerNamed);
-        Assert.assertEquals(expectedLiphookList, multimap.get("Liphook"));
-        Assert.assertEquals(expectedLondonList, multimap.get("London"));
+        Assertions.assertEquals(expectedLiphookList, multimap.get("Liphook"));
+        Assertions.assertEquals(expectedLondonList, multimap.get("London"));
     }
 
     /**

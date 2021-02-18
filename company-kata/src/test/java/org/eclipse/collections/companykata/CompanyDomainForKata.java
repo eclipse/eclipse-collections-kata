@@ -10,11 +10,14 @@
 
 package org.eclipse.collections.companykata;
 
+import org.junit.jupiter.api.BeforeEach;
+
 public abstract class CompanyDomainForKata
 {
     protected final Company company = new Company("Bloggs Shed Supplies");
 
-    protected CompanyDomainForKata()
+    @BeforeEach
+    public void setUp()
     {
         Order.resetNextOrderNumber();
         this.setUpCustomersAndOrders();

@@ -24,6 +24,7 @@ import org.eclipse.collections.impl.factory.Multimaps;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -43,6 +44,7 @@ import org.junit.jupiter.api.Test;
 public class Exercise3Test extends PetDomainForKata
 {
     @Test
+    @Tag("KATA")
     public void getCountsByPetType()
     {
         MutableList<PetType> petTypes = this.people.flatCollect(Person::getPets).collect(Pet::getType);
@@ -77,6 +79,7 @@ public class Exercise3Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getPeopleByLastName()
     {
         // Do you recognize this pattern?
@@ -101,6 +104,7 @@ public class Exercise3Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getPeopleByTheirPets()
     {
         // Do you recognize this pattern?

@@ -29,6 +29,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.SortedBags;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -55,6 +56,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * @see RichIterable#aggregateBy(Function, Function0, Function2)
      */
     @Test
+    @Tag("KATA")
     public void totalOrderValuesByCity()
     {
         Function0<Double> zeroValueFactory = () -> 0.0;
@@ -72,6 +74,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * @see RichIterable#sumByDouble(Function, DoubleFunction)
      */
     @Test
+    @Tag("KATA")
     public void totalOrderValuesByCityUsingPrimitiveValues()
     {
         Function<Customer, String> cityFunction = Customer::getCity;
@@ -89,6 +92,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * how to use {@link RichIterable#flatCollect(Function)} to get an iterable of all items.
      */
     @Test
+    @Tag("KATA")
     public void totalOrderValuesByItem()
     {
         Function0<Double> zeroValueFactory = () -> 0.0;
@@ -106,6 +110,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * @see RichIterable#sumByDouble(Function, DoubleFunction)
      */
     @Test
+    @Tag("KATA")
     public void totalOrderValuesByItemUsingPrimitiveValues()
     {
         Function<LineItem, String> nameFunction = LineItem::getName;
@@ -121,6 +126,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * Extra credit. Find all customers' line item values greater than 7.5 and sort them by highest to lowest price.
      */
     @Test
+    @Tag("KATA")
     public void sortedOrders()
     {
         MutableSortedBag<Double> orderedPrices = null;
@@ -134,6 +140,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * Extra credit. Figure out which customers ordered saucers (in any of their orders).
      */
     @Test
+    @Tag("KATA")
     public void whoOrderedSaucers()
     {
         MutableList<Customer> customersWithSaucers = null;
@@ -145,6 +152,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * Extra credit. Look into the {@link MutableList#toMap(Function, Function)} method.
      */
     @Test
+    @Tag("KATA")
     public void ordersByCustomerUsingAsMap()
     {
         MutableMap<String, MutableList<Order>> customerNameToOrders =
@@ -162,6 +170,7 @@ public class Exercise8Test extends CompanyDomainForKata
      * the most expensive item that the customer ordered.
      */
     @Test
+    @Tag("KATA")
     public void mostExpensiveItem()
     {
         MutableListMultimap<Double, Customer> multimap = null;

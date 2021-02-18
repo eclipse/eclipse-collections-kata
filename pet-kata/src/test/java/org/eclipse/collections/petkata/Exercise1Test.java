@@ -16,6 +16,7 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.Test;
 public class Exercise1Test extends PetDomainForKata
 {
     @Test
+    @Tag("KATA")
     public void getFirstNamesOfAllPeople()
     {
         // Replace null, with a transformation method on MutableList.
@@ -39,6 +41,7 @@ public class Exercise1Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getNamesOfMarySmithsPets()
     {
         Person person = this.getPersonNamed("Mary Smith");
@@ -51,6 +54,7 @@ public class Exercise1Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getPeopleWithCats()
     {
         // Replace null, with a positive filtering method on MutableList.
@@ -60,6 +64,7 @@ public class Exercise1Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getPeopleWithoutCats()
     {
         // Replace null, with a negative filtering method on MutableList.

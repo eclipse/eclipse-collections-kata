@@ -17,10 +17,12 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class Exercise5Test extends PetDomainForKata {
     @Test
+    @Tag("SOLUTION")
     public void partitionPetAndNonPetPeople() {
         PartitionMutableList<Person> partitionMutableList = this.people
                 .partition(Person::isPetPerson);
@@ -30,6 +32,7 @@ public class Exercise5Test extends PetDomainForKata {
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getOldestPet() {
         Pet oldestPet = this.people
                 .flatCollect(Person::getPets)
@@ -40,6 +43,7 @@ public class Exercise5Test extends PetDomainForKata {
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getAveragePetAge() {
         double averagePetAge = this.people
                 .flatCollect(Person::getPets)
@@ -50,6 +54,7 @@ public class Exercise5Test extends PetDomainForKata {
     }
 
     @Test
+    @Tag("SOLUTION")
     public void addPetAgesToExistingSet() {
         MutableIntSet petAges = IntSets.mutable.with(5);
 
@@ -61,6 +66,7 @@ public class Exercise5Test extends PetDomainForKata {
     }
 
     @Test
+    @Tag("SOLUTION")
     public void refactorToEclipseCollections() {
         MutableList<Person> people = Lists.mutable.with(
                 new Person("Mary", "Smith").addPet(PetType.CAT, "Tabby", 2),

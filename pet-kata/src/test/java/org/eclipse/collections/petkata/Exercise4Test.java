@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Math.abs;
@@ -38,6 +39,7 @@ import static java.lang.Math.abs;
 public class Exercise4Test extends PetDomainForKata
 {
     @Test
+    @Tag("KATA")
     public void getAgeStatisticsOfPets()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
@@ -77,6 +79,7 @@ public class Exercise4Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void streamsToECRefactor1()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
@@ -98,6 +101,7 @@ public class Exercise4Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void streamsToECRefactor2()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
@@ -121,6 +125,7 @@ public class Exercise4Test extends PetDomainForKata
      * The purpose of this test is to determine the top 3 pet types.
      */
     @Test
+    @Tag("KATA")
     public void streamsToECRefactor3()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
@@ -146,6 +151,7 @@ public class Exercise4Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getMedianOfPetAges()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");

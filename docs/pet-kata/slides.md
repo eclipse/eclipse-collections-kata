@@ -145,7 +145,7 @@ public void getFirstNamesOfAllPeople()
     this.people.collect(Person::getFirstName);
   MutableList<String> expectedFirstNames =
     Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
-  Assert.assertEquals(expectedFirstNames, firstNames);
+  Assertions.assertEquals(expectedFirstNames, firstNames);
 }
 ```
 
@@ -160,7 +160,7 @@ public void getNamesOfMarySmithsPets()
   MutableList<Pet> pets = person.getPets();
   MutableList<String> names =
     pets.collect(eachPet -> eachPet.getName());
-  Assert.assertEquals("Tabby", names.makeString());
+  Assertions.assertEquals("Tabby", names.makeString());
 }
 ```
 
@@ -220,7 +220,7 @@ Verify.assertSize(2, peopleWithCats);
 
 Instead of
 ```java
-Assert.assertEquals(2, peopleWithCats.size());
+Assertions.assertEquals(2, peopleWithCats.size());
 ```
 
 
@@ -368,7 +368,7 @@ Do any people have cats
 public void doAnyPeopleHaveCats()
 {
   Predicate<Person> predicate = person -> person.hasPet(PetType.CAT);
-  Assert.assertTrue(this.people.anySatisfy(predicate));
+  Assertions.assertTrue(this.people.anySatisfy(predicate));
 }
 ```
 
@@ -380,7 +380,7 @@ Do all people have pets
 public void doAllPeopleHavePets()
 {
   Predicate<Person> predicate = person -> person.isPetPerson();
-  Assert.assertFalse(this.people.allSatisfy(predicate));
+  Assertions.assertFalse(this.people.allSatisfy(predicate));
 }
 ```
 
@@ -392,7 +392,7 @@ How many people have cats
 public void howManyPeopleHaveCats()
 {
   int count = this.people.count(person -> person.hasPet(PetType.CAT));
-  Assert.assertEquals(2, count);
+  Assertions.assertEquals(2, count);
 }
 ```
 
@@ -404,8 +404,8 @@ Find Mary Smith
 public void findMarySmith()
 {
   Person result = this.people.detectWith(Person::named, "Mary Smith");
-  Assert.assertEquals("Mary", result.getFirstName());
-  Assert.assertEquals("Smith", result.getLastName());
+  Assertions.assertEquals("Mary", result.getFirstName());
+  Assertions.assertEquals("Smith", result.getLastName());
 }
 ```
 
@@ -431,7 +431,7 @@ public void getAllPetTypesOfAllPeople()
 {
   Function<Person, Iterable<PetType>> function = person -> person.getPetTypes();
   MutableSet<PetType> petTypes = this.people.flatCollect(function, Sets.mutable.empty());
-  Assert.assertEquals(
+  Assertions.assertEquals(
     Sets.mutable.with(PetType.CAT, PetType.DOG, PetType.TURTLE, PetType.HAMSTER, PetType.BIRD, PetType.SNAKE),
     petTypes);
 }
@@ -445,7 +445,7 @@ Get first name of all people
 public void getFirstNamesOfAllPeople()
 {
   MutableList<String> firstNames = this.people.collect(Person::getFirstName);
-  Assert.assertEquals(
+  Assertions.assertEquals(
     Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John"),
     firstNames);
 }
@@ -459,11 +459,11 @@ Do any people have cats (refactor)
 public void doAnyPeopleHaveCatsRefactor()
 {
   boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
-  Assert.assertTrue(peopleHaveCatsLambda);
+  Assertions.assertTrue(peopleHaveCatsLambda);
 
   // Use a method reference, NOT a lambda, to solve the problem below.
   boolean peopleHaveCatsMethodRef = this.people.anySatisfyWith(Person::hasPet, PetType.CAT);
-  Assert.assertTrue(peopleHaveCatsMethodRef);
+  Assertions.assertTrue(peopleHaveCatsMethodRef);
 }
 ```
 
@@ -475,11 +475,11 @@ Do all people have cats (refactor)
 public void doAllPeopleHaveCatsRefactor()
 {
   boolean peopleHaveCatsLambda = this.people.allSatisfy(person -> person.hasPet(PetType.CAT));
-  Assert.assertFalse(peopleHaveCatsLambda);
+  Assertions.assertFalse(peopleHaveCatsLambda);
 
   // Use a method reference, NOT a lambda, to solve the problem below.
   boolean peopleHaveCatsMethodRef = this.people.allSatisfyWith(Person::hasPet, PetType.CAT);
-  Assert.assertFalse(peopleHaveCatsMethodRef);
+  Assertions.assertFalse(peopleHaveCatsMethodRef);
 }
 ```
 
@@ -589,13 +589,13 @@ Bag
 MutableBag<String> bag =
   Bags.mutable.with("one", "two", "two", "three", "three", "three");
 
-Assert.assertEquals(3, bag.occurrencesOf("three"));
+Assertions.assertEquals(3, bag.occurrencesOf("three"));
 
 bag.add("one");
-Assert.assertEquals(2, bag.occurrencesOf("one"));
+Assertions.assertEquals(2, bag.occurrencesOf("one"));
 
 bag.addOccurrences("one", 4);
-Assert.assertEquals(6, bag.occurrencesOf("one"));
+Assertions.assertEquals(6, bag.occurrencesOf("one"));
 ```
 
 
@@ -792,12 +792,12 @@ public void getCountsByPetType()
   MutableBag<PetType> counts =
     this.people.flatCollect(Person::getPets).countBy(Pet::getType);
 
-  Assert.assertEquals(2, counts.occurrencesOf(PetType.CAT));
-  Assert.assertEquals(2, counts.occurrencesOf(PetType.DOG));
-  Assert.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
-  Assert.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
-  Assert.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
-  Assert.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
+  Assertions.assertEquals(2, counts.occurrencesOf(PetType.CAT));
+  Assertions.assertEquals(2, counts.occurrencesOf(PetType.DOG));
+  Assertions.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
+  Assertions.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
+  Assertions.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
+  Assertions.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
 }
 ```
 
@@ -922,21 +922,21 @@ public void getAgeStatisticsOfPets()
   
   // Is a Set<Integer> equal to an IntSet?
   // Hint: Try IntSets instead of Sets as the factory
-  Assert.assertEquals(expected, uniqueAges);
+  Assertions.assertEquals(expected, uniqueAges);
 
   // Try to leverage min, max, sum, average from the Eclipse Collections Primitive API
-  Assert.assertEquals(stats.getMin(), petAges.minIfEmpty(0));
-  Assert.assertEquals(stats.getMax(), petAges.maxIfEmpty(0));
-  Assert.assertEquals(stats.getSum(), petAges.sum());
-  Assert.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0), 0.0);
-  Assert.assertEquals(stats.getCount(), petAges.size());
+  Assertions.assertEquals(stats.getMin(), petAges.minIfEmpty(0));
+  Assertions.assertEquals(stats.getMax(), petAges.maxIfEmpty(0));
+  Assertions.assertEquals(stats.getSum(), petAges.sum());
+  Assertions.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0), 0.0);
+  Assertions.assertEquals(stats.getCount(), petAges.size());
 
   // Hint: Match = Satisfy
-  Assert.assertTrue(petAges.allSatisfy(IntPredicates.greaterThan(0)));
-  Assert.assertTrue(petAges.allSatisfy(i -> i > 0));
-  Assert.assertFalse(petAges.anySatisfy(i -> i == 0));
-  Assert.assertTrue(petAges.noneSatisfy(i -> i < 0));
-  Assert.assertEquals(2.0d, petAges.median(), 0.0);
+  Assertions.assertTrue(petAges.allSatisfy(IntPredicates.greaterThan(0)));
+  Assertions.assertTrue(petAges.allSatisfy(i -> i > 0));
+  Assertions.assertFalse(petAges.anySatisfy(i -> i == 0));
+  Assertions.assertTrue(petAges.noneSatisfy(i -> i < 0));
+  Assertions.assertEquals(2.0d, petAges.median(), 0.0);
 }
 ```
 
@@ -955,7 +955,7 @@ public void streamsToECRefactor1()
     .collect(Pet::getName)
     .makeString(" & ");
 
-  Assert.assertEquals("Dolly & Spot", names);
+  Assertions.assertEquals("Dolly & Spot", names);
 }
 ```
 
@@ -972,12 +972,12 @@ public void streamsToECRefactor2()
     .flatCollect(Person::getPets)
     .countBy(Pet::getType);
 
-  Assert.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
-  Assert.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
-  Assert.assertEquals(2, petTypes.occurrencesOf(PetType.HAMSTER));
-  Assert.assertEquals(1, petTypes.occurrencesOf(PetType.SNAKE));
-  Assert.assertEquals(1, petTypes.occurrencesOf(PetType.TURTLE));
-  Assert.assertEquals(1, petTypes.occurrencesOf(PetType.BIRD));
+  Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
+  Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
+  Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.HAMSTER));
+  Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.SNAKE));
+  Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.TURTLE));
+  Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.BIRD));
 }
 ```
 
@@ -1013,7 +1013,7 @@ public void getMedianOfPetAges()
     .flatCollect(Person::getPets)
     .collectInt(Pet::getAge);
 
-   Assert.assertEquals(2.0d, petAges.median(), 0.0);
+   Assertions.assertEquals(2.0d, petAges.median(), 0.0);
 }
 ```
 
@@ -1053,8 +1053,8 @@ public void getOldestPet()
     .flatCollect(Person::getPets)
     .maxBy(pet -> pet.getAge());
 
-  Assert.assertEquals(PetType.DOG, oldestPet.getType());
-  Assert.assertEquals(4, oldestPet.getAge());
+  Assertions.assertEquals(PetType.DOG, oldestPet.getType());
+  Assertions.assertEquals(4, oldestPet.getAge());
 }
 ```
 
@@ -1070,7 +1070,7 @@ public void getAveragePetAge()
     .collectDouble(pet -> pet.getAge())
     .average();
 
-  Assert.assertEquals(1.8888888888888888, averagePetAge, 0.00001);
+  Assertions.assertEquals(1.8888888888888888, averagePetAge, 0.00001);
 }
 ```
 
@@ -1087,7 +1087,7 @@ public void addPetAgesToExistingSet()
   this.people.flatCollect(Person::getPets)
     .collectInt(pet -> pet.getAge(), petAges);
 
-  Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), petAges);
+  Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), petAges);
 }
 ```
 
@@ -1121,7 +1121,7 @@ public void refactorToEclipseCollections()
     .toSet();
 
   // Extra bonus - convert to a primitive collection
-  Assert.assertEquals(IntSets.mutable.with(1, 2, 3, 4), petAges);
+  Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 4), petAges);
 }
 ```
 

@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
 import org.eclipse.collections.api.block.predicate.Predicate;
-import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.MutableDoubleList;
 import org.eclipse.collections.impl.factory.Lists;
@@ -24,6 +23,7 @@ import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.eclipse.collections.impl.utility.Iterate;
 import org.eclipse.collections.impl.utility.ListIterate;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -48,6 +48,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * {@link ArrayIterate}.
      */
     @Test
+    @Tag("SOLUTION")
     public void findSupplierNames()
     {
         MutableList<String> supplierNames = this.company.getSuppliers().collect(Supplier::getName);
@@ -68,6 +69,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * satisfy that Predicate.
      */
     @Test
+    @Tag("SOLUTION")
     public void countSuppliersWithMoreThanTwoItems()
     {
         int suppliersWithMoreThanTwoItems =this.company.getSuppliers().count(s -> s.getItemNames().length > 2);
@@ -78,6 +80,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Try to solve this without changing the return type of {@link Supplier#getItemNames()}.
      */
     @Test
+    @Tag("SOLUTION")
     public void whoSuppliesSandwichToaster()
     {
 
@@ -95,6 +98,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Get the order values that are greater than 1.5.
      */
     @Test
+    @Tag("SOLUTION")
     public void filterOrderValues()
     {
 
@@ -109,6 +113,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Get the order values that are greater than 1.5 using double instead of Double.
      */
     @Test
+    @Tag("SOLUTION")
     public void filterOrderValuesUsingPrimitives()
     {
 
@@ -123,6 +128,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Get the actual orders (not their double values) where those orders have a value greater than 2.0.
      */
     @Test
+    @Tag("SOLUTION")
     public void filterOrders()
     {
         MutableList<Order> filtered = ListIterate.select(this.company.getMostRecentCustomer().getOrders(), o -> o.getValue() > 2.0);

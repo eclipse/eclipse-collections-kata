@@ -18,9 +18,9 @@ import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.MutableDoubleList;
-import org.eclipse.collections.impl.block.factory.Procedures;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -47,6 +47,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Customer#getTotalOrderValue()} and {@link Order#getValue()} .
      */
     @Test
+    @Tag("KATA")
     public void sortedTotalOrderValue()
     {
         MutableList<Double> sortedTotalValues = null;
@@ -60,6 +61,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Get a list of the customers' total order values, sorted. Use primitive doubles instead of boxed Doubles.
      */
     @Test
+    @Tag("KATA")
     public void sortedTotalOrderValueUsingPrimitives()
     {
         MutableDoubleList sortedTotalValues = null;
@@ -73,6 +75,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Find the max total order value across all customers.
      */
     @Test
+    @Tag("KATA")
     public void maximumTotalOrderValue()
     {
         Double maximumTotalOrderValue = null;
@@ -84,6 +87,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Find the max total order value across all customers, but use primitive double instead of boxed Double.
      */
     @Test
+    @Tag("KATA")
     public void maximumTotalOrderValueUsingPrimitives()
     {
         double maximumTotalOrderValue = 0.0;
@@ -95,6 +99,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Find the customer with the highest total order value.
      */
     @Test
+    @Tag("KATA")
     public void customerWithMaxTotalOrderValue()
     {
         Customer customerWithMaxTotalOrderValue = null;
@@ -106,14 +111,15 @@ public class Exercise6Test extends CompanyDomainForKata
      * Create some code to get the company's supplier names as a tilde delimited string.
      */
     @Test
+    @Tag("KATA")
     public void supplierNamesAsTildeDelimitedString()
     {
         String tildeSeparatedNames = null;
 
         Assertions.assertEquals(
-                "tilde separated names",
                 "Shedtastic~Splendid Crocks~Annoying Pets~Gnomes 'R' Us~Furniture Hamlet~SFD~Doxins",
-                tildeSeparatedNames);
+                tildeSeparatedNames,
+                "tilde separated names");
     }
 
     /**
@@ -124,6 +130,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * @see Order#deliver()
      */
     @Test
+    @Tag("KATA")
     public void deliverOrdersToLondon()
     {
         Verify.assertAllSatisfy(this.company.getCustomerNamed("Fred").getOrders(), Order::isDelivered);

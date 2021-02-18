@@ -12,21 +12,20 @@ package org.eclipse.collections.petkata;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
-import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.api.set.primitive.MutableIntSet;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class Exercise5Test extends PetDomainForKata
 {
     @Test
+    @Tag("KATA")
     public void partitionPetAndNonPetPeople()
     {
         PartitionMutableList<Person> partitionMutableList = null;
@@ -35,6 +34,7 @@ public class Exercise5Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getOldestPet()
     {
         Pet oldestPet = null;
@@ -43,6 +43,7 @@ public class Exercise5Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getAveragePetAge()
     {
         double averagePetAge = 0;
@@ -50,6 +51,7 @@ public class Exercise5Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void addPetAgesToExistingSet()
     {
         // Hint: Use petAges as a target collection
@@ -60,6 +62,7 @@ public class Exercise5Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void refactorToEclipseCollections()
     {
         Assertions.fail("Refactor to Eclipse Collections");

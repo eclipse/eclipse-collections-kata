@@ -10,13 +10,13 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -46,6 +46,7 @@ public class Exercise2Test extends CompanyDomainForKata
      * Set up a {@link Predicate} that tests to see if a {@link Customer}'s city is "London".
      */
     @Test
+    @Tag("KATA")
     public void customerFromLondonPredicate()
     {
         Predicate<Customer> predicate = null;
@@ -63,6 +64,7 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void doAnyCustomersLiveInLondon()
     {
         boolean anyCustomersFromLondon = false;
@@ -71,6 +73,7 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void doAllCustomersLiveInLondon()
     {
         boolean allCustomersFromLondon = true;
@@ -79,6 +82,7 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void howManyCustomersLiveInLondon()
     {
         int numberOfCustomerFromLondon = 0;
@@ -87,6 +91,7 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getLondonCustomers()
     {
         MutableList<Customer> customersFromLondon = null;
@@ -95,6 +100,7 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getCustomersWhoDontLiveInLondon()
     {
         MutableList<Customer> customersNotFromLondon = null;
@@ -106,6 +112,7 @@ public class Exercise2Test extends CompanyDomainForKata
      * Which customers come from London? Which customers do not come from London? Get a collection of both in a single pass.
      */
     @Test
+    @Tag("KATA")
     public void getCustomersWhoDoAndDoNotLiveInLondon()
     {
         PartitionMutableList<Customer> customers = null;
@@ -118,17 +125,19 @@ public class Exercise2Test extends CompanyDomainForKata
      * Implement {@link Company#getCustomerNamed(String)} and get this test to pass.
      */
     @Test
+    @Tag("KATA")
     public void findMary()
     {
         Customer mary = this.company.getCustomerNamed("Mary");
 
-        Assertions.assertEquals("customer's name should be Mary", "Mary", mary.getName());
+        Assertions.assertEquals("Mary", mary.getName(), "customer's name should be Mary");
     }
 
     /**
      * Implement {@link Company#getCustomerNamed(String)} and get this test to pass.
      */
     @Test
+    @Tag("KATA")
     public void findPete()
     {
         Customer pete = this.company.getCustomerNamed("Pete");

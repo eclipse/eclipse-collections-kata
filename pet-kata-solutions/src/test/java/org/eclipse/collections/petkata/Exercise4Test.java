@@ -16,8 +16,9 @@ import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 /**
  * In this set of tests, wherever you see .stream() replace it with an Eclipse Collections alternative.
@@ -25,6 +26,7 @@ import org.junit.Test;
 public class Exercise4Test extends PetDomainForKata
 {
     @Test
+    @Tag("SOLUTION")
     public void getAgeStatisticsOfPets()
     {
         var petAges = this.people
@@ -35,21 +37,22 @@ public class Exercise4Test extends PetDomainForKata
 
         var stats = petAges.summaryStatistics();
         var expected = IntSets.immutable.of(1, 2, 3, 4);
-        Assert.assertEquals(expected, uniqueAges);
+        Assertions.assertEquals(expected, uniqueAges);
 
-        Assert.assertEquals(stats.getMin(), petAges.minIfEmpty(0));
-        Assert.assertEquals(stats.getMax(), petAges.maxIfEmpty(0));
-        Assert.assertEquals(stats.getSum(), petAges.sum());
-        Assert.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0), 0.0);
-        Assert.assertEquals(stats.getCount(), petAges.size());
+        Assertions.assertEquals(stats.getMin(), petAges.minIfEmpty(0));
+        Assertions.assertEquals(stats.getMax(), petAges.maxIfEmpty(0));
+        Assertions.assertEquals(stats.getSum(), petAges.sum());
+        Assertions.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0), 0.0);
+        Assertions.assertEquals(stats.getCount(), petAges.size());
 
-        Assert.assertTrue(petAges.allSatisfy(IntPredicates.greaterThan(0)));
-        Assert.assertTrue(petAges.allSatisfy(i -> i > 0));
-        Assert.assertFalse(petAges.anySatisfy(i -> i == 0));
-        Assert.assertTrue(petAges.noneSatisfy(i -> i < 0));
+        Assertions.assertTrue(petAges.allSatisfy(IntPredicates.greaterThan(0)));
+        Assertions.assertTrue(petAges.allSatisfy(i -> i > 0));
+        Assertions.assertFalse(petAges.anySatisfy(i -> i == 0));
+        Assertions.assertTrue(petAges.noneSatisfy(i -> i < 0));
     }
 
     @Test
+    @Tag("SOLUTION")
     public void streamsToECRefactor1()
     {
         // Find Bob Smith
@@ -60,10 +63,11 @@ public class Exercise4Test extends PetDomainForKata
                 .collect(Pet::getName)
                 .makeString(" & ");
 
-        Assert.assertEquals("Dolly & Spot", names);
+        Assertions.assertEquals("Dolly & Spot", names);
     }
 
     @Test
+    @Tag("SOLUTION")
     public void streamsToECRefactor2()
     {
         MutableBag<PetType> petTypes = this.people
@@ -71,18 +75,19 @@ public class Exercise4Test extends PetDomainForKata
                 .flatCollect(Person::getPets)
                 .countBy(Pet::getType);
 
-        Assert.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
-        Assert.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
-        Assert.assertEquals(2, petTypes.occurrencesOf(PetType.HAMSTER));
-        Assert.assertEquals(1, petTypes.occurrencesOf(PetType.SNAKE));
-        Assert.assertEquals(1, petTypes.occurrencesOf(PetType.TURTLE));
-        Assert.assertEquals(1, petTypes.occurrencesOf(PetType.BIRD));
+        Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
+        Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
+        Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.HAMSTER));
+        Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.SNAKE));
+        Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.TURTLE));
+        Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.BIRD));
     }
 
     /**
      * The purpose of this test is to determine the top 3 pet types.
      */
     @Test
+    @Tag("SOLUTION")
     public void streamsToECRefactor3()
     {
         var favorites = this.people
@@ -97,12 +102,13 @@ public class Exercise4Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getMedianOfPetAges()
     {
         var petAges = this.people
                 .flatCollect(Person::getPets)
                 .collectInt(Pet::getAge);
 
-        Assert.assertEquals(2.0d, petAges.median(), 0.0);
+        Assertions.assertEquals(2.0d, petAges.median(), 0.0);
     }
 }

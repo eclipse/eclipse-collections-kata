@@ -10,23 +10,17 @@
 
 package org.eclipse.collections.companykata;
 
-import java.util.Arrays;
-import java.util.Map;
-
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.multimap.MutableMultimap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
-import org.eclipse.collections.api.tuple.Pair;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
-import org.eclipse.collections.impl.multimap.bag.HashBagMultimap;
-import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.test.Verify;
-import org.eclipse.collections.impl.tuple.primitive.CharObjectPairImpl;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -46,6 +40,7 @@ public class Exercise7Test extends CompanyDomainForKata
      * A Customer is only associated to one city.
      */
     @Test
+    @Tag("SOLUTION")
     public void customersByCity()
     {
         MutableListMultimap<String, Customer> multimap = this.company.getCustomers().groupBy(Customer::getCity);
@@ -60,6 +55,7 @@ public class Exercise7Test extends CompanyDomainForKata
      * A Supplier is associated to many item names.
      */
     @Test
+    @Tag("SOLUTION")
     public void itemsBySuppliers()
     {
         MutableMultimap<String, Supplier> itemsToSuppliers =  this.company.getSuppliers().groupByEach((Supplier supplier)

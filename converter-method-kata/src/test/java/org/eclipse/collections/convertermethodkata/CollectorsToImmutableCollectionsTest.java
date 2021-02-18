@@ -29,9 +29,9 @@ import org.eclipse.collections.api.map.ImmutableMap;
 import org.eclipse.collections.api.set.ImmutableSet;
 import org.eclipse.collections.api.set.sorted.ImmutableSortedSet;
 import org.eclipse.collections.api.stack.ImmutableStack;
-import org.eclipse.collections.impl.collector.Collectors2;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 /**
  * Convert the JDK types in the following tests to the missing EC type using APIs on the Collectors2 utility class.
@@ -39,52 +39,58 @@ import org.junit.Test;
 public class CollectorsToImmutableCollectionsTest
 {
     @Test
+    @Tag("KATA")
     public void toImmutableList()
     {
         Stream<Integer> interval = IntStream.rangeClosed(1, 5).boxed();
         // Convert interval to a ImmutableList<Integer> using Collectors2
         ImmutableList<Integer> list = null;
-        Assert.assertEquals(Lists.mutable.with(1, 2, 3, 4, 5), list);
+        Assertions.assertEquals(Lists.mutable.with(1, 2, 3, 4, 5), list);
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutableSet()
     {
         List<Integer> list = List.of(1, 2, 2, 3, 3);
         // Convert list to a ImmutableSet<Integer> using Collectors2
         ImmutableSet<Integer> set = null;
-        Assert.assertEquals(Sets.mutable.with(1, 2, 3), set);
+        Assertions.assertEquals(Sets.mutable.with(1, 2, 3), set);
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutableBag()
     {
         List<Integer> list = List.of(1, 2, 2, 3, 3);
         // Convert list to a ImmutableBag<Integer> using Collectors2
         ImmutableBag<Integer> bag = null;
-        Assert.assertEquals(Bags.mutable.with(1, 2, 2, 3, 3), bag);
+        Assertions.assertEquals(Bags.mutable.with(1, 2, 2, 3, 3), bag);
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutableStack()
     {
         List<Integer> list = List.of(1, 2, 3);
         // Convert list to a ImmutableStack<Integer> using Collectors2
         ImmutableStack<Integer> stack = null;
-        Assert.assertEquals(Stacks.mutable.with(1, 2, 3), stack);
+        Assertions.assertEquals(Stacks.mutable.with(1, 2, 3), stack);
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutableMap()
     {
         List<Integer> list = List.of(1, 2, 3);
         // Convert list to a ImmutableMap<String, Integer> where the keys are the String value of the element, and the
         // values are the Integer value using Collectors2
         ImmutableMap<String, Integer> map = null;
-        Assert.assertEquals(Maps.mutable.with("1", 1, "2", 2, "3", 3), map);
+        Assertions.assertEquals(Maps.mutable.with("1", 1, "2", 2, "3", 3), map);
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutableSortedList()
     {
         List<Integer> list = List.of(5, 3, 1, 4, 2);
@@ -92,11 +98,12 @@ public class CollectorsToImmutableCollectionsTest
         ImmutableList<Integer> forward = null;
         // Convert list to a ImmutableList<Integer> sorted in reverse order using Collectors2
         ImmutableList<Integer> reverse = null;
-        Assert.assertEquals(Lists.mutable.with(1, 2, 3, 4, 5), forward);
-        Assert.assertEquals(Lists.mutable.with(5, 4, 3, 2, 1), reverse);
+        Assertions.assertEquals(Lists.mutable.with(1, 2, 3, 4, 5), forward);
+        Assertions.assertEquals(Lists.mutable.with(5, 4, 3, 2, 1), reverse);
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutableSortedSet()
     {
         List<Integer> list = List.of(5, 3, 1, 4, 2);
@@ -104,11 +111,12 @@ public class CollectorsToImmutableCollectionsTest
         ImmutableSortedSet<Integer> forward = null;
         // Convert list to a ImmutableSortedSet<Integer> sorted in reverse order using Collectors2
         ImmutableSortedSet<Integer> reverse = null;
-        Assert.assertEquals(SortedSets.mutable.with(1, 2, 3, 4, 5), forward);
-        Assert.assertEquals(SortedSets.mutable.with(5, 4, 3, 2, 1), reverse);
+        Assertions.assertEquals(SortedSets.mutable.with(1, 2, 3, 4, 5), forward);
+        Assertions.assertEquals(SortedSets.mutable.with(5, 4, 3, 2, 1), reverse);
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutableSortedBag()
     {
         List<Integer> list = List.of(5, 3, 1, 4, 2);
@@ -116,7 +124,7 @@ public class CollectorsToImmutableCollectionsTest
         ImmutableSortedBag<Integer> forward = null;
         // Convert list to a ImmutableSortedBag<Integer> sorted in reverse order using Collectors2
         ImmutableSortedBag<Integer> reverse = null;
-        Assert.assertEquals(SortedBags.mutable.with(1, 2, 3, 4, 5), forward);
-        Assert.assertEquals(SortedBags.mutable.with(5, 4, 3, 2, 1), reverse);
+        Assertions.assertEquals(SortedBags.mutable.with(1, 2, 3, 4, 5), forward);
+        Assertions.assertEquals(SortedBags.mutable.with(5, 4, 3, 2, 1), reverse);
     }
 }

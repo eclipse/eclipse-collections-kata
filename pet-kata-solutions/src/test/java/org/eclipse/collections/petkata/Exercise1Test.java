@@ -16,6 +16,7 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.Test;
 public class Exercise1Test extends PetDomainForKata
 {
     @Test
+    @Tag("SOLUTION")
     public void getFirstNamesOfAllPeople()
     {
         MutableList<String> firstNames = this.people.collect(Person::getFirstName);
@@ -38,6 +40,7 @@ public class Exercise1Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getNamesOfMarySmithsPets()
     {
         Person person = this.getPersonNamed("Mary Smith");
@@ -49,6 +52,7 @@ public class Exercise1Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getPeopleWithCats()
     {
         MutableList<Person> peopleWithCats = this.people.select(person -> person.hasPet(PetType.CAT));
@@ -57,6 +61,7 @@ public class Exercise1Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getPeopleWithoutCats()
     {
         MutableList<Person> peopleWithoutCats = this.people.reject(person -> person.hasPet(PetType.CAT));

@@ -23,6 +23,7 @@ import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.eclipse.collections.impl.utility.ListIterate;
 import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -44,6 +45,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * {@link ArrayIterate}.
      */
     @Test
+    @Tag("KATA")
     public void findSupplierNames()
     {
         MutableList<String> supplierNames = null;
@@ -64,6 +66,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * satisfy that Predicate.
      */
     @Test
+    @Tag("KATA")
     public void countSuppliersWithMoreThanTwoItems()
     {
         Predicate<Supplier> moreThanTwoItems = null;
@@ -76,6 +79,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Try to solve this without changing the return type of {@link Supplier#getItemNames()}.
      */
     @Test
+    @Tag("KATA")
     public void whoSuppliesSandwichToaster()
     {
         // Create a Predicate that will check to see if a Supplier supplies a "sandwich toaster".
@@ -92,6 +96,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Get the order values that are greater than 1.5.
      */
     @Test
+    @Tag("KATA")
     public void filterOrderValues()
     {
         List<Order> orders = this.company.getMostRecentCustomer().getOrders();
@@ -106,6 +111,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Get the order values that are greater than 1.5 using double instead of Double.
      */
     @Test
+    @Tag("KATA")
     public void filterOrderValuesUsingPrimitives()
     {
         List<Order> orders = this.company.getMostRecentCustomer().getOrders();
@@ -120,6 +126,7 @@ public class Exercise4Test extends CompanyDomainForKata
      * Get the actual orders (not their double values) where those orders have a value greater than 2.0.
      */
     @Test
+    @Tag("KATA")
     public void filterOrders()
     {
         List<Order> orders = this.company.getMostRecentCustomer().getOrders();

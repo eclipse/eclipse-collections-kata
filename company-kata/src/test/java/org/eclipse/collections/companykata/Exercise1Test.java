@@ -16,6 +16,7 @@ import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -33,6 +34,7 @@ public class Exercise1Test extends CompanyDomainForKata
      * Get the name of each of the company's customers.
      */
     @Test
+    @Tag("KATA")
     public void getCustomerNames()
     {
         Function<Customer, String> nameFunction = Customer::getName;
@@ -46,6 +48,7 @@ public class Exercise1Test extends CompanyDomainForKata
      * Get the city for each of the company's customers.
      */
     @Test
+    @Tag("KATA")
     public void getCustomerCities()
     {
         MutableList<String> customerCities = null;  // this.company.getCustomers()...
@@ -58,6 +61,7 @@ public class Exercise1Test extends CompanyDomainForKata
      * Which customers come from London? Get a collection of those which do.
      */
     @Test
+    @Tag("KATA")
     public void getLondonCustomers()
     {
         MutableList<Customer> customersFromLondon = null; // this.company.getCustomers()...

@@ -27,11 +27,13 @@ import org.eclipse.collections.impl.collector.Collectors2;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class CandyKataTest
 {
     @Test
+    @Tag("KATA")
     public void topCandy()
     {
         MutableList<Bag<Candy>> bagsOfCandy = this.collectBagsOfCandy();
@@ -47,6 +49,7 @@ public class CandyKataTest
     }
 
     @Test
+    @Tag("KATA")
     public void commonInTop10()
     {
         MutableList<Bag<Candy>> bagsOfCandy = this.collectBagsOfCandy();

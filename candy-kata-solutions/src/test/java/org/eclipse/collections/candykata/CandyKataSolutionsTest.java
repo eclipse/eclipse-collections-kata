@@ -14,15 +14,15 @@ import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
-import org.eclipse.collections.candykata.Candy;
-import org.eclipse.collections.candykata.SchoolGroup;
 import org.eclipse.collections.impl.factory.Sets;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class CandyKataSolutionsTest
 {
     @Test
+    @Tag("SOLUTION")
     public void topCandy()
     {
         MutableList<Bag<Candy>> bagsOfCandy = this.collectBagsOfCandy();
@@ -40,6 +40,7 @@ public class CandyKataSolutionsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void commonInTop10()
     {
         MutableList<Bag<Candy>> bagsOfCandy = this.collectBagsOfCandy();

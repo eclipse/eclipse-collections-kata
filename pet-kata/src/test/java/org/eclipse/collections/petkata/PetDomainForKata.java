@@ -12,13 +12,13 @@ package org.eclipse.collections.petkata;
 
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public abstract class PetDomainForKata
 {
     protected MutableList<Person> people;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception
     {
         this.people = Lists.mutable.with(

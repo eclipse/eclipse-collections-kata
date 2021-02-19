@@ -18,9 +18,9 @@ import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.MutableDoubleList;
-import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -47,6 +47,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Customer#getTotalOrderValue()} and {@link Order#getValue()} .
      */
     @Test
+    @Tag("SOLUTION")
     public void sortedTotalOrderValue()
     {
         MutableList<Double> sortedTotalValues = this.company
@@ -62,6 +63,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Get a list of the customers' total order values, sorted. Use primitive doubles instead of boxed Doubles.
      */
     @Test
+    @Tag("SOLUTION")
     public void sortedTotalOrderValueUsingPrimitives()
     {
         MutableDoubleList sortedTotalValues = this.company
@@ -77,6 +79,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Find the max total order value across all customers.
      */
     @Test
+    @Tag("SOLUTION")
     public void maximumTotalOrderValue()
     {
         Double maximumTotalOrderValue = this.company
@@ -92,6 +95,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Find the max total order value across all customers, but use primitive double instead of boxed Double.
      */
     @Test
+    @Tag("SOLUTION")
     public void maximumTotalOrderValueUsingPrimitives()
     {
         double maximumTotalOrderValue = this.company
@@ -107,6 +111,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Find the customer with the highest total order value.
      */
     @Test
+    @Tag("SOLUTION")
     public void customerWithMaxTotalOrderValue()
     {
         Customer customerWithMaxTotalOrderValue = this.company
@@ -120,6 +125,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * Create some code to get the company's supplier names as a tilde delimited string.
      */
     @Test
+    @Tag("SOLUTION")
     public void supplierNamesAsTildeDelimitedString()
     {
         String tildeSeparatedNames = this.company.getSuppliers()
@@ -127,9 +133,9 @@ public class Exercise6Test extends CompanyDomainForKata
                 .makeString("~");
 
         Assertions.assertEquals(
-                "tilde separated names",
                 "Shedtastic~Splendid Crocks~Annoying Pets~Gnomes 'R' Us~Furniture Hamlet~SFD~Doxins",
-                tildeSeparatedNames);
+                tildeSeparatedNames,
+                "tilde separated names");
     }
 
     /**
@@ -140,6 +146,7 @@ public class Exercise6Test extends CompanyDomainForKata
      * @see Order#deliver()
      */
     @Test
+    @Tag("SOLUTION")
     public void deliverOrdersToLondon()
     {
         this.company.getCustomers()

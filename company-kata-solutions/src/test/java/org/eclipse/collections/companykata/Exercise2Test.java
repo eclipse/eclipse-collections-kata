@@ -10,13 +10,13 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -48,6 +48,7 @@ public class Exercise2Test extends CompanyDomainForKata
     private static final Predicate<Customer> CUSTOMER_PREDICATE = customer -> "London".equals(customer.getCity());
 
     @Test
+    @Tag("SOLUTION")
     public void customerFromLondonPredicate()
     {
         Predicate<Customer> predicate = CUSTOMER_PREDICATE;
@@ -65,18 +66,21 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void doAnyCustomersLiveInLondon()
     {
         Assertions.assertTrue(this.company.getCustomers().anySatisfy(CUSTOMER_PREDICATE));
     }
 
     @Test
+    @Tag("SOLUTION")
     public void doAllCustomersLiveInLondon()
     {
         Assertions.assertFalse(this.company.getCustomers().allSatisfy(CUSTOMER_PREDICATE));
     }
 
     @Test
+    @Tag("SOLUTION")
     public void howManyCustomersLiveInLondon()
     {
         int numberOfCustomerFromLondon = this.company.getCustomers().count(CUSTOMER_PREDICATE);
@@ -85,6 +89,7 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getLondonCustomers()
     {
         MutableList<Customer> customersFromLondon = this.company.getCustomers().select(CUSTOMER_PREDICATE);
@@ -93,6 +98,7 @@ public class Exercise2Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getCustomersWhoDontLiveInLondon()
     {
         MutableList<Customer> customersNotFromLondon = this.company.getCustomers().reject(CUSTOMER_PREDICATE);
@@ -104,6 +110,7 @@ public class Exercise2Test extends CompanyDomainForKata
      * Which customers come from London? Which customers do not come from London? Get a collection of both in a single pass.
      */
     @Test
+    @Tag("SOLUTION")
     public void getCustomersWhoDoAndDoNotLiveInLondon()
     {
         PartitionMutableList<Customer> customers = this.company.getCustomers().partition(CUSTOMER_PREDICATE);
@@ -116,17 +123,19 @@ public class Exercise2Test extends CompanyDomainForKata
      * Implement {@link Company#getCustomerNamed(String)} and get this test to pass.
      */
     @Test
+    @Tag("SOLUTION")
     public void findMary()
     {
         Customer mary = this.company.getCustomerNamed("Mary");
 
-        Assertions.assertEquals("customer's name should be Mary", "Mary", mary.getName());
+        Assertions.assertEquals("Mary", mary.getName(), "customer's name should be Mary");
     }
 
     /**
      * Implement {@link Company#getCustomerNamed(String)} and get this test to pass.
      */
     @Test
+    @Tag("SOLUTION")
     public void findPete()
     {
         Customer pete = this.company.getCustomerNamed("Pete");

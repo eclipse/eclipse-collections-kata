@@ -14,17 +14,13 @@ import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.multimap.Multimap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.api.multimap.set.MutableSetMultimap;
-import org.eclipse.collections.api.set.MutableSet;
-import org.eclipse.collections.impl.factory.Lists;
-import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.factory.Multimaps;
-import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -44,6 +40,7 @@ import org.junit.jupiter.api.Test;
 public class Exercise3Test extends PetDomainForKata
 {
     @Test
+    @Tag("SOLUTION")
     public void getCountsByPetType()
     {
         MutableBag<PetType> counts =
@@ -58,6 +55,7 @@ public class Exercise3Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getPeopleByLastName()
     {
         MutableListMultimap<String, Person> lastNamesToPeople =
@@ -67,6 +65,7 @@ public class Exercise3Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("SOLUTION")
     public void getPeopleByTheirPets()
     {
         MutableSetMultimap<PetType, Person> multimap =

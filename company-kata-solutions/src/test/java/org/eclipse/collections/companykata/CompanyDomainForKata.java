@@ -10,18 +10,12 @@
 
 package org.eclipse.collections.companykata;
 
-import java.util.Arrays;
-import java.util.Collections;
+import org.junit.jupiter.api.BeforeEach;
 
-import javax.sound.sampled.Line;
-
-import org.junit.Before;
-
-public abstract class CompanyDomainForKata
-{
+public abstract class CompanyDomainForKata {
     protected final Company company = new Company("Bloggs Shed Supplies");
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         Order.resetNextOrderNumber();
@@ -57,8 +51,8 @@ public abstract class CompanyDomainForKata
         Order maryOrder = new Order();
         maryOrder.addLineItem(new LineItem("cat", 150.0));
         maryOrder.addLineItem(new LineItem("big shed", 500.0));
-        maryOrder.addLineItems(new LineItem("cup" , 1.5),4);
-        maryOrder.addLineItems(new LineItem("saucer" , 1.5), 4);
+        maryOrder.addLineItems(new LineItem("cup", 1.5), 4);
+        maryOrder.addLineItems(new LineItem("saucer", 1.5), 4);
         maryOrder.addLineItem(new LineItem("sofa", 120.0));
         maryOrder.addLineItem(new LineItem("dog", 75.0));
 
@@ -69,7 +63,7 @@ public abstract class CompanyDomainForKata
         Order billOrder1 = new Order();
         billOrder1.addLineItem(new LineItem("shed", 50.0));
 
-        billOrder1.addLineItems( new LineItem("gnome", 7.50), 43);
+        billOrder1.addLineItems(new LineItem("gnome", 7.50), 43);
         Order billOrder2 = new Order();
         billOrder2.addLineItem(new LineItem("bowl", 1.25));
         billOrder2.addLineItem(new LineItem("goldfish", 0.50));

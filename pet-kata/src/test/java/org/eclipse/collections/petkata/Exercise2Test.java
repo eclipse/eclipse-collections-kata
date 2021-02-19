@@ -19,6 +19,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -48,6 +49,7 @@ import org.junit.jupiter.api.Test;
 public class Exercise2Test extends PetDomainForKata
 {
     @Test
+    @Tag("KATA")
     public void doAnyPeopleHaveCats()
     {
         Predicate<Person> predicate = null; //replace null with a Predicate lambda which checks for PetType.CAT
@@ -55,6 +57,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void doAllPeopleHavePets()
     {
         Predicate<Person> predicate = Person::isPetPerson;
@@ -63,6 +66,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void howManyPeopleHaveCats()
     {
         int count = 0;
@@ -70,6 +74,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void findMarySmith()
     {
         Person result = null;
@@ -78,6 +83,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getPeopleWithPets()
     {
         MutableList<Person> petPeople = this.people; // replace with only the pet owners
@@ -85,6 +91,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getAllPetTypesOfAllPeople()
     {
         Function<Person, Iterable<PetType>> function = Person::getPetTypes;
@@ -95,6 +102,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getFirstNamesOfAllPeople()
     {
         MutableList<String> firstNames = null;  // Transform this.people into a list of first names
@@ -104,6 +112,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void doAnyPeopleHaveCatsRefactor()
     {
         boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
@@ -115,6 +124,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void doAllPeopleHaveCatsRefactor()
     {
         boolean peopleHaveCatsLambda = this.people.allSatisfy(person -> person.hasPet(PetType.CAT));
@@ -126,6 +136,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getPeopleWithCatsRefactor()
     {
         //use method reference, NOT lambdas, to solve the problem below
@@ -134,6 +145,7 @@ public class Exercise2Test extends PetDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void getPeopleWithoutCatsRefactor()
     {
         //use method reference, NOT lambdas, to solve the problem below

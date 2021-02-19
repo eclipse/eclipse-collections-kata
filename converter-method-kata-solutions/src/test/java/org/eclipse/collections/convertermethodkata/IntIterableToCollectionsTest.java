@@ -12,7 +12,6 @@ package org.eclipse.collections.convertermethodkata;
 
 import org.eclipse.collections.api.bag.primitive.ImmutableIntBag;
 import org.eclipse.collections.api.bag.primitive.MutableIntBag;
-import org.eclipse.collections.api.block.comparator.primitive.IntComparator;
 import org.eclipse.collections.api.list.primitive.ImmutableIntList;
 import org.eclipse.collections.api.list.primitive.MutableIntList;
 import org.eclipse.collections.api.set.primitive.ImmutableIntSet;
@@ -21,8 +20,9 @@ import org.eclipse.collections.impl.factory.primitive.IntBags;
 import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 /**
  * Convert the types in the following tests to the missing type using APIs on the IntIterable interface.
@@ -30,6 +30,7 @@ import org.junit.Test;
 public class IntIterableToCollectionsTest
 {
     @Test
+    @Tag("SOLUTION")
     public void toList()
     {
         IntInterval interval = IntInterval.oneTo(5);
@@ -37,11 +38,12 @@ public class IntIterableToCollectionsTest
         MutableIntList list = interval.toList();
         // Convert list to an ImmutableIntList
         ImmutableIntList immutableIntList = list.toImmutable();
-        Assert.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), list);
-        Assert.assertEquals(list, immutableIntList);
+        Assertions.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), list);
+        Assertions.assertEquals(list, immutableIntList);
     }
 
     @Test
+    @Tag("SOLUTION")
     public void toSet()
     {
         MutableIntList list = IntLists.mutable.with(1, 2, 2, 3, 3);
@@ -49,11 +51,12 @@ public class IntIterableToCollectionsTest
         MutableIntSet set = list.toSet();
         // Convert set to an ImmutableIntSet
         ImmutableIntSet immutableIntSet = set.toImmutable();
-        Assert.assertEquals(IntSets.mutable.with(1, 2, 3), set);
-        Assert.assertEquals(set, immutableIntSet);
+        Assertions.assertEquals(IntSets.mutable.with(1, 2, 3), set);
+        Assertions.assertEquals(set, immutableIntSet);
     }
 
     @Test
+    @Tag("SOLUTION")
     public void toBag()
     {
         MutableIntList list = IntLists.mutable.with(1, 2, 2, 3, 3);
@@ -61,39 +64,42 @@ public class IntIterableToCollectionsTest
         MutableIntBag bag = list.toBag();
         // Convert bag to an ImmutableIntBag
         ImmutableIntBag immutableIntBag = bag.toImmutable();
-        Assert.assertEquals(IntBags.mutable.with(1, 2, 2, 3, 3), bag);
-        Assert.assertEquals(bag, immutableIntBag);
+        Assertions.assertEquals(IntBags.mutable.with(1, 2, 2, 3, 3), bag);
+        Assertions.assertEquals(bag, immutableIntBag);
     }
 
     @Test
+    @Tag("SOLUTION")
     public void toSortedList()
     {
         MutableIntList list = IntLists.mutable.with(5, 3, 1, 4, 2);
         // Convert list to a sorted MutableIntList
         MutableIntList sorted = list.toSortedList();
-        Assert.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), sorted);
+        Assertions.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), sorted);
         // Sort the sorted list in reverse order
         MutableIntList forward = sorted.sortThis();
         MutableIntList reversed = sorted.sortThisBy(i -> -i);
-        Assert.assertEquals(IntLists.mutable.with(5, 4, 3, 2, 1), reversed);
-        Assert.assertSame(sorted, forward);
+        Assertions.assertEquals(IntLists.mutable.with(5, 4, 3, 2, 1), reversed);
+        Assertions.assertSame(sorted, forward);
     }
 
     @Test
+    @Tag("SOLUTION")
     public void toArray()
     {
         MutableIntList list = IntLists.mutable.with(1, 2, 3);
         int[] array = list.toArray(new int[3]);
-        Assert.assertArrayEquals(new int[]{1, 2, 3}, array);
+        Assertions.assertArrayEquals(new int[]{1, 2, 3}, array);
     }
 
     @Test
+    @Tag("SOLUTION")
     public void toStringTest()
     {
         MutableIntList list = IntLists.mutable.with(1, 2, 3);
         String toString = list.toString();
         String makeString = list.makeString("[", ", ", "]");
-        Assert.assertEquals("[1, 2, 3]", toString);
-        Assert.assertEquals("[1, 2, 3]", makeString);
+        Assertions.assertEquals("[1, 2, 3]", toString);
+        Assertions.assertEquals("[1, 2, 3]", makeString);
     }
 }

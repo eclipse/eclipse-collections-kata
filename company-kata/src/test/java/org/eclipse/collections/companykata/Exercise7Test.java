@@ -19,6 +19,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -38,6 +39,7 @@ public class Exercise7Test extends CompanyDomainForKata
      * A Customer is only associated to one city.
      */
     @Test
+    @Tag("KATA")
     public void customersByCity()
     {
         MutableListMultimap<String, Customer> multimap = null;
@@ -53,6 +55,7 @@ public class Exercise7Test extends CompanyDomainForKata
      * A Supplier is associated to many item names.
      */
     @Test
+    @Tag("KATA")
     public void itemsBySuppliers()
     {
         MutableMultimap<String, Supplier> itemsToSuppliers = null;
@@ -64,6 +67,7 @@ public class Exercise7Test extends CompanyDomainForKata
      * Delete this whole method when you're done. It's just a reminder.
      */
     @Test
+    @Tag("KATA")
     public void reminder()
     {
         Assertions.fail("Refactor setUpCustomersAndOrders() in the super class to not have so much repetition.");

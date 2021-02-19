@@ -17,6 +17,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -33,6 +34,7 @@ public class Exercise3Test extends CompanyDomainForKata
      * Improve {@link Company#getOrders()} without breaking this test.
      */
     @Test
+    @Tag("KATA")
     public void improveGetOrders()
     {
         // Delete this line - it's a reminder
@@ -44,6 +46,7 @@ public class Exercise3Test extends CompanyDomainForKata
      * Get all items that have been ordered by anybody.
      */
     @Test
+    @Tag("KATA")
     public void findItemNames()
     {
         MutableList<LineItem> allOrderedLineItems = null;
@@ -56,6 +59,7 @@ public class Exercise3Test extends CompanyDomainForKata
     }
 
     @Test
+    @Tag("KATA")
     public void findCustomerNames()
     {
         MutableList<String> names = null;

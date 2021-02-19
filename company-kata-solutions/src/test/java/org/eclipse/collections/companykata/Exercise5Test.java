@@ -24,6 +24,7 @@ import org.eclipse.collections.impl.factory.primitive.DoubleLists;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -43,6 +44,7 @@ public class Exercise5Test extends CompanyDomainForKata
      * Get the order values that are greater than 1.5.
      */
     @Test
+    @Tag("SOLUTION")
     public void filterOrderValues()
     {
         MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
@@ -60,6 +62,7 @@ public class Exercise5Test extends CompanyDomainForKata
      * Same as above exercise, but use primitive doubles instead of boxed Doubles.
      */
     @Test
+    @Tag("SOLUTION")
     public void filterOrderValuesUsingPrimitives()
     {
         MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();
@@ -76,6 +79,7 @@ public class Exercise5Test extends CompanyDomainForKata
      * Get the actual orders (not their double values) where those orders have a value greater than 2.0.
      */
     @Test
+    @Tag("SOLUTION")
     public void filterOrders()
     {
         MutableList<Order> orders = this.company.getMostRecentCustomer().getOrders();

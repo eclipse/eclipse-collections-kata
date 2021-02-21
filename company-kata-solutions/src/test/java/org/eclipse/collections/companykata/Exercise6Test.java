@@ -128,6 +128,8 @@ public class Exercise6Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void supplierNamesAsTildeDelimitedString()
     {
+        // The solution for this exercise is (the return type of getSuppliers is changed in exercise 7):
+        // String tildeSeparatedNames = ArrayAdapter.adapt(this.company.getSuppliers())
         String tildeSeparatedNames = this.company.getSuppliers()
                 .collect(Supplier::getName)
                 .makeString("~");

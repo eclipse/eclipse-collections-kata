@@ -931,7 +931,7 @@ Collection<Integer> selected =
 
 
 #### Static Utility Cheat Sheet
-* Iterate Iterable) 
+* Iterate (Iterable) 
   * ListIterate (List)
   * ArrayListIterate (ArrayList)
   * RandomAccessListIterate (List & RandomAccess)

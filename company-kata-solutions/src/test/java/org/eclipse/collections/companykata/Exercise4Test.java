@@ -51,6 +51,8 @@ public class Exercise4Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void findSupplierNames()
     {
+        // The solution for this exercise is (the return type of getSuppliers is changed in exercise 7):
+        // MutableList<String> supplierNames = ArrayIterate.collect(this.company.getSuppliers(), Supplier::getName);
         MutableList<String> supplierNames = this.company.getSuppliers().collect(Supplier::getName);
 
         var expectedSupplierNames = Lists.mutable.with(
@@ -72,6 +74,8 @@ public class Exercise4Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void countSuppliersWithMoreThanTwoItems()
     {
+        // The solution for this exercise is (the return type of getSuppliers is changed in exercise 7):
+        // int suppliersWithMoreThanTwoItems = ArrayIterate.count(this.company.getSuppliers(), s -> s.getItemNames().length > 2);
         int suppliersWithMoreThanTwoItems =this.company.getSuppliers().count(s -> s.getItemNames().length > 2);
         Assertions.assertEquals(5, suppliersWithMoreThanTwoItems, "suppliers with more than 2 items");
     }
@@ -88,6 +92,8 @@ public class Exercise4Test extends CompanyDomainForKata
         Predicate<Supplier> suppliesToaster = s -> ArrayIterate.contains(s.getItemNames(), SANDWICH_TOASTER);
 
         // Find one supplier that supplies toasters.
+        // The solution for this exercise is (the return type of getSuppliers is changed in exercise 7):
+        // Supplier toasterSupplier = ArrayIterate.detect(this.company.getSuppliers(), suppliesToaster);
         Supplier toasterSupplier = this.company.getSuppliers().detect(suppliesToaster);
 
         Assertions.assertNotNull(toasterSupplier, "toaster supplier");

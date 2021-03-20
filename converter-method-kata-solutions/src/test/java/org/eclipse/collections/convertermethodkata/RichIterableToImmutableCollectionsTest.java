@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The Bank of New York Mellon.
+ * Copyright (c) 2021 The Bank of New York Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -52,7 +52,7 @@ public class RichIterableToImmutableCollectionsTest
     {
         Interval interval = Interval.oneTo(5);
         // Convert interval to a ImmutableList<Integer>
-        ImmutableList<Integer> list = interval.toList().toImmutable();
+        ImmutableList<Integer> list = interval.toImmutableList();
         Assertions.assertEquals(Lists.mutable.with(1, 2, 3, 4, 5), list);
     }
 
@@ -62,7 +62,7 @@ public class RichIterableToImmutableCollectionsTest
     {
         MutableList<Integer> list = Lists.mutable.with(1, 2, 2, 3, 3);
         // Convert list to a ImmutableSet<Integer>
-        ImmutableSet<Integer> set = list.toSet().toImmutable();
+        ImmutableSet<Integer> set = list.toImmutableSet();
         Assertions.assertEquals(Sets.mutable.with(1, 2, 3), set);
     }
 
@@ -72,7 +72,7 @@ public class RichIterableToImmutableCollectionsTest
     {
         MutableList<Integer> list = Lists.mutable.with(1, 2, 2, 3, 3);
         // Convert list to a ImmutableBag<Integer>
-        ImmutableBag<Integer> bag = list.toBag().toImmutable();
+        ImmutableBag<Integer> bag = list.toImmutableBag();
         Assertions.assertEquals(Bags.mutable.with(1, 2, 2, 3, 3), bag);
     }
 
@@ -106,7 +106,7 @@ public class RichIterableToImmutableCollectionsTest
     {
         MutableList<Integer> list = Lists.mutable.with(5, 3, 1, 4, 2);
         // Convert list to a sorted ImmutableList<Integer>
-        ImmutableList<Integer> forward = list.toSortedList().toImmutable();
+        ImmutableList<Integer> forward = list.toImmutableSortedList();
         // Convert list to a ImmutableList<Integer> sorted in reverse order
         ImmutableList<Integer> reverse = list.toSortedList(Comparator.reverseOrder()).toImmutable();
         Assertions.assertEquals(Lists.mutable.with(1, 2, 3, 4, 5), forward);
@@ -118,7 +118,7 @@ public class RichIterableToImmutableCollectionsTest
     public void toSortedListByLastName()
     {
         // Convert this.people to a ImmutableList<Person> sorted by last name
-        ImmutableList<Person> sorted = this.people.toSortedListBy(Person::getLastName).toImmutable();
+        ImmutableList<Person> sorted = this.people.toImmutableSortedListBy(Person::getLastName);
         Assertions.assertEquals(Lists.mutable.with(TED_FIELDS, SALLY_GOLD, MARY_SMITH), sorted);
     }
 
@@ -128,9 +128,9 @@ public class RichIterableToImmutableCollectionsTest
     {
         MutableList<Integer> list = Lists.mutable.with(5, 3, 1, 4, 2);
         // Convert list to a sorted ImmutableSortedSet<Integer>
-        ImmutableSortedSet<Integer> forward = list.toSortedSet().toImmutable();
+        ImmutableSortedSet<Integer> forward = list.toImmutableSortedSet();
         // Convert list to a ImmutableSortedSet<Integer> sorted in reverse order
-        ImmutableSortedSet<Integer> reverse = list.toSortedSet(Comparator.reverseOrder()).toImmutable();
+        ImmutableSortedSet<Integer> reverse = list.toImmutableSortedSet(Comparator.reverseOrder());
         Assertions.assertEquals(SortedSets.mutable.with(1, 2, 3, 4, 5), forward);
         Assertions.assertEquals(SortedSets.mutable.with(5, 4, 3, 2, 1), reverse);
     }
@@ -140,7 +140,7 @@ public class RichIterableToImmutableCollectionsTest
     public void toSortedSetByFirstName()
     {
         // Convert this.people to a ImmutableSortedSet<Person> sorted by first name
-        ImmutableSortedSet<Person> sorted = this.people.toSortedSetBy(Person::getFirstName).toImmutable();
+        ImmutableSortedSet<Person> sorted = this.people.toImmutableSortedSetBy(Person::getFirstName);
         Assertions.assertEquals(
                 SortedSets.mutable.with(
                         Comparator.comparing(Person::getFirstName),
@@ -154,9 +154,9 @@ public class RichIterableToImmutableCollectionsTest
     {
         MutableList<Integer> list = Lists.mutable.with(5, 3, 1, 4, 2);
         // Convert list to a sorted ImmutableSortedBag<Integer>
-        ImmutableSortedBag<Integer> forward = list.toSortedBag().toImmutable();
+        ImmutableSortedBag<Integer> forward = list.toImmutableSortedBag();
         // Convert list to a ImmutableSortedBag<Integer> sorted in reverse order
-        ImmutableSortedBag<Integer> reverse = list.toSortedBag(Comparator.reverseOrder()).toImmutable();
+        ImmutableSortedBag<Integer> reverse = list.toImmutableSortedBag(Comparator.reverseOrder());
         Assertions.assertEquals(SortedBags.mutable.with(1, 2, 3, 4, 5), forward);
         Assertions.assertEquals(SortedBags.mutable.with(5, 4, 3, 2, 1), reverse);
     }
@@ -166,7 +166,7 @@ public class RichIterableToImmutableCollectionsTest
     public void toSortedBagByAge()
     {
         // Convert this.people to a ImmutableSortedBag<Person> sorted by age
-        ImmutableSortedBag<Person> sorted = this.people.toSortedBagBy(Person::getAge).toImmutable();
+        ImmutableSortedBag<Person> sorted = this.people.toImmutableSortedBagBy(Person::getAge);
         Assertions.assertEquals(SortedBags.mutable.with(
                 Comparator.comparing(Person::getAge),
                 MARY_SMITH, TED_FIELDS, SALLY_GOLD), sorted);

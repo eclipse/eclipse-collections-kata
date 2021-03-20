@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -39,7 +39,6 @@ import org.junit.jupiter.api.Test;
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/company-kata/#/12">Exercise 4 Slides</a>
  */
 public class Exercise4Test extends CompanyDomainForKata
-
 {
     private static final String SANDWICH_TOASTER = "sandwich toaster";
 
@@ -76,7 +75,9 @@ public class Exercise4Test extends CompanyDomainForKata
     {
         // The solution for this exercise is (the return type of getSuppliers is changed in exercise 7):
         // int suppliersWithMoreThanTwoItems = ArrayIterate.count(this.company.getSuppliers(), s -> s.getItemNames().length > 2);
-        int suppliersWithMoreThanTwoItems =this.company.getSuppliers().count(s -> s.getItemNames().length > 2);
+        int suppliersWithMoreThanTwoItems =
+                this.company.getSuppliers().count(supplier -> supplier.getItemNames().length > 2);
+
         Assertions.assertEquals(5, suppliersWithMoreThanTwoItems, "suppliers with more than 2 items");
     }
 
@@ -87,9 +88,9 @@ public class Exercise4Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void whoSuppliesSandwichToaster()
     {
-
         // Create a Predicate that will check to see if a Supplier supplies a "sandwich toaster".
-        Predicate<Supplier> suppliesToaster = s -> ArrayIterate.contains(s.getItemNames(), SANDWICH_TOASTER);
+        Predicate<Supplier> suppliesToaster =
+                supplier -> ArrayIterate.contains(supplier.getItemNames(), SANDWICH_TOASTER);
 
         // Find one supplier that supplies toasters.
         // The solution for this exercise is (the return type of getSuppliers is changed in exercise 7):
@@ -107,9 +108,9 @@ public class Exercise4Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void filterOrderValues()
     {
-
-        MutableList<Double> orderValues = ListIterate.collect(this.company.getMostRecentCustomer().getOrders(), Order::getValue);
-        MutableList<Double> filtered = orderValues.select(v -> v > 1.5);
+        MutableList<Double> orderValues =
+                ListIterate.collect(this.company.getMostRecentCustomer().getOrders(), Order::getValue);
+        MutableList<Double> filtered = orderValues.select(value -> value > 1.5);
 
         var expectedValues = Lists.mutable.with(372.5, 1.75);
         Assertions.assertEquals(expectedValues, filtered);
@@ -122,9 +123,9 @@ public class Exercise4Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void filterOrderValuesUsingPrimitives()
     {
-
-        MutableDoubleList orderValues = ListIterate.collectDouble(this.company.getMostRecentCustomer().getOrders(), Order::getValue);
-        MutableDoubleList filtered = orderValues.select(v -> v > 1.5);
+        MutableDoubleList orderValues =
+                ListIterate.collectDouble(this.company.getMostRecentCustomer().getOrders(), Order::getValue);
+        MutableDoubleList filtered = orderValues.select(value -> value > 1.5);
 
         var expectedValues = DoubleLists.mutable.with(372.5, 1.75);
         Assertions.assertEquals(expectedValues, filtered);
@@ -137,9 +138,11 @@ public class Exercise4Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void filterOrders()
     {
-        MutableList<Order> filtered = ListIterate.select(this.company.getMostRecentCustomer().getOrders(), o -> o.getValue() > 2.0);
+        MutableList<Order> filtered =
+                ListIterate.select(this.company.getMostRecentCustomer().getOrders(), o -> o.getValue() > 2.0);
 
-        var expectedOrders = Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders()));
+        var expectedOrders =
+                Lists.mutable.with(Iterate.getFirst(this.company.getMostRecentCustomer().getOrders()));
         Assertions.assertEquals(expectedOrders, filtered);
     }
 }

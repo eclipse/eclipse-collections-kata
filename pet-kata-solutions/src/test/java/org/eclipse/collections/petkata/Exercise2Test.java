@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -44,6 +44,7 @@ import org.junit.jupiter.api.Test;
  * {@link MutableList#allSatisfyWith(Predicate2, Object)}<br>
  * {@link MutableList#noneSatisfyWith(Predicate2, Object)}<br>
  * <br>
+ *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/pet-kata/#/4">Exercise 2 Slides</a>
  */
 public class Exercise2Test extends PetDomainForKata
@@ -53,6 +54,7 @@ public class Exercise2Test extends PetDomainForKata
     public void doAnyPeopleHaveCats()
     {
         Predicate<Person> predicate = person -> person.hasPet(PetType.CAT);
+
         Assertions.assertTrue(this.people.anySatisfy(predicate));
     }
 
@@ -62,6 +64,7 @@ public class Exercise2Test extends PetDomainForKata
     {
         Predicate<Person> predicate = Person::isPetPerson;
         boolean result = this.people.allSatisfy(predicate);
+
         Assertions.assertFalse(result);
     }
 
@@ -70,6 +73,7 @@ public class Exercise2Test extends PetDomainForKata
     public void howManyPeopleHaveCats()
     {
         int count = this.people.count(person -> person.hasPet(PetType.CAT));
+
         Assertions.assertEquals(2, count);
     }
 
@@ -77,7 +81,8 @@ public class Exercise2Test extends PetDomainForKata
     @Tag("SOLUTION")
     public void findMarySmith()
     {
-        Person result = this.people.detectWith(Person::named,"Mary Smith");
+        Person result = this.people.detectWith(Person::named, "Mary Smith");
+
         Assertions.assertEquals("Mary", result.getFirstName());
         Assertions.assertEquals("Smith", result.getLastName());
     }
@@ -86,7 +91,8 @@ public class Exercise2Test extends PetDomainForKata
     @Tag("SOLUTION")
     public void getPeopleWithPets()
     {
-        MutableList<Person> petPeople = this.people.select(Person::isPetPerson); // replace with only the pet owners
+        MutableList<Person> petPeople = this.people.select(Person::isPetPerson);
+
         Verify.assertSize(7, petPeople);
     }
 
@@ -96,7 +102,9 @@ public class Exercise2Test extends PetDomainForKata
     {
         Function<Person, Iterable<PetType>> function = Person::getPetTypes;
         MutableSet<PetType> petTypes = this.people.flatCollect(function, Sets.mutable.empty());
-        var expected = Sets.mutable.with(PetType.CAT, PetType.DOG, PetType.TURTLE, PetType.HAMSTER, PetType.BIRD, PetType.SNAKE);
+
+        var expected =
+                Sets.mutable.with(PetType.CAT, PetType.DOG, PetType.TURTLE, PetType.HAMSTER, PetType.BIRD, PetType.SNAKE);
         Assertions.assertEquals(expected, petTypes);
     }
 
@@ -104,8 +112,10 @@ public class Exercise2Test extends PetDomainForKata
     @Tag("SOLUTION")
     public void getFirstNamesOfAllPeople()
     {
-        MutableList<String> firstNames = this.people.collect(Person::getFirstName);  // Transform this.people into a list of first names
-        var expected = Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
+        MutableList<String> firstNames = this.people.collect(Person::getFirstName);
+
+        var expected =
+                Lists.mutable.with("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
         Assertions.assertEquals(expected, firstNames);
     }
 
@@ -116,7 +126,7 @@ public class Exercise2Test extends PetDomainForKata
         boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
         Assertions.assertTrue(peopleHaveCatsLambda);
 
-        boolean peopleHaveCatsMethodRef = this.people.anySatisfyWith(Person::hasPet,PetType.CAT);
+        boolean peopleHaveCatsMethodRef = this.people.anySatisfyWith(Person::hasPet, PetType.CAT);
         Assertions.assertTrue(peopleHaveCatsMethodRef);
     }
 
@@ -136,6 +146,7 @@ public class Exercise2Test extends PetDomainForKata
     public void getPeopleWithCatsRefactor()
     {
         MutableList<Person> peopleWithCatsMethodRef = this.people.selectWith(Person::hasPet, PetType.CAT);
+
         Verify.assertSize(2, peopleWithCatsMethodRef);
     }
 
@@ -144,6 +155,7 @@ public class Exercise2Test extends PetDomainForKata
     public void getPeopleWithoutCatsRefactor()
     {
         MutableList<Person> peopleWithoutCatsMethodRef = this.people.rejectWith(Person::hasPet, PetType.CAT);
+
         Verify.assertSize(6, peopleWithoutCatsMethodRef);
     }
 }

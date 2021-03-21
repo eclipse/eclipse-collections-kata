@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -43,9 +43,14 @@ public class Exercise7Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void customersByCity()
     {
-        MutableListMultimap<String, Customer> multimap = this.company.getCustomers().groupBy(Customer::getCity);
-        var expectedLiphookList = Lists.mutable.with("Mary").collect(this.company::getCustomerNamed);
-        var expectedLondonList = Lists.mutable.with("Fred", "Bill").collect(this.company::getCustomerNamed);
+        MutableListMultimap<String, Customer> multimap =
+                this.company.getCustomers().groupBy(Customer::getCity);
+
+        var expectedLiphookList =
+                Lists.mutable.with("Mary").collect(this.company::getCustomerNamed);
+        var expectedLondonList =
+                Lists.mutable.with("Fred", "Bill").collect(this.company::getCustomerNamed);
+
         Assertions.assertEquals(expectedLiphookList, multimap.get("Liphook"));
         Assertions.assertEquals(expectedLondonList, multimap.get("London"));
     }
@@ -58,8 +63,8 @@ public class Exercise7Test extends CompanyDomainForKata
     @Tag("SOLUTION")
     public void itemsBySuppliers()
     {
-        MutableMultimap<String, Supplier> itemsToSuppliers =  this.company.getSuppliers().groupByEach((Supplier supplier)
-                           -> ArrayAdapter.adapt(supplier.getItemNames()));
+        MutableMultimap<String, Supplier> itemsToSuppliers = this.company.getSuppliers()
+                .groupByEach(supplier -> ArrayAdapter.adapt(supplier.getItemNames()));
 
         Verify.assertIterableSize("should be 2 suppliers for sofa", 2, itemsToSuppliers.get("sofa"));
     }

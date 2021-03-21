@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -20,10 +20,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class Exercise5Test extends PetDomainForKata {
+public class Exercise5Test extends PetDomainForKata
+{
     @Test
     @Tag("SOLUTION")
-    public void partitionPetAndNonPetPeople() {
+    public void partitionPetAndNonPetPeople()
+    {
         PartitionMutableList<Person> partitionMutableList = this.people
                 .partition(Person::isPetPerson);
 
@@ -33,10 +35,11 @@ public class Exercise5Test extends PetDomainForKata {
 
     @Test
     @Tag("SOLUTION")
-    public void getOldestPet() {
+    public void getOldestPet()
+    {
         Pet oldestPet = this.people
                 .flatCollect(Person::getPets)
-                .maxBy(pet -> pet.getAge());
+                .maxBy(Pet::getAge);
 
         Assertions.assertEquals(PetType.DOG, oldestPet.getType());
         Assertions.assertEquals(4, oldestPet.getAge());
@@ -44,10 +47,11 @@ public class Exercise5Test extends PetDomainForKata {
 
     @Test
     @Tag("SOLUTION")
-    public void getAveragePetAge() {
+    public void getAveragePetAge()
+    {
         double averagePetAge = this.people
                 .flatCollect(Person::getPets)
-                .collectDouble(pet -> pet.getAge())
+                .collectDouble(Pet::getAge)
                 .average();
 
         Assertions.assertEquals(1.8888888888888888, averagePetAge, 0.00001);
@@ -55,11 +59,12 @@ public class Exercise5Test extends PetDomainForKata {
 
     @Test
     @Tag("SOLUTION")
-    public void addPetAgesToExistingSet() {
+    public void addPetAgesToExistingSet()
+    {
         MutableIntSet petAges = IntSets.mutable.with(5);
 
         this.people.flatCollect(Person::getPets)
-                .collectInt(pet -> pet.getAge(), petAges);
+                .collectInt(Pet::getAge, petAges);
 
         var expected = IntSets.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expected, petAges);
@@ -67,7 +72,8 @@ public class Exercise5Test extends PetDomainForKata {
 
     @Test
     @Tag("SOLUTION")
-    public void refactorToEclipseCollections() {
+    public void refactorToEclipseCollections()
+    {
         MutableList<Person> people = Lists.mutable.with(
                 new Person("Mary", "Smith").addPet(PetType.CAT, "Tabby", 2),
                 new Person("Bob", "Smith")

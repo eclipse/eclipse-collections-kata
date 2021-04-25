@@ -44,7 +44,7 @@ public class Exercise3Test extends PetDomainForKata
     public void getCountsByPetType()
     {
         MutableBag<PetType> counts =
-                this.people.flatCollect(Person::getPets).countBy(Pet::getType);
+                this.people.countByEach(Person::getPetTypes);
 
         Assertions.assertEquals(2, counts.occurrencesOf(PetType.CAT));
         Assertions.assertEquals(2, counts.occurrencesOf(PetType.DOG));
@@ -68,16 +68,14 @@ public class Exercise3Test extends PetDomainForKata
     @Tag("SOLUTION")
     public void getPeopleByTheirPets()
     {
-        MutableSetMultimap<PetType, Person> multimap =
-                this.people.groupByEach(
-                        Person::getPetTypes,
-                        Multimaps.mutable.set.empty());
+        MutableSetMultimap<PetType, Person> petTypesToPeople =
+                this.people.groupByEach(Person::getPetTypes, Multimaps.mutable.set.empty());
 
-        Verify.assertIterableSize(2, multimap.get(PetType.CAT));
-        Verify.assertIterableSize(2, multimap.get(PetType.DOG));
-        Verify.assertIterableSize(1, multimap.get(PetType.HAMSTER));
-        Verify.assertIterableSize(1, multimap.get(PetType.TURTLE));
-        Verify.assertIterableSize(1, multimap.get(PetType.BIRD));
-        Verify.assertIterableSize(1, multimap.get(PetType.SNAKE));
+        Verify.assertIterableSize(2, petTypesToPeople.get(PetType.CAT));
+        Verify.assertIterableSize(2, petTypesToPeople.get(PetType.DOG));
+        Verify.assertIterableSize(1, petTypesToPeople.get(PetType.HAMSTER));
+        Verify.assertIterableSize(1, petTypesToPeople.get(PetType.TURTLE));
+        Verify.assertIterableSize(1, petTypesToPeople.get(PetType.BIRD));
+        Verify.assertIterableSize(1, petTypesToPeople.get(PetType.SNAKE));
     }
 }

@@ -10,6 +10,7 @@
 
 package org.eclipse.collections.petkata;
 
+import org.eclipse.collections.api.IntIterable;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
@@ -56,6 +57,11 @@ public class Person
     public MutableBag<PetType> getPetTypes()
     {
         return this.pets.collect(Pet::getType, HashBag.newBag());
+    }
+
+    public IntIterable getPetAges()
+    {
+        return this.pets.asLazy().collectInt(Pet::getAge);
     }
 
     public Person addPet(PetType petType, String name, int age)

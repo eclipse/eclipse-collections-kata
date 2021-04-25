@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,12 +10,15 @@
 
 package org.eclipse.collections.petkata;
 
-import org.eclipse.collections.api.bag.MutableBag;
+import java.util.stream.Stream;
+
+import org.eclipse.collections.api.bag.ImmutableBag;
 import org.eclipse.collections.api.set.primitive.IntSet;
+import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
+import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
-import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -29,20 +32,17 @@ public class Exercise4Test extends PetDomainForKata
     @Tag("SOLUTION")
     public void getAgeStatisticsOfPets()
     {
-        var petAges = this.people
-                .flatCollect(Person::getPets)
-                .collectInt(Pet::getAge);
+        var petAges = this.people.flatCollectInt(Person::getPetAges, IntLists.mutable.empty());
 
         IntSet uniqueAges = petAges.toSet();
-
-        var stats = petAges.summaryStatistics();
         var expected = IntSets.immutable.of(1, 2, 3, 4);
         Assertions.assertEquals(expected, uniqueAges);
 
+        var stats = petAges.summaryStatistics();
         Assertions.assertEquals(stats.getMin(), petAges.minIfEmpty(0));
         Assertions.assertEquals(stats.getMax(), petAges.maxIfEmpty(0));
         Assertions.assertEquals(stats.getSum(), petAges.sum());
-        Assertions.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0), 0.0);
+        Assertions.assertEquals(stats.getAverage(), petAges.averageIfEmpty(0.0), 0.0);
         Assertions.assertEquals(stats.getCount(), petAges.size());
 
         Assertions.assertTrue(petAges.allSatisfy(IntPredicates.greaterThan(0)));
@@ -53,10 +53,10 @@ public class Exercise4Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
-    public void streamsToECRefactor1()
+    public void bobSmithsPetNamesAsString()
     {
         // Find Bob Smith
-        Person person = this.people.detect(each -> each.named("Bob Smith"));
+        Person person = this.getPersonNamed("Bob Smith");
 
         // Get Bob Smith's pets' names
         String names = person.getPets()
@@ -68,12 +68,10 @@ public class Exercise4Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
-    public void streamsToECRefactor2()
+    public void immutablePetCounts()
     {
-        MutableBag<PetType> petTypes = this.people
-                .asUnmodifiable()
-                .flatCollect(Person::getPets)
-                .countBy(Pet::getType);
+        ImmutableBag<PetType> petTypes =
+                this.people.countByEach(Person::getPetTypes).toImmutable();
 
         Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
         Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
@@ -88,27 +86,22 @@ public class Exercise4Test extends PetDomainForKata
      */
     @Test
     @Tag("SOLUTION")
-    public void streamsToECRefactor3()
+    public void topThreePets()
     {
         var favorites = this.people
-                .flatCollect(Person::getPets)
-                .countBy(Pet::getType)
+                .countByEach(Person::getPetTypes)
                 .topOccurrences(3);
 
         Verify.assertSize(3, favorites);
-        Verify.assertContains(PrimitiveTuples.pair(PetType.CAT, 2), favorites);
-        Verify.assertContains(PrimitiveTuples.pair(PetType.DOG, 2), favorites);
-        Verify.assertContains(PrimitiveTuples.pair(PetType.HAMSTER, 2), favorites);
+        Assertions.assertTrue(Stream.of(PetType.CAT, PetType.DOG, PetType.HAMSTER)
+                .allMatch(type -> favorites.containsBy(ObjectIntPair::getOne, type)));
     }
 
     @Test
     @Tag("SOLUTION")
     public void getMedianOfPetAges()
     {
-        var petAges = this.people
-                .flatCollect(Person::getPets)
-                .collectInt(Pet::getAge);
-
+        var petAges = this.people.flatCollectInt(Person::getPetAges, IntLists.mutable.empty());
         Assertions.assertEquals(2.0d, petAges.median(), 0.0);
     }
 }

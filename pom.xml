@@ -88,6 +88,7 @@
         <module>candy-kata-solutions</module>
         <module>company-kata-solutions</module>
         <module>converter-method-kata-solutions</module>
+        <module>top-methods-kata-solutions</module>
     </modules>
 
     <properties>

@@ -84,6 +84,7 @@
         <module>pet-kata</module>
         <module>candy-kata</module>
         <module>converter-method-kata</module>
+        <module>top-methods-kata</module>
         <module>pet-kata-solutions</module>
         <module>candy-kata-solutions</module>
         <module>company-kata-solutions</module>

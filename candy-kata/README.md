@@ -12,7 +12,7 @@ The Candy Kata is an intermediate Code Kata with a set exercises that a develope
 
 The domain of the Candy Kata includes the `Candy` and `SchoolGroup` classes.
 
-<a href="http://eclipse.github.io/eclipse-collectioans-kata/candy-kata/#/1"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/candy-kata/candy-domain.png" height="50%" width="50%"></a>
+<a href="https://eclipse.github.io/eclipse-collections-kata/candy-kata/#/1"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/candy-kata/candy-domain.png" height="50%" width="50%"></a>
 
 # Getting Started
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -53,8 +53,7 @@ public class Customer
 
     public double getTotalOrderValue()
     {
-        MutableList<Double> orderValues = ListIterate.collect(this.orders, Order::getValue);
-        return orderValues.injectInto(0.0, AddFunction.DOUBLE_TO_DOUBLE);
+        return this.orders.sumOfDouble(Order::getValue);
     }
 
     public boolean livesIn(String aCity)

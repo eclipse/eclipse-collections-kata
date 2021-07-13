@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -13,13 +13,11 @@ package org.eclipse.collections.companykata;
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
 import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
-import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.impl.bag.sorted.mutable.TreeBag;
 import org.eclipse.collections.impl.block.factory.Comparators;
 import org.eclipse.collections.impl.block.function.AddFunction;
 import org.eclipse.collections.impl.factory.Lists;
+import org.eclipse.collections.impl.factory.SortedBags;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -32,7 +30,7 @@ public class Order
     private static final AtomicInteger NEXT_ORDER_NUMBER = new AtomicInteger(1);
 
     private final int orderNumber;
-    private final MutableSortedBag<LineItem> lineItems = TreeBag.newBag(Comparators.byFunction(LineItem::getName));
+    private final MutableSortedBag<LineItem> lineItems = SortedBags.mutable.empty(Comparators.byFunction(LineItem::getName));
     private boolean delivered;
 
     public Order()
@@ -62,7 +60,7 @@ public class Order
 
     public void addLineItems( LineItem item, Integer count)
     {
-        lineItems.addOccurrences(item, count);
+        this.lineItems.addOccurrences(item, count);
     }
 
     public Bag<LineItem> getLineItems()

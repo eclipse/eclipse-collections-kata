@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -17,17 +17,12 @@ import org.eclipse.collections.api.block.function.Function;
  */
 public class LineItem
 {
-    private String name;
+    private final String name;
     private final double value;
 
     public String getName()
     {
         return this.name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
     }
 
     public double getValue()

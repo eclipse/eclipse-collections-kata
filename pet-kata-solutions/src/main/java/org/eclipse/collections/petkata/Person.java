@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Goldman Sachs and others.
+ * Copyright (c) 2021 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -11,17 +11,15 @@
 package org.eclipse.collections.petkata;
 
 import org.eclipse.collections.api.IntIterable;
-import org.eclipse.collections.api.bag.MutableBag;
+import org.eclipse.collections.api.bag.Bag;
+import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.impl.bag.mutable.HashBag;
-import org.eclipse.collections.impl.block.factory.Predicates2;
-import org.eclipse.collections.impl.list.mutable.FastList;
 
 public class Person
 {
     private final String firstName;
     private final String lastName;
-    private final MutableList<Pet> pets = FastList.newList();
+    private final MutableList<Pet> pets = Lists.mutable.empty();
 
     public Person(String firstName, String lastName)
     {
@@ -46,7 +44,7 @@ public class Person
 
     public boolean hasPet(PetType petType)
     {
-        return this.pets.anySatisfyWith(Predicates2.attributeEqual(Pet::getType), petType);
+        return this.pets.containsBy(Pet::getType, petType);
     }
 
     public MutableList<Pet> getPets()
@@ -54,9 +52,9 @@ public class Person
         return this.pets;
     }
 
-    public MutableBag<PetType> getPetTypes()
+    public Bag<PetType> getPetTypes()
     {
-        return this.pets.collect(Pet::getType, HashBag.newBag());
+        return this.pets.countBy(Pet::getType);
     }
 
     public IntIterable getPetAges()
@@ -72,11 +70,6 @@ public class Person
 
     public boolean isPetPerson()
     {
-        return this.getNumberOfPets() >= 1;
-    }
-
-    public int getNumberOfPets()
-    {
-        return this.pets.size();
+        return this.pets.notEmpty();
     }
 }

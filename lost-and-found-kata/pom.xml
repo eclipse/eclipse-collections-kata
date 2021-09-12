@@ -19,7 +19,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lost-and-found-kata-solutions</artifactId>
+    <artifactId>lost-and-found-kata</artifactId>
 
     <dependencies>
         <dependency>

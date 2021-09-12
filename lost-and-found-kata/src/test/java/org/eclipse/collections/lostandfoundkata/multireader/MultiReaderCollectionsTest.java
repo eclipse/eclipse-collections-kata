@@ -20,12 +20,13 @@ import java.util.stream.IntStream;
 
 import org.eclipse.collections.api.bag.MultiReaderBag;
 import org.eclipse.collections.api.block.predicate.Predicate;
+import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MultiReaderList;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.partition.list.PartitionList;
-import org.eclipse.collections.api.set.ImmutableSet;
 import org.eclipse.collections.api.set.MultiReaderSet;
 import org.eclipse.collections.api.set.MutableSet;
+import org.eclipse.collections.impl.collector.Collectors2;
 import org.eclipse.collections.impl.factory.Bags;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
@@ -34,43 +35,70 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @see MultiReaderList
+ * @see MultiReaderSet
+ * @see MultiReaderBag
+ */
 public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTest
 {
     public static final Predicate<Integer> IS_EVEN = each -> 0 == each.intValue() % 2;
 
+    /**
+     * {@link org.eclipse.collections.api.factory.list.MultiReaderListFactory#empty()} <br>
+     * {@link org.eclipse.collections.api.factory.set.MultiReaderSetFactory#empty()} <br>
+     * {@link org.eclipse.collections.api.factory.bag.MultiReaderBagFactory#empty()} <br>
+     * @see Lists
+     * @see Sets
+     * @see Bags
+     */
     @Test
-    @Tag("SOLUTION")
     public void empty()
     {
-        MultiReaderList<Integer> list = Lists.multiReader.empty();
+        // Create an empty MultiReaderList using Lists factory
+        MultiReaderList<Integer> list = null;
         this.assertThreadSafe(list::add, list::size);
 
-        MultiReaderSet<Integer> set = Sets.multiReader.empty();
+        // Create an empty MultiReaderSet using Lists factory
+        MultiReaderSet<Integer> set = null;
         this.assertThreadSafe(set::add, set::size);
 
-        MultiReaderBag<Integer> bag = Bags.multiReader.empty();
+        // Create an empty MultiReaderBag using Lists factory
+        MultiReaderBag<Integer> bag = null;
         this.assertThreadSafe(bag::add, bag::size);
     }
 
+    /**
+     * {@link org.eclipse.collections.api.factory.list.MultiReaderListFactory#with(Object[])} ()} <br>
+     * {@link org.eclipse.collections.api.factory.set.MultiReaderSetFactory#with(Object[])} <br>
+     * {@link org.eclipse.collections.api.factory.bag.MultiReaderBagFactory#with(Object[])} <br>
+     * @see Lists
+     * @see Sets
+     * @see Bags
+     */
     @Test
-    @Tag("SOLUTION")
     public void createWith()
     {
-        MultiReaderList<Integer> list = Lists.multiReader.with(1, 2, 3, 4, 5);
+        // Create a MultiReaderList with integers from 1 to 5 using Lists factory
+        MultiReaderList<Integer> list = Lists.multiReader.empty();
         list.withReadLockAndDelegate(delegate ->
                 Assertions.assertEquals(Interval.oneTo(5), delegate));
 
-        MultiReaderSet<Integer> set = Sets.multiReader.with(1, 2, 3, 4, 5);
+        // Create a MultiReaderSet with integers from 1 to 5 using Lists factory
+        MultiReaderSet<Integer> set = Sets.multiReader.empty();
         set.withReadLockAndDelegate(delegate ->
                 Assertions.assertEquals(Interval.oneTo(5).toSet(), delegate));
 
-        MultiReaderBag<Integer> bag = Bags.multiReader.with(1, 2, 3, 4, 5);
+        // Create a MultiReaderBag with integers from 1 to 5 using Lists factory
+        MultiReaderBag<Integer> bag = Bags.multiReader.empty();
         bag.withReadLockAndDelegate(delegate ->
                 Assertions.assertEquals(Interval.oneTo(5).toBag(), delegate));
     }
 
+    /**
+     * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}}
+     */
     @Test
-    @Tag("SOLUTION")
     public void safeWithReadLockAndIteratorMultiReader()
     {
         MultiReaderList<String> allStrings = Lists.multiReader.empty();
@@ -87,15 +115,18 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
                             .collect(Collectors.toList());
                     uniqueStrings.addAll(randomIntStrings);
                     allStrings.addAll(randomIntStrings);
-                    // Client-side read lock makes iterator usage safe
-                    allStrings.withReadLockAndDelegate(
-                            delegate -> progressStrings.add("run: " + run + " : " + String.join("", delegate)));
+                    // Wrap statement with call to withReadLockAndDelegate
+                    // Use delegate in lambda instead of allStrings
+                    progressStrings.add("run: " + run + " : " + String.join("", allStrings));
                 });
 
         var zeroToTenStrings = Interval.zeroTo(10).collect(Object::toString).toImmutableSet();
         Assertions.assertEquals(zeroToTenStrings, uniqueStrings);
     }
 
+    /**
+     * {@link MultiReaderList#withWriteLockAndDelegate(Procedure)}}
+     */
     @Test
     @Tag("SOLUTION")
     public void safeWithWriteLockAndIteratorMultiReader()
@@ -113,12 +144,10 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
                             .mapToObj(Integer::toString)
                             .collect(Collectors.toList());
                     uniqueStrings.addAll(randomIntStrings);
-                    // client-side write lock and multiple operations in lock produce
-                    // more consistent results
-                    allStrings.withWriteLockAndDelegate(delegate -> {
-                        delegate.addAll(randomIntStrings);
-                        progressStrings.add("run: " + run + " : " + String.join("", delegate));
-                    });
+                    // Wrap following two statements with call to withWriteLockAndDelegate
+                    // Use delegate in lambda in place of allStrings
+                    allStrings.addAll(randomIntStrings);
+                    progressStrings.add("run: " + run + " : " + String.join("", allStrings));
                 });
 
         var zeroToTenStrings = Interval.zeroTo(10).collect(Object::toString).toImmutableSet();
@@ -143,28 +172,34 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
                             .collect(Collectors.toList());
                     uniqueStrings.addAll(randomIntStrings);
                     allStrings.addAll(randomIntStrings);
-                    // makeString on MultiReaderList takes a read lock
-                    progressStrings.add("run: " + run + " : " + allStrings.makeString(""));
+                    // Replace String.join() with makeString() which is thread-safe to use with MultiReaderList
+                    progressStrings.add("run: " + run + " : " + String.join("", allStrings));
                 });
 
         var zeroToTenStrings = Interval.zeroTo(10).collect(Object::toString).toImmutableSet();
         Assertions.assertEquals(zeroToTenStrings, uniqueStrings);
     }
 
+    /**
+     * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}}
+     */
     @Test
     @Tag("SOLUTION")
     public void multiReaderListFiltering()
     {
+        // Replace with a MultiReaderList with integers from 1 to 5
         MultiReaderList<Integer> list =
-                Lists.multiReader.with(1, 2, 3, 4, 5);
+                Lists.multiReader.empty();
 
-        // equals has a hidden iterator so use read lock
-        list.withReadLockAndDelegate(delegate ->
-                Assertions.assertEquals(Interval.oneTo(5), delegate));
+        // The assertEquals() method has a hidden iterator so wrap with a read-lock
+        // Replace list with delegate inside of withReadLockAndDelegate()
+        Assertions.assertEquals(Interval.oneTo(5), list);
 
         Predicate<Integer> isEven = each -> each % 2 == 0;
-        MutableList<Integer> evens = list.select(isEven);
-        MutableList<Integer> odds = list.reject(isEven);
+        // Replace stream filter code with a thread-safe direct call to select on list
+        MutableList<Integer> evens = list.stream().filter(isEven).collect(Collectors2.toList());
+        // Replace stream filter code with a thread-safe direct call to reject on list
+        MutableList<Integer> odds = list.stream().filter(isEven.negate()).collect(Collectors2.toList());
         PartitionList<Integer> partition = list.partition(isEven);
 
         Assertions.assertEquals(List.of(2, 4), evens);
@@ -173,6 +208,10 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         Assertions.assertEquals(odds, partition.getRejected());
     }
 
+    /**
+     * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}} <br>
+     * {@link MultiReaderList#withWriteLockAndDelegate(Procedure)}} <br>
+     */
     @Test
     @Tag("SOLUTION")
     public void multiReaderListHiddenIteratorPatterns()
@@ -180,29 +219,27 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         MultiReaderList<Integer> list =
                 Lists.multiReader.with(1, 2, 3, 4, 5);
 
-        // equals has a hidden iterator so use read lock
-        list.withReadLockAndDelegate(delegate ->
-                Assertions.assertEquals(Interval.oneTo(5), delegate));
+        // The assertEquals() method has a hidden iterator so wrap with a read-lock
+        Assertions.assertEquals(Interval.oneTo(5), list);
 
-        // iterator throws and remove requires a write lock
-        list.withWriteLockAndDelegate(delegate -> {
-            Iterator<Integer> iterator = delegate.iterator();
-            iterator.next();
-            iterator.remove();
-            iterator.next();
-            iterator.remove();
-        });
+        // MultiReaderList throws on iterator() and iterator.remove() requires a write-lock to be taken
+        // Wrap the following five statements in a write-lock
+        Iterator<Integer> iterator = list.iterator();
+        iterator.next();
+        iterator.remove();
+        iterator.next();
+        iterator.remove();
 
-        // equals has a hidden iterator so use read lock
-        list.withReadLockAndDelegate(delegate ->
-                Assertions.assertEquals(List.of(3, 4, 5), delegate));
+        // The assertEquals() method has a hidden iterator so wrap with a read-lock
+        // Wrap the following statement in a read-lock
+        Assertions.assertEquals(List.of(3, 4, 5), list);
 
-        // stream throws so use read lock
         List<Integer> four = List.of(4);
-        list.withReadLockAndDelegate(delegate ->
-                Assertions.assertEquals(
-                        four,
-                        delegate.stream().filter(IS_EVEN).collect(Collectors.toList())));
+        // MultiReaderList throws on stream()
+        // Wrap the following statement with a read-lock
+        Assertions.assertEquals(
+                four,
+                list.stream().filter(IS_EVEN).collect(Collectors.toList()));
     }
 
     @Test
@@ -212,16 +249,17 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         MultiReaderList<Integer> list =
                 Lists.multiReader.with(1, 2, 3, 4, 5);
 
-        // asLazy uses internal iterators so doesn't need a lock
-        Assertions.assertEquals(
-                Interval.evensFromTo(1, 5),
-                list.asLazy().select(IS_EVEN).toList());
+        // The asLazy() method uses internal iterators so doesn't need a lock
+        // Convert the LazyIterable below to a list using toList()
+        Assertions.assertEquals(Interval.evensFromTo(1, 5),
+                list.asLazy().select(IS_EVEN));
 
-        // asParallel uses internal iterators so doesn't need a lock
+        // The asParallel() method uses internal iterators so doesn't need a lock
+        // Convert the ParallelListIterable below to a list using toList()
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         Assertions.assertEquals(
                 Interval.evensFromTo(1, 5),
-                list.asParallel(executorService, 1).select(IS_EVEN).toList());
+                list.asParallel(executorService, 1).select(IS_EVEN));
     }
 
     @Test
@@ -231,8 +269,8 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         MultiReaderList<String> strings =
                 Lists.multiReader.with("1", "2", "3", "4", "5");
 
-        // MultiReaderList safe use of makeString
-        String string = strings.makeString("");
+        // Replace toString() with MultiReaderList thread-safe use of makeString()
+        String string = strings.toString();
         Assertions.assertEquals("12345", string);
     }
 
@@ -243,8 +281,8 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         MultiReaderList<String> strings =
                 Lists.multiReader.with("1", "2", "3", "4", "5");
 
-        // MultiReaderList safe use of makeString
-        String string = strings.asLazy().makeString("");
+        // Replace asLazy().toString() with MultiReaderList thread-safe use of asLazy().makeString()
+        String string = strings.asLazy().toString();
         Assertions.assertEquals("12345", string);
     }
 
@@ -256,10 +294,14 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
                 Lists.multiReader.with("1", "2", "3", "4", "5");
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
-        String string = strings.asParallel(executor, 1).makeString("");
+        // Replace toString() with MultiReaderList thread-safe use of asParallel().makeString
+        String string = strings.asParallel(executor, 1).toString();
         Assertions.assertEquals("12345", string);
     }
 
+    /**
+     * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}} <br>
+     */
     @Test
     @Tag("SOLUTION")
     public void streamCollectorsJoiningWithReadLock()
@@ -267,13 +309,15 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         MultiReaderList<String> strings =
                 Lists.multiReader.with("1", "2", "3", "4", "5");
 
-        // MultiReaderList safe use of stream
-        strings.withReadLockAndDelegate(delegate -> {
-            String string = delegate.stream().collect(Collectors.joining(""));
-            Assertions.assertEquals("12345", string);
-        });
+        // MultiReaderList throws on stream()
+        // Wrap the following two statements with a read-lock
+        String string = strings.stream().collect(Collectors.joining(""));
+        Assertions.assertEquals("12345", string);
     }
 
+    /**
+     * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}} <br>
+     */
     @Test
     @Tag("SOLUTION")
     public void stringJoinWithReadLock()
@@ -281,11 +325,9 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         MultiReaderList<String> strings =
                 Lists.multiReader.with("1", "2", "3", "4", "5");
 
-        // MultiReaderList safe use of stream
-        strings.withReadLockAndDelegate(delegate -> {
-            String string = String.join("", delegate);
-
-            Assertions.assertEquals("12345", string);
-        });
+        // There is a hidden iterator in String.join()
+        // Wrap the following two statements with a read-lock
+        String string = String.join("", strings);
+        Assertions.assertEquals("12345", string);
     }
 }

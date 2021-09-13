@@ -18,11 +18,13 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.bag.MultiReaderBag;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MultiReaderList;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.api.partition.list.PartitionList;
 import org.eclipse.collections.api.set.MultiReaderSet;
 import org.eclipse.collections.api.set.MutableSet;
@@ -32,13 +34,14 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.list.Interval;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
  * @see MultiReaderList
  * @see MultiReaderSet
  * @see MultiReaderBag
+ * @see LazyIterable
+ * @see ParallelListIterable
  */
 public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTest
 {
@@ -128,7 +131,6 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
      * {@link MultiReaderList#withWriteLockAndDelegate(Procedure)}}
      */
     @Test
-    @Tag("SOLUTION")
     public void safeWithWriteLockAndIteratorMultiReader()
     {
         MultiReaderList<String> allStrings = Lists.multiReader.empty();
@@ -154,8 +156,10 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         Assertions.assertEquals(zeroToTenStrings, uniqueStrings);
     }
 
+    /**
+     * {@link MutableList#makeString(String)}
+     */
     @Test
-    @Tag("SOLUTION")
     public void safeNoHiddenIteratorMultiReader()
     {
         MutableList<String> allStrings = Lists.multiReader.empty();
@@ -184,7 +188,6 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
      * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}}
      */
     @Test
-    @Tag("SOLUTION")
     public void multiReaderListFiltering()
     {
         // Replace with a MultiReaderList with integers from 1 to 5
@@ -213,7 +216,6 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
      * {@link MultiReaderList#withWriteLockAndDelegate(Procedure)}} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void multiReaderListHiddenIteratorPatterns()
     {
         MultiReaderList<Integer> list =
@@ -242,8 +244,15 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
                 list.stream().filter(IS_EVEN).collect(Collectors.toList()));
     }
 
+    /**
+     * {@link MultiReaderList#asLazy()} <br>
+     * {@link LazyIterable#select(Predicate)} <br>
+     * {@link LazyIterable#toList()} <br>
+     * {@link MultiReaderList#asParallel(ExecutorService, int)} <br>
+     * {@link ParallelListIterable#select(Predicate)} <br>
+     * {@link ParallelListIterable#toList()} <br>
+     */
     @Test
-    @Tag("SOLUTION")
     public void multiReaderListSafeLazyPatterns()
     {
         MultiReaderList<Integer> list =
@@ -262,8 +271,10 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
                 list.asParallel(executorService, 1).select(IS_EVEN));
     }
 
+    /**
+     * {@link MultiReaderList#makeString(String)}
+     */
     @Test
-    @Tag("SOLUTION")
     public void makeString()
     {
         MultiReaderList<String> strings =
@@ -274,8 +285,11 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         Assertions.assertEquals("12345", string);
     }
 
+    /**
+     * {@link MultiReaderList#asLazy()} <br>
+     * {@link LazyIterable#makeString(String)}
+     */
     @Test
-    @Tag("SOLUTION")
     public void asLazyMakeString()
     {
         MultiReaderList<String> strings =
@@ -286,8 +300,11 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
         Assertions.assertEquals("12345", string);
     }
 
+    /**
+     * {@link MultiReaderList#asParallel(ExecutorService, int)} <br>
+     * {@link org.eclipse.collections.api.list.ParallelListIterable#makeString(String)} <br>
+     */
     @Test
-    @Tag("SOLUTION")
     public void asParallelMakeString()
     {
         MultiReaderList<String> strings =
@@ -303,7 +320,6 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
      * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void streamCollectorsJoiningWithReadLock()
     {
         MultiReaderList<String> strings =
@@ -319,7 +335,6 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
      * {@link MultiReaderList#withReadLockAndDelegate(Procedure)}} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void stringJoinWithReadLock()
     {
         MultiReaderList<String> strings =

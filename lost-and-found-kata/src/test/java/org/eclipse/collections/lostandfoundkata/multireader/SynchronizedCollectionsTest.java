@@ -52,7 +52,6 @@ public class SynchronizedCollectionsTest extends AbstractThreadSafeCollectionsTe
      * {@link Collections#synchronizedSortedMap(SortedMap)} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void createEmptyJDKSynchronized()
     {
         // Wrap the list in a synchronizedList
@@ -84,7 +83,6 @@ public class SynchronizedCollectionsTest extends AbstractThreadSafeCollectionsTe
      * {@link MutableSortedMap#asSynchronized()} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void createEmptyECSynchronized()
     {
         // Convert the list to a synchronizedList by calling asSynchronized
@@ -113,7 +111,6 @@ public class SynchronizedCollectionsTest extends AbstractThreadSafeCollectionsTe
      * {@link Collections#synchronizedSet(Set)} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void safeHiddenIteratorSynchronized()
     {
         // Wrap in a synchronizedList
@@ -149,7 +146,6 @@ public class SynchronizedCollectionsTest extends AbstractThreadSafeCollectionsTe
      * {@link Collections#synchronizedSet(Set)} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void safeAtomicHiddenIteratorSynchronized()
     {
         // Wrap in a synchronizedList
@@ -186,7 +182,6 @@ public class SynchronizedCollectionsTest extends AbstractThreadSafeCollectionsTe
      * {@link MutableSet#asSynchronized()} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void safeInternalIteratorSynchronized()
     {
         // Make allStrings synchronized
@@ -219,7 +214,6 @@ public class SynchronizedCollectionsTest extends AbstractThreadSafeCollectionsTe
      * {@link MutableSet#asSynchronized()} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void safeAsLazySynchronized()
     {
         // Make allStrings synchronized
@@ -255,7 +249,6 @@ public class SynchronizedCollectionsTest extends AbstractThreadSafeCollectionsTe
      * {@link MutableSet#asSynchronized()} <br>
      */
     @Test
-    @Tag("SOLUTION")
     public void safeAsParallelSynchronized()
     {
         // Make allStrings synchronized

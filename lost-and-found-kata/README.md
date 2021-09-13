@@ -22,4 +22,5 @@ There are three sections to the kata. Each section was covered in depth in a sep
   * [Exercises](src/test/java/org/eclipse/collections/lostandfoundkata/multireader)
 * Primitive Collections
   * [Blog: The missing Java data structures no one ever told you about - Part 3](https://medium.com/javarevisited/the-missing-java-data-structures-no-one-ever-told-you-about-part-3-d26387b9e66e?source=friends_link&sk=00643d5a044cfa85514cd583963048ce)
+  * [Exercises](src/test/java/org/eclipse/collections/lostandfoundkata/primitive)
 

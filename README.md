@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2020 Goldman Sachs and others.
+  ~ Copyright (c) 2021 Goldman Sachs and others.
   ~ All rights reserved. This program and the accompanying materials
   ~ are made available under the terms of the Eclipse Public License v1.0
   ~ and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -10,6 +10,7 @@
 [![][license-epl img]][license-epl]
 [![][license-edl img]][license-edl]
 [![][actions img]][actions]  
+[![][actions-solutions img]][actions-solutions]
 
 <a href="https://www.eclipse.org/collections/"><img src="https://github.com/eclipse/eclipse-collections-kata/blob/master/docs/shared/eclipse-collections-logo.png" height="50%" width="50%"></a>
   
@@ -85,6 +86,9 @@ The content of the presentation is also available in a convenient to read [markd
 
 [actions]:https://github.com/eclipse/eclipse-collections-kata/actions?query=workflow%3A%22Eclipse+Collections+Kata+CI+Build%22
 [actions img]:https://github.com/eclipse/eclipse-collections-kata/workflows/Eclipse%20Collections%20Kata%20CI%20Build/badge.svg?branch=master
+
+[actions-solutions]:https://github.com/eclipse/eclipse-collections-kata/actions?query=workflow%3A%22Eclipse+Collections+Kata+Solutions+CI+Build%22
+[actions-solutions img]:https://github.com/eclipse/eclipse-collections-kata/actions/workflows/solutions.yml/badge.svg?branch=master
 
 [license-epl]:LICENSE-EPL-1.0.txt
 [license-epl img]:https://img.shields.io/badge/License-EPL-blue.svg

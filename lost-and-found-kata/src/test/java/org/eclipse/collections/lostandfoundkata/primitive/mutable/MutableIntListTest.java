@@ -158,12 +158,14 @@ public class MutableIntListTest
         Assertions.assertEquals(Lists.mutable.with("1", "2", "3", "4", "5"), collect);
     }
 
+    /**
+     * {@link MutableIntList#distinct()}
+     */
     @Test
-    @Tag("SOLUTION")
     public void distinct()
     {
         // Return the distinct values in the list in the same order
-        MutableIntList distinct = IntLists.mutable.with(1, 1, 2, 2, 3, 3, 4, 4, 5, 5).distinct();
+        MutableIntList distinct = IntLists.mutable.with(1, 1, 2, 2, 3, 3, 4, 4, 5, 5);
         Assertions.assertEquals(IntInterval.oneTo(5), distinct);
     }
 

@@ -28,11 +28,34 @@ public class HashingStrategyTest
 {
     @Test
     @Tag("SOLUTION")
-    public void caseInsensitivePool()
+    public void caseInsensitiveSet()
     {
         UnifiedSetWithHashingStrategy<String> caseInsensitiveSet =
                 UnifiedSetWithHashingStrategy.newSet(HashingStrategies.fromFunction(String::toLowerCase));
-        Pool<String> caseInsensitivePool = caseInsensitiveSet;
+
+        Assertions.assertTrue(caseInsensitiveSet.add("fox"));
+        Assertions.assertTrue(caseInsensitiveSet.add("dog"));
+        Assertions.assertTrue(caseInsensitiveSet.add("cat"));
+
+        Assertions.assertFalse(caseInsensitiveSet.add("fOx"));
+        Assertions.assertFalse(caseInsensitiveSet.add("DoG"));
+        Assertions.assertFalse(caseInsensitiveSet.add("CAT"));
+
+        Assertions.assertEquals("fox", caseInsensitiveSet.get("FOX"));
+        Assertions.assertEquals("dog", caseInsensitiveSet.get("DOG"));
+        Assertions.assertEquals("cat", caseInsensitiveSet.get("CAT"));
+
+        Assertions.assertEquals("fox", caseInsensitiveSet.get("FoX"));
+        Assertions.assertEquals("dog", caseInsensitiveSet.get("dOg"));
+        Assertions.assertEquals("cat", caseInsensitiveSet.get("cat"));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void caseInsensitivePool()
+    {
+        Pool<String> caseInsensitivePool =
+                UnifiedSetWithHashingStrategy.newSet(HashingStrategies.fromFunction(String::toLowerCase));
 
         Assertions.assertEquals("fox", caseInsensitivePool.put("fox"));
         Assertions.assertEquals("dog", caseInsensitivePool.put("dog"));
@@ -41,10 +64,6 @@ public class HashingStrategyTest
         Assertions.assertEquals("fox", caseInsensitivePool.put("fOx"));
         Assertions.assertEquals("dog", caseInsensitivePool.put("DoG"));
         Assertions.assertEquals("cat", caseInsensitivePool.put("CAT"));
-
-        Assertions.assertFalse(caseInsensitiveSet.add("fOx"));
-        Assertions.assertFalse(caseInsensitiveSet.add("DoG"));
-        Assertions.assertFalse(caseInsensitiveSet.add("CAT"));
 
         Assertions.assertEquals("fox", caseInsensitivePool.get("FOX"));
         Assertions.assertEquals("dog", caseInsensitivePool.get("DOG"));

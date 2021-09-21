@@ -257,19 +257,19 @@ public class MutableIntListTest
         MutableIntBag bag = null;
         Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
         // Convert to a sorted MutableIntList
-        MutableIntList sortedList = this.list.toSortedList();
+        MutableIntList sortedList = null;
         Assertions.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), sortedList);
         // Convert to an int array
         int[] ints = null;
         Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
         // Convert to a sorted int array
-        int[] sortedInts = this.list.toSortedArray();
+        int[] sortedInts = null;
         Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
         // Convert to a String
-        String string = this.list.toString();
+        String string = "";
         Assertions.assertEquals("[1, 2, 3, 4, 5]", string);
         // Convert to a String separated by "/"
-        String makeString = this.list.makeString("/");
+        String makeString = "/";
         Assertions.assertEquals("1/2/3/4/5", makeString);
     }
 
@@ -289,8 +289,8 @@ public class MutableIntListTest
     public void calculating()
     {
         // Calculate the sum of this.list
-        long sum = this.list.sum();
-        Assertions.assertEquals(0L, sum);
+        long sum = 0L;
+        Assertions.assertEquals(15L, sum);
         // Calculate the average of this.list
         double average = 0.0;
         Assertions.assertEquals(3.0, average, 0.0);

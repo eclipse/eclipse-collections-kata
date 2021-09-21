@@ -103,7 +103,7 @@ public class MutableIntStackTest
     @Test
     public void transforming()
     {
-        // Created a transformed list multiplying each value by 2
+        // Create a transformed list multiplying each value by 2
         MutableIntList timesTwo = this.stack.collectInt(each -> each, IntLists.mutable.empty());
         Assertions.assertEquals(IntLists.mutable.with(10, 8, 6, 4, 2), timesTwo);
     }
@@ -128,7 +128,7 @@ public class MutableIntStackTest
         MutableIntSet set = null;
         Assertions.assertEquals(IntInterval.oneTo(5).toSet(), set);
         // Convert to a MutableIntBag
-        MutableIntBag bag = this.stack.toBag();
+        MutableIntBag bag = null;
         Assertions.assertEquals(IntInterval.oneTo(5).toBag(), bag);
     }
 

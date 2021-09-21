@@ -106,11 +106,11 @@ public class MutableIntSetTest
     @Test
     public void transforming()
     {
-        // Created a transformed IntSet multiplying each value by 2
+        // Create a transformed IntSet multiplying each value by 2
         MutableIntSet timesTwo = this.set.collectInt(each -> each, IntSets.mutable.empty());
         Assertions.assertEquals(IntSets.mutable.with(2, 4, 6, 8, 10), timesTwo);
 
-        // Created a transformed set converting each int to a String
+        // Create a transformed set converting each int to a String
         MutableSet<String> collect = this.set.collect(each -> "");
         Assertions.assertEquals(Sets.mutable.with("1", "2", "3", "4", "5"), collect);
     }

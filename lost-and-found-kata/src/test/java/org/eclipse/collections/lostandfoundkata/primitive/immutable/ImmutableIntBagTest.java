@@ -96,12 +96,12 @@ public class ImmutableIntBagTest
     @Test
     public void transforming()
     {
-        // Created a transformed IntBag multiplying each value by 2
+        // Create a transformed IntBag multiplying each value by 2
         MutableIntBag timesTwo = this.bag.collectInt(each -> each, IntBags.mutable.empty());
         var expectedIntBag = IntBags.mutable.with(2, 4, 4, 6, 6, 6);
         Assertions.assertEquals(expectedIntBag, timesTwo);
 
-        // Created a transformed bag converting each int to a String
+        // Create a transformed bag converting each int to a String
         ImmutableBag<String> strings = this.bag.collect(each -> "");
         var expectedStringBag = Bags.mutable.with("1", "2", "2", "3", "3", "3");
         Assertions.assertEquals(expectedStringBag, strings);

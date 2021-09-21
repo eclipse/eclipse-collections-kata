@@ -121,11 +121,11 @@ public class MutableIntBagTest
     @Test
     public void transforming()
     {
-        // Created a transformed IntSet multiplying each value by 2
+        // Create a transformed IntSet multiplying each value by 2
         MutableIntBag timesTwo = this.bag.collectInt(each -> each, IntBags.mutable.empty());
         Assertions.assertEquals(IntBags.mutable.with(2, 4, 4, 6, 6, 6), timesTwo);
 
-        // Created a transformed bag converting each int to a String
+        // Create a transformed bag converting each int to a String
         MutableBag<String> collect = this.bag.collect(each -> "");
         Assertions.assertEquals(Bags.mutable.with("1", "2", "2", "3", "3", "3"), collect);
     }
@@ -202,7 +202,7 @@ public class MutableIntBagTest
         Arrays.sort(ints);
         Assertions.assertArrayEquals(new int[]{1, 2, 2, 3, 3, 3}, ints);
         // Convert to a sorted int array
-        int[] sortedInts = this.bag.toSortedArray();
+        int[] sortedInts = null;
         Assertions.assertArrayEquals(new int[]{1, 2, 2, 3, 3, 3}, sortedInts);
         // Convert to a String
         String string = null;
@@ -211,7 +211,7 @@ public class MutableIntBagTest
         Assertions.assertEquals(2, toStringAdapter.count(each -> each == '2'));
         Assertions.assertEquals(3, toStringAdapter.count(each -> each == '3'));
         // Convert to a String separated by "/"
-        String makeString = this.bag.makeString("/");
+        String makeString = null;
         CharAdapter makeStringAdapter = Strings.asChars(makeString);
         Assertions.assertEquals(1, makeStringAdapter.count(each -> each == '1'));
         Assertions.assertEquals(2, makeStringAdapter.count(each -> each == '2'));

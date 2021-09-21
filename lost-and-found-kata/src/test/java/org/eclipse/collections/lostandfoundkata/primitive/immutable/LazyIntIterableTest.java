@@ -154,7 +154,7 @@ public class LazyIntIterableTest
         Assertions.assertEquals(15.0, doubleSum, 0.0);
 
         // Collect to LazyIterable of String the values as Strings
-        LazyIterable<String> lazyIterable = this.lazyIntIterable.collect(Integer::toString);
+        LazyIterable<String> lazyIterable = null;
         var expectedStringList = Lists.mutable.with("1", "2", "3", "4", "5");
         Assertions.assertEquals(expectedStringList, lazyIterable.toList());
     }

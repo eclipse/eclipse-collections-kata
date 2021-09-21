@@ -81,7 +81,7 @@ public class ImmutableIntListTest
         Assertions.assertNotSame(this.list, listWithout);
 
         // Remove the values 6, 7, 8 from the list using newWithoutAll
-        ImmutableIntList listWithoutAll = listWithout.newWithoutAll(IntLists.immutable.with(6, 7, 8));
+        ImmutableIntList listWithoutAll = listWithout;
         Assertions.assertEquals(IntInterval.oneTo(5), listWithoutAll);
         Assertions.assertNotSame(this.list, listWithoutAll);
     }
@@ -110,11 +110,11 @@ public class ImmutableIntListTest
     @Test
     public void transforming()
     {
-        // Created a transformed IntList multiplying each value by 2
+        // Create a transformed IntList multiplying each value by 2
         MutableIntList timesTwo = this.list.collectInt(each -> each, IntLists.mutable.empty());
         Assertions.assertEquals(IntLists.mutable.with(2, 4, 6, 8, 10), timesTwo);
 
-        // Created a transformed list converting each int to a String
+        // Create a transformed list converting each int to a String
         ImmutableList<String> collect = this.list.collect(each -> "");
         Assertions.assertEquals(Lists.mutable.with("1", "2", "3", "4", "5"), collect);
     }

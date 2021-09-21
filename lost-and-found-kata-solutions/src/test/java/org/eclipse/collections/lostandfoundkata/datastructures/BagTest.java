@@ -27,7 +27,7 @@ public class BagTest
 {
     @Test
     @Tag("SOLUTION")
-    void wordCounter1()
+    void wordCounterCollectToBag()
     {
         String words = "one two Two three Three THREE four FOUR Four FoUr";
         MutableBag<String> bag = Bags.mutable.with(words.split(" "));
@@ -43,7 +43,7 @@ public class BagTest
 
     @Test
     @Tag("SOLUTION")
-    void wordCounter2()
+    void wordCounterCountBy()
     {
         String words = "one two Two three Three THREE four FOUR Four FoUr";
         MutableBag<String> bag = Bags.mutable.with(words.split(" "));
@@ -57,7 +57,7 @@ public class BagTest
 
     @Test
     @Tag("SOLUTION")
-    void wordCounter3()
+    void wordCounterCollectors2CountBy()
     {
         String words = "one two Two three Three THREE four FOUR Four FoUr";
         Stream<String> stream = Arrays.stream(words.split(" "));

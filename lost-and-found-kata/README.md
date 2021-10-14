@@ -16,7 +16,7 @@ There are three sections to the kata. Each section was covered in depth in a sep
 
 * Non-JDK Data Structures
   * [Blog: The missing Java data structures no one ever told you about - Part 1](https://medium.com/javarevisited/the-missing-java-data-structures-no-one-ever-told-you-about-part-1-f45b6d0ee969?source=friends_link&sk=5d47f3f673046886e998ad54116a7af9) 
-  * Exercises: Under construction
+  * [Exercises](src/test/java/org/eclipse/collections/lostandfoundkata/datastructures)
 * MultiReader Collections
   * [Blog: The missing Java data structures no one ever told you about - Part 2](https://medium.com/javarevisited/the-missing-java-data-structures-no-one-ever-told-you-about-part-2-f484a588cce3?source=friends_link&sk=7022918ce830f2d8b94d9926e832de7d)
   * [Exercises](src/test/java/org/eclipse/collections/lostandfoundkata/multireader)

@@ -31,14 +31,14 @@ public class BagTest
     {
         String words = "one two Two three Three THREE four FOUR Four FoUr";
         MutableBag<String> bag = Bags.mutable.with(words.split(" "));
-        Bag<String> bagOfWords = bag.asLazy()
+        Bag<String> lowerCaseWords = bag.asLazy()
                 .collect(String::toLowerCase)
                 .toBag();
 
-        Assertions.assertEquals(1, bagOfWords.occurrencesOf("one"));
-        Assertions.assertEquals(2, bagOfWords.occurrencesOf("two"));
-        Assertions.assertEquals(3, bagOfWords.occurrencesOf("three"));
-        Assertions.assertEquals(4, bagOfWords.occurrencesOf("four"));
+        Assertions.assertEquals(1, lowerCaseWords.occurrencesOf("one"));
+        Assertions.assertEquals(2, lowerCaseWords.occurrencesOf("two"));
+        Assertions.assertEquals(3, lowerCaseWords.occurrencesOf("three"));
+        Assertions.assertEquals(4, lowerCaseWords.occurrencesOf("four"));
     }
 
     @Test
@@ -47,12 +47,12 @@ public class BagTest
     {
         String words = "one two Two three Three THREE four FOUR Four FoUr";
         MutableBag<String> bag = Bags.mutable.with(words.split(" "));
-        Bag<String> lowercaseWords = bag.countBy(String::toLowerCase);
+        Bag<String> lowerCaseWords = bag.countBy(String::toLowerCase);
 
-        Assertions.assertEquals(1, lowercaseWords.occurrencesOf("one"));
-        Assertions.assertEquals(2, lowercaseWords.occurrencesOf("two"));
-        Assertions.assertEquals(3, lowercaseWords.occurrencesOf("three"));
-        Assertions.assertEquals(4, lowercaseWords.occurrencesOf("four"));
+        Assertions.assertEquals(1, lowerCaseWords.occurrencesOf("one"));
+        Assertions.assertEquals(2, lowerCaseWords.occurrencesOf("two"));
+        Assertions.assertEquals(3, lowerCaseWords.occurrencesOf("three"));
+        Assertions.assertEquals(4, lowerCaseWords.occurrencesOf("four"));
     }
 
     @Test
@@ -61,32 +61,32 @@ public class BagTest
     {
         String words = "one two Two three Three THREE four FOUR Four FoUr";
         Stream<String> stream = Arrays.stream(words.split(" "));
-        Bag<String> bagOfWords = stream
-                .collect(Collectors2.countBy(String::toLowerCase));
+        Bag<String> lowerCaseWords =
+                stream.collect(Collectors2.countBy(String::toLowerCase));
 
-        Assertions.assertEquals(1, bagOfWords.occurrencesOf("one"));
-        Assertions.assertEquals(2, bagOfWords.occurrencesOf("two"));
-        Assertions.assertEquals(3, bagOfWords.occurrencesOf("three"));
-        Assertions.assertEquals(4, bagOfWords.occurrencesOf("four"));
+        Assertions.assertEquals(1, lowerCaseWords.occurrencesOf("one"));
+        Assertions.assertEquals(2, lowerCaseWords.occurrencesOf("two"));
+        Assertions.assertEquals(3, lowerCaseWords.occurrencesOf("three"));
+        Assertions.assertEquals(4, lowerCaseWords.occurrencesOf("four"));
     }
 
     @Test
     void characterCounter()
     {
         String words = "one two Two three Three THREE four FOUR Four FoUr";
-        CharBag charBag = Strings.asChars(words)
+        CharBag lowerCaseLetters = Strings.asChars(words)
                 .select(Character::isAlphabetic)
                 .collectChar(Character::toLowerCase)
                 .toBag();
 
-        Assertions.assertEquals(7, charBag.occurrencesOf('o'));
-        Assertions.assertEquals(1, charBag.occurrencesOf('n'));
-        Assertions.assertEquals(7, charBag.occurrencesOf('e'));
-        Assertions.assertEquals(5, charBag.occurrencesOf('t'));
-        Assertions.assertEquals(2, charBag.occurrencesOf('w'));
-        Assertions.assertEquals(3, charBag.occurrencesOf('h'));
-        Assertions.assertEquals(7, charBag.occurrencesOf('r'));
-        Assertions.assertEquals(4, charBag.occurrencesOf('f'));
-        Assertions.assertEquals(4, charBag.occurrencesOf('u'));
+        Assertions.assertEquals(7, lowerCaseLetters.occurrencesOf('o'));
+        Assertions.assertEquals(1, lowerCaseLetters.occurrencesOf('n'));
+        Assertions.assertEquals(7, lowerCaseLetters.occurrencesOf('e'));
+        Assertions.assertEquals(5, lowerCaseLetters.occurrencesOf('t'));
+        Assertions.assertEquals(2, lowerCaseLetters.occurrencesOf('w'));
+        Assertions.assertEquals(3, lowerCaseLetters.occurrencesOf('h'));
+        Assertions.assertEquals(7, lowerCaseLetters.occurrencesOf('r'));
+        Assertions.assertEquals(4, lowerCaseLetters.occurrencesOf('f'));
+        Assertions.assertEquals(4, lowerCaseLetters.occurrencesOf('u'));
     }
 }

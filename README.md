@@ -59,10 +59,11 @@ Work on Kata exercises
 There are four separate katas under different directories:
 
 1. [Pet Kata](pet-kata)
-1. [Company Kata](company-kata)
-1. [Candy Kata](candy-kata)
-1. [Converter Method Kata](converter-method-kata)
-1. [Top Methods Kata](top-methods-kata)
+2. [Company Kata](company-kata)
+3. [Candy Kata](candy-kata)
+4. [Converter Method Kata](converter-method-kata)
+5. [Top Methods Kata](top-methods-kata)
+6. [Lost and Found Kata](lost-and-found-kata)
 
 To get started, you can refer to slides for the [Instruction and Pet Kata](http://eclipse.github.io/eclipse-collections-kata/) to learn how to set-up Kata, basic features of Eclipse Collections corresponding to each Pet Kata exercise and then solutions. 
 Check out the [pet kata solutions module tests](https://github.com/eclipse/eclipse-collections-kata/tree/master/pet-kata-solutions/src/test/java/org/eclipse/collections/petkata) for your reference.
@@ -70,6 +71,8 @@ Check out the [pet kata solutions module tests](https://github.com/eclipse/eclip
 To learn wider range of functionalities, slides for [Company Kata](http://eclipse.github.io/eclipse-collections-kata/company-kata) are now available online as well. 
 
 To learn more about the Bag data structure, take a look at the [Candy Kata](candy-kata).
+
+Check out [Lost and Found Kata](lost-and-found-kata) and [solutions](lost-and-found-kata-solutions) to learn more advanced data structures and APIs in Eclipse Collections, many of which will have no equivalent in the JDK today.
 
 Enjoy happy learning with Eclipse Collections Kata!
 

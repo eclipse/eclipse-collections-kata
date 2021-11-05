@@ -95,7 +95,7 @@
     </modules>
 
     <properties>
-        <eclipse.collections.version>11.0.0.M5</eclipse.collections.version>
+        <eclipse.collections.version>11.0.0.M6</eclipse.collections.version>
         <junit5.version>5.7.0</junit5.version>
         <jol.version>0.16</jol.version>
 

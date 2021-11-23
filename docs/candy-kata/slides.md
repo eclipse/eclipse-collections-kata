@@ -9,8 +9,7 @@
   -->
 ![Diagram](../shared/eclipse-collections-logo.png) <!-- .element style="background-color:aliceblue" -->
 
-Candy Kata
-========
+# Candy Kata
 
 Learning through exercises
 
@@ -27,53 +26,53 @@ Learning through exercises
 
 
 
-Candy Kata Test
-==========
+# Candy Kata Test
 
 * **down:** New concepts for Candy Kata Test
 * **right:** Candy Kata Test solutions
 
 
-Top/Bottom Occurrences
----------------
+## Top/Bottom Occurrences
  * Belong to the set of methods of the ```Bag``` interface
  * ```topOccurrences(int count)``` returns the ```count``` most frequently occuring items (e.g. ```topOccurrences(2)``` returns the top 2 most reoccuring items inside the bag).
  * Similarly, ```bottomOccurrences(int count)``` returns the ```count``` least frequently occuring items. 
  * If there is a tie among the items which qualify, the logic is inclusive and will include all items whose occurrences match the occurrences of the last item.
+
+
  
-Top Occurrences
---------------- 
+## Top Occurrences
  ```java
 MutableBag<Candy> bag =
-  Bags.mutable.with(CRUNCH, HERSHEYS, HERSHEYS, HERSHEYS, MOUNDS, CRUNCH);
+        Bags.mutable.with(Candy.CRUNCH, Candy.HERSHEYS, Candy.HERSHEYS,
+                Candy.HERSHEYS, Candy.MOUNDS, Candy.CRUNCH);
 
-MutableSet<Candy> expected = Sets.mutable.with(HERSHEYS, CRUNCH);
+ImmutableList<ObjectIntPair<Candy>> expectedNoTies =
+        Lists.immutable.with(PrimitiveTuples.pair(Candy.HERSHEYS, 3),
+                PrimitiveTuples.pair(Candy.CRUNCH, 2));
+Assertions.assertEquals(expectedNoTies, bag.topOccurrences(2));
 
-Assertions.assertEquals(expected, bag.topOccurrences(2));
+bag.add(Candy.MOUNDS);
 
-bag.add(MOUNDS);
-expected.add(MOUNDS);
-
-// The top 2 occurrences actually now includes 3 since there was a tie (CRUNCH and MOUNDS) 
-// and the third one's occurrences (MOUNDS) match the last one (CRUNCH)
-Assertions.assertEquals(expected, bag.topOccurrences(2));
-
+// The top 2 occurrences actually now includes 3 since there was a tie
+// The expected output is converted to a Set to ignore ordering
+Set<ObjectIntPair<Candy>> expectedTie = expectedNoTies.toSet()
+        .with(PrimitiveTuples.pair(Candy.MOUNDS, 2));
+Assertions.assertEquals(expectedTie, bag.topOccurrences(2).toSet());
  ```
 
-Candy Kata Test
-----------
+
+## Candy Kata Test
  * Fix `CandyKataTest`; there are failing tests.
  * Use topOccurrences()
 
 
 
-Candy Kata Test solutions
-====================
+# Candy Kata Test solutions
 
 * **down:** Exercise solutions
 
-Get Top Most Occurred Candy
-------------------------------
+
+## Get Top Most Occurred Candy
 ```java
 @Test
 public void topCandy()
@@ -93,8 +92,8 @@ public void topCandy()
 }
 ```
 
-Get Common Candies in Top 10
--------------------------
+
+## Get Common Candies in Top 10
 ```java
 @Test
 public void commonInTop10()
@@ -116,9 +115,7 @@ public void commonInTop10()
 
 
 
-
-Congratulations!
-================
+# Congratulations!
 
 You have completed the Candy Kata!
 

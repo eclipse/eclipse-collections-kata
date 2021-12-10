@@ -35,34 +35,61 @@ public class MultimapTest
 {
     @Test
     @Tag("SOLUTION")
-    public void multimapsFactoryExamples()
+    public void createEmptyListMultimaps()
     {
         MutableListMultimap<String, String> mutableListMultimap =
                 Multimaps.mutable.list.empty();
-        MutableSetMultimap<String, String> mutableSetMultimap =
-                Multimaps.mutable.set.empty();
-        MutableBagMultimap<String, String> mutableBagMultimap =
-                Multimaps.mutable.bag.empty();
-        MutableSortedSetMultimap<String, String> mutableSortedSetMultimap =
-                Multimaps.mutable.sortedSet.with(Comparator.<String>reverseOrder());
-        MutableSortedBagMultimap<String, String> mutableSortedBagMultimap =
-                Multimaps.mutable.sortedBag.with(Comparator.<String>reverseOrder());
-
         ImmutableListMultimap<String, String> immutableListMultimap =
                 Multimaps.immutable.list.empty();
+        Assertions.assertTrue(mutableListMultimap.isEmpty());
+        Assertions.assertEquals(mutableListMultimap, immutableListMultimap);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void createEmptySetMultimaps()
+    {
+        MutableSetMultimap<String, String> mutableSetMultimap =
+                Multimaps.mutable.set.empty();
         ImmutableSetMultimap<String, String> immutableSetMultimap =
                 Multimaps.immutable.set.empty();
+        Assertions.assertTrue(mutableSetMultimap.isEmpty());
+        Assertions.assertEquals(mutableSetMultimap, immutableSetMultimap);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void createEmptyBagMultimaps()
+    {
+        MutableBagMultimap<String, String> mutableBagMultimap =
+                Multimaps.mutable.bag.empty();
         ImmutableBagMultimap<String, String> immutableBagMultimap =
                 Multimaps.immutable.bag.empty();
+        Assertions.assertTrue(mutableBagMultimap.isEmpty());
+        Assertions.assertEquals(mutableBagMultimap, immutableBagMultimap);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void createEmptySortedSetMultimaps()
+    {
+        MutableSortedSetMultimap<String, String> mutableSortedSetMultimap =
+                Multimaps.mutable.sortedSet.with(Comparator.<String>reverseOrder());
         ImmutableSortedSetMultimap<String, String> immutableSortedSetMultimap =
-                Multimaps.immutable.sortedSet.with(Comparator.<String>reverseOrder());
+                Multimaps.immutable.sortedSet.with(Comparator.reverseOrder());
+        Assertions.assertTrue(mutableSortedSetMultimap.isEmpty());
+        Assertions.assertEquals(mutableSortedSetMultimap, immutableSortedSetMultimap);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void createEmptySortedBagMultimaps()
+    {
+        MutableSortedBagMultimap<String, String> mutableSortedBagMultimap =
+                Multimaps.mutable.sortedBag.with(Comparator.<String>reverseOrder());
         ImmutableSortedBagMultimap<String, String> immutableSortedBagMultimap =
                 Multimaps.immutable.sortedBag.with(Comparator.<String>reverseOrder());
-
-        Assertions.assertEquals(mutableListMultimap, immutableListMultimap);
-        Assertions.assertEquals(mutableSetMultimap, immutableSetMultimap);
-        Assertions.assertEquals(mutableBagMultimap, immutableBagMultimap);
-        Assertions.assertEquals(mutableSortedSetMultimap, immutableSortedSetMultimap);
+        Assertions.assertTrue(mutableSortedBagMultimap.isEmpty());
         Assertions.assertEquals(mutableSortedBagMultimap, immutableSortedBagMultimap);
     }
 

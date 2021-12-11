@@ -36,37 +36,74 @@ public class MultimapTest
      * @see Multimaps
      */
     @Test
-    public void multimapsFactoryExamples()
+    public void createEmptyListMultimaps()
     {
-        // Hint: Use the Multimaps factory to create various empty Multimap types
+        // Hint: Use the Multimaps factory to create mutable and immutable Multimap types
         // Create an empty MutableListMultimap
         MutableListMultimap<String, String> mutableListMultimap = null;
         // Create an empty ImmutableListMultimap
         ImmutableListMultimap<String, String> immutableListMultimap = null;
+        Assertions.assertTrue(mutableListMultimap.isEmpty());
         Assertions.assertEquals(mutableListMultimap, immutableListMultimap);
+    }
 
+    /**
+     * @see Multimaps
+     */
+    @Test
+    public void createEmptySetMultimaps()
+    {
+        // Hint: Use the Multimaps factory to create mutable and immutable Multimap types
         // Create an empty MutableSetMultimap
         MutableSetMultimap<String, String> mutableSetMultimap = null;
         // Create an empty ImmutableSetMultimap
         ImmutableSetMultimap<String, String> immutableSetMultimap = null;
+        Assertions.assertTrue(mutableSetMultimap.isEmpty());
         Assertions.assertEquals(mutableSetMultimap, immutableSetMultimap);
+    }
 
+    /**
+     * @see Multimaps
+     */
+    @Test
+    public void createEmptyBagMultimaps()
+    {
+        // Hint: Use the Multimaps factory to create mutable and immutable Multimap types
         // Create an empty MutableBagMultimap
         MutableBagMultimap<String, String> mutableBagMultimap = null;
         // Create an empty ImmutableBagMultimap
         ImmutableBagMultimap<String, String> immutableBagMultimap = null;
+        Assertions.assertTrue(mutableBagMultimap.isEmpty());
         Assertions.assertEquals(mutableBagMultimap, immutableBagMultimap);
+    }
 
+    /**
+     * @see Multimaps
+     */
+    @Test
+    public void createEmptySortedSetMultimaps()
+    {
+        // Hint: Use the Multimaps factory to create mutable and immutable Multimap types
         // Create an empty MutableSortedSetMultimap
         MutableSortedSetMultimap<String, String> mutableSortedSetMultimap = null;
         // Create an empty ImmutableSortedSetMultimap
         ImmutableSortedSetMultimap<String, String> immutableSortedSetMultimap = null;
+        Assertions.assertTrue(mutableSortedSetMultimap.isEmpty());
         Assertions.assertEquals(mutableSortedSetMultimap, immutableSortedSetMultimap);
+    }
 
+    /**
+     * @see Multimaps
+     */
+    @Test
+    public void createEmptySortedBagMultimaps()
+    {
+        // Hint: Use the Multimaps factory to create mutable and immutable Multimap types
         // Create an empty MutableSortedBagMultimap
         MutableSortedBagMultimap<String, String> mutableSortedBagMultimap = null;
         // Create an empty ImmutableSortedBagMultimap
         ImmutableSortedBagMultimap<String, String> immutableSortedBagMultimap = null;
+        Assertions.assertTrue(mutableSortedBagMultimap.isEmpty());
         Assertions.assertEquals(mutableSortedBagMultimap, immutableSortedBagMultimap);
     }
 

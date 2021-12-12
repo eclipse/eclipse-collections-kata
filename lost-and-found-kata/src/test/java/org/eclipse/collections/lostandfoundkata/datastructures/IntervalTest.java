@@ -48,77 +48,122 @@ import org.eclipse.collections.impl.list.Interval;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@link Interval#oneTo(int)} <br>
+ * {@link Interval#oneToBy(int, int)} <br>
+ * {@link Interval#zeroTo(int)} <br>
+ * {@link Interval#zeroToBy(int, int)} <br>
+ * {@link Interval#evensFromTo(int, int)} <br>
+ * {@link Interval#oddsFromTo(int, int)} <br>
+ * {@link Interval#fromTo(int, int)} <br>
+ * {@link Interval#evensFromTo(int, int)} <br>
+ * {@link Interval#oddsFromTo(int, int)} <br>
+ * {@link Interval#fromToBy(int, int, int)} <br>
+ * {@link Interval#toList()} <br>
+ * {@link Interval#toSet()} <br>
+ * {@link Interval#toMap(Function, Function)} <br>
+ * {@link Interval#toSortedMap(Function, Function)} <br>
+ * {@link Interval#toArray()} <br>
+ * {@link Interval#toString()} <br>
+ * {@link Interval#toIntArray()} <br>
+ * {@link Interval#stream()} <br>
+ * {@link Interval#toBag()} <br>
+ * {@link Interval#toSortedList()} <br>
+ * {@link Interval#toSortedSet()} <br>
+ * {@link Interval#toSortedBag()} <br>
+ * {@link Interval#toBiMap(Function, Function)} <br>
+ * {@link Interval#toImmutableList()} <br>
+ * {@link Interval#toImmutableSet()} <br>
+ * {@link Interval#toImmutableBag()} <br>
+ * {@link Interval#toImmutableSortedList()} <br>
+ * {@link Interval#toImmutableSortedSet()} <br>
+ * {@link Interval#toImmutableSortedBag()} <br>
+ * {@link Interval#toImmutableMap(Function, Function)} <br>
+ * {@link Interval#toImmutableBiMap(Function, Function)} <br>
+ *
+ * @see Interval
+ */
 public class IntervalTest
 {
-    /**
-     * {@link Interval#oneTo(int)} <br>
-     * {@link Interval#oneToBy(int, int)} <br>
-     * {@link Interval#zeroTo(int)} <br>
-     * {@link Interval#zeroToBy(int, int)} <br>
-     * {@link Interval#evensFromTo(int, int)} <br>
-     * {@link Interval#oddsFromTo(int, int)} <br>
-     *
-     * @see Interval
-     */
     @Test
-    public void creatingForward()
+    public void oneToTen()
     {
         // Create an Interval from 1 to 10
         Interval intervalOneToTen = null;
         var streamOneToTenToList = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
         Assertions.assertEquals(streamOneToTenToList, intervalOneToTen);
+    }
 
+    @Test
+    public void zeroToNine()
+    {
         // Create an Interval from 0 to 9
         Interval intervalZeroToNine = null;
         var streamZeroToNineToList = IntStream.rangeClosed(0, 9).boxed().collect(Collectors.toList());
         Assertions.assertEquals(streamZeroToNineToList, intervalZeroToNine);
+    }
 
+    @Test
+    public void evensFromOneToTen()
+    {
         // Create an Interval of only evens from 1 to 10
         Interval intervalEvensFromOneToTen = null;
         var streamEvensFromOneToTenToList =
                 IntStream.rangeClosed(1, 10).filter(i -> i % 2 == 0).boxed().collect(Collectors.toList());
         Assertions.assertEquals(streamEvensFromOneToTenToList, intervalEvensFromOneToTen);
+    }
 
+    @Test
+    public void oddsFromZeroToNine()
+    {
         // Create an Interval of only odds from 0 to 9
         Interval intervalOddsFromZeroToNine = null;
         var streamOddsFromZeroToNineToList =
                 IntStream.rangeClosed(0, 9).filter(i -> i % 2 != 0).boxed().collect(Collectors.toList());
         Assertions.assertEquals(streamOddsFromZeroToNineToList, intervalOddsFromZeroToNine);
+    }
 
+    @Test
+    public void oneToTenByThree()
+    {
         // Create an Interval from 1 to 10 by 3
         Interval intervalFromOneToTenByThree = null;
         var listFromOneToTenByThree = List.of(1, 4, 7, 10);
         Assertions.assertEquals(listFromOneToTenByThree, intervalFromOneToTenByThree);
+    }
 
+    @Test
+    public void zeroToNineByThree()
+    {
         // Create an Interval from 0 to 9 by 3
         Interval intervalZeroToNineByThree = null;
         var listFromZeroToNineByThree = List.of(0, 3, 6, 9);
         Assertions.assertEquals(listFromZeroToNineByThree, intervalZeroToNineByThree);
     }
 
-    /**
-     * {@link Interval#fromTo(int, int)} <br>
-     * {@link Interval#evensFromTo(int, int)} <br>
-     * {@link Interval#oddsFromTo(int, int)} <br>
-     * {@link Interval#fromToBy(int, int, int)} <br>
-     *
-     * @see Interval
-     */
     @Test
-    public void creatingReverse()
+    public void tenToOne()
     {
         // Create an Interval from 10 to 1
         Interval intervalFromTenToOne = null;
         var streamOneToTenToReverseOrderList =
                 IntStream.rangeClosed(1, 10).boxed().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         Assertions.assertEquals(streamOneToTenToReverseOrderList, intervalFromTenToOne);
+    }
 
+    @Test
+    public void nineToZero()
+    {
         // Create an Interval from 9 to 0
         Interval intervalFromNineToZero = null;
         var streamZeroToNineToReverseOrderList =
                 IntStream.rangeClosed(0, 9).boxed().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         Assertions.assertEquals(streamZeroToNineToReverseOrderList, intervalFromNineToZero);
+    }
 
+    @Test
+    public void evensFromTenToOne()
+    {
         // Create an Interval of only evens from 10 to 1
         Interval intervalEvensFromTenToOne = null;
         var streamEvensOneToTenToReverseOrderList =
@@ -127,7 +172,11 @@ public class IntervalTest
                         .sorted(Comparator.reverseOrder())
                         .collect(Collectors.toList());
         Assertions.assertEquals(streamEvensOneToTenToReverseOrderList, intervalEvensFromTenToOne);
+    }
 
+    @Test
+    public void oddsFromNineToZero()
+    {
         // Create an Interval of only odds from 9 to 0
         Interval intervalOddsFromNineToZero = null;
         var streamOddsZeroToNineToReversOrderList =
@@ -136,197 +185,247 @@ public class IntervalTest
                         .sorted(Comparator.reverseOrder())
                         .collect(Collectors.toList());
         Assertions.assertEquals(streamOddsZeroToNineToReversOrderList, intervalOddsFromNineToZero);
+    }
 
+    @Test
+    public void tenToOneByNegativeThree()
+    {
         // Create an Interval from 10 to 1 by -3
         Interval intervalFromTenToOneByNegativeThree = null;
         var reverseListTenToOneByThree = List.of(10, 7, 4, 1);
         Assertions.assertEquals(reverseListTenToOneByThree, intervalFromTenToOneByNegativeThree);
+    }
 
+    @Test
+    public void nineToZeroByNegativeThree()
+    {
         // Create an Interval from 9 to 0 by -3
         Interval intervalFromNineToZeroByNegativeThree = null;
         var reverseListNineToZeroByThree = List.of(9, 6, 3, 0);
         Assertions.assertEquals(reverseListNineToZeroByThree, intervalFromNineToZeroByNegativeThree);
     }
 
-    /**
-     * {@link Interval#toList()} <br>
-     * {@link Interval#toSet()} <br>
-     * {@link Interval#toMap(Function, Function)} <br>
-     * {@link Interval#toSortedMap(Function, Function)} <br>
-     * {@link Interval#toArray()} <br>
-     * {@link Interval#toString()} <br>
-     * {@link Interval#toIntArray()} <br>
-     * {@link Interval#toStream()} <br>
-     *
-     * @see Interval
-     */
     @Test
-    public void converterMethodsToJDKTypes()
+    public void toList()
     {
-        Interval integers = Interval.oneTo(5);
-
-        // JDK Collection Types
-        // Convert integers to a List
+        // Convert Interval.oneTo(5) to a List
         List<Integer> list = null;
         var expectedList = List.of(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedList, list);
+    }
 
-        // Convert integers to a Set
+    @Test
+    public void toSet()
+    {
+        // Convert Interval.oneTo(5) to a Set
         Set<Integer> set = null;
         var expectedSet = Set.of(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSet, set);
+    }
 
-        // Convert integers to a Map where keys and values are the same
+    @Test
+    public void toMap()
+    {
+        // Convert Interval.oneTo(5) to a Map where keys and values are the same
         Map<Integer, Integer> map = null;
         var expectedMap = Map.of(1, 1, 2, 2, 3, 3, 4, 4, 5, 5);
         Assertions.assertEquals(expectedMap, map);
+    }
 
-        // Convert integers to a SortedMap where keys and values are the same
+    @Test
+    public void toSortedMap()
+    {
+        // Convert Interval.oneTo(5) to a SortedMap where keys and values are the same
         SortedMap<Integer, Integer> sortedMap = null;
         var expectedTreeMap = new TreeMap<Integer, Integer>(Comparator.reverseOrder());
-        expectedTreeMap.putAll(map);
+        expectedTreeMap.putAll(Map.of(1, 1, 2, 2, 3, 3, 4, 4, 5, 5));
         Assertions.assertEquals(expectedTreeMap, sortedMap);
+    }
 
-        // Convert integers to an array of Integer
+    @Test
+    public void toArray()
+    {
+        // Convert Interval.oneTo(5) to an array of Integer
         Integer[] array = null;
         Integer[] expectedArray = {1, 2, 3, 4, 5};
         Assertions.assertArrayEquals(expectedArray, array);
+    }
 
-        // Convert integers to a String
+    @Test
+    public void intervalToString()
+    {
+        // Convert Interval.oneTo(5) to a String
         String string = null;
         String expectedString = "Interval from: 1 to: 5 step: 1 size: 5";
         Assertions.assertEquals(expectedString, string);
+    }
 
-        // Convert integers to an int array
+    @Test
+    public void toIntArray()
+    {
+        // Convert Interval.oneTo(5) to an int array
         int[] ints = null;
         int[] expectedIntArray = {1, 2, 3, 4, 5};
         Assertions.assertArrayEquals(expectedIntArray, ints);
-
-        // Convert integers to a Stream
-        Stream<Integer> stream = integers.stream();
-        List<Integer> streamToList = stream.collect(Collectors.toList());
-        Assertions.assertEquals(expectedList, streamToList);
     }
 
-    /**
-     * {@link Interval#toList()} <br>
-     * {@link Interval#toSet()} <br>
-     * {@link Interval#toBag()} <br>
-     * {@link Interval#toSortedList()} <br>
-     * {@link Interval#toSortedSet()} <br>
-     * {@link Interval#toSortedBag()} <br>
-     * {@link Interval#toMap(Function, Function)} <br>
-     * {@link Interval#toSortedMap(Function, Function)} <br>
-     * {@link Interval#toBiMap(Function, Function)} <br>
-     *
-     * @see Interval
-     */
     @Test
-    public void converterMethodsToMutableECTypes()
+    public void toStream()
     {
-        Interval integers = Interval.oneTo(5);
+        // Convert Interval.oneTo(5) to a Stream
+        Stream<Integer> stream = null;
+        List<Integer> streamToList = stream.collect(Collectors.toList());
+        Assertions.assertEquals(Interval.oneTo(5), streamToList);
+    }
 
-        // Mutable Collections
-        // Convert integers to a MutableList
+    @Test
+    public void toMutableList()
+    {
+        // Convert Interval.oneTo(5) to a MutableList
         MutableList<Integer> mutableList = null;
         var expectedList = Lists.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedList, mutableList);
+    }
 
-        // Convert integers to a MutableSet
+    @Test
+    public void toMutableSet()
+    {
+        // Convert Interval.oneTo(5) to a MutableSet
         MutableSet<Integer> mutableSet = null;
         var expectedSet = Sets.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSet, mutableSet);
+    }
 
-        // Convert integers to a MutableBag
+    @Test
+    public void toMutableBag()
+    {
+        // Convert Interval.oneTo(5) to a MutableBag
         MutableBag<Integer> mutableBag = null;
         var expectedBag = Bags.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedBag, mutableBag);
+    }
 
-        // Convert integers to a sorted MutableList
+    @Test
+    public void toMutableSortedList()
+    {
+        // Convert Interval.oneTo(5) to a sorted MutableList
         MutableList<Integer> mutableSortedList = null;
         var expectedSortedList = Lists.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSortedList, mutableSortedList);
+    }
 
-        // Convert integers to a MutableSortedSet
+    @Test
+    public void toMutableSortedSet()
+    {
+        // Convert Interval.oneTo(5) to a MutableSortedSet
         MutableSortedSet<Integer> mutableSortedSet = null;
         var expectedSortedSet = SortedSets.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSortedSet, mutableSortedSet);
+    }
 
-        // Convert integers to a MutableSortedBag
+    @Test
+    public void toMutableSortedBag()
+    {
+        // Convert Interval.oneTo(5) to a MutableSortedBag
         MutableSortedBag<Integer> mutableSortedBag = null;
         var expectedSortedBag = SortedBags.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSortedBag, mutableSortedBag);
+    }
 
-        // Convert integers to a MutableMap with keys and values the same
+    @Test
+    public void toMutableMap()
+    {
+        // Convert Interval.oneTo(5) to a MutableMap with keys and values the same
         MutableMap<Integer, Integer> mutableMap = null;
         var expectedMap = Maps.mutable.with(1, 1, 2, 2, 3, 3, 4, 4).withKeyValue(5, 5);
         Assertions.assertEquals(expectedMap, mutableMap);
+    }
 
-        // Convert integers to a MutableSortedMap with keys and values the same
+    @Test
+    public void toMutableSortedMap()
+    {
+        // Convert Interval.oneTo(5) to a MutableSortedMap with keys and values the same
         MutableSortedMap<Integer, Integer> mutableSortedMap = null;
         var expectedSortedMap = SortedMaps.mutable.with(1, 1, 2, 2, 3, 3, 4, 4).withKeyValue(5, 5);
         Assertions.assertEquals(expectedSortedMap, mutableSortedMap);
+    }
 
-        // Convert integers to a MutableBiMap with keys and values the same
+    @Test
+    public void toMutableBiMap()
+    {
+        // Convert Interval.oneTo(5) to a MutableBiMap with keys and values the same
         MutableBiMap<Integer, Integer> mutableBiMap = null;
         var expectedBiMap = BiMaps.mutable.with(1, 1, 2, 2, 3, 3, 4, 4).withKeyValue(5, 5);
         Assertions.assertEquals(expectedBiMap, mutableBiMap);
     }
 
-    /**
-     * {@link Interval#toImmutableList()} <br>
-     * {@link Interval#toImmutableSet()} <br>
-     * {@link Interval#toImmutableBag()} <br>
-     * {@link Interval#toImmutableSortedList()} <br>
-     * {@link Interval#toImmutableSortedSet()} <br>
-     * {@link Interval#toImmutableSortedBag()} <br>
-     * {@link Interval#toImmutableMap(Function, Function)} <br>
-     * {@link Interval#toImmutableBiMap(Function, Function)} <br>
-     *
-     * @see Interval
-     */
     @Test
-    public void converterMethodsToImmutableECTypes()
+    public void toImmutableList()
     {
-        Interval integers = Interval.oneTo(5);
-
-        // Immutable Collections
-        // Convert integers to an ImmutableList
+        // Convert Interval.oneTo(5) to an ImmutableList
         ImmutableList<Integer> immutableList = null;
         var expectedList = Lists.immutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedList, immutableList);
+    }
 
-        // Convert integers to an ImmutableSet
+    @Test
+    public void toImmutableSet()
+    {
+        // Convert Interval.oneTo(5) to an ImmutableSet
         ImmutableSet<Integer> immutableSet = null;
         var expectedSet = Sets.immutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSet, immutableSet);
+    }
 
-        // Convert integers to an ImmutableBag
+    @Test
+    public void toImmutableBag()
+    {
+        // Convert Interval.oneTo(5) to an ImmutableBag
         ImmutableBag<Integer> immutableBag = null;
         var expectedBag = Bags.immutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedBag, immutableBag);
+    }
 
-        // Convert integers to a sorted ImmutableList
+    @Test
+    public void toImmutableSortedList()
+    {
+        // Convert Interval.oneTo(5) to a sorted ImmutableList
         ImmutableList<Integer> immutableSortedList = null;
         var expectedSortedList = Lists.immutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSortedList, immutableSortedList);
+    }
 
-        // Convert integers to an ImmutableSortedSet
+    @Test
+    public void toImmutableSortedSet()
+    {
+        // Convert Interval.oneTo(5) to an ImmutableSortedSet
         ImmutableSortedSet<Integer> immutableSortedSet = null;
         var expectedSortedSet = SortedSets.immutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSortedSet, immutableSortedSet);
+    }
 
-        // Convert integers to an ImmutableSortedBag
+    @Test
+    public void toImmutableSortedBag()
+    {
+        // Convert Interval.oneTo(5) to an ImmutableSortedBag
         ImmutableSortedBag<Integer> immutableSortedBag = null;
         var expectedSortedBag = SortedBags.immutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSortedBag, immutableSortedBag);
+    }
 
-        // Convert integers to an ImmutableMap
+    @Test
+    public void toImmutableMap()
+    {
+        // Convert Interval.oneTo(5) to an ImmutableMap
         ImmutableMap<Integer, Integer> immutableMap = null;
         var expectedMap = Maps.immutable.with(1, 1, 2, 2, 3, 3, 4, 4).newWithKeyValue(5, 5);
         Assertions.assertEquals(expectedMap, immutableMap);
+    }
 
-        // Convert integers to an ImmutableBiMap
+    @Test
+    public void toImmutableBiMap()
+    {
+        // Convert Interval.oneTo(5) to an ImmutableBiMap
         ImmutableBiMap<Integer, Integer> immutableBiMap = null;
         var expectedBiMap = BiMaps.immutable.with(1, 1, 2, 2, 3, 3, 4, 4).newWithKeyValue(5, 5);
         Assertions.assertEquals(expectedBiMap, immutableBiMap);

@@ -29,9 +29,30 @@ import org.eclipse.collections.impl.string.immutable.CharAdapter;
 import org.eclipse.collections.impl.string.immutable.CodePointAdapter;
 import org.eclipse.collections.impl.string.immutable.CodePointList;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@link CharAdapter#collectChar(CharToCharFunction)} <br>
+ * {@link CharAdapter#select(CharPredicate)} <br>
+ * {@link CharAdapter#reject(CharPredicate)} <br>
+ * {@link CharAdapter#toBag()} <br>
+ * {@link CharAdapter#toList()} <br>
+ * {@link CharAdapter#toSet()} <br>
+ *
+ * {@link CodePointAdapter#collectInt(IntToIntFunction)} <br>
+ * {@link CodePointAdapter#select(IntPredicate)} <br>
+ * {@link CodePointAdapter#reject(IntPredicate)} <br>
+ * {@link CodePointAdapter#toBag()} <br>
+ * {@link CodePointAdapter#toList()} <br>
+ * {@link CodePointAdapter#toSet()} <br>
+ *
+ * {@link CodePointList#collectInt(IntToIntFunction)} <br>
+ * {@link CodePointList#select(IntPredicate)} <br>
+ * {@link CodePointList#reject(IntPredicate)} <br>
+ * {@link CodePointList#toBag()} <br>
+ * {@link CodePointList#toList()} <br>
+ * {@link CodePointList#toSet()} <br>
+ */
 public class StringAdaptersTest
 {
     private static final String THE_QUICK_BROWN_FOX = "The quick brown fox";
@@ -40,16 +61,50 @@ public class StringAdaptersTest
     private final CodePointAdapter codePointAdapter = Strings.asCodePoints(THE_QUICK_BROWN_FOX);
     private final CodePointList codePointList = CodePointList.from(THE_QUICK_BROWN_FOX);
 
-    /**
-     * {@link CharAdapter#collectChar(CharToCharFunction)} <br>
-     * {@link CharAdapter#select(CharPredicate)} <br>
-     * {@link CharAdapter#reject(CharPredicate)} <br>
-     * {@link CharAdapter#toBag()} <br>
-     * {@link CharAdapter#toList()} <br>
-     * {@link CharAdapter#toSet()} <br>
-     */
     @Test
-    public void charAdapter()
+    public void charAdapterToList()
+    {
+        // Convert lowercase to a MutableCharList
+        MutableCharList list = null;
+        var expectedCharList = CharLists.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
+        Assertions.assertEquals(expectedCharList, list.sortThis().distinct());
+    }
+
+    @Test
+    public void charAdapterToSet()
+    {
+        // Convert lowercase to a MutableCharSet
+        MutableCharSet set = null;
+        var expectedCharSet = CharSets.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
+        Assertions.assertEquals(expectedCharSet, set);
+    }
+
+    @Test
+    public void charAdapterToBag()
+    {
+        // Convert lowercase to a MutableCharBag
+        MutableCharBag bag = null;
+        Assertions.assertEquals(3, bag.occurrencesOf(' '));
+    }
+
+    @Test
+    public void charAdapterSelect()
+    {
+        // Filter inclusively all the chars that are alphabetic
+        CharAdapter lettersOnly = null;
+        Assertions.assertEquals("Thequickbrownfox", lettersOnly.toString());
+    }
+
+    @Test
+    public void charAdapterReject()
+    {
+        // Filter exclusively all the chars that are alphabetic
+        CharAdapter specialCharsOnly = null;
+        Assertions.assertEquals("   ", specialCharsOnly.toString());
+    }
+
+    @Test
+    public void charAdapterCollectChar()
     {
         // Transform the chars in this.charAdapter to upperCase
         CharAdapter upperCase = null;
@@ -58,39 +113,52 @@ public class StringAdaptersTest
         // Transform the chars in this.charAdapter to lowerCase
         CharAdapter lowerCase = null;
         Assertions.assertEquals(THE_QUICK_BROWN_FOX.toLowerCase(), lowerCase.toString());
-
-        // Filter inclusively all the chars that are alphabetic
-        CharAdapter lettersOnly = null;
-        Assertions.assertEquals("Thequickbrownfox", lettersOnly.toString());
-
-        // Filter exclusively all the chars that are alphabetic
-        CharAdapter specialCharsOnly = null;
-        Assertions.assertEquals("   ", specialCharsOnly.toString());
-
-        // Converter methods
-        // Convert lowercase to a MutableCharBag
-        MutableCharBag bag = null;
-        Assertions.assertEquals(3, bag.occurrencesOf(' '));
-        // Convert lowercase to a MutableCharList
-        MutableCharList list = null;
-        var expectedCharList = CharLists.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
-        Assertions.assertEquals(expectedCharList, list.sortThis().distinct());
-        // Convert lowercase to a MutableCharSet
-        MutableCharSet set = null;
-        var expectedCharSet = CharSets.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
-        Assertions.assertEquals(expectedCharSet, set);
     }
 
-    /**
-     * {@link CodePointAdapter#collectInt(IntToIntFunction)} <br>
-     * {@link CodePointAdapter#select(IntPredicate)} <br>
-     * {@link CodePointAdapter#reject(IntPredicate)} <br>
-     * {@link CodePointAdapter#toBag()} <br>
-     * {@link CodePointAdapter#toList()} <br>
-     * {@link CodePointAdapter#toSet()} <br>
-     */
     @Test
-    public void codePointAdapter()
+    public void codePointAdapterToList()
+    {
+        // Convert lowercase to a MutableIntList
+        MutableIntList list = null;
+        var expectedIntList = IntLists.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
+        Assertions.assertEquals(expectedIntList, list.sortThis().distinct());
+    }
+
+    @Test
+    public void codePointAdapterToSet()
+    {
+        // Convert lowercase to a MutableIntSet
+        MutableIntSet set = null;
+        var expectedIntSet = IntSets.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
+        Assertions.assertEquals(expectedIntSet, set);
+    }
+
+    @Test
+    public void codePointAdapterToBag()
+    {
+        // Convert lowercase to a MutableIntBag
+        MutableIntBag bag = null;
+        Assertions.assertEquals(3, bag.occurrencesOf(' '));
+    }
+
+    @Test
+    public void codePointAdapterSelect()
+    {
+        // Filter inclusively all the codepoints that are alphabetic
+        CodePointAdapter lettersOnly = null;
+        Assertions.assertEquals("Thequickbrownfox", lettersOnly.toString());
+    }
+
+    @Test
+    public void codePointAdapterReject()
+    {
+        // Filter exclusively all the codepoints that are alphabetic
+        CodePointAdapter specialIntsOnly = null;
+        Assertions.assertEquals("   ", specialIntsOnly.toString());
+    }
+
+    @Test
+    public void codePointAdapterCollectInt()
     {
         // Transform the codepoints in this.codePointAdapter to upperCase
         CodePointAdapter upperCase = null;
@@ -99,39 +167,52 @@ public class StringAdaptersTest
         // Transform the codepoints in this.codePointAdapter to lowerCase
         CodePointAdapter lowerCase = null;
         Assertions.assertEquals("the quick brown fox", lowerCase.toString());
+    }
 
-        // Filter inclusively all the codepoints that are alphabetic
-        CodePointAdapter lettersOnly = null;
-        Assertions.assertEquals("Thequickbrownfox", lettersOnly.toString());
-
-        // Filter exclusively all the codepoints that are alphabetic
-        CodePointAdapter specialIntsOnly = null;
-        Assertions.assertEquals("   ", specialIntsOnly.toString());
-
-        // Converter methods
-        // Convert lowercase to a MutableIntBag
-        MutableIntBag bag = null;
-        Assertions.assertEquals(3, bag.occurrencesOf(' '));
-        // Convert lowercase to a MutableIntList
-        MutableIntList list = null;
-        var expectedIntList = IntLists.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
-        Assertions.assertEquals(expectedIntList, list.sortThis().distinct());
+    @Test
+    public void codePointListToSet()
+    {
         // Convert lowercase to a MutableIntSet
         MutableIntSet set = null;
         var expectedIntSet = IntSets.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
         Assertions.assertEquals(expectedIntSet, set);
     }
 
-    /**
-     * {@link CodePointList#collectInt(IntToIntFunction)} <br>
-     * {@link CodePointList#select(IntPredicate)} <br>
-     * {@link CodePointList#reject(IntPredicate)} <br>
-     * {@link CodePointList#toBag()} <br>
-     * {@link CodePointList#toList()} <br>
-     * {@link CodePointList#toSet()} <br>
-     */
     @Test
-    public void codePointList()
+    public void codePointListToList()
+    {
+        // Convert lowercase to a MutableIntList
+        MutableIntList list = null;
+        var expectedIntList = IntLists.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
+        Assertions.assertEquals(expectedIntList, list.sortThis().distinct());
+    }
+
+    @Test
+    public void codePointListToBag()
+    {
+        // Convert lowercase to a MutableIntBag
+        MutableIntBag bag = null;
+        Assertions.assertEquals(3, bag.occurrencesOf(' '));
+    }
+
+    @Test
+    public void codePointListReject()
+    {
+        // Filter exclusively all the codepoints that are alphabetic
+        CodePointList specialIntsOnly = null;
+        Assertions.assertEquals("   ", specialIntsOnly.toString());
+    }
+
+    @Test
+    public void codePointListSelect()
+    {
+        // Filter inclusively all the codepoints that are alphabetic
+        CodePointList lettersOnly = null;
+        Assertions.assertEquals("Thequickbrownfox", lettersOnly.toString());
+    }
+
+    @Test
+    public void codePointListCollectInt()
     {
         // Transform the codepoints in this.codePointList to upperCase
         CodePointList upperCase = null;
@@ -140,26 +221,5 @@ public class StringAdaptersTest
         // Transform the codepoints in this.codePointList to lowerCase
         CodePointList lowerCase = null;
         Assertions.assertEquals("the quick brown fox", lowerCase.toString());
-
-        // Filter inclusively all the codepoints that are alphabetic
-        CodePointList lettersOnly = null;
-        Assertions.assertEquals("Thequickbrownfox", lettersOnly.toString());
-
-        // Filter exclusively all the codepoints that are alphabetic
-        CodePointList specialIntsOnly = null;
-        Assertions.assertEquals("   ", specialIntsOnly.toString());
-
-        // Converter methods
-        // Convert lowercase to a MutableIntBag
-        MutableIntBag bag = null;
-        Assertions.assertEquals(3, bag.occurrencesOf(' '));
-        // Convert lowercase to a MutableIntList
-        MutableIntList list = null;
-        var expectedIntList = IntLists.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
-        Assertions.assertEquals(expectedIntList, list.sortThis().distinct());
-        // Convert lowercase to a MutableIntSet
-        MutableIntSet set = null;
-        var expectedIntSet = IntSets.mutable.with(' ', 'b', 'c', 'e', 'f', 'h', 'i', 'k', 'n', 'o', 'q', 'r', 't', 'u', 'w', 'x');
-        Assertions.assertEquals(expectedIntSet, set);
     }
 }

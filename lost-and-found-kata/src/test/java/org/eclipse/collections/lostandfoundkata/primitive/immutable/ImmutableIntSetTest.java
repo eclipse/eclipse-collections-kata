@@ -35,19 +35,60 @@ import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@link ImmutableIntSet#newWith(int)} <br>
+ * {@link ImmutableIntSet#newWithAll(IntIterable)} <br>
+ * {@link ImmutableIntSet#newWithout(int)} <br>
+ * {@link ImmutableIntSet#newWithoutAll(IntIterable)} <br>
+ *
+ * {@link ImmutableIntSet#select(IntPredicate)} <br>
+ * {@link ImmutableIntSet#reject(IntPredicate)} <br>
+ *
+ * {@link ImmutableIntSet#collect(IntToObjectFunction)} <br>
+ * {@link ImmutableIntSet#collectInt(IntToIntFunction, MutableIntCollection)} <br>
+ *
+ * {@link ImmutableIntSet#chunk(int)}
+ *
+ * {@link ImmutableIntSet#anySatisfy(IntPredicate)} <br>
+ * {@link ImmutableIntSet#allSatisfy(IntPredicate)} <br>
+ * {@link ImmutableIntSet#noneSatisfy(IntPredicate)} <br>
+ * {@link ImmutableIntSet#contains(int)} <br>
+ * {@link ImmutableIntSet#containsAny(int...)} <br>
+ * {@link ImmutableIntSet#containsAll(int...)} <br>
+ * {@link ImmutableIntSet#containsNone(int...)} <br>
+ *
+ * {@link ImmutableIntSet#toImmutable()} <br>
+ * {@link ImmutableIntSet#toList()} <br>
+ * {@link ImmutableIntSet#toBag()} <br>
+ * {@link ImmutableIntSet#toSortedList()} <br>
+ * {@link ImmutableIntSet#toArray()} <br>
+ * {@link ImmutableIntSet#toSortedArray()} <br>
+ * {@link ImmutableIntSet#toString()} <br>
+ * {@link ImmutableIntSet#makeString(String)} <br>
+ *
+ * {@link ImmutableIntSet#sum()} <br>
+ * {@link ImmutableIntSet#average()} <br>
+ * {@link ImmutableIntSet#averageIfEmpty(double)} <br>
+ * {@link ImmutableIntSet#median()} <br>
+ * {@link ImmutableIntSet#medianIfEmpty(double)} <br>
+ * {@link ImmutableIntSet#min()} <br>
+ * {@link ImmutableIntSet#minIfEmpty(int)} <br>
+ * {@link ImmutableIntSet#max()} <br>
+ * {@link ImmutableIntSet#maxIfEmpty(int)} <br>
+ * {@link ImmutableIntSet#summaryStatistics()} <br>
+ *
+ * {@link ImmutableIntSet#intersect(IntSet)} <br>
+ * {@link ImmutableIntSet#union(IntSet)} <br>
+ * {@link ImmutableIntSet#difference(IntSet)} <br>
+ * {@link ImmutableIntSet#symmetricDifference(IntSet)} <br>
+ * {@link ImmutableIntSet#cartesianProduct(IntSet)} <br>
+ */
 public class ImmutableIntSetTest
 {
     private final ImmutableIntSet set = IntSets.immutable.with(1, 2, 3, 4, 5);
 
-    /**
-     * {@link ImmutableIntSet#newWith(int)} <br>
-     * {@link ImmutableIntSet#newWithAll(IntIterable)} <br>
-     * {@link ImmutableIntSet#newWithout(int)} <br>
-     * {@link ImmutableIntSet#newWithoutAll(IntIterable)} <br>
-     */
     @Test
     public void newWithAndWithout()
     {
@@ -72,123 +113,112 @@ public class ImmutableIntSetTest
         Assertions.assertNotSame(this.set, setWithoutAll);
     }
 
-    /**
-     * Inclusive Filter: {@link ImmutableIntSet#select(IntPredicate)} <br>
-     * Exclusive Filter: {@link ImmutableIntSet#reject(IntPredicate)} <br>
-     */
     @Test
-    public void filtering()
+    public void select()
     {
         IntPredicate isEven = each -> each % 2 == 0;
         // Filter the set inclusively based on the isEven predicate
         ImmutableIntSet evens = this.set;
         Assertions.assertEquals(IntSets.mutable.with(2, 4), evens);
+    }
 
+    @Test
+    public void reject()
+    {
         // Filter the set exclusively based on the isEven predicate
         ImmutableIntSet odds = this.set;
         Assertions.assertEquals(IntSets.mutable.with(1, 3, 5), odds);
     }
 
-    /**
-     * {@link ImmutableIntSet#collectInt(IntToIntFunction, MutableIntCollection)} <br>
-     * {@link ImmutableIntSet#collect(IntToObjectFunction)} <br>
-     */
     @Test
-    public void transforming()
+    public void collect()
     {
-        // Created a transformed IntSet multiplying each value by 2
-        MutableIntSet timesTwo = this.set.collectInt(each -> each, IntSets.mutable.empty());
-        Assertions.assertEquals(IntSets.mutable.with(2, 4, 6, 8, 10), timesTwo);
-
         // Created a transformed set converting each int to a String
         ImmutableSet<String> collect = this.set.collect(each -> "");
         Assertions.assertEquals(Sets.mutable.with("1", "2", "3", "4", "5"), collect);
     }
 
-    /**
-     * {@link ImmutableIntSet#chunk(int)}
-     */
     @Test
-    public void chunking()
+    public void collectInt()
+    {
+        // Created a transformed IntSet multiplying each value by 2
+        MutableIntSet timesTwo = this.set.collectInt(each -> each, IntSets.mutable.empty());
+        Assertions.assertEquals(IntSets.mutable.with(2, 4, 6, 8, 10), timesTwo);
+    }
+
+    @Test
+    public void chunk()
     {
         // Chunk the set two elements at a time
         RichIterable<IntIterable> chunk = null;
         Assertions.assertEquals(3, chunk.size());
     }
 
-    /**
-     * {@link ImmutableIntSet#anySatisfy(IntPredicate)} <br>
-     * {@link ImmutableIntSet#allSatisfy(IntPredicate)} <br>
-     * {@link ImmutableIntSet#noneSatisfy(IntPredicate)} <br>
-     * {@link ImmutableIntSet#contains(int)} <br>
-     * {@link ImmutableIntSet#containsAny(int...)} <br>
-     * {@link ImmutableIntSet#containsAll(int...)} <br>
-     * {@link ImmutableIntSet#containsNone(int...)} <br>
-     */
     @Test
-    public void testing()
+    public void contains()
     {
-        IntPredicate isEven = each -> each % 2 == 0;
-        // Check if any, all or none of the elements are even
-        Assertions.assertTrue(this.set.anySatisfy(each -> false));
-        Assertions.assertFalse(this.set.allSatisfy(each -> true));
-        Assertions.assertFalse(this.set.noneSatisfy(each -> true));
-
-        // Check contains, containsAny, containsAll, containsNone (hint: remove the !)
+        // Check contains (hint: remove the !)
         Assertions.assertTrue(!this.set.contains(3));
         Assertions.assertFalse(!this.set.contains(6));
+    }
+
+    @Test
+    public void containsAny()
+    {
+        // Check containsAny (hint: remove the !)
         Assertions.assertTrue(!this.set.containsAny(2, 7));
         Assertions.assertFalse(!this.set.containsAny(0, 7));
+    }
+
+    @Test
+    public void containsAll()
+    {
+        // Check containsAll (hint: remove the !)
         Assertions.assertTrue(!this.set.containsAll(2, 5));
         Assertions.assertFalse(!this.set.containsAll(2, 7));
+    }
+
+    @Test
+    public void containsNone()
+    {
+        // Check containsNone (hint: remove the !)
         Assertions.assertFalse(!this.set.containsNone(2, 7));
         Assertions.assertTrue(!this.set.containsNone(0, 7));
     }
 
-    /**
-     * {@link ImmutableIntSet#toImmutable()} <br>
-     * {@link ImmutableIntSet#toList()} <br>
-     * {@link ImmutableIntSet#toBag()} <br>
-     * {@link ImmutableIntSet#toSortedList()} <br>
-     * {@link ImmutableIntSet#toArray()} <br>
-     * {@link ImmutableIntSet#toSortedArray()} <br>
-     * {@link ImmutableIntSet#toString()} <br>
-     * {@link ImmutableIntSet#makeString(String)} <br>
-     */
     @Test
-    public void converting()
+    public void anySatisfy()
     {
-        // Convert the set to an immutable set
-        ImmutableIntSet immutableIntSet = null;
-        Assertions.assertEquals(IntInterval.oneTo(5).toSet(), immutableIntSet);
-        Assertions.assertSame(immutableIntSet, this.set);
+        // Check if any of the elements are even
+        IntPredicate isEven = each -> each % 2 == 0;
+        Assertions.assertFalse(this.set.anySatisfy(isEven));
+        Assertions.assertTrue(this.set.anySatisfy(each -> each < 0));
+    }
 
-        // Converter methods to other types
-        // Convert to a MutableIntList
-        MutableIntList list = null;
-        Assertions.assertEquals(IntInterval.oneTo(5), list.sortThis());
-        // Convert to a MutableIntBag
-        MutableIntBag bag = null;
-        Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
-        // Convert to a sorted MutableIntList
-        MutableIntList sortedList = null;
-        Assertions.assertEquals(IntInterval.oneTo(5), sortedList);
-        // Convert to an int array
-        int[] ints = null;
-        Arrays.sort(ints);
-        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
-        // Convert to a sorted int array
-        int[] sortedInts = null;
-        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
-        // Convert to a String
-        String string = null;
-        Assertions.assertTrue(string.contains("1"));
-        Assertions.assertTrue(string.contains("2"));
-        Assertions.assertTrue(string.contains("3"));
-        Assertions.assertTrue(string.contains("4"));
-        Assertions.assertTrue(string.contains("5"));
+    @Test
+    public void allSatisfy()
+    {
+        // Check if all of the elements are even
+        IntPredicate isEven = each -> each % 2 == 0;
+        Assertions.assertTrue(this.set.allSatisfy(isEven));
+        Assertions.assertTrue(this.set.allSatisfy(each -> each < 0));
+    }
+
+    @Test
+    public void noneSatisfy()
+    {
+        // Check if none of the elements are even
+        IntPredicate isEven = each -> each % 2 == 0;
+        Assertions.assertTrue(this.set.noneSatisfy(isEven));
+        Assertions.assertTrue(this.set.noneSatisfy(each -> each > 0));
+    }
+
+    @Test
+    public void makeString()
+    {
         // Convert to a String separated by "/"
         String makeString = null;
+        Assertions.assertTrue(makeString.contains("/"));
         Assertions.assertTrue(makeString.contains("1"));
         Assertions.assertTrue(makeString.contains("2"));
         Assertions.assertTrue(makeString.contains("3"));
@@ -196,67 +226,158 @@ public class ImmutableIntSetTest
         Assertions.assertTrue(makeString.contains("5"));
     }
 
-    /**
-     * {@link ImmutableIntSet#sum()} <br>
-     * {@link ImmutableIntSet#average()} <br>
-     * {@link ImmutableIntSet#averageIfEmpty(double)} <br>
-     * {@link ImmutableIntSet#median()} <br>
-     * {@link ImmutableIntSet#medianIfEmpty(double)} <br>
-     * {@link ImmutableIntSet#min()} <br>
-     * {@link ImmutableIntSet#minIfEmpty(int)} <br>
-     * {@link ImmutableIntSet#max()} <br>
-     * {@link ImmutableIntSet#maxIfEmpty(int)} <br>
-     * {@link ImmutableIntSet#summaryStatistics()} <br>
-     */
     @Test
-    public void calculating()
+    public void testToString()
+    {
+        // Convert to a String
+        String string = null;
+        Assertions.assertTrue(string.contains(","));
+        Assertions.assertTrue(string.contains("1"));
+        Assertions.assertTrue(string.contains("2"));
+        Assertions.assertTrue(string.contains("3"));
+        Assertions.assertTrue(string.contains("4"));
+        Assertions.assertTrue(string.contains("5"));
+    }
+
+    @Test
+    public void toSortedArray()
+    {
+        // Convert to a sorted int array
+        int[] sortedInts = null;
+        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
+    }
+
+    @Test
+    public void toArray()
+    {
+        // Convert to an int array
+        int[] ints = null;
+        Arrays.sort(ints);
+        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
+    }
+
+    @Test
+    public void toSortedList()
+    {
+        // Convert to a sorted MutableIntList
+        MutableIntList sortedList = null;
+        Assertions.assertEquals(IntInterval.oneTo(5), sortedList);
+    }
+
+    @Test
+    public void toBag()
+    {
+        // Convert to a MutableIntBag
+        MutableIntBag bag = null;
+        Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
+    }
+
+    @Test
+    public void toList()
+    {
+        // Convert to a MutableIntList
+        MutableIntList list = null;
+        Assertions.assertEquals(IntInterval.oneTo(5), list.sortThis());
+    }
+
+    @Test
+    public void toImmutable()
+    {
+        // Convert the set to an immutable set
+        ImmutableIntSet immutableIntSet = null;
+        Assertions.assertEquals(IntInterval.oneTo(5).toSet(), immutableIntSet);
+        Assertions.assertSame(immutableIntSet, this.set);
+    }
+
+    @Test
+    public void summaryStatistics()
+    {
+        // Calculate the summaryStatistics of this.set
+        IntSummaryStatistics stats = new IntSummaryStatistics();
+        Assertions.assertEquals(15L, stats.getSum());
+        Assertions.assertEquals(1, stats.getMin());
+        Assertions.assertEquals(5, stats.getMax());
+    }
+
+    @Test
+    public void max()
+    {
+        // Calculate the max of this.set
+        int max = 0;
+        Assertions.assertEquals(5, max);
+    }
+
+    @Test
+    public void min()
+    {
+        // Calculate the min of this.set
+        int min = 0;
+        Assertions.assertEquals(1, min);
+    }
+
+    @Test
+    public void median()
+    {
+        // Calculate the median of this.set
+        double median = 0.0;
+        Assertions.assertEquals(3.0, median, 0.0);
+    }
+
+    @Test
+    public void average()
+    {
+        // Calculate the average of this.set
+        double average = 0.0;
+        Assertions.assertEquals(3.0, average, 0.0);
+    }
+
+    @Test
+    public void sum()
     {
         // Calculate the sum of this.set
         long sum = 0L;
         Assertions.assertEquals(15L, sum);
-        // Calculate the average of this.set
-        double average = 0.0;
-        Assertions.assertEquals(3.0, average, 0.0);
-        // Calculate the median of this.set
-        double median = 0.0;
-        Assertions.assertEquals(3.0, median, 0.0);
-        // Calculate the min of this.set
-        int min = 0;
-        Assertions.assertEquals(1, min);
-        // Calculate the max of this.set
-        int max = 0;
-        Assertions.assertEquals(5, max);
-        // Calculate the summaryStatistics of this.set
-        IntSummaryStatistics stats = new IntSummaryStatistics();
-        Assertions.assertEquals(stats.getSum(), sum);
-        Assertions.assertEquals(stats.getMin(), min);
-        Assertions.assertEquals(stats.getMax(), max);
     }
 
-    /**
-     * {@link ImmutableIntSet#intersect(IntSet)} <br>
-     * {@link ImmutableIntSet#union(IntSet)} <br>
-     * {@link ImmutableIntSet#difference(IntSet)} <br>
-     * {@link ImmutableIntSet#symmetricDifference(IntSet)} <br>
-     * {@link ImmutableIntSet#cartesianProduct(IntSet)} <br>
-     */
     @Test
-    public void setArithmetic()
+    public void intersect()
     {
         MutableIntSet other = IntSets.mutable.with(4, 5, 6);
         // Intersect this.set with other
         ImmutableIntSet intersect = this.set;
         Assertions.assertEquals(IntSets.mutable.with(4, 5), intersect);
+    }
+
+    @Test
+    public void union()
+    {
+        MutableIntSet other = IntSets.mutable.with(4, 5, 6);
         // Union this.set with other
         ImmutableIntSet union = this.set;
         Assertions.assertEquals(IntInterval.oneTo(6).toSet(), union);
+    }
+
+    @Test
+    public void difference()
+    {
+        MutableIntSet other = IntSets.mutable.with(4, 5, 6);
         // Difference this.set with other
         ImmutableIntSet difference = this.set;
         Assertions.assertEquals(IntInterval.oneTo(3).toSet(), difference);
+    }
+
+    @Test
+    public void symmetricDifference()
+    {
+        MutableIntSet other = IntSets.mutable.with(4, 5, 6);
         // Symmetric Difference this.set with other
         ImmutableIntSet symmetricDifference = this.set;
         Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 6), symmetricDifference);
+    }
 
+    @Test
+    public void cartesianProduct()
+    {
         // Calculate the cartesianProduct of a and b
         MutableIntSet a = IntSets.mutable.with(1, 2);
         MutableIntSet b = IntSets.mutable.with(3, 4);

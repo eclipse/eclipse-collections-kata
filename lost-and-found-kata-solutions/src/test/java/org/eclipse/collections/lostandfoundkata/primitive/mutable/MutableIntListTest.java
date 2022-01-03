@@ -45,32 +45,6 @@ public class MutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void reversing()
-    {
-        // Create a reverse view of the list
-        LazyIntIterable asReverseLazy = this.list.asReversed();
-        Assertions.assertEquals(IntInterval.fromTo(5, 1), asReverseLazy.toList());
-
-        // Create a reverse copy of the list
-        MutableIntList toReverseList = this.list.toReversed();
-        Assertions.assertEquals(IntInterval.fromTo(5, 1), toReverseList);
-    }
-
-    @Test
-    @Tag("SOLUTION")
-    public void shuffling()
-    {
-        // Copy the list and shuffle
-        MutableIntList shuffled = this.list.toList().shuffleThis();
-        Assertions.assertNotEquals(this.list, shuffled);
-
-        // Copy the list and shuffle with a random seed value
-        MutableIntList shuffledPredictable = this.list.toList().shuffleThis(new Random(1));
-        Assertions.assertEquals(IntLists.immutable.with(3, 4, 2, 5, 1), shuffledPredictable);
-    }
-
-    @Test
-    @Tag("SOLUTION")
     public void withAndWithout()
     {
         // Add two values to the list
@@ -96,25 +70,67 @@ public class MutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void reversingAndSortingThis()
+    public void toReversed()
     {
-        // Reverse the list in place
-        MutableIntList reverseList = this.list.reverseThis();
-        Assertions.assertEquals(IntInterval.fromTo(5, 1), this.list);
+        // Create a reverse copy of the list
+        MutableIntList toReverseList = this.list.toReversed();
+        Assertions.assertEquals(IntInterval.fromTo(5, 1), toReverseList);
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void asReversed()
+    {
+        // Create a reverse view of the list
+        LazyIntIterable asReverseLazy = this.list.asReversed();
+        Assertions.assertEquals(IntInterval.fromTo(5, 1), asReverseLazy.toList());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void shuffleThis()
+    {
+        // Copy the list and shuffleThis
+        MutableIntList shuffled = this.list.toList().shuffleThis();
+        Assertions.assertNotEquals(this.list, shuffled);
+
+        // Copy the list and shuffleThis with a random seed value
+        MutableIntList shuffledPredictable = this.list.toList().shuffleThis(new Random(1L));
+        Assertions.assertEquals(IntLists.immutable.with(3, 4, 2, 5, 1), shuffledPredictable);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void sortThis()
+    {
         // Sort the list in place
+        this.list.shuffleThis();
         MutableIntList sortList = this.list.sortThis();
         Assertions.assertEquals(IntInterval.oneTo(5), this.list);
     }
 
     @Test
     @Tag("SOLUTION")
-    public void filtering()
+    public void reverseThis()
+    {
+        // Reverse the list in place
+        MutableIntList reverseList = this.list.reverseThis();
+        Assertions.assertEquals(IntInterval.fromTo(5, 1), this.list);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void select()
     {
         // Filter the list inclusively
         MutableIntList evens = this.list.select(each -> each % 2 == 0);
         Assertions.assertEquals(IntLists.mutable.with(2, 4), evens);
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void reject()
+    {
         // Filter the list exclusively
         MutableIntList odds = this.list.reject(each -> each % 2 == 0);
         Assertions.assertEquals(IntLists.mutable.with(1, 3, 5), odds);
@@ -122,15 +138,20 @@ public class MutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void transforming()
+    public void collect()
+    {
+        // Created a transformed list converting each int to a String
+        MutableList<String> collect = this.list.collect(String::valueOf);
+        Assertions.assertEquals(Lists.mutable.with("1", "2", "3", "4", "5"), collect);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void collectInt()
     {
         // Created a transformed list multiplying each value by 2
         MutableIntList timesTwo = this.list.collectInt(each -> each * 2, IntLists.mutable.empty());
         Assertions.assertEquals(IntLists.mutable.with(2, 4, 6, 8, 10), timesTwo);
-
-        // Created a transformed list converting each int to a String
-        MutableList<String> collect = this.list.collect(String::valueOf);
-        Assertions.assertEquals(Lists.mutable.with("1", "2", "3", "4", "5"), collect);
     }
 
     @Test
@@ -144,7 +165,7 @@ public class MutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void chunking()
+    public void chunk()
     {
         // Chunk the list two elements at a time
         RichIterable<IntIterable> chunk = this.list.chunk(2);
@@ -157,27 +178,7 @@ public class MutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void testing()
-    {
-        // Check if any, all or none of the elements are even
-        Assertions.assertTrue(this.list.anySatisfy(each -> each % 2 == 0));
-        Assertions.assertFalse(this.list.allSatisfy(each -> each % 2 == 0));
-        Assertions.assertFalse(this.list.noneSatisfy(each -> each % 2 == 0));
-
-        // Check contains, containsAny, containsAll, containsNone
-        Assertions.assertTrue(this.list.contains(3));
-        Assertions.assertFalse(this.list.contains(6));
-        Assertions.assertTrue(this.list.containsAny(2, 7));
-        Assertions.assertFalse(this.list.containsAny(0, 7));
-        Assertions.assertTrue(this.list.containsAll(2, 5));
-        Assertions.assertFalse(this.list.containsAll(2, 7));
-        Assertions.assertFalse(this.list.containsNone(2, 7));
-        Assertions.assertTrue(this.list.containsNone(0, 7));
-    }
-
-    @Test
-    @Tag("SOLUTION")
-    public void zipping()
+    public void zipInt()
     {
         // Zip two primitive lists into pairs
         MutableList<IntIntPair> zipped = this.list.zipInt(IntInterval.zeroTo(4));
@@ -193,46 +194,169 @@ public class MutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void converting()
+    public void anySatisfy()
     {
-        // Convert mutable list to an immutable list
-        ImmutableIntList immutableIntList = this.list.toImmutable();
-        Assertions.assertEquals(IntInterval.oneTo(5), immutableIntList);
+        Assertions.assertTrue(this.list.anySatisfy(each -> each % 2 == 0));
+    }
 
-        // Converter methods to other types
-        MutableIntSet set = this.list.toSet();
-        Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), set);
-        MutableIntBag bag = this.list.toBag();
-        Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
-        MutableIntList sortedList = this.list.toSortedList();
-        Assertions.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), sortedList);
-        int[] ints = this.list.toArray();
-        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
-        int[] sortedInts = this.list.toSortedArray();
-        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
-        String string = this.list.toString();
-        Assertions.assertEquals("[1, 2, 3, 4, 5]", string);
+    @Test
+    @Tag("SOLUTION")
+    public void allSatisfy()
+    {
+        Assertions.assertFalse(this.list.allSatisfy(each -> each % 2 == 0));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void noneSatisfy()
+    {
+        Assertions.assertFalse(this.list.noneSatisfy(each -> each % 2 == 0));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void contains()
+    {
+        Assertions.assertTrue(this.list.contains(3));
+        Assertions.assertFalse(this.list.contains(6));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void containsAny()
+    {
+        Assertions.assertTrue(this.list.containsAny(2, 7));
+        Assertions.assertFalse(this.list.containsAny(0, 7));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void containsAll()
+    {
+        Assertions.assertTrue(this.list.containsAll(2, 5));
+        Assertions.assertFalse(this.list.containsAll(2, 7));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void containsNone()
+    {
+        Assertions.assertFalse(this.list.containsNone(2, 7));
+        Assertions.assertTrue(this.list.containsNone(0, 7));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void makeString()
+    {
         String makeString = this.list.makeString("/");
         Assertions.assertEquals("1/2/3/4/5", makeString);
     }
 
     @Test
     @Tag("SOLUTION")
-    public void calculating()
+    public void testToString()
+    {
+        String string = this.list.toString();
+        Assertions.assertEquals("[1, 2, 3, 4, 5]", string);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSortedArray()
+    {
+        int[] sortedInts = this.list.toSortedArray();
+        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toArray()
+    {
+        int[] ints = this.list.toArray();
+        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSortedList()
+    {
+        MutableIntList sortedList = this.list.toSortedList();
+        Assertions.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), sortedList);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toBag()
+    {
+        MutableIntBag bag = this.list.toBag();
+        Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSet()
+    {
+        MutableIntSet set = this.list.toSet();
+        Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), set);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toImmutable()
+    {
+        // Convert mutable list to an immutable list
+        ImmutableIntList immutableIntList = this.list.toImmutable();
+        Assertions.assertEquals(IntInterval.oneTo(5), immutableIntList);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void summaryStatistics()
+    {
+        IntSummaryStatistics stats = this.list.summaryStatistics();
+        Assertions.assertEquals(15L, stats.getSum());
+        Assertions.assertEquals(1, stats.getMin());
+        Assertions.assertEquals(5, stats.getMax());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void max()
+    {
+        int max = this.list.maxIfEmpty(0);
+        Assertions.assertEquals(5, max);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void min()
+    {
+        int min = this.list.minIfEmpty(0);
+        Assertions.assertEquals(1, min);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void median()
+    {
+        double median = this.list.medianIfEmpty(0.0);
+        Assertions.assertEquals(3.0, median, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void average()
+    {
+        double average = this.list.averageIfEmpty(0.0);
+        Assertions.assertEquals(3.0, average, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void sum()
     {
         long sum = this.list.sum();
         Assertions.assertEquals(15L, sum);
-        double average = this.list.averageIfEmpty(0.0);
-        Assertions.assertEquals(3.0, average, 0.0);
-        double median = this.list.medianIfEmpty(0.0);
-        Assertions.assertEquals(3.0, median, 0.0);
-        int min = this.list.minIfEmpty(0);
-        Assertions.assertEquals(1, min);
-        int max = this.list.maxIfEmpty(0);
-        Assertions.assertEquals(5, max);
-        IntSummaryStatistics stats = this.list.summaryStatistics();
-        Assertions.assertEquals(stats.getSum(), sum);
-        Assertions.assertEquals(stats.getMin(), min);
-        Assertions.assertEquals(stats.getMax(), max);
     }
 }

@@ -86,17 +86,20 @@
         <module>converter-method-kata</module>
         <module>top-methods-kata</module>
         <module>lost-and-found-kata</module>
+        <module>jackson-kata</module>
+        <module>company-kata-solutions</module>
         <module>pet-kata-solutions</module>
         <module>candy-kata-solutions</module>
-        <module>company-kata-solutions</module>
         <module>converter-method-kata-solutions</module>
         <module>top-methods-kata-solutions</module>
         <module>lost-and-found-kata-solutions</module>
+        <module>jackson-kata-solutions</module>
     </modules>
 
     <properties>
         <eclipse.collections.version>11.0.0</eclipse.collections.version>
         <junit5.version>5.8.1</junit5.version>
+        <jackson.version>2.13.1</jackson.version>
         <jol.version>0.16</jol.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

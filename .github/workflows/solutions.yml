@@ -35,6 +35,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Run tests in Solutions modules
-        run: mvn -pl pet-kata-solutions,candy-kata-solutions,company-kata-solutions,converter-method-kata-solutions,top-methods-kata-solutions,lost-and-found-kata-solutions test -Dmaven.javadoc.skip=true -B -V
+        run: mvn -pl pet-kata-solutions,candy-kata-solutions,company-kata-solutions,converter-method-kata-solutions,top-methods-kata-solutions,lost-and-found-kata-solutions,jackson-kata-solutions test -Dmaven.javadoc.skip=true -B -V
         env:
           MAVEN_OPTS: "-Dmaven.repo.local=$HOME/.m2/repository -Xmx1g -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss:SSS"

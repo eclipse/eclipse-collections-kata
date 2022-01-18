@@ -37,6 +37,7 @@ import org.eclipse.collections.impl.factory.primitive.CharBags;
 import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.utility.LazyIterate;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class Top25MethodsTest
@@ -45,6 +46,7 @@ public class Top25MethodsTest
     private final ImmutableSet<String> onlyBanana = Sets.immutable.with(Fruit.BANANA.toLowerCase());
 
     @Test
+    @Tag("KATA")
     public void with()
     {
         // Fix by replacing the empty list with a List of lowercase fruit names
@@ -56,6 +58,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void collect()
     {
         // Fix by collecting the names of the fruit to uppercase
@@ -67,6 +70,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void of()
     {
         // Fix by replacing the empty set with a Set of just a banana
@@ -78,6 +82,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void select()
     {
         // Select the fruitNames that are contained in the set of onlyBanana
@@ -89,6 +94,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void reject()
     {
         // Reject the fruitNames that are contained in the set of onlyBanana
@@ -100,6 +106,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void count()
     {
         // Count the fruitNames that are contained in the set of onlyBanana
@@ -112,6 +119,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void anySatisfy()
     {
         // Are any of the fruitNames contained in the set of onlyBanana?
@@ -124,6 +132,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void allSatisfy()
     {
         // Are all of the fruitNames contained in the set of onlyBanana?
@@ -136,6 +145,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void noneSatisfy()
     {
         // Are none of the fruitNames contained in the set of onlyBanana?
@@ -148,6 +158,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void groupBy()
     {
         // Group the fruitNames by the first character in the name
@@ -159,6 +170,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void countBy()
     {
         // Group the fruitNames by the first character in the name
@@ -170,6 +182,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void makeString()
     {
         // Make the fruitNames into a String that starts with "(", ends with ")", and is separated by ","
@@ -179,6 +192,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void toImmutable()
     {
         MutableList<String> mutableFruit =
@@ -191,6 +205,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void asLazy()
     {
         // Convert this.fruitNames into a LazyIterable
@@ -204,6 +219,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void containsBy()
     {
         // Does this.fruitNames contain APPLE if you compare each element By uppercase?
@@ -216,6 +232,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void detectWith()
     {
         // Do any of the this.fruitNames start with the letter b? Which one is first?
@@ -228,6 +245,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void detectWithIfNone()
     {
         // Do any of the this.fruitNames start with the letter b? Which one is first? Return "apple" if none match.
@@ -240,6 +258,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void injectInto()
     {
         // Use injectInto with a String builder to append all of the fruitNames together in a String.
@@ -251,6 +270,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void partition()
     {
         // Partition the fruitNames based on the length of a name greater than 6
@@ -267,6 +287,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void chunk()
     {
         // Chunk the fruitNames in batches of size 2
@@ -282,6 +303,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void sumByInt()
     {
         // Sum the length of the fruitNames by the first character of each item
@@ -293,6 +315,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void collectInt()
     {
         // Collect the lengths of the fruitNames as int values
@@ -304,6 +327,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void flatCollectChar()
     {
         // Flat collect all of the char values in the fruitNames into a mutable CharBag
@@ -315,6 +339,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void asParallel()
     {
         ExecutorService executorService = Executors.newFixedThreadPool(4);
@@ -335,6 +360,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("KATA")
     public void distinct()
     {
         MutableList<String> duplicateFruit =

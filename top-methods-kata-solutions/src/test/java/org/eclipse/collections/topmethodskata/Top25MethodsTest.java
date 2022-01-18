@@ -33,6 +33,7 @@ import org.eclipse.collections.impl.factory.Strings;
 import org.eclipse.collections.impl.factory.primitive.CharBags;
 import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class Top25MethodsTest
@@ -41,6 +42,7 @@ public class Top25MethodsTest
     private final ImmutableSet<String> onlyBanana = Sets.immutable.with(Fruit.BANANA.toLowerCase());
 
     @Test
+    @Tag("SOLUTION")
     public void with()
     {
         MutableList<String> fruit =
@@ -52,6 +54,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void collect()
     {
         ImmutableList<String> uppercase = this.fruitNames.collect(String::toUpperCase);
@@ -62,6 +65,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void of()
     {
         MutableSet<String> onlyBanana = Sets.mutable.of("banana");
@@ -72,6 +76,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void select()
     {
         ImmutableList<String> justBanana = this.fruitNames.select(this.onlyBanana::contains);
@@ -82,6 +87,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void reject()
     {
         ImmutableList<String> notBanana = this.fruitNames.reject(this.onlyBanana::contains);
@@ -92,6 +98,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void count()
     {
         int countBanana = this.fruitNames.count(this.onlyBanana::contains);
@@ -102,6 +109,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void anySatisfy()
     {
         boolean anyBanana = this.fruitNames.anySatisfy(this.onlyBanana::contains);
@@ -112,6 +120,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void allSatisfy()
     {
         boolean allBanana = this.fruitNames.allSatisfy(this.onlyBanana::contains);
@@ -124,6 +133,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void noneSatisfy()
     {
         boolean noneBanana = this.fruitNames.noneSatisfy(this.onlyBanana::contains);
@@ -134,6 +144,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void groupBy()
     {
         ImmutableListMultimap<Character, String> multimap =
@@ -145,6 +156,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void countBy()
     {
         ImmutableBag<Character> firstLetterCounts =
@@ -156,6 +168,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void makeString()
     {
         String fruitString = this.fruitNames.makeString("(", ",", ")");
@@ -164,6 +177,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void toImmutable()
     {
         MutableList<String> mutableFruit =
@@ -175,6 +189,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void asLazy()
     {
         LazyIterable<String> lazyFruit = this.fruitNames.asLazy();
@@ -186,6 +201,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void containsBy()
     {
         boolean hasApple = this.fruitNames.containsBy(String::toUpperCase, "APPLE");
@@ -196,6 +212,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void detectWith()
     {
         String banana = this.fruitNames.detectWith(String::startsWith, "b");
@@ -206,6 +223,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void detectWithIfNone()
     {
         String banana =
@@ -218,6 +236,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void injectInto()
     {
         StringBuilder stringBuilder =
@@ -229,6 +248,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void partition()
     {
         PartitionImmutableList<String> partitionFruit =
@@ -245,6 +265,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void chunk()
     {
         RichIterable<RichIterable<String>> chunkFruit = this.fruitNames.chunk(2);
@@ -259,6 +280,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void sumByInt()
     {
         ImmutableObjectLongMap<Character> sumLengthsByFirstCharacter =
@@ -270,6 +292,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void collectInt()
     {
         ImmutableIntList lengths = this.fruitNames.collectInt(String::length);
@@ -280,6 +303,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void flatCollectChar()
     {
         MutableCharBag charCounts =
@@ -291,6 +315,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void asParallel()
     {
         ParallelListIterable<String> parallelFruit =
@@ -310,6 +335,7 @@ public class Top25MethodsTest
     }
 
     @Test
+    @Tag("SOLUTION")
     public void distinct()
     {
         MutableList<String> duplicateFruit =

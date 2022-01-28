@@ -34,7 +34,7 @@ public class Exercise3Test
         ObjectMapper objectMapper = ObjectMapperUtils.createObjectMapperWithEclipseCollectionsSupport();
         String serializedPets = objectMapper.writeValueAsString(pets);
         MutableList<Pet> deserializedPets =
-                objectMapper.readValue(serializedPets, new TypeReference<MutableList<Pet>>(){});
+                objectMapper.readValue(serializedPets, new TypeReference<>(){});
         Assert.assertEquals(pets, deserializedPets);
     }
 
@@ -50,7 +50,7 @@ public class Exercise3Test
         ObjectMapper objectMapper = ObjectMapperUtils.createObjectMapperWithEclipseCollectionsSupport();
         String serializedPets = objectMapper.writeValueAsString(pets);
         ImmutableList<Pet> deserializedPets =
-                objectMapper.readValue(serializedPets, new TypeReference<ImmutableList<Pet>>(){});
+                objectMapper.readValue(serializedPets, new TypeReference<>(){});
         Assert.assertEquals(pets, deserializedPets);
     }
 }

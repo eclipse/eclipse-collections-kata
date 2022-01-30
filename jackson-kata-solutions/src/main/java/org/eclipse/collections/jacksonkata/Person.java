@@ -10,6 +10,8 @@
 
 package org.eclipse.collections.jacksonkata;
 
+import java.beans.ConstructorProperties;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.eclipse.collections.api.factory.Lists;
@@ -35,10 +37,7 @@ public class Person
     @JsonProperty
     private final MutableMap<PetType, MutableList<Pet>> petsByType = Maps.mutable.empty();
 
-    public Person()
-    {
-    }
-
+    @ConstructorProperties({"firstName", "lastName", "age"})
     public Person(String firstName, String lastName, int age)
     {
         this.firstName = firstName;

@@ -83,7 +83,7 @@ import org.junit.jupiter.api.Test;
  * {@link MutableIntList#toString()} <br>
  * {@link MutableIntList#makeString(String)} <br>
  * <p/>
- * Calculating <br>
+ * Calculating: <br>
  * {@link MutableIntList#sum()} <br>
  * {@link MutableIntList#average()} <br>
  * {@link MutableIntList#averageIfEmpty(double)} <br>

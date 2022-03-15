@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 The Bank of New York Mellon.
+ * Copyright (c) 2022 The Bank of New York Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -37,12 +37,17 @@ public class ImmutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void reversing()
+    public void asReversed()
     {
         // Create a reverse view of the list
         LazyIntIterable asReverseLazy = this.list.asReversed();
         Assertions.assertEquals(IntInterval.fromTo(5, 1), asReverseLazy.toList());
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void toReversed()
+    {
         // Create a reverse copy of the list
         ImmutableIntList toReverseList = this.list.toReversed();
         Assertions.assertEquals(IntInterval.fromTo(5, 1), toReverseList);
@@ -75,12 +80,17 @@ public class ImmutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void filtering()
+    public void select()
     {
         // Filter the list inclusively
         ImmutableIntList evens = this.list.select(each -> each % 2 == 0);
         Assertions.assertEquals(IntLists.mutable.with(2, 4), evens);
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void reject()
+    {
         // Filter the list exclusively
         ImmutableIntList odds = this.list.reject(each -> each % 2 == 0);
         Assertions.assertEquals(IntLists.mutable.with(1, 3, 5), odds);
@@ -88,12 +98,17 @@ public class ImmutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void transforming()
+    public void collectInt()
     {
         // Created a transformed IntList multiplying each value by 2
         MutableIntList timesTwo = this.list.collectInt(each -> each * 2, IntLists.mutable.empty());
         Assertions.assertEquals(IntLists.mutable.with(2, 4, 6, 8, 10), timesTwo);
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void collect()
+    {
         // Created a transformed list converting each int to a String
         ImmutableList<String> collect = this.list.collect(String::valueOf);
         Assertions.assertEquals(Lists.mutable.with("1", "2", "3", "4", "5"), collect);
@@ -110,7 +125,7 @@ public class ImmutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void chunking()
+    public void chunk()
     {
         // Chunk the list two elements at a time
         RichIterable<IntIterable> chunk = this.list.chunk(2);
@@ -123,27 +138,60 @@ public class ImmutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void testing()
+    public void containsNone()
     {
-        // Check if any, all or none of the elements are even
-        Assertions.assertTrue(this.list.anySatisfy(each -> each % 2 == 0));
-        Assertions.assertFalse(this.list.allSatisfy(each -> each % 2 == 0));
-        Assertions.assertFalse(this.list.noneSatisfy(each -> each % 2 == 0));
-
-        // Check contains, containsAny, containsAll, containsNone
-        Assertions.assertTrue(this.list.contains(3));
-        Assertions.assertFalse(this.list.contains(6));
-        Assertions.assertTrue(this.list.containsAny(2, 7));
-        Assertions.assertFalse(this.list.containsAny(0, 7));
-        Assertions.assertTrue(this.list.containsAll(2, 5));
-        Assertions.assertFalse(this.list.containsAll(2, 7));
         Assertions.assertFalse(this.list.containsNone(2, 7));
         Assertions.assertTrue(this.list.containsNone(0, 7));
     }
 
     @Test
     @Tag("SOLUTION")
-    public void zipping()
+    public void containsAll()
+    {
+        Assertions.assertTrue(this.list.containsAll(2, 5));
+        Assertions.assertFalse(this.list.containsAll(2, 7));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void containsAny()
+    {
+        Assertions.assertTrue(this.list.containsAny(2, 7));
+        Assertions.assertFalse(this.list.containsAny(0, 7));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void contains()
+    {
+        Assertions.assertTrue(this.list.contains(3));
+        Assertions.assertFalse(this.list.contains(6));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void noneSatisfy()
+    {
+        Assertions.assertFalse(this.list.noneSatisfy(each -> each % 2 == 0));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void allSatisfy()
+    {
+        Assertions.assertFalse(this.list.allSatisfy(each -> each % 2 == 0));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void anySatisfy()
+    {
+        Assertions.assertTrue(this.list.anySatisfy(each -> each % 2 == 0));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void zipInt()
     {
         // Zip two primitive lists into pairs
         ImmutableList<IntIntPair> zipped = this.list.zipInt(IntInterval.zeroTo(4));
@@ -159,48 +207,116 @@ public class ImmutableIntListTest
 
     @Test
     @Tag("SOLUTION")
-    public void converting()
+    public void makeString()
     {
-        // Convert mutable list to an immutable list
-        ImmutableIntList immutableIntList = this.list.toImmutable();
-        Assertions.assertEquals(IntInterval.oneTo(5), immutableIntList);
-        Assertions.assertSame(immutableIntList, this.list);
-
-        // Converter methods to other types
-        MutableIntSet set = this.list.toSet();
-        Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), set);
-        MutableIntBag bag = this.list.toBag();
-        Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
-        MutableIntList sortedList = this.list.toSortedList();
-        Assertions.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), sortedList);
-        int[] ints = this.list.toArray();
-        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
-        int[] sortedInts = this.list.toSortedArray();
-        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
-        String string = this.list.toString();
-        Assertions.assertEquals("[1, 2, 3, 4, 5]", string);
         String makeString = this.list.makeString("/");
         Assertions.assertEquals("1/2/3/4/5", makeString);
     }
 
     @Test
     @Tag("SOLUTION")
-    public void calculating()
+    public void testToString()
     {
-        // Math
-        long sum = this.list.sum();
-        Assertions.assertEquals(15L, sum);
-        double average = this.list.averageIfEmpty(0.0);
-        Assertions.assertEquals(3.0, average, 0.0);
-        double median = this.list.medianIfEmpty(0.0);
-        Assertions.assertEquals(3.0, median, 0.0);
-        int min = this.list.minIfEmpty(0);
-        Assertions.assertEquals(1, min);
+        String string = this.list.toString();
+        Assertions.assertEquals("[1, 2, 3, 4, 5]", string);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSortedArray()
+    {
+        int[] sortedInts = this.list.toSortedArray();
+        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toArray()
+    {
+        int[] ints = this.list.toArray();
+        Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSortedList()
+    {
+        MutableIntList sortedList = this.list.toSortedList();
+        Assertions.assertEquals(IntLists.mutable.with(1, 2, 3, 4, 5), sortedList);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toBag()
+    {
+        MutableIntBag bag = this.list.toBag();
+        Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSet()
+    {
+        MutableIntSet set = this.list.toSet();
+        Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 4, 5), set);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toImmutable()
+    {
+        ImmutableIntList immutableIntList = this.list.toImmutable();
+        Assertions.assertEquals(IntInterval.oneTo(5), immutableIntList);
+        Assertions.assertSame(immutableIntList, this.list);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void maxIfEmpty()
+    {
         int max = this.list.maxIfEmpty(0);
         Assertions.assertEquals(5, max);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void minIfEmpty()
+    {
+        int min = this.list.minIfEmpty(0);
+        Assertions.assertEquals(1, min);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void medianIfEmpty()
+    {
+        double median = this.list.medianIfEmpty(0.0);
+        Assertions.assertEquals(3.0, median, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void averageIfEmpty()
+    {
+        double average = this.list.averageIfEmpty(0.0);
+        Assertions.assertEquals(3.0, average, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void sum()
+    {
+        long sum = this.list.sum();
+        Assertions.assertEquals(15L, sum);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void summaryStatistics()
+    {
         IntSummaryStatistics stats = this.list.summaryStatistics();
-        Assertions.assertEquals(stats.getSum(), sum);
-        Assertions.assertEquals(stats.getMin(), min);
-        Assertions.assertEquals(stats.getMax(), max);
+        Assertions.assertEquals(15L, stats.getSum());
+        Assertions.assertEquals(1, stats.getMin());
+        Assertions.assertEquals(5, stats.getMax());
     }
 }

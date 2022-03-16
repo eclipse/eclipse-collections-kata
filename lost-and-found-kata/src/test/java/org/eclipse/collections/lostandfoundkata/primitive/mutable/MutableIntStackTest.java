@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 The Bank of New York Mellon.
+ * Copyright (c) 2022 The Bank of New York Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -26,31 +26,54 @@ import org.eclipse.collections.impl.factory.primitive.IntStacks;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@link org.eclipse.collections.api.factory.stack.primitive.MutableIntStackFactory#with} <br>
+ * @see IntStacks <br>
+ * <p/>
+ * {@link MutableIntStack#push(int)} <br>
+ * {@link MutableIntStack#pop()} <br>
+ * {@link MutableIntStack#pop(int)} <br>
+ * {@link MutableIntStack#peek()} <br>
+ * {@link MutableIntStack#peek(int)} <br>
+ * {@link org.eclipse.collections.api.factory.stack.primitive.MutableIntStackFactory#withAll(IntIterable)} <br>
+ * <p/>
+ * Filtering: <br>
+ * {@link MutableIntStack#select(IntPredicate)} <br>
+ * {@link MutableIntStack#reject(IntPredicate)} <br>
+ * <p/>
+ * Transforming: <br>
+ * {@link MutableIntStack#collectInt(IntToIntFunction, MutableIntCollection)} <br>
+ * <p/>
+ * Converting: <br>
+ * {@link MutableIntStack#toList()} <br>
+ * {@link MutableIntStack#toSortedList()} <br>
+ * {@link MutableIntStack#toSet()} <br>
+ * {@link MutableIntStack#toBag()} <br>
+ * <p/>
+ * Calculating: <br>
+ * {@link MutableIntStack#sum()} <br>
+ * {@link MutableIntStack#average()} <br>
+ * {@link MutableIntStack#averageIfEmpty(double)} <br>
+ * {@link MutableIntStack#median()} <br>
+ * {@link MutableIntStack#medianIfEmpty(double)} <br>
+ * {@link MutableIntStack#min()} <br>
+ * {@link MutableIntStack#minIfEmpty(int)} <br>
+ * {@link MutableIntStack#max()} <br>
+ * {@link MutableIntStack#maxIfEmpty(int)} <br>
+ * {@link MutableIntStack#summaryStatistics()} <br>
+ */
 public class MutableIntStackTest
 {
     private MutableIntStack stack;
 
-    /**
-     * {@link org.eclipse.collections.api.factory.stack.primitive.MutableIntStackFactory#with} <br>
-     * @see IntStacks
-     */
     @BeforeEach
     void setUp()
     {
         this.stack = IntStacks.mutable.with(1, 2, 3, 4, 5);
     }
 
-    /**
-     * {@link MutableIntStack#push(int)} <br>
-     * {@link MutableIntStack#pop()} <br>
-     * {@link MutableIntStack#pop(int)} <br>
-     * {@link MutableIntStack#peek()} <br>
-     * {@link MutableIntStack#peek(int)} <br>
-     * {@link org.eclipse.collections.api.factory.stack.primitive.MutableIntStackFactory#withAll(IntIterable)} <br>
-     */
     @Test
     public void pushPopAndPeek()
     {
@@ -80,93 +103,110 @@ public class MutableIntStackTest
         Assertions.assertEquals(IntLists.mutable.with(5, 4), peekTwo);
     }
 
-    /**
-     * Inclusive Filter: {@link MutableIntStack#select(IntPredicate)} <br>
-     * Exclusive Filter: {@link MutableIntStack#reject(IntPredicate)} <br>
-     */
     @Test
-    public void filtering()
+    public void select()
     {
         IntPredicate isEven = each -> each % 2 == 0;
         // Filter the stack inclusively based on the isEven predicate
         MutableIntStack evens = this.stack;
         Assertions.assertEquals(IntStacks.mutable.with(2, 4), evens);
+    }
 
+    @Test
+    public void reject()
+    {
         // Filter the bag exclusively based on the isEven predicate
         MutableIntStack odds = this.stack;
         Assertions.assertEquals(IntStacks.mutable.with(1, 3, 5), odds);
     }
 
-    /**
-     * {@link MutableIntStack#collectInt(IntToIntFunction, MutableIntCollection)}
-     */
     @Test
-    public void transforming()
+    public void collectInt()
     {
         // Create a transformed list multiplying each value by 2
         MutableIntList timesTwo = this.stack.collectInt(each -> each, IntLists.mutable.empty());
         Assertions.assertEquals(IntLists.mutable.with(10, 8, 6, 4, 2), timesTwo);
     }
 
-    /**
-     * {@link MutableIntStack#toList()} <br>
-     * {@link MutableIntStack#toSortedList()} <br>
-     * {@link MutableIntStack#toSet()} <br>
-     * {@link MutableIntStack#toBag()} <br>
-     */
     @Test
-    public void converting()
+    public void toList()
     {
-        // Converter methods
         // Convert to a MutableIntList
         MutableIntList list = null;
         Assertions.assertEquals(IntInterval.fromTo(5, 1), list);
+    }
+
+    @Test
+    public void toSortedList()
+    {
         // Convert to a sorted MutableIntList
         MutableIntList sortedList = null;
         Assertions.assertEquals(IntInterval.oneTo(5), sortedList);
+    }
+
+    @Test
+    public void toSet()
+    {
         // Convert to a MutableIntSet
         MutableIntSet set = null;
         Assertions.assertEquals(IntInterval.oneTo(5).toSet(), set);
+    }
+
+    @Test
+    public void toBag()
+    {
         // Convert to a MutableIntBag
         MutableIntBag bag = null;
         Assertions.assertEquals(IntInterval.oneTo(5).toBag(), bag);
     }
 
-    /**
-     * {@link MutableIntStack#sum()} <br>
-     * {@link MutableIntStack#average()} <br>
-     * {@link MutableIntStack#averageIfEmpty(double)} <br>
-     * {@link MutableIntStack#median()} <br>
-     * {@link MutableIntStack#medianIfEmpty(double)} <br>
-     * {@link MutableIntStack#min()} <br>
-     * {@link MutableIntStack#minIfEmpty(int)} <br>
-     * {@link MutableIntStack#max()} <br>
-     * {@link MutableIntStack#maxIfEmpty(int)} <br>
-     * {@link MutableIntStack#summaryStatistics()} <br>
-     */
     @Test
-    public void calculating()
+    public void sum()
     {
-        // Math
         // Calculate the sum of this.stack
         long sum = 0L;
         Assertions.assertEquals(15L, sum);
+    }
+
+    @Test
+    public void averageIfEmpty()
+    {
         // Calculate the average of this.stack
         double average = 0.0;
         Assertions.assertEquals(3.0, average, 0.0);
+    }
+
+    @Test
+    public void medianIfEmpty()
+    {
         // Calculate the median of this.stack
         double median = 0.0;
         Assertions.assertEquals(3.0, median, 0.0);
+    }
+
+    @Test
+    public void minIfEmpty()
+    {
         // Calculate the min of this.stack
         int min = 0;
         Assertions.assertEquals(1, min);
+    }
+
+    @Test
+    public void maxIfEmpty()
+    {
         // Calculate the max of this.stack
         int max = 0;
         Assertions.assertEquals(5, max);
+    }
+
+    @Test
+    public void summaryStatistics()
+    {
         // Calculate the summaryStatistics of this.stack
         IntSummaryStatistics stats = new IntSummaryStatistics();
-        Assertions.assertEquals(stats.getSum(), sum);
-        Assertions.assertEquals(stats.getMin(), min);
-        Assertions.assertEquals(stats.getMax(), max);
+        Assertions.assertEquals(15L, stats.getSum());
+        Assertions.assertEquals(1, stats.getMin());
+        Assertions.assertEquals(5, stats.getMax());
     }
 }

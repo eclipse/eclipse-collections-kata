@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 The Bank of New York Mellon.
+ * Copyright (c) 2022 The Bank of New York Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -50,12 +50,17 @@ public class ImmutableIntStackTest
 
     @Test
     @Tag("SOLUTION")
-    public void filtering()
+    public void select()
     {
         // Filter the stack inclusively
         ImmutableIntStack evens = this.stack.select(each -> each % 2 == 0);
         Assertions.assertEquals(IntStacks.mutable.with(2, 4), evens);
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void reject()
+    {
         // Filter the stack exclusively
         ImmutableIntStack odds = this.stack.reject(each -> each % 2 == 0);
         Assertions.assertEquals(IntStacks.mutable.with(1, 3, 5), odds);
@@ -63,7 +68,7 @@ public class ImmutableIntStackTest
 
     @Test
     @Tag("SOLUTION")
-    public void transforming()
+    public void collectInt()
     {
         // Created a transformed list multiplying each value by 2
         MutableIntList timesTwo = this.stack.collectInt(each -> each * 2, IntLists.mutable.empty());
@@ -72,33 +77,81 @@ public class ImmutableIntStackTest
 
     @Test
     @Tag("SOLUTION")
-    public void converting()
+    public void toList()
     {
         // Converter methods
         Assertions.assertEquals(IntInterval.fromTo(5, 1), this.stack.toList());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSortedList()
+    {
         Assertions.assertEquals(IntInterval.oneTo(5), this.stack.toSortedList());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSet()
+    {
         Assertions.assertEquals(IntInterval.oneTo(5).toSet(), this.stack.toSet());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toBag()
+    {
         Assertions.assertEquals(IntInterval.oneTo(5).toBag(), this.stack.toBag());
     }
 
     @Test
     @Tag("SOLUTION")
-    public void calculating()
+    public void sum()
     {
         // Math
         long sum = this.stack.sum();
         Assertions.assertEquals(15L, sum);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void averageIfEmpty()
+    {
         double average = this.stack.averageIfEmpty(0.0);
         Assertions.assertEquals(3.0, average, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void medianIfEmpty()
+    {
         double median = this.stack.medianIfEmpty(0.0);
         Assertions.assertEquals(3.0, median, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void minIfEmpty()
+    {
         int min = this.stack.minIfEmpty(0);
         Assertions.assertEquals(1, min);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void maxIfEmpty()
+    {
         int max = this.stack.maxIfEmpty(0);
         Assertions.assertEquals(5, max);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void summaryStatistics()
+    {
         IntSummaryStatistics stats = this.stack.summaryStatistics();
-        Assertions.assertEquals(stats.getSum(), sum);
-        Assertions.assertEquals(stats.getMin(), min);
-        Assertions.assertEquals(stats.getMax(), max);
+        Assertions.assertEquals(15L, stats.getSum());
+        Assertions.assertEquals(1, stats.getMin());
+        Assertions.assertEquals(5, stats.getMax());
     }
 }

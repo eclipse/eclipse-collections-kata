@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 The Bank of New York Mellon.
+ * Copyright (c) 2022 The Bank of New York Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -33,7 +33,6 @@ import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -91,7 +90,7 @@ import org.junit.jupiter.api.Test;
  */
 public class ImmutableIntListTest
 {
-    public final ImmutableIntList list = IntLists.immutable.with(1, 2, 3, 4, 5);
+    private final ImmutableIntList list = IntLists.immutable.with(1, 2, 3, 4, 5);
 
     @Test
     public void asReversed()

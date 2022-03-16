@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 The Bank of New York Mellon.
+ * Copyright (c) 2022 The Bank of New York Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -70,12 +70,17 @@ public class MutableIntSetTest
 
     @Test
     @Tag("SOLUTION")
-    public void filtering()
+    public void select()
     {
         // Filter the set inclusively
         MutableIntSet evens = this.set.select(each -> each % 2 == 0);
         Assertions.assertEquals(IntSets.mutable.with(2, 4), evens);
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void reject()
+    {
         // Filter the set exclusively
         MutableIntSet odds = this.set.reject(each -> each % 2 == 0);
         Assertions.assertEquals(IntSets.mutable.with(1, 3, 5), odds);
@@ -83,12 +88,17 @@ public class MutableIntSetTest
 
     @Test
     @Tag("SOLUTION")
-    public void transforming()
+    public void collectInt()
     {
         // Created a transformed IntSet multiplying each value by 2
         MutableIntSet timesTwo = this.set.collectInt(each -> each * 2, IntSets.mutable.empty());
         Assertions.assertEquals(IntSets.mutable.with(2, 4, 6, 8, 10), timesTwo);
+    }
 
+    @Test
+    @Tag("SOLUTION")
+    public void collect()
+    {
         // Created a transformed set converting each int to a String
         MutableSet<String> collect = this.set.collect(String::valueOf);
         Assertions.assertEquals(Sets.mutable.with("1", "2", "3", "4", "5"), collect);
@@ -96,7 +106,7 @@ public class MutableIntSetTest
 
     @Test
     @Tag("SOLUTION")
-    public void chunking()
+    public void chunk()
     {
         // Chunk the set two elements at a time
         RichIterable<IntIterable> chunk = this.set.chunk(2);
@@ -105,50 +115,123 @@ public class MutableIntSetTest
 
     @Test
     @Tag("SOLUTION")
-    public void testing()
+    public void anySatisfy()
     {
-        // Check if any, all or none of the elements are even
         Assertions.assertTrue(this.set.anySatisfy(each -> each % 2 == 0));
-        Assertions.assertFalse(this.set.allSatisfy(each -> each % 2 == 0));
-        Assertions.assertFalse(this.set.noneSatisfy(each -> each % 2 == 0));
+    }
 
-        // Check contains, containsAny, containsAll, containsNone
+    @Test
+    @Tag("SOLUTION")
+    public void allSatisfy()
+    {
+        Assertions.assertFalse(this.set.allSatisfy(each -> each % 2 == 0));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void noneSatisfy()
+    {
+        Assertions.assertFalse(this.set.noneSatisfy(each -> each % 2 == 0));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void contains()
+    {
         Assertions.assertTrue(this.set.contains(3));
         Assertions.assertFalse(this.set.contains(6));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void containsAny()
+    {
         Assertions.assertTrue(this.set.containsAny(2, 7));
         Assertions.assertFalse(this.set.containsAny(0, 7));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void containsAll()
+    {
         Assertions.assertTrue(this.set.containsAll(2, 5));
         Assertions.assertFalse(this.set.containsAll(2, 7));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void containsNone()
+    {
         Assertions.assertFalse(this.set.containsNone(2, 7));
         Assertions.assertTrue(this.set.containsNone(0, 7));
     }
 
     @Test
     @Tag("SOLUTION")
-    public void converting()
+    public void toImmutable()
     {
         // Convert mutable set to an immutable set
         ImmutableIntSet immutableIntSet = this.set.toImmutable();
         Assertions.assertEquals(IntInterval.oneTo(5).toSet(), immutableIntSet);
+    }
 
-        // Converter methods to other types
-        MutableIntList list = this.set.toList().sortThis();
-        Assertions.assertEquals(IntInterval.oneTo(5), list);
+    @Test
+    @Tag("SOLUTION")
+    public void toList()
+    {
+        MutableIntList list = this.set.toList();
+        Assertions.assertEquals(IntInterval.oneTo(5), list.sortThis());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toBag()
+    {
         MutableIntBag bag = this.set.toBag();
         Assertions.assertEquals(IntBags.mutable.with(1, 2, 3, 4, 5), bag);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSortedList()
+    {
         MutableIntList sortedList = this.set.toSortedList();
         Assertions.assertEquals(IntInterval.oneTo(5), sortedList);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toArray()
+    {
         int[] ints = this.set.toArray();
         Arrays.sort(ints);
         Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, ints);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void toSortedArray()
+    {
         int[] sortedInts = this.set.toSortedArray();
         Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedInts);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void testToString()
+    {
         String string = this.set.toString();
         Assertions.assertTrue(string.contains("1"));
         Assertions.assertTrue(string.contains("2"));
         Assertions.assertTrue(string.contains("3"));
         Assertions.assertTrue(string.contains("4"));
         Assertions.assertTrue(string.contains("5"));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void makeString()
+    {
         String makeString = this.set.makeString("/");
         Assertions.assertTrue(makeString.contains("1"));
         Assertions.assertTrue(makeString.contains("2"));
@@ -159,46 +242,100 @@ public class MutableIntSetTest
 
     @Test
     @Tag("SOLUTION")
-    public void calculating()
+    public void sum()
     {
         long sum = this.set.sum();
         Assertions.assertEquals(15L, sum);
-        double average = this.set.averageIfEmpty(0.0);
-        Assertions.assertEquals(3.0, average, 0.0);
-        double median = this.set.medianIfEmpty(0.0);
-        Assertions.assertEquals(3.0, median, 0.0);
-        int min = this.set.minIfEmpty(0);
-        Assertions.assertEquals(1, min);
-        int max = this.set.maxIfEmpty(0);
-        Assertions.assertEquals(5, max);
-        IntSummaryStatistics stats = this.set.summaryStatistics();
-        Assertions.assertEquals(stats.getSum(), sum);
-        Assertions.assertEquals(stats.getMin(), min);
-        Assertions.assertEquals(stats.getMax(), max);
     }
 
     @Test
     @Tag("SOLUTION")
-    public void setArithmetic()
+    public void averageIfEmpty()
+    {
+        double average = this.set.averageIfEmpty(0.0);
+        Assertions.assertEquals(3.0, average, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void medianIfEmpty()
+    {
+        double median = this.set.medianIfEmpty(0.0);
+        Assertions.assertEquals(3.0, median, 0.0);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void minIfEmpty()
+    {
+        int min = this.set.minIfEmpty(0);
+        Assertions.assertEquals(1, min);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void maxIfEmpty()
+    {
+        int max = this.set.maxIfEmpty(0);
+        Assertions.assertEquals(5, max);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void summaryStatistics()
+    {
+        IntSummaryStatistics stats = this.set.summaryStatistics();
+        Assertions.assertEquals(15L, stats.getSum());
+        Assertions.assertEquals(1, stats.getMin());
+        Assertions.assertEquals(5, stats.getMax());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void intersect()
     {
         MutableIntSet intersect = this.set.intersect(IntSets.mutable.with(4, 5, 6));
+        Assertions.assertEquals(IntSets.mutable.with(4, 5), intersect);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void union()
+    {
         MutableIntSet union = this.set.union(IntSets.mutable.with(4, 5, 6));
+        Assertions.assertEquals(IntInterval.oneTo(6).toSet(), union);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void difference()
+    {
         MutableIntSet difference = this.set.difference(IntSets.mutable.with(4, 5, 6));
+        Assertions.assertEquals(IntInterval.oneTo(3).toSet(), difference);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void symmetricDifference()
+    {
         MutableIntSet symmetricDifference =
                 this.set.symmetricDifference(IntSets.mutable.with(4, 5, 6));
-        LazyIterable<IntIntPair> product =
+        Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 6), symmetricDifference);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void cartesianProduct()
+    {
+        LazyIterable<IntIntPair> cartesianProduct =
                 IntSets.mutable.with(1, 2).cartesianProduct(IntSets.mutable.with(3, 4));
 
-        Assertions.assertEquals(IntSets.mutable.with(4, 5), intersect);
-        Assertions.assertEquals(IntInterval.oneTo(6).toSet(), union);
-        Assertions.assertEquals(IntInterval.oneTo(3).toSet(), difference);
-        Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 6), symmetricDifference);
         MutableSet<IntIntPair> expectedProduct =
                 Sets.mutable.with(
                         PrimitiveTuples.pair(1, 3),
                         PrimitiveTuples.pair(1, 4),
                         PrimitiveTuples.pair(2, 3),
                         PrimitiveTuples.pair(2, 4));
-        Assertions.assertEquals(expectedProduct, product.toSet());
+        Assertions.assertEquals(expectedProduct, cartesianProduct.toSet());
     }
 }

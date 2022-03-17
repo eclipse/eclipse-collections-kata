@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 The Bank of New York Mellon.
+ * Copyright (c) 2022 The Bank of New York Mellon.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -38,24 +38,70 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@link org.eclipse.collections.api.factory.bag.primitive.MutableIntBagFactory#with(int...)} <br>
+ * @see IntBags <br>
+ * <p/>
+ * {@link MutableIntBag#addOccurrences(int, int)} <br>
+ * {@link MutableIntBag#removeOccurrences(int, int)} <br>
+ * <p/>
+ * {@link MutableIntBag#with(int)} <br>
+ * {@link MutableIntBag#withAll(IntIterable)} <br>
+ * {@link MutableIntBag#without(int)} <br>
+ * {@link MutableIntBag#withAll(IntIterable)} <br>
+ * <p/>
+ * {@link MutableIntBag#select(IntPredicate)} <br>
+ * {@link MutableIntBag#reject(IntPredicate)} <br>
+ * <p/>
+ * {@link MutableIntBag#collectInt(IntToIntFunction, MutableIntCollection)} <br>
+ * {@link MutableIntBag#collect(IntToObjectFunction)} <br>
+ * <p/>
+ * {@link MutableIntBag#chunk(int)} <br>
+ * <p/>
+ * {@link MutableIntBag#anySatisfy(IntPredicate)} <br>
+ * {@link MutableIntBag#allSatisfy(IntPredicate)} <br>
+ * {@link MutableIntBag#noneSatisfy(IntPredicate)} <br>
+ * {@link MutableIntBag#contains(int)} <br>
+ * {@link MutableIntBag#containsAny(int...)} <br>
+ * {@link MutableIntBag#containsAll(int...)} <br>
+ * {@link MutableIntBag#containsNone(int...)} <br>
+ * <p/>
+ * {@link MutableIntBag#toImmutable()} <br>
+ * {@link MutableIntBag#toSet()} <br>
+ * {@link MutableIntBag#toBag()} <br>
+ * {@link MutableIntBag#toSortedList()} <br>
+ * {@link MutableIntBag#toArray()} <br>
+ * {@link MutableIntBag#toSortedArray()} <br>
+ * {@link MutableIntBag#toString()} <br>
+ * {@link MutableIntBag#makeString(String)} <br>
+ * <p/>
+ * {@link MutableIntBag#sum()} <br>
+ * {@link MutableIntBag#average()} <br>
+ * {@link MutableIntBag#averageIfEmpty(double)} <br>
+ * {@link MutableIntBag#median()} <br>
+ * {@link MutableIntBag#medianIfEmpty(double)} <br>
+ * {@link MutableIntBag#min()} <br>
+ * {@link MutableIntBag#minIfEmpty(int)} <br>
+ * {@link MutableIntBag#max()} <br>
+ * {@link MutableIntBag#maxIfEmpty(int)} <br>
+ * {@link MutableIntBag#summaryStatistics()} <br>
+ * <p/>
+ * {@link MutableIntBag#occurrencesOf(int)} <br>
+ * {@link MutableIntBag#topOccurrences(int)} <br>
+ * {@link MutableIntBag#bottomOccurrences(int)} <br>
+ * {@link PrimitiveTuples#pair(int, int)} <br>
+ * @see IntIntPair
+ */
 public class MutableIntBagTest
 {
     private MutableIntBag bag;
 
-    /**
-     * {@link org.eclipse.collections.api.factory.bag.primitive.MutableIntBagFactory#with(int...)} <br>
-     * @see IntBags
-     */
     @BeforeEach
     void setUp()
     {
         this.bag = IntBags.mutable.with(1, 2, 2, 3, 3, 3);
     }
 
-    /**
-     * {@link MutableIntBag#addOccurrences(int, int)} <br>
-     * {@link MutableIntBag#removeOccurrences(int, int)} <br>
-     */
     @Test
     public void addAndRemoveOccurrences()
     {
@@ -67,12 +113,6 @@ public class MutableIntBagTest
         Assertions.assertEquals(0, this.bag.occurrencesOf(4));
     }
 
-    /**
-     * {@link MutableIntBag#with(int)} <br>
-     * {@link MutableIntBag#withAll(IntIterable)} <br>
-     * {@link MutableIntBag#without(int)} <br>
-     * {@link MutableIntBag#withAll(IntIterable)} <br>
-     */
     @Test
     public void withAndWithout()
     {
@@ -97,59 +137,48 @@ public class MutableIntBagTest
         Assertions.assertSame(this.bag, bagWithoutAll);
     }
 
-    /**
-     * Inclusive Filter: {@link MutableIntBag#select(IntPredicate)} <br>
-     * Exclusive Filter: {@link MutableIntBag#reject(IntPredicate)} <br>
-     */
     @Test
-    public void filtering()
+    public void select()
     {
         IntPredicate isEven = each -> each % 2 == 0;
         // Filter the bag inclusively based on the isEven predicate
         MutableIntBag evens = this.bag;
         Assertions.assertEquals(IntBags.mutable.with(2, 2), evens);
+    }
 
+    @Test
+    public void reject()
+    {
+        IntPredicate isEven = each -> each % 2 == 0;
         // Filter the bag exclusively based on the isEven predicate
         MutableIntBag odds = this.bag;
         Assertions.assertEquals(IntBags.mutable.with(1, 3, 3, 3), odds);
     }
 
-    /**
-     * {@link MutableIntBag#collectInt(IntToIntFunction, MutableIntCollection)} <br>
-     * {@link MutableIntBag#collect(IntToObjectFunction)} <br>
-     */
     @Test
-    public void transforming()
+    public void collectInt()
     {
         // Create a transformed IntSet multiplying each value by 2
         MutableIntBag timesTwo = this.bag.collectInt(each -> each, IntBags.mutable.empty());
         Assertions.assertEquals(IntBags.mutable.with(2, 4, 4, 6, 6, 6), timesTwo);
+    }
 
+    @Test
+    public void collect()
+    {
         // Create a transformed bag converting each int to a String
         MutableBag<String> collect = this.bag.collect(each -> "");
         Assertions.assertEquals(Bags.mutable.with("1", "2", "2", "3", "3", "3"), collect);
     }
 
-    /**
-     * {@link MutableIntBag#chunk(int)}
-     */
     @Test
-    public void chunking()
+    public void chunk()
     {
         // Chunk the bag two elements at a time
         RichIterable<IntIterable> chunk = null;
         Assertions.assertEquals(3, chunk.size());
     }
 
-    /**
-     * {@link MutableIntBag#anySatisfy(IntPredicate)} <br>
-     * {@link MutableIntBag#allSatisfy(IntPredicate)} <br>
-     * {@link MutableIntBag#noneSatisfy(IntPredicate)} <br>
-     * {@link MutableIntBag#contains(int)} <br>
-     * {@link MutableIntBag#containsAny(int...)} <br>
-     * {@link MutableIntBag#containsAll(int...)} <br>
-     * {@link MutableIntBag#containsNone(int...)} <br>
-     */
     @Test
     public void testing()
     {
@@ -158,58 +187,103 @@ public class MutableIntBagTest
         Assertions.assertTrue(this.bag.anySatisfy(each -> false));
         Assertions.assertFalse(this.bag.allSatisfy(each -> true));
         Assertions.assertFalse(this.bag.noneSatisfy(each -> true));
+    }
 
-        // Check contains, containsAny, containsAll, containsNone (hint: remove the !)
+    @Test
+    public void contains()
+    {
+        // Check contains (hint: remove the !)
         Assertions.assertTrue(!this.bag.contains(3));
         Assertions.assertFalse(!this.bag.contains(6));
+    }
+
+    @Test
+    public void containsAny()
+    {
+        // Check containsAny (hint: remove the !)
         Assertions.assertTrue(!this.bag.containsAny(2, 7));
         Assertions.assertFalse(!this.bag.containsAny(0, 7));
+    }
+
+    @Test
+    public void containsAll()
+    {
+        // Check containsAll (hint: remove the !)
         Assertions.assertTrue(!this.bag.containsAll(2, 3));
         Assertions.assertFalse(!this.bag.containsAll(2, 7));
+    }
+
+    @Test
+    public void containsNone()
+    {
+        // Check containsNone (hint: remove the !)
         Assertions.assertFalse(!this.bag.containsNone(2, 7));
         Assertions.assertTrue(!this.bag.containsNone(0, 7));
     }
 
-    /**
-     * {@link MutableIntBag#toImmutable()} <br>
-     * {@link MutableIntBag#toSet()} <br>
-     * {@link MutableIntBag#toBag()} <br>
-     * {@link MutableIntBag#toSortedList()} <br>
-     * {@link MutableIntBag#toArray()} <br>
-     * {@link MutableIntBag#toSortedArray()} <br>
-     * {@link MutableIntBag#toString()} <br>
-     * {@link MutableIntBag#makeString(String)} <br>
-     */
     @Test
-    public void converting()
+    public void toImmutable()
     {
         // Convert this.bag to an immutable bag
         ImmutableIntBag immutableIntBag = null;
         Assertions.assertEquals(this.bag, immutableIntBag);
+    }
 
-        // Converter methods to other types
+    @Test
+    public void toList()
+    {
         // Convert to a MutableIntList
         MutableIntList list = null;
         Assertions.assertEquals(IntLists.mutable.with(1, 2, 2, 3, 3, 3), list.sortThis());
+    }
+
+    @Test
+    public void toSet()
+    {
         // Convert to a MutableIntSet
         MutableIntSet set = null;
         Assertions.assertEquals(IntSets.mutable.with(1, 2, 3), set);
+    }
+
+    @Test
+    public void toSortedList()
+    {
         // Convert to a sorted MutableIntList
         MutableIntList sortedList = null;
         Assertions.assertEquals(IntLists.mutable.with(1, 2, 2, 3, 3, 3), sortedList);
+    }
+
+    @Test
+    public void toArray()
+    {
         // Convert to an int array
         int[] ints = null;
         Arrays.sort(ints);
         Assertions.assertArrayEquals(new int[]{1, 2, 2, 3, 3, 3}, ints);
+    }
+
+    @Test
+    public void toSortedArray()
+    {
         // Convert to a sorted int array
         int[] sortedInts = null;
         Assertions.assertArrayEquals(new int[]{1, 2, 2, 3, 3, 3}, sortedInts);
+    }
+
+    @Test
+    public void testToString()
+    {
         // Convert to a String
         String string = null;
         CharAdapter toStringAdapter = Strings.asChars(string);
         Assertions.assertEquals(1, toStringAdapter.count(each -> each == '1'));
         Assertions.assertEquals(2, toStringAdapter.count(each -> each == '2'));
         Assertions.assertEquals(3, toStringAdapter.count(each -> each == '3'));
+    }
+
+    @Test
+    public void makeString()
+    {
         // Convert to a String separated by "/"
         String makeString = null;
         CharAdapter makeStringAdapter = Strings.asChars(makeString);
@@ -218,52 +292,58 @@ public class MutableIntBagTest
         Assertions.assertEquals(3, makeStringAdapter.count(each -> each == '3'));
     }
 
-    /**
-     * {@link MutableIntBag#sum()} <br>
-     * {@link MutableIntBag#average()} <br>
-     * {@link MutableIntBag#averageIfEmpty(double)} <br>
-     * {@link MutableIntBag#median()} <br>
-     * {@link MutableIntBag#medianIfEmpty(double)} <br>
-     * {@link MutableIntBag#min()} <br>
-     * {@link MutableIntBag#minIfEmpty(int)} <br>
-     * {@link MutableIntBag#max()} <br>
-     * {@link MutableIntBag#maxIfEmpty(int)} <br>
-     * {@link MutableIntBag#summaryStatistics()} <br>
-     */
     @Test
-    public void calculating()
+    public void sum()
     {
         // Calculate the sum of this.bag
         long sum = 0L;
         Assertions.assertEquals(14L, sum);
+    }
+
+    @Test
+    public void averageIfEmpty()
+    {
         // Calculate the average of this.bag
         double average = 0.0;
         Assertions.assertEquals(2.3, average, 0.1);
+    }
+
+    @Test
+    public void medianIfEmpty()
+    {
         // Calculate the median of this.bag
         double median = 0.0;
         Assertions.assertEquals(2.5, median, 0.0);
+    }
+
+    @Test
+    public void minIfEmpty()
+    {
         // Calculate the min of this.bag
         int min = 0;
         Assertions.assertEquals(1, min);
+    }
+
+    @Test
+    public void maxIfEmpty()
+    {
         // Calculate the max of this.bag
         int max = 0;
         Assertions.assertEquals(3, max);
-        // Calculate the summaryStatistics of this.bag
-        IntSummaryStatistics stats = new IntSummaryStatistics();
-        Assertions.assertEquals(stats.getSum(), sum);
-        Assertions.assertEquals(stats.getMin(), min);
-        Assertions.assertEquals(stats.getMax(), max);
     }
 
-    /**
-     * {@link MutableIntBag#occurrencesOf(int)} <br>
-     * {@link MutableIntBag#topOccurrences(int)} <br>
-     * {@link MutableIntBag#bottomOccurrences(int)} <br>
-     * {@link MutableIntBag#pair(int, int)} <br>
-     * @see IntIntPair
-     */
     @Test
-    public void occurrences()
+    public void summaryStatistics()
+    {
+        // Calculate the summaryStatistics of this.bag
+        IntSummaryStatistics stats = new IntSummaryStatistics();
+        Assertions.assertEquals(14L, stats.getSum());
+        Assertions.assertEquals(1, stats.getMin());
+        Assertions.assertEquals(3, stats.getMax());
+    }
+
+    @Test
+    public void occurrencesOf()
     {
         // Find the occurrencesOf 1 in this.bag
         Assert.assertEquals(1, this.bag.occurrencesOf(0));
@@ -271,9 +351,19 @@ public class MutableIntBagTest
         Assert.assertEquals(2, this.bag.occurrencesOf(0));
         // Find the occurrencesOf 3 in this.bag
         Assert.assertEquals(3, this.bag.occurrencesOf(0));
+    }
+
+    @Test
+    public void topOccurrences()
+    {
         // Find the number 1 topOccurrence of this.bag
         MutableList<IntIntPair> topPairs = null;
         Assertions.assertEquals(PrimitiveTuples.pair(3, 3), topPairs.getFirst());
+    }
+
+    @Test
+    public void bottomOccurrences()
+    {
         // Find the number 1 bottomOccurrence of this.bag
         MutableList<IntIntPair> bottomPairs = null;
         Assertions.assertEquals(PrimitiveTuples.pair(1, 1), bottomPairs.getFirst());

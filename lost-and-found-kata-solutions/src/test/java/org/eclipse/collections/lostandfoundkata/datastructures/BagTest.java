@@ -12,7 +12,6 @@ package org.eclipse.collections.lostandfoundkata.datastructures;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import org.eclipse.collections.api.bag.Bag;
@@ -20,10 +19,7 @@ import org.eclipse.collections.api.bag.ImmutableBag;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.bag.primitive.CharBag;
 import org.eclipse.collections.api.bag.sorted.ImmutableSortedBag;
-import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
 import org.eclipse.collections.api.bag.sorted.SortedBag;
-import org.eclipse.collections.api.factory.Bags;
-import org.eclipse.collections.api.factory.SortedBags;
 import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.multimap.bag.BagMultimap;
 import org.eclipse.collections.api.multimap.bag.MutableBagMultimap;
@@ -32,9 +28,11 @@ import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.block.factory.Functions;
 import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
 import org.eclipse.collections.impl.collector.Collectors2;
+import org.eclipse.collections.impl.factory.Bags;
 import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.factory.Multimaps;
 import org.eclipse.collections.impl.factory.Sets;
+import org.eclipse.collections.impl.factory.SortedBags;
 import org.eclipse.collections.impl.factory.Strings;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.jupiter.api.Assertions;
@@ -76,13 +74,15 @@ public class BagTest
     @Tag("SOLUTION")
     public void forEachWithOccurrences()
     {
-        MutableBag<String> bag = Bags.mutable.with("1", "2", "2", "3", "3", "3", "4", "4", "4", "4");
+        MutableBag<String> bag = Bags.mutable.withOccurrences("1", 1, "2", 2, "3", 3, "4", 4);
         MutableSet<ObjectIntPair<String>> set = Sets.mutable.empty();
         bag.forEachWithOccurrences((each, occurrences) -> set.add(PrimitiveTuples.pair(each, occurrences)));
-        Assertions.assertTrue(set.contains(PrimitiveTuples.pair("1", 1)));
-        Assertions.assertTrue(set.contains(PrimitiveTuples.pair("2", 2)));
-        Assertions.assertTrue(set.contains(PrimitiveTuples.pair("3", 3)));
-        Assertions.assertTrue(set.contains(PrimitiveTuples.pair("4", 4)));
+        MutableSet<ObjectIntPair<String>>  expected = Sets.mutable.with(
+                PrimitiveTuples.pair("1", 1),
+                PrimitiveTuples.pair("2", 2),
+                PrimitiveTuples.pair("3", 3),
+                PrimitiveTuples.pair("4", 4));
+        Assertions.assertEquals(expected, set);
     }
 
     @Test
@@ -90,11 +90,9 @@ public class BagTest
     public void selectByOccurrences()
     {
         MutableBag<String> bag = Bags.mutable.with("1", "2", "2", "3", "3", "3", "4", "4", "4", "4");
-        MutableBag<String> result = bag.selectByOccurrences(IntPredicates.greaterThan(2));
-        Assertions.assertEquals(0, result.occurrencesOf("1"));
-        Assertions.assertEquals(0, result.occurrencesOf("2"));
-        Assertions.assertEquals(3, result.occurrencesOf("3"));
-        Assertions.assertEquals(4, result.occurrencesOf("4"));
+        MutableBag<String> selected = bag.selectByOccurrences(IntPredicates.greaterThan(2));
+        MutableBag<String> expected = Bags.mutable.withOccurrences("3", 3, "4", 4);
+        Assertions.assertEquals(expected, selected);
     }
 
     @Test
@@ -135,7 +133,7 @@ public class BagTest
     public void noneSatisfyWithOccurrences()
     {
         MutableBag<String> bag = Bags.mutable.with("1", "2", "2", "3", "3", "3", "4", "4", "4", "4");
-        Assertions.assertTrue(bag.noneSatisfyWithOccurrences((each, occurrences) -> "5678".contains(each) && occurrences < 1));
+        Assertions.assertTrue(bag.noneSatisfyWithOccurrences((each, occurrences) -> "5678".contains(each) && occurrences > 1));
     }
 
     @Test

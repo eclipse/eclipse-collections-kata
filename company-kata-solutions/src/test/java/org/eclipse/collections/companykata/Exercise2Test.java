@@ -14,7 +14,7 @@ import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.block.predicate.Predicate2;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
-import org.eclipse.collections.impl.test.Verify;
+import org.eclipse.collections.impl.factory.Lists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -94,7 +94,8 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         MutableList<Customer> customersFromLondon = this.company.getCustomers().select(CUSTOMER_PREDICATE);
 
-        Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
+        var expectedNames = Lists.mutable.with("Fred", "Bill");
+        Assertions.assertEquals(expectedNames, customersFromLondon.collect(Customer::getName));
     }
 
     @Test
@@ -103,7 +104,8 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         MutableList<Customer> customersNotFromLondon = this.company.getCustomers().reject(CUSTOMER_PREDICATE);
 
-        Verify.assertSize("customers not from London", 1, customersNotFromLondon);
+        var expectedNames = Lists.mutable.with("Mary");
+        Assertions.assertEquals(expectedNames, customersNotFromLondon.collect(Customer::getName));
     }
 
     /**
@@ -115,8 +117,8 @@ public class Exercise2Test extends CompanyDomainForKata
     {
         PartitionMutableList<Customer> customers = this.company.getCustomers().partition(CUSTOMER_PREDICATE);
 
-        Verify.assertSize("Should be 2 London customers", 2, customers.getSelected());
-        Verify.assertSize("customers not from London", 1, customers.getRejected());
+        Assertions.assertEquals(Lists.mutable.with("Fred", "Bill"), customers.getSelected().collect(Customer::getName));
+        Assertions.assertEquals(Lists.mutable.with("Mary"), customers.getRejected().collect(Customer::getName));
     }
 
     /**

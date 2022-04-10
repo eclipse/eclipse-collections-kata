@@ -14,7 +14,6 @@ import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
-import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -57,7 +56,8 @@ public class Exercise1Test extends PetDomainForKata
     {
         MutableList<Person> peopleWithCats = this.people.select(person -> person.hasPet(PetType.CAT));
 
-        Verify.assertSize(2, peopleWithCats);
+        var expectedFirstNames = Lists.mutable.with("Smith", "Smith");
+        Assertions.assertEquals(expectedFirstNames, peopleWithCats.collect(Person::getLastName));
     }
 
     @Test
@@ -66,6 +66,7 @@ public class Exercise1Test extends PetDomainForKata
     {
         MutableList<Person> peopleWithoutCats = this.people.reject(person -> person.hasPet(PetType.CAT));
 
-        Verify.assertSize(6, peopleWithoutCats);
+        var expectedFirstNames = Lists.mutable.with("Smith", "Snake", "Bird", "Turtle", "Hamster", "Doe");
+        Assertions.assertEquals(expectedFirstNames, peopleWithoutCats.collect(Person::getLastName));
     }
 }

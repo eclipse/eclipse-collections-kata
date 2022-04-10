@@ -60,7 +60,8 @@ public class Exercise1Test extends PetDomainForKata
         // Replace null, with a positive filtering method on MutableList.
         MutableList<Person> peopleWithCats = null;  // this.people...
 
-        Verify.assertSize(2, peopleWithCats);
+        var expectedFirstNames = Lists.mutable.with("Smith", "Smith");
+        Assertions.assertEquals(expectedFirstNames, peopleWithCats.collect(Person::getLastName));
     }
 
     @Test
@@ -70,6 +71,7 @@ public class Exercise1Test extends PetDomainForKata
         // Replace null, with a negative filtering method on MutableList.
         MutableList<Person> peopleWithoutCats = null;  // this.people...
 
-        Verify.assertSize(6, peopleWithoutCats);
+        var expectedFirstNames = Lists.mutable.with("Smith", "Snake", "Bird", "Turtle", "Hamster", "Doe");
+        Assertions.assertEquals(expectedFirstNames, peopleWithoutCats.collect(Person::getLastName));
     }
 }

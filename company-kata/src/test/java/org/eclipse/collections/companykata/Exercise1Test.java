@@ -66,6 +66,7 @@ public class Exercise1Test extends CompanyDomainForKata
     {
         MutableList<Customer> customersFromLondon = null; // this.company.getCustomers()...
 
-        Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
+        var expectedNames = Lists.mutable.with("Fred", "Bill");
+        Assertions.assertEquals(expectedNames, customersFromLondon.collect(Customer::getName));
     }
 }

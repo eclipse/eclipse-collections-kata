@@ -98,8 +98,8 @@
 
     <properties>
         <eclipse.collections.version>11.0.0</eclipse.collections.version>
-        <junit5.version>5.8.1</junit5.version>
-        <jackson.version>2.13.1</jackson.version>
+        <junit5.version>5.8.2</junit5.version>
+        <jackson.version>2.13.3</jackson.version>
         <jol.version>0.16</jol.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

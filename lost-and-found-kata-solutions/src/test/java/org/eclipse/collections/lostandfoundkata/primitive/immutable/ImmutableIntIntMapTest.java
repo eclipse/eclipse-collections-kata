@@ -14,12 +14,12 @@ import java.util.IntSummaryStatistics;
 
 import org.eclipse.collections.api.bag.primitive.ImmutableIntBag;
 import org.eclipse.collections.api.bag.primitive.MutableIntBag;
+import org.eclipse.collections.api.factory.primitive.IntBags;
+import org.eclipse.collections.api.factory.primitive.IntIntMaps;
+import org.eclipse.collections.api.factory.primitive.IntLists;
 import org.eclipse.collections.api.list.primitive.MutableIntList;
 import org.eclipse.collections.api.map.primitive.ImmutableIntIntMap;
 import org.eclipse.collections.api.set.primitive.MutableIntSet;
-import org.eclipse.collections.impl.factory.primitive.IntBags;
-import org.eclipse.collections.impl.factory.primitive.IntIntMaps;
-import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;

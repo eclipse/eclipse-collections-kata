@@ -12,10 +12,10 @@ package org.eclipse.collections.lostandfoundkata.primitive.immutable;
 
 import java.util.IntSummaryStatistics;
 
+import org.eclipse.collections.api.factory.primitive.IntLists;
+import org.eclipse.collections.api.factory.primitive.IntStacks;
 import org.eclipse.collections.api.list.primitive.MutableIntList;
 import org.eclipse.collections.api.stack.primitive.ImmutableIntStack;
-import org.eclipse.collections.impl.factory.primitive.IntLists;
-import org.eclipse.collections.impl.factory.primitive.IntStacks;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;

@@ -131,8 +131,7 @@ public class Exercise6Test extends CompanyDomainForKata
         // The solution for this exercise is (the return type of getSuppliers is changed in exercise 7):
         // String tildeSeparatedNames = ArrayAdapter.adapt(this.company.getSuppliers())
         String tildeSeparatedNames = this.company.getSuppliers()
-                .collect(Supplier::getName)
-                .makeString("~");
+                .makeString(Supplier::getName, "", "~", "");
 
         Assertions.assertEquals(
                 "Shedtastic~Splendid Crocks~Annoying Pets~Gnomes 'R' Us~Furniture Hamlet~SFD~Doxins",

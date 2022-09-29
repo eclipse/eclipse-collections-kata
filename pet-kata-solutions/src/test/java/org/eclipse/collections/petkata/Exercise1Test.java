@@ -15,6 +15,7 @@ import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +53,7 @@ public class Exercise1Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("getPeopleWithCats 🐱")
     public void getPeopleWithCats()
     {
         MutableList<Person> peopleWithCats = this.people.select(person -> person.hasPet(PetType.CAT));

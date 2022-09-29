@@ -19,6 +19,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +52,7 @@ public class Exercise2Test extends PetDomainForKata
 {
     @Test
     @Tag("SOLUTION")
+    @DisplayName("doAnyPeopleHaveCats 🐱?")
     public void doAnyPeopleHaveCats()
     {
         Predicate<Person> predicate = person -> person.hasPet(PetType.CAT);
@@ -70,6 +72,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("howManyPeopleHaveCats 🐱?")
     public void howManyPeopleHaveCats()
     {
         int count = this.people.count(person -> person.hasPet(PetType.CAT));
@@ -85,6 +88,18 @@ public class Exercise2Test extends PetDomainForKata
 
         Assertions.assertEquals("Mary", result.getFirstName());
         Assertions.assertEquals("Smith", result.getLastName());
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    @DisplayName("findPetNamedSerpy 🐍")
+    public void findPetNamedSerpy()
+    {
+        MutableList<Pet> petList = this.people.flatCollect(Person::getPets);
+
+        Pet serpySnake = petList.detectWith((pet, name) -> pet.getName().equals(name), "Serpy");
+
+        Assertions.assertEquals("🐍",serpySnake.getType().toString());
     }
 
     @Test
@@ -121,6 +136,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("doAnyPeopleHaveCatsRefactor 🐱?")
     public void doAnyPeopleHaveCatsRefactor()
     {
         boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
@@ -143,6 +159,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("getPeopleWithCatsRefactor 🐱?")
     public void getPeopleWithCatsRefactor()
     {
         MutableList<Person> peopleWithCatsMethodRef = this.people.selectWith(Person::hasPet, PetType.CAT);

@@ -79,7 +79,7 @@ Enjoy happy learning with Eclipse Collections Kata!
 
 Reference Guide
 ---------------
-The [Eclipse Collections Reference Guide](https://github.com/eclipse/eclipse-collections/blob/master/docs/guide.md) is a great way to get an overview of the extensive features available in the framework.
+The [Eclipse Collections Reference Guide](https://github.com/eclipse/eclipse-collections/blob/master/docs/0-RefGuide.adoc) is a great way to get an overview of the extensive features available in the framework.
 
 
 Presentations

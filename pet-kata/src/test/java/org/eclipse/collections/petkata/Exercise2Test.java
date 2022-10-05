@@ -84,6 +84,18 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    public void findPetNamedSerpy()
+    {
+        MutableList<Pet> petList = Lists.mutable.empty(); //transform this into a list of pets from people
+
+        //Hint:: Use a short circuit pattern to detect pet named Serpy
+        Pet serpySnake = null;
+
+        Assertions.assertEquals("🐍",serpySnake.getType().toString());
+    }
+
+    @Test
+    @Tag("KATA")
     public void getPeopleWithPets()
     {
         MutableList<Person> petPeople = this.people; // replace with only the pet owners

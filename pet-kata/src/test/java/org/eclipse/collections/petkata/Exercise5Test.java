@@ -19,6 +19,7 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -59,6 +60,19 @@ public class Exercise5Test extends PetDomainForKata
 
         var expectedSet = IntSets.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expectedSet, petAges);
+    }
+
+    @Test
+    @Tag("KATA")
+    @DisplayName("findOwnerWithMoreThanOnePetOfTheSameType - 🐹 🐹")
+    public void findOwnerWithMoreThanOnePetOfTheSameType()
+    {
+        /* Hint: find the owner with a short circuit detect . Use a predicate
+        that utilizes Bags to find duplicates of a given pet type*/
+        Person petOwner = null;
+
+        Assertions.assertEquals("Harry Hamster", petOwner.getFullName());
+        Assertions.assertEquals("🐹 🐹", petOwner.getPets().makeString(" "));
     }
 
     @Test

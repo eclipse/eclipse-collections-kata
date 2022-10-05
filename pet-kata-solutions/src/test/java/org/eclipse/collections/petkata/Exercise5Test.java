@@ -17,6 +17,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,7 @@ public class Exercise5Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("getOldestPet - 🐶")
     public void getOldestPet()
     {
         Pet oldestPet = this.people
@@ -68,6 +70,17 @@ public class Exercise5Test extends PetDomainForKata
 
         var expected = IntSets.mutable.with(1, 2, 3, 4, 5);
         Assertions.assertEquals(expected, petAges);
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    @DisplayName("findOwnerWithMoreThanOnePetOfTheSameType - 🐹 🐹")
+    public void findOwnerWithMoreThanOnePetOfTheSameType()
+    {
+        Person petOwner = this.people.detect(p -> 1 < p.getPetTypes().selectDuplicates().size());
+
+        Assertions.assertEquals("Harry Hamster", petOwner.getFullName());
+        Assertions.assertEquals("🐹 🐹", petOwner.getPets().makeString(" "));
     }
 
     @Test

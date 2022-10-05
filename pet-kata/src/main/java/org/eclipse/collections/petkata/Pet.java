@@ -37,4 +37,10 @@ public class Pet
     {
         return this.age;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.type.toString();
+    }
 }

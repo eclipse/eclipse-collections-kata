@@ -20,6 +20,7 @@ import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -53,6 +54,7 @@ public class Exercise4Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("bobSmithsPetNamesAsString - 🐱 🐶")
     public void bobSmithsPetNamesAsString()
     {
         // Find Bob Smith
@@ -86,6 +88,7 @@ public class Exercise4Test extends PetDomainForKata
      */
     @Test
     @Tag("SOLUTION")
+    @DisplayName("topThreePets - 🐱 🐶 🐹")
     public void topThreePets()
     {
         var favorites = this.people

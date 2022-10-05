@@ -37,9 +37,14 @@ public class Person
         return this.lastName;
     }
 
+    public String getFullName()
+    {
+        return this.firstName + ' ' + this.lastName;
+    }
+
     public boolean named(String name)
     {
-        return name.equals(this.firstName + ' ' + this.lastName);
+        return name.equals(this.getFullName());
     }
 
     public boolean hasPet(PetType petType)

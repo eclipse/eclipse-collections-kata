@@ -13,6 +13,7 @@ package org.eclipse.collections.petkata;
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.api.factory.Bags;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.multimap.Multimap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
@@ -46,12 +47,10 @@ public class Exercise3Test extends PetDomainForKata
         MutableBag<PetType> counts =
                 this.people.countByEach(Person::getPetTypes);
 
-        Assertions.assertEquals(2, counts.occurrencesOf(PetType.CAT));
-        Assertions.assertEquals(2, counts.occurrencesOf(PetType.DOG));
-        Assertions.assertEquals(2, counts.occurrencesOf(PetType.HAMSTER));
-        Assertions.assertEquals(1, counts.occurrencesOf(PetType.SNAKE));
-        Assertions.assertEquals(1, counts.occurrencesOf(PetType.TURTLE));
-        Assertions.assertEquals(1, counts.occurrencesOf(PetType.BIRD));
+        Assertions.assertEquals(
+                Bags.mutable.withOccurrences("🐱", 2, "🐶", 2, "🐹", 2).with("🐍").with("🐢").with("🐦"),
+                counts.collect(Object::toString)
+        );
     }
 
     @Test

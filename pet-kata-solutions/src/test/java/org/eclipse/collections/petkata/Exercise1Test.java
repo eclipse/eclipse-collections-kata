@@ -58,8 +58,8 @@ public class Exercise1Test extends PetDomainForKata
     {
         MutableList<Person> peopleWithCats = this.people.select(person -> person.hasPet(PetType.CAT));
 
-        var expectedFirstNames = Lists.mutable.with("Smith", "Smith");
-        Assertions.assertEquals(expectedFirstNames, peopleWithCats.collect(Person::getLastName));
+        var expectedLastNames = Lists.mutable.with("Smith", "Smith");
+        Assertions.assertEquals(expectedLastNames, peopleWithCats.collect(Person::getLastName));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class Exercise1Test extends PetDomainForKata
     {
         MutableList<Person> peopleWithoutCats = this.people.reject(person -> person.hasPet(PetType.CAT));
 
-        var expectedFirstNames = Lists.mutable.with("Smith", "Snake", "Bird", "Turtle", "Hamster", "Doe");
-        Assertions.assertEquals(expectedFirstNames, peopleWithoutCats.collect(Person::getLastName));
+        var expectedLastNames = Lists.mutable.with("Smith", "Snake", "Bird", "Turtle", "Hamster", "Doe");
+        Assertions.assertEquals(expectedLastNames, peopleWithoutCats.collect(Person::getLastName));
     }
 }

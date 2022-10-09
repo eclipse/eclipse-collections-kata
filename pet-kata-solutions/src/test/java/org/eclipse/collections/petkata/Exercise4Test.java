@@ -13,6 +13,7 @@ package org.eclipse.collections.petkata;
 import java.util.stream.Stream;
 
 import org.eclipse.collections.api.bag.ImmutableBag;
+import org.eclipse.collections.api.factory.Bags;
 import org.eclipse.collections.api.set.primitive.IntSet;
 import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
@@ -70,17 +71,20 @@ public class Exercise4Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
-    public void immutablePetCounts()
+    public void immutablePetCountsByEmoji()
     {
-        ImmutableBag<PetType> petTypes =
-                this.people.countByEach(Person::getPetTypes).toImmutable();
+        ImmutableBag<String> countsByEmoji =
+                this.people.countByEach(Person::getPetTypes)
+                        .collect(Object::toString)
+                        .toImmutable();
 
-        Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
-        Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
-        Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.HAMSTER));
-        Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.SNAKE));
-        Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.TURTLE));
-        Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.BIRD));
+        Assertions.assertEquals(
+                Bags.immutable.withOccurrences("🐱", 2, "🐶", 2, "🐹", 2)
+                        .newWith("🐍")
+                        .newWith("🐢")
+                        .newWith("🐦"),
+                countsByEmoji
+        );
     }
 
     /**

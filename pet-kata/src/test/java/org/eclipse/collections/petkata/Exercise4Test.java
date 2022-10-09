@@ -12,11 +12,13 @@ package org.eclipse.collections.petkata;
 
 import java.util.AbstractMap;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.collections.api.factory.Bags;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
@@ -80,7 +82,7 @@ public class Exercise4Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
-    public void streamsToECRefactor1()
+    public void bobSmithsPetNamesAsString()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 
@@ -102,23 +104,21 @@ public class Exercise4Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
-    public void streamsToECRefactor2()
+    public void immutablePetCountsByEmoji()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 
-        // Hint: Try to replace the immutable Map<PetType, Long> with an ImmutableBag<PetType>
-        Map<PetType, Long> counts =
+        // Hint: Try to replace the immutable Map<String, Long> with an ImmutableBag<String>
+        Map<String, Long> countsByEmoji =
                 Map.copyOf(this.people
                         .stream()
                         .flatMap(person -> person.getPets().stream())
-                        .collect(Collectors.groupingBy(Pet::getType, Collectors.counting())));
+                        .collect(Collectors.groupingBy(pet -> pet.getType().toString(), Collectors.counting())));
 
-        Assertions.assertEquals(Long.valueOf(2L), counts.get(PetType.CAT));
-        Assertions.assertEquals(Long.valueOf(2L), counts.get(PetType.DOG));
-        Assertions.assertEquals(Long.valueOf(2L), counts.get(PetType.HAMSTER));
-        Assertions.assertEquals(Long.valueOf(1L), counts.get(PetType.SNAKE));
-        Assertions.assertEquals(Long.valueOf(1L), counts.get(PetType.TURTLE));
-        Assertions.assertEquals(Long.valueOf(1L), counts.get(PetType.BIRD));
+        Assertions.assertEquals(
+                Map.of("🐱", 2L, "🐶", 2L, "🐹", 2L, "🐍", 1L, "🐢", 1L, "🐦", 1L),
+                countsByEmoji
+        );
     }
 
     /**
@@ -126,7 +126,7 @@ public class Exercise4Test extends PetDomainForKata
      */
     @Test
     @Tag("KATA")
-    public void streamsToECRefactor3()
+    public void topThreePets()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
 

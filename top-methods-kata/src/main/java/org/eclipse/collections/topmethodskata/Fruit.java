@@ -10,22 +10,57 @@
 
 package org.eclipse.collections.topmethodskata;
 
+import java.awt.Color;
+
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.ImmutableList;
 
 public enum Fruit
 {
-    APPLE, APRICOT, BANANA, BLUEBERRY, CLEMENTINE;
+    APPLE("🍎", Color.RED),
+    PEACH("🍑", Color.ORANGE),
+    BANANA("🍌", Color.YELLOW),
+    CHERRY("🍒", Color.RED),
+    ORANGE("🍊", Color.ORANGE);
 
     public static ImmutableList<Fruit> ALL = Lists.immutable.with(Fruit.values());
+    private String emoji;
+    private Color color;
+
+    Fruit(String emoji, Color color)
+    {
+        this.emoji = emoji;
+        this.color = color;
+    }
+
+    public Color getColor()
+    {
+        return this.color;
+    }
+
+    @Override
+    public String toString()
+    {
+        return this.emoji;
+    }
 
     public static ImmutableList<String> toLowerCaseList()
     {
         return ALL.collect(Fruit::toLowerCase);
     }
 
+    public static ImmutableList<String> toEmojiList()
+    {
+        return ALL.collect(Fruit::toString);
+    }
+
+    public String toUpperCase()
+    {
+        return this.name().toUpperCase();
+    }
+
     public String toLowerCase()
     {
-        return this.toString().toLowerCase();
+        return this.name().toLowerCase();
     }
 }

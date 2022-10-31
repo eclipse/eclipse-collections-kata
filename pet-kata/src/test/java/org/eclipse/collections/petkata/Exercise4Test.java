@@ -18,9 +18,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.api.block.predicate.primitive.IntPredicate;
+import org.eclipse.collections.api.collection.primitive.MutableIntCollection;
 import org.eclipse.collections.api.factory.Bags;
+import org.eclipse.collections.api.factory.list.primitive.MutableIntListFactory;
+import org.eclipse.collections.api.factory.set.primitive.MutableIntSetFactory;
+import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.list.primitive.MutableIntList;
+import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +44,20 @@ import static java.lang.Math.abs;
  * {@link org.eclipse.collections.impl.block.factory.primitive.IntPredicates}<br>
  * {@link org.eclipse.collections.api.bag.MutableBag}<br>
  * {@link org.eclipse.collections.api.list.MutableList}<br>
+ * {@link MutableIntListFactory#empty()}<br>
+ * {@link MutableIntSetFactory#empty()}<br>
+ * {@link MutableList#flatCollectInt(Function, MutableIntCollection)}<br>
+ * {@link MutableIntList#toSet()}<br>
+ * {@link MutableIntList#summaryStatistics()}<br>
+ * {@link MutableIntList#minIfEmpty(int)}<br>
+ * {@link MutableIntList#maxIfEmpty(int)}<br>
+ * {@link MutableIntList#sum()}<br>
+ * {@link MutableIntList#averageIfEmpty(double)}<br>
+ * {@link MutableIntList#size()}<br>
+ * {@link IntPredicates#greaterThan(int)}<br>
+ * {@link MutableIntList#anySatisfy(IntPredicate)}<br>
+ * {@link MutableIntList#allSatisfy(IntPredicate)}<br>
+ * {@link MutableIntList#noneSatisfy(IntPredicate)}<br>
  *
  * @see <a href="http://eclipse.github.io/eclipse-collections-kata/pet-kata/#/8">Exercise 4 Slides</a>
  */
@@ -82,6 +105,7 @@ public class Exercise4Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("bobSmithsPetNamesAsString - 🐱 🐶")
     public void bobSmithsPetNamesAsString()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
@@ -126,6 +150,7 @@ public class Exercise4Test extends PetDomainForKata
      */
     @Test
     @Tag("KATA")
+    @DisplayName("topThreePets - 🐱 🐶 🐹")
     public void topThreePets()
     {
         Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");

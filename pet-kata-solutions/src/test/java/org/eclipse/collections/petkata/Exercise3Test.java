@@ -10,14 +10,19 @@
 
 package org.eclipse.collections.petkata;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.factory.Bags;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.multimap.Multimap;
 import org.eclipse.collections.api.multimap.list.MutableListMultimap;
 import org.eclipse.collections.api.multimap.set.MutableSetMultimap;
+import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.factory.Multimaps;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
@@ -42,15 +47,24 @@ public class Exercise3Test extends PetDomainForKata
 {
     @Test
     @Tag("SOLUTION")
-    public void getCountsByPetType()
+    public void getCountsByPetEmojis()
     {
-        MutableBag<PetType> counts =
-                this.people.countByEach(Person::getPetTypes);
+        MutableList<PetType> petTypes = this.people.flatCollect(Person::getPets)
+                .collect(Pet::getType);
 
-        Assertions.assertEquals(
-                Bags.mutable.withOccurrences("🐱", 2, "🐶", 2, "🐹", 2).with("🐍").with("🐢").with("🐦"),
-                counts.collect(Object::toString)
-        );
+        Map<String, Long> petEmojiCounts =
+                petTypes.stream().collect(Collectors.groupingBy(Object::toString, Collectors.counting()));
+
+        var expectedMap = Map.of("🐱", 2L, "🐶", 2L, "🐹", 2L, "🐍", 1L, "🐢", 1L, "🐦", 1L);
+        Assertions.assertEquals(expectedMap, petEmojiCounts);
+
+        MutableBag<String> counts = this.people.countByEach(Person::getPetEmojis);
+
+        var expected = Bags.mutable.withOccurrences("🐱", 2, "🐶", 2, "🐹", 2)
+                .with("🐍")
+                .with("🐢")
+                .with("🐦");
+        Assertions.assertEquals(expected, counts);
     }
 
     @Test
@@ -65,7 +79,7 @@ public class Exercise3Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
-    public void getPeopleByTheirPets()
+    public void getPeopleByTheirPetTypes()
     {
         MutableSetMultimap<PetType, Person> petTypesToPeople =
                 this.people.groupByEach(Person::getPetTypes, Multimaps.mutable.set.empty());
@@ -76,5 +90,20 @@ public class Exercise3Test extends PetDomainForKata
         Verify.assertIterableSize(1, petTypesToPeople.get(PetType.TURTLE));
         Verify.assertIterableSize(1, petTypesToPeople.get(PetType.BIRD));
         Verify.assertIterableSize(1, petTypesToPeople.get(PetType.SNAKE));
+    }
+
+    @Test
+    @Tag("SOLUTION")
+    public void getPeopleByTheirPetEmojis()
+    {
+        MutableSetMultimap<String, Person> petTypesToPeople =
+                this.people.groupByEach(Person::getPetEmojis, Multimaps.mutable.set.empty());
+
+        Verify.assertIterableSize(2, petTypesToPeople.get("🐱"));
+        Verify.assertIterableSize(2, petTypesToPeople.get("🐶"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐹"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐢"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐦"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐍"));
     }
 }

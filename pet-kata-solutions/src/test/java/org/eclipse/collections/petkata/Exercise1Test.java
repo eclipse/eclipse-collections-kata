@@ -64,6 +64,7 @@ public class Exercise1Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("getPeopleWithoutCats 🐱")
     public void getPeopleWithoutCats()
     {
         MutableList<Person> peopleWithoutCats = this.people.reject(person -> person.hasPet(PetType.CAT));

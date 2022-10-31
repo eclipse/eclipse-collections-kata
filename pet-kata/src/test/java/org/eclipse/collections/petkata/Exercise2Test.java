@@ -19,6 +19,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +51,7 @@ public class Exercise2Test extends PetDomainForKata
 {
     @Test
     @Tag("KATA")
+    @DisplayName("doAnyPeopleHaveCats 🐱?")
     public void doAnyPeopleHaveCats()
     {
         Predicate<Person> predicate = null; //replace null with a Predicate lambda which checks for PetType.CAT
@@ -67,6 +69,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("howManyPeopleHaveCats 🐱?")
     public void howManyPeopleHaveCats()
     {
         int count = 0;
@@ -84,6 +87,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("findPetNamedSerpy 🐍")
     public void findPetNamedSerpy()
     {
         MutableList<Pet> petList = Lists.mutable.empty(); //transform this into a list of pets from people
@@ -115,6 +119,17 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    public void getAllPetEmojisOfAllPeople()
+    {
+        Function<Person, Iterable<String>> function = Person::getPetEmojis;
+        MutableSet<String> petEmojis = null;
+
+        var expected = Sets.mutable.with("🐱", "🐶", "🐢", "🐹", "🐦", "🐍");
+        Assertions.assertEquals(expected, petEmojis);
+    }
+
+    @Test
+    @Tag("KATA")
     public void getFirstNamesOfAllPeople()
     {
         MutableList<String> firstNames = null;  // Transform this.people into a list of first names
@@ -125,6 +140,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("doAnyPeopleHaveCatsRefactor 🐱?")
     public void doAnyPeopleHaveCatsRefactor()
     {
         boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
@@ -137,6 +153,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("doAllPeopleHaveCatsRefactor 🐱?")
     public void doAllPeopleHaveCatsRefactor()
     {
         boolean peopleHaveCatsLambda = this.people.allSatisfy(person -> person.hasPet(PetType.CAT));
@@ -149,6 +166,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("getPeopleWithCatsRefactor 🐱?")
     public void getPeopleWithCatsRefactor()
     {
         //use method reference, NOT lambdas, to solve the problem below
@@ -158,6 +176,7 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("getPeopleWithoutCatsRefactor 🐱?")
     public void getPeopleWithoutCatsRefactor()
     {
         //use method reference, NOT lambdas, to solve the problem below

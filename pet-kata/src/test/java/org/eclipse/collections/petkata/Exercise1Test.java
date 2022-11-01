@@ -15,6 +15,7 @@ import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -54,6 +55,7 @@ public class Exercise1Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("getPeopleWithCats 🐱")
     public void getPeopleWithCats()
     {
         // Replace null, with a positive filtering method on MutableList.
@@ -65,6 +67,7 @@ public class Exercise1Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
+    @DisplayName("getPeopleWithoutCats 🐱")
     public void getPeopleWithoutCats()
     {
         // Replace null, with a negative filtering method on MutableList.

@@ -10,6 +10,10 @@
 
 package org.eclipse.collections.petkata;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
@@ -46,35 +50,35 @@ public class Exercise3Test extends PetDomainForKata
 {
     @Test
     @Tag("KATA")
-    public void getCountsByPetType()
+    public void getCountsByPetEmojis()
     {
-        MutableList<PetType> petTypes = this.people.flatCollect(Person::getPets).collect(Pet::getType);
+        MutableList<PetType> petTypes = this.people.flatCollect(Person::getPets)
+                .collect(Pet::getType);
 
-        // Do you recognize this pattern?
-        MutableMap<PetType, Integer> petTypeCounts = Maps.mutable.empty();
+        // Do you recognize this pattern? Can you simplify it using Java Streams?
+        MutableMap<String, Long> petEmojiCounts = Maps.mutable.empty();
         for (PetType petType : petTypes)
         {
-            Integer count = petTypeCounts.get(petType);
+            String petEmoji = petType.toString();
+            Long count = petEmojiCounts.get(petEmoji);
             if (count == null)
             {
-                count = 0;
+                count = 0L;
             }
-            petTypeCounts.put(petType, count + 1);
+            petEmojiCounts.put(petEmoji, count + 1L);
         }
 
-        Assertions.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.CAT));
-        Assertions.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.DOG));
-        Assertions.assertEquals(Integer.valueOf(2), petTypeCounts.get(PetType.HAMSTER));
-        Assertions.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.SNAKE));
-        Assertions.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.TURTLE));
-        Assertions.assertEquals(Integer.valueOf(1), petTypeCounts.get(PetType.BIRD));
+        var expectedMap = Map.of("🐱", 2L, "🐶", 2L, "🐹", 2L, "🐍", 1L, "🐢", 1L, "🐦", 1L);
+        Assertions.assertEquals(expectedMap, petEmojiCounts);
 
-        // Hint: use the appropriate method on this.people to create a Bag<PetType>
-        Bag<PetType> counts = null;
-        Assertions.assertEquals(
-                Bags.mutable.withOccurrences("🐱", 2, "🐶", 2, "🐹", 2).with("🐍").with("🐢").with("🐦"),
-                counts.collect(Object::toString)
-        );
+        // Use the appropriate method on this.people to create a Bag<String> with Pet emojis
+        Bag<String> counts = null;
+
+        var expected = Bags.mutable.withOccurrences("🐱", 2, "🐶", 2, "🐹", 2)
+                .with("🐍")
+                .with("🐢")
+                .with("🐦");
+        Assertions.assertEquals(expected, counts);
     }
 
     @Test
@@ -104,18 +108,18 @@ public class Exercise3Test extends PetDomainForKata
 
     @Test
     @Tag("KATA")
-    public void getPeopleByTheirPets()
+    public void getPeopleByTheirPetTypes()
     {
-        // Do you recognize this pattern?
-        MutableMap<PetType, MutableSet<Person>> peopleByPetType = Maps.mutable.empty();
+        Map<PetType, Set<Person>> peopleByPetType = Maps.mutable.empty();
 
+        // Do you recognize this pattern? Is there a matching pattern for this in Java Streams?
         for (Person person : this.people)
         {
-            MutableList<Pet> pets = person.getPets();
+            List<Pet> pets = person.getPets();
             for (Pet pet : pets)
             {
                 PetType petType = pet.getType();
-                MutableSet<Person> peopleWithPetType = peopleByPetType.get(petType);
+                Set<Person> peopleWithPetType = peopleByPetType.get(petType);
                 if (peopleWithPetType == null)
                 {
                     peopleWithPetType = Sets.mutable.empty();
@@ -142,5 +146,21 @@ public class Exercise3Test extends PetDomainForKata
         Verify.assertIterableSize(1, multimap.get(PetType.TURTLE));
         Verify.assertIterableSize(1, multimap.get(PetType.BIRD));
         Verify.assertIterableSize(1, multimap.get(PetType.SNAKE));
+    }
+
+    @Test
+    @Tag("KATA")
+    public void getPeopleByTheirPetEmojis()
+    {
+        // Hint: use the same approach you used in the method above for petTypes only this time with petEmojis
+        // Hint: there is a method name getPetEmojis on the Person class
+        MutableSetMultimap<String, Person> petTypesToPeople = null;
+
+        Verify.assertIterableSize(2, petTypesToPeople.get("🐱"));
+        Verify.assertIterableSize(2, petTypesToPeople.get("🐶"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐹"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐢"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐦"));
+        Verify.assertIterableSize(1, petTypesToPeople.get("🐍"));
     }
 }

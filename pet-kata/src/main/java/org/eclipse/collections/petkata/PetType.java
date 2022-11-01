@@ -10,6 +10,8 @@
 
 package org.eclipse.collections.petkata;
 
+import org.eclipse.collections.impl.utility.ArrayIterate;
+
 public enum PetType
 {
     CAT("🐱"),
@@ -30,5 +32,11 @@ public enum PetType
     public String toString()
     {
         return this.emoji;
+    }
+
+    public static PetType fromEmoji(String searchEmoji)
+    {
+        // Find the correct PetType based on the String emoji
+        return null;
     }
 }

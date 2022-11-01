@@ -13,12 +13,19 @@ package org.eclipse.collections.petkata;
 import java.util.stream.Stream;
 
 import org.eclipse.collections.api.bag.ImmutableBag;
+import org.eclipse.collections.api.block.function.Function;
+import org.eclipse.collections.api.block.predicate.primitive.IntPredicate;
+import org.eclipse.collections.api.collection.primitive.MutableIntCollection;
 import org.eclipse.collections.api.factory.Bags;
+import org.eclipse.collections.api.factory.list.primitive.MutableIntListFactory;
+import org.eclipse.collections.api.factory.primitive.IntLists;
+import org.eclipse.collections.api.factory.primitive.IntSets;
+import org.eclipse.collections.api.factory.set.primitive.MutableIntSetFactory;
+import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.list.primitive.MutableIntList;
 import org.eclipse.collections.api.set.primitive.IntSet;
 import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
-import org.eclipse.collections.impl.factory.primitive.IntLists;
-import org.eclipse.collections.impl.factory.primitive.IntSets;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +34,27 @@ import org.junit.jupiter.api.Test;
 
 /**
  * In this set of tests, wherever you see .stream() replace it with an Eclipse Collections alternative.
+ *
+ * {@link org.eclipse.collections.api.list.primitive.MutableIntList}<br>
+ * {@link org.eclipse.collections.api.set.primitive.IntSet}<br>
+ * {@link org.eclipse.collections.impl.factory.primitive.IntSets}<br>
+ * {@link org.eclipse.collections.impl.block.factory.primitive.IntPredicates}<br>
+ * {@link org.eclipse.collections.api.bag.MutableBag}<br>
+ * {@link org.eclipse.collections.api.list.MutableList}<br>
+ * {@link MutableIntListFactory#empty()}<br>
+ * {@link MutableIntSetFactory#empty()}<br>
+ * {@link MutableList#flatCollectInt(Function, MutableIntCollection)}<br>
+ * {@link MutableIntList#toSet()}<br>
+ * {@link MutableIntList#summaryStatistics()}<br>
+ * {@link MutableIntList#minIfEmpty(int)}<br>
+ * {@link MutableIntList#maxIfEmpty(int)}<br>
+ * {@link MutableIntList#sum()}<br>
+ * {@link MutableIntList#averageIfEmpty(double)}<br>
+ * {@link MutableIntList#size()}<br>
+ * {@link IntPredicates#greaterThan(int)}<br>
+ * {@link MutableIntList#anySatisfy(IntPredicate)}<br>
+ * {@link MutableIntList#allSatisfy(IntPredicate)}<br>
+ * {@link MutableIntList#noneSatisfy(IntPredicate)}<br>
  */
 public class Exercise4Test extends PetDomainForKata
 {
@@ -74,9 +102,7 @@ public class Exercise4Test extends PetDomainForKata
     public void immutablePetCountsByEmoji()
     {
         ImmutableBag<String> countsByEmoji =
-                this.people.countByEach(Person::getPetTypes)
-                        .collect(Object::toString)
-                        .toImmutable();
+                this.people.countByEach(Person::getPetEmojis).toImmutable();
 
         Assertions.assertEquals(
                 Bags.immutable.withOccurrences("🐱", 2, "🐶", 2, "🐹", 2)
@@ -96,11 +122,11 @@ public class Exercise4Test extends PetDomainForKata
     public void topThreePets()
     {
         var favorites = this.people
-                .countByEach(Person::getPetTypes)
+                .countByEach(Person::getPetEmojis)
                 .topOccurrences(3);
 
         Verify.assertSize(3, favorites);
-        Assertions.assertTrue(Stream.of(PetType.CAT, PetType.DOG, PetType.HAMSTER)
+        Assertions.assertTrue(Stream.of("🐱", "🐶", "🐹")
                 .allMatch(type -> favorites.containsBy(ObjectIntPair::getOne, type)));
     }
 

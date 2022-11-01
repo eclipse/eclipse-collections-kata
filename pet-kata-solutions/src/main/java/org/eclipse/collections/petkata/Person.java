@@ -12,6 +12,7 @@ package org.eclipse.collections.petkata;
 
 import org.eclipse.collections.api.IntIterable;
 import org.eclipse.collections.api.bag.Bag;
+import org.eclipse.collections.api.factory.Bags;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
 
@@ -52,6 +53,11 @@ public class Person
         return this.pets.containsBy(Pet::getType, petType);
     }
 
+    public boolean hasPet(String petEmoji)
+    {
+        return this.hasPet(PetType.fromEmoji(petEmoji));
+    }
+
     public MutableList<Pet> getPets()
     {
         return this.pets;
@@ -60,6 +66,11 @@ public class Person
     public Bag<PetType> getPetTypes()
     {
         return this.pets.countBy(Pet::getType);
+    }
+
+    public Bag<String> getPetEmojis()
+    {
+        return this.getPetTypes().collect(Object::toString, Bags.mutable.empty());
     }
 
     public IntIterable getPetAges()

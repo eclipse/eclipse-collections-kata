@@ -55,7 +55,7 @@ public class Exercise2Test extends PetDomainForKata
     @DisplayName("doAnyPeopleHaveCats 🐱?")
     public void doAnyPeopleHaveCats()
     {
-        Predicate<Person> predicate = person -> person.hasPet(PetType.CAT);
+        Predicate<Person> predicate = person -> person.hasPet("🐱");
 
         Assertions.assertTrue(this.people.anySatisfy(predicate));
     }
@@ -75,7 +75,7 @@ public class Exercise2Test extends PetDomainForKata
     @DisplayName("howManyPeopleHaveCats 🐱?")
     public void howManyPeopleHaveCats()
     {
-        int count = this.people.count(person -> person.hasPet(PetType.CAT));
+        int count = this.people.count(person -> person.hasPet("🐱"));
 
         Assertions.assertEquals(2, count);
     }
@@ -99,7 +99,7 @@ public class Exercise2Test extends PetDomainForKata
 
         Pet serpySnake = petList.detectWith((pet, name) -> pet.getName().equals(name), "Serpy");
 
-        Assertions.assertEquals("🐍",serpySnake.getType().toString());
+        Assertions.assertEquals("🐍", serpySnake.getType().toString());
     }
 
     @Test
@@ -125,6 +125,17 @@ public class Exercise2Test extends PetDomainForKata
 
     @Test
     @Tag("SOLUTION")
+    public void getAllPetEmojisOfAllPeople()
+    {
+        Function<Person, Iterable<String>> function = Person::getPetEmojis;
+        MutableSet<String> petEmojis = this.people.flatCollect(function, Sets.mutable.empty());
+
+        var expected = Sets.mutable.with("🐱", "🐶", "🐢", "🐹", "🐦", "🐍");
+        Assertions.assertEquals(expected, petEmojis);
+    }
+
+    @Test
+    @Tag("SOLUTION")
     public void getFirstNamesOfAllPeople()
     {
         MutableList<String> firstNames = this.people.collect(Person::getFirstName);
@@ -139,21 +150,22 @@ public class Exercise2Test extends PetDomainForKata
     @DisplayName("doAnyPeopleHaveCatsRefactor 🐱?")
     public void doAnyPeopleHaveCatsRefactor()
     {
-        boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));
+        boolean peopleHaveCatsLambda = this.people.anySatisfy(person -> person.hasPet("🐱"));
         Assertions.assertTrue(peopleHaveCatsLambda);
 
-        boolean peopleHaveCatsMethodRef = this.people.anySatisfyWith(Person::hasPet, PetType.CAT);
+        boolean peopleHaveCatsMethodRef = this.people.anySatisfyWith(Person::hasPet, "🐱");
         Assertions.assertTrue(peopleHaveCatsMethodRef);
     }
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("doAllPeopleHaveCatsRefactor 🐱?")
     public void doAllPeopleHaveCatsRefactor()
     {
-        boolean peopleHaveCatsLambda = this.people.allSatisfy(person -> person.hasPet(PetType.CAT));
+        boolean peopleHaveCatsLambda = this.people.allSatisfy(person -> person.hasPet("🐱"));
         Assertions.assertFalse(peopleHaveCatsLambda);
 
-        boolean peopleHaveCatsMethodRef = this.people.allSatisfyWith(Person::hasPet, PetType.CAT);
+        boolean peopleHaveCatsMethodRef = this.people.allSatisfyWith(Person::hasPet, "🐱");
         Assertions.assertFalse(peopleHaveCatsMethodRef);
     }
 
@@ -162,16 +174,17 @@ public class Exercise2Test extends PetDomainForKata
     @DisplayName("getPeopleWithCatsRefactor 🐱?")
     public void getPeopleWithCatsRefactor()
     {
-        MutableList<Person> peopleWithCatsMethodRef = this.people.selectWith(Person::hasPet, PetType.CAT);
+        MutableList<Person> peopleWithCatsMethodRef = this.people.selectWith(Person::hasPet, "🐱");
 
         Verify.assertSize(2, peopleWithCatsMethodRef);
     }
 
     @Test
     @Tag("SOLUTION")
+    @DisplayName("getPeopleWithoutCatsRefactor 🐱?")
     public void getPeopleWithoutCatsRefactor()
     {
-        MutableList<Person> peopleWithoutCatsMethodRef = this.people.rejectWith(Person::hasPet, PetType.CAT);
+        MutableList<Person> peopleWithoutCatsMethodRef = this.people.rejectWith(Person::hasPet, "🐱");
 
         Verify.assertSize(6, peopleWithoutCatsMethodRef);
     }

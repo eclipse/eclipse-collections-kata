@@ -96,14 +96,14 @@ public class Exercise3Test extends PetDomainForKata
     @Tag("SOLUTION")
     public void getPeopleByTheirPetEmojis()
     {
-        MutableSetMultimap<String, Person> petTypesToPeople =
+        MutableSetMultimap<String, Person> petEmojisToPeople =
                 this.people.groupByEach(Person::getPetEmojis, Multimaps.mutable.set.empty());
 
-        Verify.assertIterableSize(2, petTypesToPeople.get("🐱"));
-        Verify.assertIterableSize(2, petTypesToPeople.get("🐶"));
-        Verify.assertIterableSize(1, petTypesToPeople.get("🐹"));
-        Verify.assertIterableSize(1, petTypesToPeople.get("🐢"));
-        Verify.assertIterableSize(1, petTypesToPeople.get("🐦"));
-        Verify.assertIterableSize(1, petTypesToPeople.get("🐍"));
+        Verify.assertIterableSize(2, petEmojisToPeople.get("🐱"));
+        Verify.assertIterableSize(2, petEmojisToPeople.get("🐶"));
+        Verify.assertIterableSize(1, petEmojisToPeople.get("🐹"));
+        Verify.assertIterableSize(1, petEmojisToPeople.get("🐢"));
+        Verify.assertIterableSize(1, petEmojisToPeople.get("🐦"));
+        Verify.assertIterableSize(1, petEmojisToPeople.get("🐍"));
     }
 }

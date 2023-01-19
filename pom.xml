@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2022 Goldman Sachs and others.
+  ~ Copyright (c) 2023 Goldman Sachs and others.
   ~ All rights reserved. This program and the accompanying materials
   ~ are made available under the terms of the Eclipse Public License v1.0
   ~ and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -53,7 +53,6 @@
     <developers>
         <developer>
             <name>Nikhil Nanivadekar</name>
-            <email>nikhil.nanivadekar@bnymellon.com</email>
         </developer>
 
         <developer>
@@ -66,7 +65,6 @@
 
         <developer>
             <name>Donald Raab</name>
-            <email>donald.raab@bnymellon.com</email>
         </developer>
 
         <developer>

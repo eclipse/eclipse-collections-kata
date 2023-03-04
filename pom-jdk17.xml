@@ -15,12 +15,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.eclipse.collections.kata</groupId>
-    <artifactId>eclipse-collections-kata-parent</artifactId>
+    <artifactId>eclipse-collections-kata-parent-17</artifactId>
     <version>7.1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
-    <name>Eclipse Collections Kata JDK11 modules</name>
+    <name>Eclipse Collections Kata JDK17 modules</name>
 
     <description>The Eclipse Collections Katas are a fun way to help you learn idiomatic Eclipse Collections usage.
         This particular kata is set up as a series of unit tests which fail. Your task is to make them pass, using
@@ -78,20 +78,9 @@
     </developers>
 
     <modules>
-        <module>company-kata</module>
-        <module>company-kata-solutions</module>
-        <module>pet-kata</module>
-        <module>pet-kata-solutions</module>
-        <module>candy-kata</module>
-        <module>candy-kata-solutions</module>
-        <module>converter-method-kata</module>
-        <module>converter-method-kata-solutions</module>
-        <module>top-methods-kata</module>
-        <module>top-methods-kata-solutions</module>
-        <module>lost-and-found-kata</module>
-        <module>lost-and-found-kata-solutions</module>
-        <module>jackson-kata</module>
-        <module>jackson-kata-solutions</module>
+        <module>record-kata</module>
+        <module>record-kata-solutions</module>
+        <module>pom.xml</module>
     </modules>
 
     <properties>
@@ -101,8 +90,8 @@
         <jol.version>0.16</jol.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.fork>true</maven.compiler.fork>
         <maven.compiler.verbose>true</maven.compiler.verbose>
         <maven.compiler.meminitial>2048m</maven.compiler.meminitial>

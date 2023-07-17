@@ -1092,38 +1092,6 @@ public void addPetAgesToExistingSet()
 ```
 
 
-Refactor to Eclipse Collections
--------------------------------
-```java
-@Test
-public void refactorToEclipseCollections()
-{
-  // Replace List and ArrayList with Eclipse Collections types
-  MutableList<Person> people = Lists.mutable.with(
-    new Person("Mary", "Smith").addPet(PetType.CAT, "Tabby", 2),
-    new Person("Bob", "Smith")
-        .addPet(PetType.CAT, "Dolly", 3)
-        .addPet(PetType.DOG, "Spot", 2),
-    new Person("Ted", "Smith").addPet(PetType.DOG, "Spike", 4),
-    new Person("Jake", "Snake").addPet(PetType.SNAKE, "Serpy", 1),
-    new Person("Barry", "Bird").addPet(PetType.BIRD, "Tweety", 2),
-    new Person("Terry", "Turtle").addPet(PetType.TURTLE, "Speedy", 1),
-    new Person("Harry", "Hamster")
-        .addPet(PetType.HAMSTER, "Fuzzy", 1)
-        .addPet(PetType.HAMSTER, "Wuzzy", 1),
-    new Person("John", "Doe")
-  );
-
-  // Replace Set and HashSet with Eclipse Collections types
-  MutableIntSet petAges = people
-    .flatCollect(Person::getPets)
-    .collectInt(pet -> pet.getAge())
-    .toSet();
-
-  // Extra bonus - convert to a primitive collection
-  Assertions.assertEquals(IntSets.mutable.with(1, 2, 3, 4), petAges);
-}
-```
 
 [Exercise 5 solutions](https://github.com/eclipse/eclipse-collections-kata/tree/master/pet-kata-solutions/src/test/java/org/eclipse/collections/petkata/Exercise5Test.java)
 ====================

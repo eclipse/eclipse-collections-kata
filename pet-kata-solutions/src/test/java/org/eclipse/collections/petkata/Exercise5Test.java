@@ -99,32 +99,4 @@ public class Exercise5Test extends PetDomainForKata
         Assertions.assertEquals("Harry Hamster", petOwner.getFullName());
         Assertions.assertEquals("🐹 🐹", petOwner.getPets().makeString(" "));
     }
-
-    @Test
-    @Tag("SOLUTION")
-    public void refactorToEclipseCollections()
-    {
-        MutableList<Person> people = Lists.mutable.with(
-                new Person("Mary", "Smith").addPet(PetType.CAT, "Tabby", 2),
-                new Person("Bob", "Smith")
-                        .addPet(PetType.CAT, "Dolly", 3)
-                        .addPet(PetType.DOG, "Spot", 2),
-                new Person("Ted", "Smith").addPet(PetType.DOG, "Spike", 4),
-                new Person("Jake", "Snake").addPet(PetType.SNAKE, "Serpy", 1),
-                new Person("Barry", "Bird").addPet(PetType.BIRD, "Tweety", 2),
-                new Person("Terry", "Turtle").addPet(PetType.TURTLE, "Speedy", 1),
-                new Person("Harry", "Hamster")
-                        .addPet(PetType.HAMSTER, "Fuzzy", 1)
-                        .addPet(PetType.HAMSTER, "Wuzzy", 1),
-                new Person("John", "Doe")
-        );
-
-        MutableIntSet petAges = people.flatCollect(Person::getPets)
-                .collectInt(Pet::getAge)
-                .toSet();
-
-        //extra bonus - convert to a primitive collection
-        var expected = IntSets.mutable.with(1, 2, 3, 4);
-        Assertions.assertEquals(expected, petAges);
-    }
 }

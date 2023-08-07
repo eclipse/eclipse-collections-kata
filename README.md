@@ -52,7 +52,7 @@ You can open the project directly from "File" => "Open Project..." => choose "ec
 In the "Open Project" dialog you might select the option "Open Required Projects" to automatically open the two modules.
 
 ## Work on Kata exercises
-There are seven separate katas under different directories:
+There are seven separate Java 11 katas under different directories:
 
 1. [Pet Kata](pet-kata)
 2. [Company Kata](company-kata)
@@ -61,6 +61,10 @@ There are seven separate katas under different directories:
 5. [Top Methods Kata](top-methods-kata)
 6. [Lost and Found Kata](lost-and-found-kata)
 7. [Jackson Kata](jackson-kata)
+
+There are also Java 17 katas supported as well:
+
+1. [Records Kata](record-kata)
 
 To get started, you can refer to slides for the [Instruction and Pet Kata](http://eclipse.github.io/eclipse-collections-kata/) to learn how to set-up Kata, basic features of Eclipse Collections corresponding to each Pet Kata exercise and then solutions. 
 Check out the [pet kata solutions module tests](https://github.com/eclipse/eclipse-collections-kata/tree/master/pet-kata-solutions/src/test/java/org/eclipse/collections/petkata) for your reference.

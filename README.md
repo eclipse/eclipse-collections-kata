@@ -22,9 +22,9 @@ This particular kata is set up as a series of unit tests which fail.
 Your task is to make them pass, using Eclipse Collections.
 
 ## What you will need to build the katas
-1. JDK 11
+1. JDK 11 (use [pom.xml](./pom.xml) to build project) or JDK 17 (use [pom-jdk17.xml](./pom-jdk17.xml) to build project)
 2. Maven 3.6.1+
-3. IDE of your choice that has support for JDK 11
+3. IDE of your choice that has support for JDK 11 or JDK 17
 
 ## Initialize Kata
 Clone this repo or simply download and extract the master [zip file](https://github.com/eclipse/eclipse-collections-kata/archive/master.zip), 

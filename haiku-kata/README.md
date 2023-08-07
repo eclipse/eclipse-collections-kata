@@ -20,7 +20,7 @@ The blog was also covered in JEP Café Episode #9 on YouTube by José Paumard: [
 Run the tests for specific frameworks in the tests folder.
 
 * [Eclipse Collections Tests](./src/test/java/org/eclipse/collections/haikukata/TextProcessorECTest.java)
-* [Java Streams Tests](/src/test/java/org/eclipse/collections/haikukata/TextProcessorJDKTest.java) 
+* [Java Streams Tests](./src/test/java/org/eclipse/collections/haikukata/TextProcessorJDKTest.java) 
 
 You will need to change code in the domain classes to get the tests to pass.
 

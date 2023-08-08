@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Goldman Sachs.
+ * Copyright (c) 2023 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -23,12 +23,14 @@ public abstract class RecordSetup
     {
         this.openJdkDistribution = Lists.mutable.with(
                 new OpenJDKDist("Azul", "Zulu", "11"),
-                new OpenJDKDist("Azul", "Zulu", "17"),
+                new OpenJDKDist("azul", "Zulu", "17"),
                 new OpenJDKDist("Azul", "Zulu", "18"),
                 new OpenJDKDist("Oracle", "Openjdk", "18"),
                 new OpenJDKDist("Oracle", "Openjdk", "19"),
                 new OpenJDKDist("Oracle", "Openjdk", "20")
-
         );
+
+        OpenJDKDist jdk21 = new OpenJDKDist("Red Hat", "Openjdk", "21");
+        this.openJdkDistribution.add(jdk21);
     }
 }

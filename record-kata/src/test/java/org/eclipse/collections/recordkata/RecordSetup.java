@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Goldman Sachs.
+ * Copyright (c) 2023 Goldman Sachs and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v. 1.0 which accompany this distribution.
@@ -18,6 +18,12 @@ public abstract class RecordSetup
 {
     protected MutableList<OpenJDKDist> openJdkDistribution;
 
+    /**
+     *  This method creates a list of Open JDK Distribution records defined in
+     *  {@link OpenJDKDist}
+     *
+     *  TODO: Create a new OpenJDKDist record for Red Hat Openjdk version 21 and append it to the end of the list.
+     */
     @BeforeEach
     public void setUp()
     {
@@ -28,7 +34,6 @@ public abstract class RecordSetup
                 new OpenJDKDist("Oracle", "Openjdk", "18"),
                 new OpenJDKDist("Oracle", "Openjdk", "19"),
                 new OpenJDKDist("Oracle", "Openjdk", "20")
-
         );
     }
 }

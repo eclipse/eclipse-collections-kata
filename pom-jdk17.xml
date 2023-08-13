@@ -82,6 +82,8 @@
         <module>record-kata-solutions</module>
         <module>haiku-kata</module>
         <module>haiku-kata-solutions</module>
+        <module>wordle-kata</module>
+        <module>wordle-kata-solutions</module>
         <module>pom.xml</module>
     </modules>
 

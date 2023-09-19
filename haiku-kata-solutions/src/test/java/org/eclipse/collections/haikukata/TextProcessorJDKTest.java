@@ -16,11 +16,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class TextProcessorJDKTest
 {
-    // @Test // Uncomment once topLetters is implemented for JDK
+//     @Test // Uncomment once topLetters is implemented for JDK
+//    @Tag("SOLUTION")
     public void topLetters()
     {
         List<Map.Entry<Character, Long>> top3 = new TextProcessorJDK().topLetters();
@@ -30,7 +32,8 @@ public class TextProcessorJDKTest
         Assertions.assertEquals(new AbstractMap.SimpleEntry<>('i', 62L), top3.get(2));
     }
 
-    // @Test // Uncomment once distinctLetters is implemented for JDK
+//    @Test // Uncomment once distinctLetters is implemented for JDK
+//    @Tag("SOLUTION")
     public void distinctLetters()
     {
         String distinctLetters = new TextProcessorJDK().distinctLetters();
@@ -38,7 +41,8 @@ public class TextProcessorJDKTest
         Assertions.assertEquals("breakingthoupvmwcdflsy", distinctLetters);
     }
 
-    // @Test // Uncomment once topVowelAndConsonant is implemented for JDK
+//    @Test // Uncomment once duplicatesAndUnique is implemented for JDK
+//    @Tag("SOLUTION")
     public void duplicatesAndUnique()
     {
         TextProcessorJDK.CharCountsDuplicatesUnique cdu = new TextProcessorJDK().duplicatesAndUnique();
@@ -47,7 +51,8 @@ public class TextProcessorJDKTest
         Assertions.assertEquals(Set.of(), cdu.unique());
     }
 
-    // @Test // Uncomment once findWordleWords is implemented for JDK
+//    @Test // Uncomment once topVowelAndConsonant is implemented for JDK
+//    @Tag("SOLUTION")
     public void topVowelAndConsonant()
     {
         TextProcessorJDK.TopVowelAndConsonant vowelAndConsonant = new TextProcessorJDK().topVowelAndConsonant();
@@ -56,7 +61,8 @@ public class TextProcessorJDKTest
         Assertions.assertEquals('t', vowelAndConsonant.consonant());
     }
 
-    @Test
+//    @Test // Uncomment once findWordleWords is implemented for JDK
+//    @Tag("SOLUTION")
     public void findWordleWords()
     {
         Set<String> wordleWords = new TextProcessorJDK().findWordleWords();

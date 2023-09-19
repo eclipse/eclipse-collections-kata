@@ -3,9 +3,51 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/candy-kata" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/candy-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/candy-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/candy-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/candy-kata/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-kata" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-kata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/converter-method-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/converter-method-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/converter-method-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/converter-method-kata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/haiku-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/haiku-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/haiku-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/haiku-kata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jackson-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jackson-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jackson-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jackson-kata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lost-and-found-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lost-and-found-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lost-and-found-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lost-and-found-kata/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pet-kata" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pet-kata-solutions" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pet-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pet-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pet-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pet-kata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/record-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/record-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/record-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/record-kata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/top-methods-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/top-methods-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/top-methods-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/top-methods-kata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wordle-kata-solutions/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wordle-kata-solutions/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wordle-kata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wordle-kata/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

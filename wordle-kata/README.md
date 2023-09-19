@@ -17,6 +17,8 @@ The blog was also covered in JEP Café Episode #10 on YouTube by José Paumard: 
 
 # Getting Started
 
+Checkout the [work on kata exercises](../README.md#work-on-kata-exercises) section.
+
 Run the tests for specific frameworks in the tests folder.
 
 * [Eclipse Collections Tests](./src/test/java/org/eclipse/collections/wordlekata/WordleECTest.java)

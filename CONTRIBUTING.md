@@ -38,7 +38,7 @@ Excessive branching and merging can make git history confusing. With that in min
 Submit your pull request when ready. Three checks will be kicked off automatically.
 
 - IP Validation: Checks that all committers signed the Eclipse CLA and signed their commits.
-- Continuous integration: [GitHub Actions][github] that run JUnit tests, CheckStyle, and FindBugs.
+- Continuous integration: [GitHub Actions][github] that run JUnit tests.
 - The standard GitHub check that the pull request has no conflicts with the base branch.
 
 Make sure all the checks pass. One of the committers will take a look and provide feedback or merge your contribution.

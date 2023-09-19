@@ -22,11 +22,13 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.factory.primitive.CharSets;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class TextProcessorECTest
 {
-    // @Test // Uncomment once topLetters is implemented for EC
+//    @Test // Uncomment once topLetters is implemented for EC
+//    @Tag("SOLUTION")
     public void topLetters()
     {
         ListIterable<CharIntPair> top3 = new TextProcessorEC().topLetters();
@@ -36,7 +38,8 @@ public class TextProcessorECTest
         Assertions.assertEquals(PrimitiveTuples.pair('i', 62), top3.get(2));
     }
 
-    // @Test // Uncomment once distinctLetters is implemented for EC
+//    @Test // Uncomment once distinctLetters is implemented for EC
+//    @Tag("SOLUTION")
     public void distinctLetters()
     {
         String distinctLetters = new TextProcessorEC().distinctLetters();
@@ -44,7 +47,8 @@ public class TextProcessorECTest
         Assertions.assertEquals("breakingthoupvmwcdflsy", distinctLetters);
     }
 
-    // @Test // Uncomment once duplicatesAndUnique is implemented for EC
+//    @Test // Uncomment once duplicatesAndUnique is implemented for EC
+//    @Tag("SOLUTION")
     public void duplicatesAndUnique()
     {
         Triple<CharBag, CharBag, CharSet> triple = new TextProcessorEC().duplicatesAndUnique();
@@ -53,7 +57,8 @@ public class TextProcessorECTest
         Assertions.assertEquals(CharSets.immutable.empty(), triple.getThree());
     }
 
-    // @Test // Uncomment once topVowelAndConsonant is implemented for EC
+//    @Test // Uncomment once topVowelAndConsonant is implemented for EC
+//    @Tag("SOLUTION")
     public void topVowelAndConsonant()
     {
         CharCharPair vowelAndConsonant = new TextProcessorEC().topVowelAndConsonant();
@@ -62,7 +67,8 @@ public class TextProcessorECTest
         Assertions.assertEquals('t', vowelAndConsonant.getTwo());
     }
 
-    // @Test // Uncomment once findWordleWords is implemented
+//    @Test // Uncomment once findWordleWords is implemented
+//    @Tag("SOLUTION")
     public void findWordleWords()
     {
         MutableSet<String> wordleWords = new TextProcessorEC().findWordleWords();

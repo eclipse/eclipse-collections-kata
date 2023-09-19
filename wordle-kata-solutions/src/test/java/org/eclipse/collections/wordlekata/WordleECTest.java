@@ -15,7 +15,8 @@ import org.junit.jupiter.api.Test;
 
 public class WordleECTest
 {
-    // @Test // Uncomment once guess is implemented for WordleEC
+//    @Test // Uncomment once guess is implemented for WordleEC
+//    @Tag("SOLUTION")
     public void matchWordWithGuess()
     {
         Assertions.assertEquals(".....", new WordleEC("aaaaa").guess("bbbbb"));

@@ -65,6 +65,10 @@ There are seven separate Java 11 katas under different directories:
 There are also Java 17 katas supported as well:
 
 1. [Records Kata](record-kata)
+2. [Haiku Kata](haiku-kata)
+3. [Wordle Kata](wordle-kata)
+ 
+> By default, the project is set up to build JDK 11 compatible katas. To work on katas that use Java 17, use/import [pom-jdk17.xml](./pom-jdk17.xml) instead to build the project. 
 
 To get started, you can refer to slides for the [Instruction and Pet Kata](http://eclipse.github.io/eclipse-collections-kata/) to learn how to set-up Kata, basic features of Eclipse Collections corresponding to each Pet Kata exercise and then solutions. 
 Check out the [pet kata solutions module tests](https://github.com/eclipse/eclipse-collections-kata/tree/master/pet-kata-solutions/src/test/java/org/eclipse/collections/petkata) for your reference.

@@ -8,6 +8,7 @@ If this is your first time contributing to an Eclipse Foundation project, you'll
 
 ## Issues
 Search the [issue tracker](https://github.com/eclipse/eclipse-collections-kata/issues) for a relevant issue or create a new one.
+Comment on the issue expressing your interest to work on it. One of the project maintainers will assign the issue to you. 
 
 ## Making changes
 * Fork the repository in GitHub and make changes in your fork. 

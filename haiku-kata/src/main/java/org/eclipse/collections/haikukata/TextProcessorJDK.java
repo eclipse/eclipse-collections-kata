@@ -131,7 +131,11 @@ public class TextProcessorJDK
         // TODO: Filter out the five letter words from the List<String> named words
         // TODO: Exclude contractions, and convert the words to lowercase
         // Hint: Look at filter, map, collect and Collectors.toSet
-        Set<String> wordleWords = null;
+        Set<String> wordleWords = words.stream()
+                .filter(word -> word.length() == 5 && !word.contains("'")) // Filter by length and exclude contractions
+                .map(String::toLowerCase) // Convert to lowercase
+                .collect(Collectors.toSet()); // Collect into a Set
+        //Set<String> wordleWords = null;
         return wordleWords;
     }
 }

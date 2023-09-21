@@ -61,8 +61,8 @@ public class TextProcessorJDKTest
         Assertions.assertEquals('t', vowelAndConsonant.consonant());
     }
 
-//    @Test // Uncomment once findWordleWords is implemented for JDK
-//    @Tag("SOLUTION")
+    @Test // Uncomment once findWordleWords is implemented for JDK
+    @Tag("SOLUTION")
     public void findWordleWords()
     {
         Set<String> wordleWords = new TextProcessorJDK().findWordleWords();

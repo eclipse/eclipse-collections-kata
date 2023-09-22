@@ -129,13 +129,10 @@ public class TextProcessorJDK
         return new TopVowelAndConsonant(topVowel, topConsonant);
     }
 
-    public boolean isVowel(char character)
-    {
-        // TODO: Use a Switch Expression to test for lowercase and uppercase vowels.
-        return switch (character)
-        {
-            case 'a', 'b', 'c' -> false;
-            default -> true;
+    public boolean isVowel(char character) {
+        return switch (character) {
+            case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' -> true;
+            default -> false;
         };
     }
 

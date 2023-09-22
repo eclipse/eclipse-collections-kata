@@ -47,8 +47,8 @@ public class TextProcessorECTest
         Assertions.assertEquals("breakingthoupvmwcdflsy", distinctLetters);
     }
 
-//    @Test // Uncomment once duplicatesAndUnique is implemented for EC
-//    @Tag("SOLUTION")
+    @Test
+    @Tag("SOLUTION")
     public void duplicatesAndUnique()
     {
         Triple<CharBag, CharBag, CharSet> triple = new TextProcessorEC().duplicatesAndUnique();

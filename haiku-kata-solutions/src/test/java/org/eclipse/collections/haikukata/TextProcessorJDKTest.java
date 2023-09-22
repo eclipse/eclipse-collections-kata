@@ -41,8 +41,8 @@ public class TextProcessorJDKTest
         Assertions.assertEquals("breakingthoupvmwcdflsy", distinctLetters);
     }
 
-//    @Test // Uncomment once duplicatesAndUnique is implemented for JDK
-//    @Tag("SOLUTION")
+    @Test
+    @Tag("SOLUTION")
     public void duplicatesAndUnique()
     {
         TextProcessorJDK.CharCountsDuplicatesUnique cdu = new TextProcessorJDK().duplicatesAndUnique();

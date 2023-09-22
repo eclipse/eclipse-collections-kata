@@ -67,8 +67,8 @@ public class TextProcessorECTest
         Assertions.assertEquals('t', vowelAndConsonant.getTwo());
     }
 
-//    @Test // Uncomment once findWordleWords is implemented
-//    @Tag("SOLUTION")
+    @Test // Uncomment once findWordleWords is implemented
+    @Tag("SOLUTION")
     public void findWordleWords()
     {
         MutableSet<String> wordleWords = new TextProcessorEC().findWordleWords();

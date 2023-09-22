@@ -12,8 +12,6 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.impl.block.function.AddFunction;
-import org.eclipse.collections.impl.utility.ListIterate;
 
 /**
  * Customers have a name, city and a list of {@link Order}s.

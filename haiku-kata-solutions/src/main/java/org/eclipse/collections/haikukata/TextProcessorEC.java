@@ -103,9 +103,13 @@ public class TextProcessorEC
         MutableList<String> words = Lists.mutable.empty();
         StringIterate.forEachToken(this.getHaiku(), " ,.-!?\t\n\r\f", words::add);
         // TODO: Filter out the five letter words from the MutableList<String> named words
+        MutableList<String> fiveLetterWords = words.select(word -> word.length() == 5);
         // TODO: Exclude contractions, and convert the words to lowercase
         // Hint: Look at reject, select, collect and toSet
-        MutableSet<String> wordleWords = null;
+        MutableSet<String> wordleWords = fiveLetterWords
+                .reject(word -> word.contains("'"))
+                .collect(String::toLowerCase)
+                .toSet();
 
         return wordleWords;
     }

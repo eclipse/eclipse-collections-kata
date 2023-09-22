@@ -77,18 +77,21 @@ public class TextProcessorEC
 
     public CharCharPair topVowelAndConsonant()
     {
-        // TODO: Find all of the alphabetic letters from this.getHaikuAsCharAdapter(), convert them to lowercase,
-        // TODO: put them in a bag and then get the top 26 occurrences
-        // Hint: Look at select, collectChar, toBag, and topOccurrences
-        // Bonus: See if the same solution will work using asLazy
-        MutableList<CharIntPair> charIntPairs = null;
+        // Collecting all the alphabetic letters from getHaikuAsCharAdapter(), converting them to lowercase,
+        // putting them in a bag and then getting the top 26 occurrences.
+        MutableList<CharIntPair> charIntPairs = this.getHaikuAsCharAdapter()
+                                                     .select(Character::isAlphabetic)
+                                                     .collectChar(Character::toLowerCase)
+                                                     .toBag()
+                                                     .topOccurrences(26);
 
-        // TODO: Find the top vowel
-        // Hint: Use the detect method on MutableList with the isVowel method below to find the top vowel char value
-        char topVowel = 'a';
-        // TODO: Find the top consonant
-        // Hint: Use the detect method on MutableList with the isVowel method below to find the top consonant char value
-        char topConsonant = 'b';
+        // Finding the top vowel.
+        CharIntPair topVowelPair = charIntPairs.detect(pair -> isVowel(pair.getOne()));
+        char topVowel = topVowelPair == null ? ' ' : topVowelPair.getOne();  // Default to space if no vowel is found.
+
+        // Finding the top consonant.
+        CharIntPair topConsonantPair = charIntPairs.detect(pair -> !isVowel(pair.getOne()));
+        char topConsonant = topConsonantPair == null ? ' ' : topConsonantPair.getOne();  // Default to space if no consonant is found.
 
         return PrimitiveTuples.pair(topVowel, topConsonant);
     }

@@ -87,7 +87,7 @@ public class TextProcessorEC
 
         // Finding the top vowel.
         CharIntPair topVowelPair = charIntPairs.detect(pair -> isVowel(pair.getOne()));
-        char topVowel = topVowelPair == null ? ' ' : topVowelPair.getOne();  // Default to space if no vowel is found.
+        char topVowel = topVowelPair == null ? DEFAULT_CHAR : topVowelPair.getOne();  // Default to space if no vowel is found.
 
         // Finding the top consonant.
         CharIntPair topVowelPair = charIntPairs.detect(pair -> isVowel(pair.getOne()));

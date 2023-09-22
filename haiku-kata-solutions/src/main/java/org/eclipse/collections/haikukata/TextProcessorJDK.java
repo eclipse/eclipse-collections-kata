@@ -30,9 +30,7 @@ public class TextProcessorJDK
 
     public IntStream getHaikuAsChars()
     {
-        // TODO: Create an IntStream representing the chars from this.getHaiku()
-        // Hint: Look at the chars() method on the String class
-        return null;
+        return this.getHaiku().chars();
     }
 
     public List<Map.Entry<Character, Long>> topLetters()

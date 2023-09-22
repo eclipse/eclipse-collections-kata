@@ -59,18 +59,17 @@ public class TextProcessorEC
 
     public Triple<CharBag, CharBag, CharSet> duplicatesAndUnique()
     {
-        // TODO: Find all of the alphabetic letters from this.getHaikuAsCharAdapter(), convert them to lowercase
-        // and store them in a MutableCharBag.
-        // Hint: Look at select, collectChar, and toBag
-        MutableCharBag chars = null;
+        // Find all of the alphabetic letters, convert them to lowercase
+        MutableCharBag chars = this.getHaikuAsCharAdapter()
+                                .select(Character::isAlphabetic)
+                                .collectChar(Character::toLowerCase)
+                                .toBag();
 
-        // TODO: Find all the chars with duplicates
-        // Hint: Find a method on MutableCharBag that returns duplicates
-        CharBag duplicates = null;
+        // Find all the chars with duplicates
+        CharBag duplicates = chars.selectDuplicates();
 
-        // TODO: Find all the unique chars
-        // Hint: Find a method on MutableCharBag that returns unique chars
-        CharSet unique = null;
+        // Find all the unique chars
+        CharSet unique = chars.selectUnique();
 
         return Tuples.triple(chars, duplicates, unique);
     }
@@ -103,9 +102,13 @@ public class TextProcessorEC
         MutableList<String> words = Lists.mutable.empty();
         StringIterate.forEachToken(this.getHaiku(), " ,.-!?\t\n\r\f", words::add);
         // TODO: Filter out the five letter words from the MutableList<String> named words
+        MutableList<String> fiveLetterWords = words.select(word -> word.length() == 5);
         // TODO: Exclude contractions, and convert the words to lowercase
         // Hint: Look at reject, select, collect and toSet
-        MutableSet<String> wordleWords = null;
+        MutableSet<String> wordleWords = fiveLetterWords
+                .reject(word -> word.contains("'"))
+                .collect(String::toLowerCase)
+                .toSet();
 
         return wordleWords;
     }

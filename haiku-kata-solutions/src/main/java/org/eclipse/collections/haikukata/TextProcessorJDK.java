@@ -30,9 +30,7 @@ public class TextProcessorJDK
 
     public IntStream getHaikuAsChars()
     {
-        // TODO: Create an IntStream representing the chars from this.getHaiku()
-        // Hint: Look at the chars() method on the String class
-        return null;
+        return this.getHaiku().chars();
     }
 
     public List<Map.Entry<Character, Long>> topLetters()
@@ -72,20 +70,20 @@ public class TextProcessorJDK
 
     public CharCountsDuplicatesUnique duplicatesAndUnique()
     {
-        // TODO: Find all of the alphabetic letters from this.getHaikuAsChars(), convert them to lowercase
-        // and count and store them in a Map<Character, Long>.
-        // Hint: Look at IntStream's filter, map, mapToObj
-        // Hint: Also Look at Stream.collect, Collectors.groupingBy, Collectors.counting
-        Map<Character, Long> chars = null;
+        Map<Character, Long> chars = this.getHaikuAsChars()
+                .filter(Character::isLetter)               // Filter alphabetic characters
+                .mapToObj(ch -> (char) ch)                // Convert to characters
+                .map(Character::toLowerCase)               // Convert to lowercase
+                .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
-        // TODO: Find all the Characters with duplicates in the map (value > 1)
-        // Hint: Look at entrySet, stream, filter, collect
-        // Hint: Also look at Collectors.toMap and using Map.Entry.getKey and Map.Entry.getValue as method references
-        Map<Character, Long> duplicates = null;
+        Map<Character, Long> duplicates = chars.entrySet().stream()
+                .filter(entry -> 1L < entry.getValue())    // Filter duplicates
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        // TODO: Find all the unique Characters in the Map (value < 2)
-        // Hint: Look at entrySet, stream, filter, map, Map.Entry.getKey, collect, Collectors.toSet
-        Set<Character> unique = null;
+        Set<Character> unique = chars.entrySet().stream()
+                .filter(entry -> 2L > entry.getValue())    // Filter unique
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
 
         // Returns a specialized "triple" type implemented as a Java Record (see CharCountsDuplicatesUnique above)
         return new CharCountsDuplicatesUnique(chars, duplicates, unique);

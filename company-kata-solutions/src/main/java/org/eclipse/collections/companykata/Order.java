@@ -12,13 +12,10 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
-import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
 import org.eclipse.collections.impl.block.factory.Comparators;
-import org.eclipse.collections.impl.block.function.AddFunction;
-import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.SortedBags;
 
-import java.util.List;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**

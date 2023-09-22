@@ -51,8 +51,8 @@ public class TextProcessorJDKTest
         Assertions.assertEquals(Set.of(), cdu.unique());
     }
 
-//    @Test // Uncomment once topVowelAndConsonant is implemented for JDK
-//    @Tag("SOLUTION")
+    @Test 
+    @Tag("SOLUTION")
     public void topVowelAndConsonant()
     {
         TextProcessorJDK.TopVowelAndConsonant vowelAndConsonant = new TextProcessorJDK().topVowelAndConsonant();

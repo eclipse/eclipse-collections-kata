@@ -51,10 +51,12 @@ public class TextProcessorEC
 
     public String distinctLetters()
     {
-        // TODO: Return all of the distinct alphabetic letters from this.getHaikuAsCharAdapter() converted to lowercase as a String
-        // Note: The letters should be returned in encounter order from the original Haiku String
-        // Hint: Look at select, collectChar, distinct and toString
-        return null;
+        return this.getHaikuAsCharAdapter()
+                .select(Character::isAlphabetic)
+                .collectChar(Character::toLowerCase)
+                .distinct()
+                .toBag()
+                .makeString();
     }
 
     public Triple<CharBag, CharBag, CharSet> duplicatesAndUnique()

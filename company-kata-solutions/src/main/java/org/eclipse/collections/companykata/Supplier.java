@@ -10,8 +10,6 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
-
 /**
  * Suppliers have a name and an array of itemNames.
  */

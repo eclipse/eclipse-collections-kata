@@ -120,7 +120,7 @@ public class TextProcessorJDK
 
         // Find the top consonant.
         char topConsonant = entries.stream()
-                .filter(entry -> !isVowel(entry.getKey()))
+                .filter(!this::isvowel)
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("No consonants found in haiku"))
                 .getKey();

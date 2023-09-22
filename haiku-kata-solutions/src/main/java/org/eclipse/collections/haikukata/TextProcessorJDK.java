@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -40,13 +41,16 @@ public class TextProcessorJDK
         // TODO: of Character objects to their counts
         // Hint: Look at IntStream's filter, map, mapToObject, collect methods
         // Hint: Also loo at Collectors.groupingBy, Collectors.counting
-        Map<Character, Long> chars = null;
+        Map<Character, Long> chars = this.getHaikuAsChars().filter(Character::isLetter)
+                .mapToObj(i -> Character.toLowerCase((char) i)).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
         // TODO: Sort the entries in the Map by their values in reverseOrder
         // TODO: Take the top three entries and convert them to a List
         // Hint: Look at entrySet, stream, sorted, Map.Entry.comparingByValue, Comparator.reverseOrder()
         // Hint: On Stream look at limit and toList.
-        return null;
+
+
+        return chars.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(3).collect(Collectors.toList());
     }
 
     public String distinctLetters()

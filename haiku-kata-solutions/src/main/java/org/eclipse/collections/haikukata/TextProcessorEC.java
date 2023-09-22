@@ -33,11 +33,15 @@ public class TextProcessorEC
         return new HaikuCollection().getText();
     }
 
-    public CharAdapter getHaikuAsCharAdapter()
+   public CharAdapter getHaikuAsCharAdapter()
     {
-        // TODO: Wrap this.getHaiku() in a CharAdapter
-        // Hint: Look a the Strings class.
-        return null;
+        String haiku = this.getHaiku();
+        if (haiku != null) {
+            return CharAdapter.adapt(haiku);
+        } else {
+            // Handle null haiku string as needed, e.g., log an error, throw an exception, or return a default value.
+            return CharAdapter.adapt("");  // Returning an empty CharAdapter as an example.
+        }
     }
 
     public ListIterable<CharIntPair> topLetters()
@@ -58,20 +62,20 @@ public class TextProcessorEC
         return null;
     }
 
-    public Triple<CharBag, CharBag, CharSet> duplicatesAndUnique()
+   public Triple<CharBag, CharBag, CharSet> duplicatesAndUnique()
     {
-        // TODO: Find all of the alphabetic letters from this.getHaikuAsCharAdapter(), convert them to lowercase
-        // and store them in a MutableCharBag.
-        // Hint: Look at select, collectChar, and toBag
-        MutableCharBag chars = null;
+        // Collecting all the alphabetic letters from getHaikuAsCharAdapter(), converting them to lowercase
+        // and storing them in a MutableCharBag.
+        MutableCharBag chars = this.getHaikuAsCharAdapter()
+                                    .select(Character::isAlphabetic)
+                                    .collectChar(Character::toLowerCase)
+                                    .toBag();
 
-        // TODO: Find all the chars with duplicates
-        // Hint: Find a method on MutableCharBag that returns duplicates
-        CharBag duplicates = null;
+        // Finding all the chars with duplicates
+        CharBag duplicates = chars.selectByOccurrences(occurrences -> occurrences > 1);
 
-        // TODO: Find all the unique chars
-        // Hint: Find a method on MutableCharBag that returns unique chars
-        CharSet unique = null;
+        // Finding all the unique chars
+        CharSet unique = chars.selectByOccurrences(occurrences -> occurrences == 1).toSet();
 
         return Tuples.triple(chars, duplicates, unique);
     }

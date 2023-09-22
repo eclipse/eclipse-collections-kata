@@ -10,7 +10,6 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.primitive.DoubleFunction;
 import org.eclipse.collections.impl.block.function.AddFunction;
 import org.eclipse.collections.impl.factory.Lists;
 

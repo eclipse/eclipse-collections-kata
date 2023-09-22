@@ -35,9 +35,8 @@ public class TextProcessorEC
 
     public CharAdapter getHaikuAsCharAdapter()
     {
-        // TODO: Wrap this.getHaiku() in a CharAdapter
-        // Hint: Look a the Strings class.
-        return null;
+        // Hint: Wrap this.getHaiku() in a CharAdapter, Look at the Strings class.
+        return CharAdapter.adapt(this.getHaiku());
     }
 
     public ListIterable<CharIntPair> topLetters()

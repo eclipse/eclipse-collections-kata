@@ -39,7 +39,7 @@ public class TextProcessorJDK
         // TODO: Map the alphabetic chars from this.getHaikuAsChars() to lowercase into a Map
         // TODO: of Character objects to their counts
         // Hint: Look at IntStream's filter, map, mapToObject, collect methods
-        // Hint: Also loo at Collectors.groupingBy, Collectors.counting
+        // Hint: Also look at Collectors.groupingBy, Collectors.counting
         Map<Character, Long> chars = null;
 
         // TODO: Sort the entries in the Map by their values in reverseOrder
@@ -131,7 +131,11 @@ public class TextProcessorJDK
         // TODO: Filter out the five letter words from the List<String> named words
         // TODO: Exclude contractions, and convert the words to lowercase
         // Hint: Look at filter, map, collect and Collectors.toSet
-        Set<String> wordleWords = null;
+        Set<String> wordleWords = words.stream()
+                .filter(word -> word.length() == 5 && !word.contains("'")) // Filter by length and exclude contractions
+                .map(String::toLowerCase) // Convert to lowercase
+                .collect(Collectors.toSet()); // Collect into a Set
+        //Set<String> wordleWords = null;
         return wordleWords;
     }
 }

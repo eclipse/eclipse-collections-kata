@@ -76,6 +76,7 @@ public class TextProcessorEC
 
     public CharCharPair topVowelAndConsonant()
     {
+        private static final char DEFAULT_CHAR = ' ';
         // Collecting all the alphabetic letters from getHaikuAsCharAdapter(), converting them to lowercase,
         // putting them in a bag and then getting the top 26 occurrences.
         MutableList<CharIntPair> charIntPairs = this.getHaikuAsCharAdapter()
@@ -89,8 +90,8 @@ public class TextProcessorEC
         char topVowel = topVowelPair == null ? ' ' : topVowelPair.getOne();  // Default to space if no vowel is found.
 
         // Finding the top consonant.
-        CharIntPair topConsonantPair = charIntPairs.detect(pair -> !isVowel(pair.getOne()));
-        char topConsonant = topConsonantPair == null ? ' ' : topConsonantPair.getOne();  // Default to space if no consonant is found.
+        CharIntPair topVowelPair = charIntPairs.detect(pair -> isVowel(pair.getOne()));
+        char topVowel = topVowelPair == null ? DEFAULT_CHAR : topVowelPair.getOne();  // Use the named constant here
 
         return PrimitiveTuples.pair(topVowel, topConsonant);
     }

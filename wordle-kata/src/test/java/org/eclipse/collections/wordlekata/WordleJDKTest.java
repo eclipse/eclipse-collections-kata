@@ -11,11 +11,13 @@
 package org.eclipse.collections.wordlekata;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class WordleJDKTest
 {
     @Test
+    @Tag("KATA")
     public void matchWordWithGuess()
     {
         Assertions.assertEquals(".....", new WordleJDK("aaaaa").guess("bbbbb"));

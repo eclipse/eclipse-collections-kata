@@ -16,11 +16,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class TextProcessorJDKTest
 {
     @Test
+    @Tag("KATA")
     public void topLetters()
     {
         List<Map.Entry<Character, Long>> top3 = new TextProcessorJDK().topLetters();
@@ -31,6 +33,7 @@ public class TextProcessorJDKTest
     }
 
     @Test
+    @Tag("KATA")
     public void distinctLetters()
     {
         String distinctLetters = new TextProcessorJDK().distinctLetters();
@@ -39,6 +42,7 @@ public class TextProcessorJDKTest
     }
 
     @Test
+    @Tag("KATA")
     public void duplicatesAndUnique()
     {
         TextProcessorJDK.CharCountsDuplicatesUnique cdu = new TextProcessorJDK().duplicatesAndUnique();
@@ -48,6 +52,7 @@ public class TextProcessorJDKTest
     }
 
     @Test
+    @Tag("KATA")
     public void topVowelAndConsonant()
     {
         TextProcessorJDK.TopVowelAndConsonant vowelAndConsonant = new TextProcessorJDK().topVowelAndConsonant();
@@ -57,6 +62,7 @@ public class TextProcessorJDKTest
     }
 
     @Test
+    @Tag("KATA")
     public void findWordleWords()
     {
         Set<String> wordleWords = new TextProcessorJDK().findWordleWords();

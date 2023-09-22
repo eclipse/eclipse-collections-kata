@@ -47,8 +47,8 @@ public class TextProcessorECTest
         Assertions.assertEquals("breakingthoupvmwcdflsy", distinctLetters);
     }
 
-//    @Test // Uncomment once duplicatesAndUnique is implemented for EC
-//    @Tag("SOLUTION")
+    @Test
+    @Tag("SOLUTION")
     public void duplicatesAndUnique()
     {
         Triple<CharBag, CharBag, CharSet> triple = new TextProcessorEC().duplicatesAndUnique();
@@ -67,8 +67,8 @@ public class TextProcessorECTest
         Assertions.assertEquals('t', vowelAndConsonant.getTwo());
     }
 
-//    @Test // Uncomment once findWordleWords is implemented
-//    @Tag("SOLUTION")
+    @Test // Uncomment once findWordleWords is implemented
+    @Tag("SOLUTION")
     public void findWordleWords()
     {
         MutableSet<String> wordleWords = new TextProcessorEC().findWordleWords();

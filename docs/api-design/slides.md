@@ -36,7 +36,7 @@ What is Eclipse Collections?
 * An open source Java Collections Framework
   * Functional, Fluent, Friendly and Fun
   * A mature library with an evolutionary design
-  * 12+ years of development
+  * 18+ years of development
 * A Brief History
   * Caramel (2005)
     * Internal library developed at Goldman Sachs

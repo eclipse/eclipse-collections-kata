@@ -10,8 +10,6 @@
 
 package org.eclipse.collections.companykata;
 
-import org.eclipse.collections.api.block.function.Function;
-
 /**
  * An Item has a name and a value.
  */

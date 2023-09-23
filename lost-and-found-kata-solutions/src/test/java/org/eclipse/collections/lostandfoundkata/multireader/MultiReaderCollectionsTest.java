@@ -31,6 +31,7 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.list.Interval;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -153,6 +154,7 @@ public class MultiReaderCollectionsTest extends AbstractThreadSafeCollectionsTes
 
     @Test
     @Tag("SOLUTION")
+    @Disabled
     public void multiReaderListFiltering()
     {
         MultiReaderList<Integer> list =

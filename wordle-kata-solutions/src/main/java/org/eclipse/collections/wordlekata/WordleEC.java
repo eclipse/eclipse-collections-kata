@@ -43,6 +43,50 @@ public record WordleEC(String string)
     public String guess(String guess)
     {
         // TODO - Replace null with the code needed to satisfy the rules above.
-        return null;
+        CharAdapter hiddenChars = Strings.asChars(this.string);
+        CharAdapter guessChars = Strings.asChars(guess.toLowerCase());
+        MutableCharBag hiddenBag = hiddenChars.toBag();
+        MutableCharBag guessBag = guessChars.toBag();
+
+        char[] resChars = new char[guess.length()];
+
+        //If all letters and their positions match ,return guess with uppercase letters
+        if (guessChars.equals(hiddenChars)) {
+            return guess.toUpperCase();
+        }
+
+        for (int i = 0; i < guess.length(); i++) {
+            //Delete all char which is not contained by guessBag in hiddenBag
+            if (!guessBag.contains(hiddenChars.charAt(i))) {
+                hiddenBag.removeOccurrences(hiddenChars.charAt(i),hiddenBag.occurrencesOf(hiddenChars.charAt(i)));
+            }
+            //Delete all char which is not contained by hiddenBag in guessBag
+            if (!hiddenBag.contains(guessChars.charAt(i))) {
+                guessBag.removeOccurrences(guessChars.charAt(i),guessBag.occurrencesOf(guessChars.charAt(i)));
+            }
+            //Check the letter in guess
+            if (guessChars.charAt(i) == hiddenChars.charAt(i)) {
+                //Meet : " If a letter in the guess String matches a letter in the hidden word and the letter is in the
+                // same position, then replace the character with an uppercase letter."
+                resChars[i] = (char)(guessChars.charAt(i) - 'a' + 'A');
+                guessBag.remove(guessChars.charAt(i));
+                hiddenBag.remove(hiddenChars.charAt(i));
+            } else {
+                resChars[i] = '.';
+            }
+        }
+
+        int i = 0;
+        while(!hiddenBag.isEmpty() && !guessBag.isEmpty()) {
+            char curChar = guessChars.charAt(i);
+            if (resChars[i] == '.' && guessBag.contains(curChar)) {
+                resChars[i] = curChar;
+                guessBag.remove(curChar);
+                hiddenBag.remove(curChar);
+            }
+            i++;
+        }
+
+        return String.valueOf(resChars);
     }
 }

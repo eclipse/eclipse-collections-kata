@@ -38,7 +38,7 @@ public class TextProcessorJDK
         // TODO: Map the alphabetic chars from this.getHaikuAsChars() to lowercase into a Map
         // TODO: of Character objects to their counts
         // Hint: Look at IntStream's filter, map, mapToObject, collect methods
-        // Hint: Also loo at Collectors.groupingBy, Collectors.counting
+        // Hint: Also look at Collectors.groupingBy, Collectors.counting
         Map<Character, Long> chars = this.getHaikuAsChars().filter(Character::isLetter)
                 .mapToObj(i -> Character.toLowerCase((char) i)).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 

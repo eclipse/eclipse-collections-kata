@@ -10,18 +10,12 @@
 
 package org.eclipse.collections.companykata;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.IntFunction;
 
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.impl.list.mutable.ArrayListAdapter;
-import org.eclipse.collections.impl.list.mutable.FastList;
-import org.junit.jupiter.api.Assertions;
+
 
 /**
  * A company has a {@link MutableList} of {@link Customer}s.  It has an array of {@link Supplier}s, and a name.

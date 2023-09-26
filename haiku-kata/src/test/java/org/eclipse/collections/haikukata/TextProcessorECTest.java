@@ -22,11 +22,13 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.factory.primitive.CharSets;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class TextProcessorECTest
 {
     @Test
+    @Tag("KATA")
     public void topLetters()
     {
         ListIterable<CharIntPair> top3 = new TextProcessorEC().topLetters();
@@ -37,6 +39,7 @@ public class TextProcessorECTest
     }
 
     @Test
+    @Tag("KATA")
     public void distinctLetters()
     {
         String distinctLetters = new TextProcessorEC().distinctLetters();
@@ -45,6 +48,7 @@ public class TextProcessorECTest
     }
 
     @Test
+    @Tag("KATA")
     public void duplicatesAndUnique()
     {
         Triple<CharBag, CharBag, CharSet> triple = new TextProcessorEC().duplicatesAndUnique();
@@ -54,6 +58,7 @@ public class TextProcessorECTest
     }
 
     @Test
+    @Tag("KATA")
     public void topVowelAndConsonant()
     {
         CharCharPair vowelAndConsonant = new TextProcessorEC().topVowelAndConsonant();
@@ -63,6 +68,7 @@ public class TextProcessorECTest
     }
 
     @Test
+    @Tag("KATA")
     public void findWordleWords()
     {
         MutableSet<String> wordleWords = new TextProcessorEC().findWordleWords();

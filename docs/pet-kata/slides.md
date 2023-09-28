@@ -959,22 +959,6 @@ public void bobSmithsPetNamesAsString()
 }
 ```
 
-Immutable Pet Counts by Emoji
---------------------------
-```java
-@Test
-public void immutablePetCountsByEmoji()
-{
-    // Hint: Try to replace the immutable Map<String, Long> with an ImmutableBag<String>
-    ImmutableBag<String> countsByEmoji = Bags.immutable.withAll(
-            this.people.flatCollect(Person::getPetTypes).countBy(PetType::toString)
-    );
-    Assertions.assertEquals(
-    Bags.immutable.of("🐱", "🐱", "🐶", "🐶", "🐹", "🐹", "🐍", "🐢", "🐦"),
-    countsByEmoji
-    );
-}
-```
 
 Bob Smith's Pet Names as String
 ------------------------
@@ -996,23 +980,19 @@ public void bobSmithsPetNamesAsString()
 
 
 Immutable Pet Counts by Emoji
-------------------------
+--------------------------
 ```java
 @Test
 public void immutablePetCountsByEmoji()
 {
-  // Hint: Try to replace the Map<PetType, Long> with a Bag<PetType>
-  MutableBag<PetType> petTypes = this.people
-    .asUnmodifiable()
-    .flatCollect(Person::getPets)
-    .countBy(Pet::getType);
-
-  Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.CAT));
-  Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.DOG));
-  Assertions.assertEquals(2, petTypes.occurrencesOf(PetType.HAMSTER));
-  Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.SNAKE));
-  Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.TURTLE));
-  Assertions.assertEquals(1, petTypes.occurrencesOf(PetType.BIRD));
+    // Hint: Try to replace the immutable Map<String, Long> with an ImmutableBag<String>
+    ImmutableBag<String> countsByEmoji = Bags.immutable.withAll(
+            this.people.flatCollect(Person::getPetTypes).countBy(PetType::toString)
+    );
+    Assertions.assertEquals(
+    Bags.immutable.of("🐱", "🐱", "🐶", "🐶", "🐹", "🐹", "🐍", "🐢", "🐦"),
+    countsByEmoji
+    );
 }
 ```
 

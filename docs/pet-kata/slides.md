@@ -1019,11 +1019,11 @@ public void immutablePetCountsByEmoji()
 ```
 
 
-Stream to EC refactor #3
+Top Three Pets
 ------------------------
 ```java
 @Test
-public void streamsToECRefactor3()
+public void topThreePets()
 {
   // Hint: The result of groupingBy/counting can almost always be replaced by a Bag
   // Hint: Look for the API on Bag that might return the top 3 pet types

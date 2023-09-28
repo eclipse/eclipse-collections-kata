@@ -967,28 +967,22 @@ Immutable Pet Counts by Emoji
 @Test
 public void immutablePetCountsByEmoji()
 {
-    //        Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
-
     // Hint: Try to replace the immutable Map<String, Long> with an ImmutableBag<String>
-    //        Map<String, Long> countsByEmoji =
-    //                Map.copyOf(this.people
-    //                        .stream()
-    //                        .flatMap(person -> person.getPets().stream())
-    //                        .collect(Collectors.groupingBy(pet -> pet.getType().toString(), Collectors.counting())));
-
-    ImmutableBag<String> countsByEmoji = Bags.immutable.withAll(this.people.flatCollect(Person::getPetTypes).countBy(PetType::toString));
+    ImmutableBag<String> countsByEmoji = Bags.immutable.withAll(
+            this.people.flatCollect(Person::getPetTypes).countBy(PetType::toString)
+    );
     Assertions.assertEquals(
-            Bags.immutable.of("🐱", "🐱",  "🐶", "🐶", "🐹", "🐹", "🐍",  "🐢",  "🐦"),
-            countsByEmoji
+    Bags.immutable.of("🐱", "🐱", "🐶", "🐶", "🐹", "🐹", "🐍", "🐢", "🐦"),
+    countsByEmoji
     );
 }
 ```
 
-Stream to EC refactor #1
+Bob Smith's Pet Names as String
 ------------------------
 ```java
 @Test
-public void streamsToECRefactor1()
+public void bobSmithsPetNamesAsString()
 {
   // Find Bob Smith
   Person person = this.people.detect(each -> each.named("Bob Smith"));
@@ -1003,11 +997,11 @@ public void streamsToECRefactor1()
 ```
 
 
-Stream to EC refactor #2
+Immutable Pet Counts by Emoji
 ------------------------
 ```java
 @Test
-public void streamsToECRefactor2()
+public void immutablePetCountsByEmoji()
 {
   // Hint: Try to replace the Map<PetType, Long> with a Bag<PetType>
   MutableBag<PetType> petTypes = this.people

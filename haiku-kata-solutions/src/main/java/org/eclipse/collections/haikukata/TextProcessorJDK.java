@@ -38,7 +38,7 @@ public class TextProcessorJDK
         // TODO: Map the alphabetic chars from this.getHaikuAsChars() to lowercase into a Map
         // TODO: of Character objects to their counts
         // Hint: Look at IntStream's filter, map, mapToObject, collect methods
-        // Hint: Also loo at Collectors.groupingBy, Collectors.counting
+        // Hint: Also look at Collectors.groupingBy, Collectors.counting
         Map<Character, Long> chars = this.getHaikuAsChars().filter(Character::isLetter)
                 .mapToObj(i -> Character.toLowerCase((char) i)).collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
@@ -94,36 +94,43 @@ public class TextProcessorJDK
      */
     public record TopVowelAndConsonant(char vowel, char consonant) {};
 
-    public TopVowelAndConsonant topVowelAndConsonant()
-    {
-        // TODO: Find all of the alphabetic letters from this.getHaikuAsChars(), convert them to lowercase,
-        // TODO: count the Character values in a Map and create a List of top 26 occurrences in
-        // TODO: Map.Entry<Character, Long> instances sorted in reverse order by count
-        // Hint: Look at filter, map, mapToObj, collect, Collectors.groupingBy, Collectors.counting
-        // Hint: Also look at entrySet, stream, sorted, Map.Entry.comparingByValue, Comparator.reverseorder, toList
-        List<Map.Entry<Character, Long>> entries = null;
+    public TopVowelAndConsonant topVowelAndConsonant() {
+        // Find all of the alphabetic letters from the haiku, convert them to lowercase,
+        // and count the Character values in a Map.
+        Map<Character, Long> charCounts = this.getHaikuAsChars()
+                .filter(Character::isAlphabetic) // Filter non-alphabetic characters first
+                .mapToObj(ch -> (char) ch)
+                .map(Character::toLowerCase)
+                .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
-        // TODO: Find the top vowel
-        // Hint: Use the filter method with findFirst, orElseThrow on Stream with the isVowel method below to find
-        // Hint: the top vowel Character value using getKey on Map.Entry.
-        char topVowel = 'a';
+        // Create a List of the top 26 occurrences in Map.Entry<Character, Long> instances sorted in reverse order by count.
+        List<Map.Entry<Character, Long>> entries = charCounts.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toList());
 
-        // TODO: Find the top consonant
-        // Hint: Use the filter method with findFirst, orElseThrow on Stream with the isVowel method below to find
-        // Hint: the top consonant Character value using getKey on Map.Entry.
-        char topConsonant = 'b';
+        // Find the top vowel.        
+        char topVowel = entries.stream()
+                .filter(entry -> isVowel(entry.getKey()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No vowels found in haiku"))
+                .getKey();
+       
+        // Find the top consonant.        
+        char topConsonant = entries.stream()
+                .filter(entry -> !isVowel(entry.getKey()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No consonants found in haiku"))
+                .getKey();
 
         // Return a specialized "pair" instance named TopVowelAndConsonant implemented via a Java Record
         return new TopVowelAndConsonant(topVowel, topConsonant);
     }
 
-    public boolean isVowel(char character)
-    {
-        // TODO: Use a Switch Expression to test for lowercase and uppercase vowels.
-        return switch (character)
-        {
-            case 'a', 'b', 'c' -> false;
-            default -> true;
+    public boolean isVowel(char character) {
+        return switch (character) {
+            case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' -> true;
+            default -> false;
         };
     }
 

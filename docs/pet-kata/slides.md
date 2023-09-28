@@ -940,6 +940,49 @@ public void getAgeStatisticsOfPets()
 }
 ```
 
+Bob Smith's Pet Names as String
+--------------------------
+```java
+@Test
+public void bobSmithsPetNamesAsString()
+{
+    // Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+    
+    //find Bob Smith
+    Person person = this.people
+    .detect(each -> each.named("Bob Smith"));
+    
+    //get Bob Smith's pets' names
+    String names = person.getPets()
+    .collect(Pet::getName)
+    .makeString(" & ");
+    
+    Assertions.assertEquals("Dolly & Spot", names);
+}
+```
+
+Immutable Pet Counts by Emoji
+--------------------------
+```java
+@Test
+public void immutablePetCountsByEmoji()
+{
+    //        Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
+
+    // Hint: Try to replace the immutable Map<String, Long> with an ImmutableBag<String>
+    //        Map<String, Long> countsByEmoji =
+    //                Map.copyOf(this.people
+    //                        .stream()
+    //                        .flatMap(person -> person.getPets().stream())
+    //                        .collect(Collectors.groupingBy(pet -> pet.getType().toString(), Collectors.counting())));
+
+    ImmutableBag<String> countsByEmoji = Bags.immutable.withAll(this.people.flatCollect(Person::getPetTypes).countBy(PetType::toString));
+    Assertions.assertEquals(
+            Bags.immutable.of("🐱", "🐱",  "🐶", "🐶", "🐹", "🐹", "🐍",  "🐢",  "🐦"),
+            countsByEmoji
+    );
+}
+```
 
 Stream to EC refactor #1
 ------------------------

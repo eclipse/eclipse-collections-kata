@@ -946,8 +946,6 @@ Bob Smith's Pet Names as String
 @Test
 public void bobSmithsPetNamesAsString()
 {
-    // Assertions.fail("Refactor to Eclipse Collections. Don't forget to comment this out or delete it when you are done.");
-    
     //find Bob Smith
     Person person = this.people
     .detect(each -> each.named("Bob Smith"));

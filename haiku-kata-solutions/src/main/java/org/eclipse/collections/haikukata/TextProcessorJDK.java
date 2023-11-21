@@ -137,11 +137,8 @@ public class TextProcessorJDK
     public Set<String> findWordleWords()
     {
         List<String> words = new Scanner(this.getHaiku()).useDelimiter("[\\s,.!?-]+").tokens().toList();
-        // TODO: Filter out the five letter words from the List<String> named words
-        // TODO: Exclude contractions, and convert the words to lowercase
-        // Hint: Look at filter, map, collect and Collectors.toSet
         Set<String> wordleWords = words.stream()
-                .filter(word -> word.length()== 5)
+                .filter(word -> word.length() == 5)
                 .filter(word -> !word.contains("'"))
                 .map(String::toLowerCase)
                 .collect(Collectors.toSet());

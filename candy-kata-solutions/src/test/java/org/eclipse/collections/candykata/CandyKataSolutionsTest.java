@@ -57,6 +57,20 @@ public class CandyKataSolutionsTest
         Assertions.assertEquals(expectedSet, commonInTop10);
     }
 
+//    @Test
+//    @Tag("SOLUTION")
+    public void lessThan30()
+    {
+        MutableList<Bag<Candy>> bagsOfCandy = this.collectBagsOfCandy();
+
+        Bag<Candy> bigBagOfCandy = null;
+
+        String stringOfItemToCount = null;
+
+        var expected = "{WHOPPERS=28, TWIX=26, NERDS=28, HERSHEYS_KISSES=24, SWEDISH_FISH=26}";
+        Assertions.assertEquals(expected, stringOfItemToCount);
+    }
+
     private MutableList<Bag<Candy>> collectBagsOfCandy()
     {
         return SchoolGroup.all().collect(SchoolGroup::trickOrTreat).toList();

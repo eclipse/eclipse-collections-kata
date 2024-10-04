@@ -38,6 +38,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * {@link org.eclipse.collections.api.factory.bag.primitive.MutableIntBagFactory#with(int...)} <br>
  * @see IntBags <br>
@@ -346,11 +348,11 @@ public class MutableIntBagTest
     public void occurrencesOf()
     {
         // Find the occurrencesOf 1 in this.bag
-        Assert.assertEquals(1, this.bag.occurrencesOf(0));
+        assertEquals(1, this.bag.occurrencesOf(0));
         // Find the occurrencesOf 2 in this.bag
-        Assert.assertEquals(2, this.bag.occurrencesOf(0));
+        assertEquals(2, this.bag.occurrencesOf(0));
         // Find the occurrencesOf 3 in this.bag
-        Assert.assertEquals(3, this.bag.occurrencesOf(0));
+        assertEquals(3, this.bag.occurrencesOf(0));
     }
 
     @Test

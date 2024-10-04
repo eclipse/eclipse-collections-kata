@@ -304,9 +304,9 @@ public class MutableIntBagTest
     @Tag("SOLUTION")
     public void occurrencesOf()
     {
-        Assert.assertEquals(1, this.bag.occurrencesOf(1));
-        Assert.assertEquals(2, this.bag.occurrencesOf(2));
-        Assert.assertEquals(3, this.bag.occurrencesOf(3));
+        Assertions.assertEquals(1, this.bag.occurrencesOf(1));
+        Assertions.assertEquals(2, this.bag.occurrencesOf(2));
+        Assertions.assertEquals(3, this.bag.occurrencesOf(3));
     }
 
     public void topOccurrences()
